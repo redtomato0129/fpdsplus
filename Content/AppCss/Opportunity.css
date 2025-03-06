@@ -1,0 +1,160 @@
+﻿body {
+}
+
+.datepicker {
+    top: 150.95369px !important;
+}
+
+.reqProduct::after {
+    content: "* (Product or Service Code required)";
+    color: red;
+    position: absolute;
+    font-size: 9px;
+    margin-top: 7px;
+}
+
+.dropdown dd, .dropdown dt {
+    margin: 0px;
+    padding: 0px;
+}
+
+.dropdown ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.dropdown dd {
+    position: relative;
+    margin-top: -10px;
+    padding: 0px;
+    height: 0px;
+}
+
+.dropdown div, .dropdown div:visited {
+    color: grey;
+    text-decoration: none;
+    outline: none;
+    margin: 0px;
+    padding: 0px;
+    min-height: 30px;
+    border-radius: 3px;
+}
+
+.dropdown dt div {
+    background-color: white;
+    border: 1px solid #e9ecef;
+    display: block;
+    overflow: hidden;
+    width: 93%;
+    margin: 0px;
+    padding: 0px;
+}
+
+    .dropdown dt div span, .multiSel label {
+        cursor: pointer;
+        display: inline-block;
+        margin: 0px;
+        padding: 0px 5px;
+    }
+
+.dropdown dd ul {
+    background-color: white;
+    border: 1px solid #e9ecef;
+    top: 1px;
+    color: grey;
+    display: none;
+    position: absolute;
+    width: 93%;
+    list-style: none;
+    height: 100px;
+    overflow: auto;
+    margin: 0px;
+    padding: 0px;
+}
+
+.dropdown span.value {
+    display: none;
+    border-radius: 3px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.dropdown dd ul li a {
+    display: block;
+    margin: 0px;
+    padding: 0px;
+}
+
+    .dropdown dd ul li a:hover {
+        background-color: #fff;
+        margin: 0px;
+        padding: 0px;
+    }
+
+.ui-front {
+    z-index: 9999;
+}
+
+ .throw{
+        width:3% !important;
+       
+    }
+    .thsolicitation{
+         width:10% !important;
+        
+        
+    }
+     .thsac{
+         width:16% !important;
+    }
+     .thdeptcode{
+         display:none;
+     }
+     /*.thdeptnaics{
+         display:none;
+     }*/
+     .thposdt{
+         width:5% !important;
+        
+     }
+     .thdept{
+         width:15% !important;
+         
+     }
+     .thagency{
+         width:15% !important;
+        
+     }
+    
+     .thtitle{
+         width:15% !important;
+     }
+
+     .thsacode{
+         display:none;
+     }
+
+.thbastyp {
+     width:10% !important;
+}
+     .opptype {
+    background-color: #581e7b;
+    color: #ffffff;
+    border: 1px solid #581e7b;
+    text-transform: uppercase;
+    font-size: 10px;
+}
+     table.dataTable thead th,table.dataTable tbody td 
+ {
+  text-align: center;
+}
+     .GoBaseTypeSearch, .GoSetAsideSearch {
+     color: #2fb129;
+    text-decoration: underline;
+}
+
+    .GoBaseTypeSearch:hover, .GoSetAsideSearch:hover {
+       cursor: pointer;
+        text-decoration: underline;
+        color: #2fb129 !important;
+    }

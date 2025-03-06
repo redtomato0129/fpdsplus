@@ -1,0 +1,295 @@
+@{
+    ViewBag.Title = "Vendor Plus Page";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+@*<link rel="stylesheet" type="text/css" href="~/Content/AppCss/newsModalCss.css" />*@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="~/Content/AppCss/VendorPlus.css" />
+
+
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="container-fluid">
+	<div class="row" style=" position: relative;">
+		@*<div class="ads" style="position: absolute; right: 5.33%; width: 60%;">
+			<img src="~/Content/assets/images/vendor_fpds.png" style="width: 100%;">
+		</div>*@
+		<div class="col-4">
+			<div class="scp-breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item" id="page1"><a href="/AnswerWizard/Index">Wizard</a></li>
+					<li class="breadcrumb-item" id="categoryQuestion"></li>
+					@* <li class="breadcrumb-item" id="page2"><a href="">Question List</a></li>*@
+					<li class="breadcrumb-item" id="page3"><a href="">Search Criteria</a></li>
+					<li class="breadcrumb-item active">Vendor Plus</li>
+				</ol>
+			</div>
+		</div>
+		<div class="col-7" style="cursor: pointer;">
+
+		</div>
+		<div class="col-1" id="shareIcon" style="cursor: pointer;">
+			<img src="~/Content/assets/images/share.png" data-toggle="tooltip" data-placement="bottom" title="Share URL" onclick="copyToClipboard()" style="float: right; width: 30px; height: 30px;" />
+		</div>
+		@*<div class="col-1">
+			<button class="dt-button buttons-excel buttons-html5 btn btn-cyan text-white btn-primary" style="background-color: #00693f; float: right;" tabindex="0" onclick="routeToContractInventory()"><span>Contract Inventory</span></button>
+		</div>*@
+	</div>
+    <div class="row">
+        
+        <div class="col-12 pb-2" style="cursor: pointer;">
+            <span data-toggle="modal" data-target="#exampleModalCenter">
+                <img src="~/Content/assets/images/help.png" data-toggle="tooltip" data-placement="bottom" title="Help" style="float: right; width: 30px; height: 30px;" />
+            </span>
+        </div>
+    </div>
+
+</div>
+
+<div class="container-fluid" style="margin-left:0px !important;">
+
+    @*1st row*@
+
+    <div class="row">
+
+        <div class="col-lg-4">
+            <div class="fpds__data">
+                <div class="p-1 fpds__heading">
+                    <h4>Vendor Information</h4>
+                </div>
+                <div class="fpds__list">
+                    <table class="table table-borderless" style="width:100%">
+                        <tr>
+                            <th>Business Name</th>
+                            <td style="font-size: 15px; font-weight: bold;" id="LEGAL_BUSINESS_NAME"></td>
+                        </tr>
+                        <tr>
+                            <th>Vendor UEI</th>
+                            <td id="vendor_uei"></td>
+                        </tr>
+                        <tr>
+                            <th>Cage</th>
+                            <td id="Cage"></td>
+                        </tr>
+                        <tr>
+                            <th>SAM Expiration Date</th>
+                            <td id="EXPIRATION_DATE"></td>
+                        </tr>
+                        <tr>
+                            <th>SAM Registration Date</th>
+                            <td id="INITIAL_REGISTRATION_DATE"></td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="fpds__data">
+                <div class="p-1 fpds__heading">
+					<h4>Business / Address Information</h4>
+                </div>
+                <div class="fpds__list">
+					<table class="table table-borderless" style="width:100%">
+						<tr>
+							<th>Corporate Website</th>
+							<td id="CORPORATE_URL"></td>
+						</tr>
+						<tr>
+							<th>Business Start Date</th>
+							<td id="BUsiness_Start_date"></td>
+						</tr>
+						<tr>
+							<th>Fiscal Year End Close Date</th>
+							<td id="Fiscal_Year_End_Close_Date"></td>
+						</tr>
+						<tr>
+							<th>Entity Structure</th>
+							<td id="Entity_Structure"></td>
+						</tr>
+						<tr>
+							<th>Physical Address</th>
+							<td id="PHYSICAL_ADDRESS_LINE_1"></td>
+						</tr>
+						<tr>
+							<th></th>
+							<td>
+								<span id="PHYSICAL_ADDRESS_LINE_2"></span>
+								<span id="PHYSICAL_ADDRESS_CITY"></span>,
+								<span id="PHYSICAL_ADDRESS_PROVINCE_OR_STATE"></span>,
+								<span id="PHYSICAL_ADDRESS_ZIP_CODE"></span>
+							</td>
+						</tr>
+						<tr>
+							<th>Mailing Address</th>
+							<td id="MAILING_ADDRESS_LINE_1"></td>
+						</tr>
+						<tr>
+							<th></th>
+							<td>
+								<span id="MAILING_ADDRESS_LINE_2"></span>
+								<span id="MAILING_ADDRESS_CITY"></span>
+								<span id="MAILING_ADDRESS_STATE_OR_PROVINCE"></span>,
+								<span id="MAILING_ADDRESS_ZIP_CODE"></span>
+							</td>
+						</tr>
+					</table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="fpds__data">
+                <div class="p-1 fpds__heading">
+                    <h4>POC Information</h4>
+                </div>
+                <div class="fpds__list">
+                    <table class="table table-borderless" style="width:100%">
+
+                        <tr>
+                            <th>Name</th>
+                            <td>
+                                <span id="GOVT_BUS_POC_FIRST_NAME"></span>
+                                <span id="GOVT_BUS_POC_LAST_NAME"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Title</th>
+                            <td id="GOVT_BUS_POC_TITLE"></td>
+                        </tr>
+                        <tr>
+                            <th>Address</th>
+                            <td id="GOVT_BUS_POC_ST_ADD_1"></td>
+                        </tr>
+                        <tr>
+                            <th>City</th>
+                            <td id="GOVT_BUS_POC_CITY"></td>
+                        </tr>
+                        <tr>
+                            <th>ZIP Code</th>
+                            <td id="GOVT_BUS_POC_ZIP_POSTAL_CODE"></td>
+                        </tr>
+                        <tr>
+                            <th>State</th>
+                            <td id="GOVT_BUS_POC_STATE_OR_PROVINCE"></td>
+                        </tr>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    @*2nd row*@
+
+    <div class="row" style="margin-top:40px">
+
+        <div class="col-lg-4">
+            <div class="fpds__data">
+                <div class="p-1 fpds__heading">
+					<h4>Fiscal Year Action Obligations</h4>
+                </div>
+                <div class="fpds__list">
+                    <table class="obligations_table table table-borderless" style="width:100%">                      
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="fpds__data">
+                <div class="p-1 fpds__heading">
+                    <h4>NAICS Code Registration</h4>
+                </div>
+                <div class="fpds__list">
+                    <table class="naics_table table table-borderless" style="width:100%">
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="fpds__data">
+                <div class="p-1 fpds__heading">
+                    <h4>Socio Economic Designation</h4>
+                </div>
+                <div class="fpds__list">
+                    <table class="table table-borderless socioTable" style="width:100%" id="socioRenderer">
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+
+
+        <div class="col-10 ">
+            @*<h5 class="question_decription_text" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;"><span id="vendor_name"></span> - Federal Contract History.</h5>*@
+            <h5 class="question_decription_text" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;"><span id="vendor_name"></span> - Federal Contract History</h5>
+        </div>
+        <div class="col-2 text-right">
+            <button class="dt-button excelIcon" tabindex="0" aria-controls="searchreportData" onclick="exportToCsv()" title="Export to Excel"><span></span></button>
+        </div>
+        <div class="col-10 ">
+            <h5 class="question_decription_text" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;"><i>Click any row to view full contract details.</i></h5>
+        </div>
+        <div class="col-2 text-right">
+            <h5 class="question_decription_text" id="total_records" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;"></h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 tableParent">
+            <table class="table table-striped ownTable">
+                <thead class="bg-purple-header">
+                    <tr>
+                        <td>Contract #</td>
+                        <td>Referenced IDV #</td>
+                        <td>Modification #</td>
+                        <td>Funding Agency Name (dept)</td>
+                        <td>Funding Sub-Agency Name (Agency)</td>
+                        <td>Funding Office Name (Office)</td>
+                        <td>NAICS</td>
+                        <td>NAICS Description</td>
+                        <td>PSC</td>
+                        <td>PSC Description</td>
+                        <td>Type of Set Aside</td>
+                        <td>Expire Year</td>
+                        <td>Base and All Options</td>
+                        <td>Federal Action Obligation</td>
+                    </tr>
+                </thead>
+                <tbody class="tableBody" id="contractBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Help Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="questionHelpTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="questionHelpDescription"></div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/AppJS/QuestionHelp.js"></script>
+<script src="~/Scripts/AppJS/VendorPlus.js"></script>

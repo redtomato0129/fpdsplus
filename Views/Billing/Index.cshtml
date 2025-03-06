@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Subscription Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<script src="~/Scripts/AppJS/Billing.js"></script>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Billing Details</h4>
+                <div class="table-responsive">
+                    <table id="BillingDatatable" class="table table-striped table-bordered" style="width:100% !important">
+                        <thead>
+                            <tr id="HeadR">
+                                <th><label>Row #</label></th>
+                                <th><label>Amount</label></th>
+                                <th><label>OrderID</label></th>
+                                <th><label>Paid Date</label></th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodybilling"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

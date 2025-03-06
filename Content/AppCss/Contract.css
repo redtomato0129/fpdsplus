@@ -1,0 +1,214 @@
+﻿body {
+}
+
+.Apploader {
+    display: none;
+}
+
+.Co_001 {
+    font-size: 11px;
+    font-weight: 400;
+    margin-bottom: 0px;
+    color: purple !important;
+}
+
+.Co_002 {
+    height: 205px;
+    background-color: white;
+    border: 1px solid #e8e8e8;
+    color: #949494 !important;
+}
+
+.Co_003 {
+    text-decoration: underline;
+}
+
+    .Co_003:hover {
+        cursor: pointer;
+    }
+
+.card-header {
+    /*border-bottom: 3px solid #5f00a4;*/
+    background-color: white;
+    color: #8b5edd;
+}
+
+.Co_004:hover {
+    /*margin-top: -5px;*/
+    /*box-shadow: -1px 0px 6px 4px #e2e2e2;*/
+}
+
+.Co_006 {
+    font-weight: 500;
+    color: purple !important;
+}
+
+.card-group .card {
+    border-right: none;
+}
+
+
+.Co_007 {
+    color: #622c83;
+}
+
+.Co_008 {
+    font-size: 11px;
+}
+
+.Co_009 {
+    color: dimgrey;
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 2px;
+}
+
+.Co_010 {
+    /*color:#a7a7a7;*/
+    color: #2d2929;
+    font-size: 11px;
+    font-weight: 400;
+    margin-bottom: 0px;
+}
+
+.a {
+    color: purple;
+}
+
+
+
+#profile-description {
+    /*max-width: 400px; 
+  margin-top: 50px;*/
+    position: relative;
+}
+
+    #profile-description .text {
+        /*   width: 660px;  */
+        /*margin-bottom: 5px;*/
+        color: #777;
+        /*padding: 0 15px;*/
+        position: relative;
+        /*font-family: Arial;*/
+        /*font-size: 14px;*/
+        display: block;
+    }
+
+    #profile-description .show-more {
+        /* width: 690px; */
+        color: #777;
+        position: relative;
+        font-size: 9px;
+        padding-top: 3px;
+        /* height: 20px; */
+        text-align: center;
+        background: #f7f7f7;
+        cursor: pointer;
+    }
+    /*#profile-description .show-more:hover { 
+    color: #1779dd;
+}
+#profile-description .show-more-height { 
+  height: 35px; 
+  overflow:hidden; 
+}*/
+
+    #profile-description .collapse:not(.show) {
+        display: block;
+        height: 2rem;
+        overflow: hidden;
+    }
+
+    #profile-description .collapsing {
+        height: 2rem;
+    }
+
+    #profile-description a.collapsed::after {
+        content: '+ Show More';
+        font-size: 11px;
+    }
+
+    #profile-description a:not(.collapsed)::after {
+        content: '- Show Less';
+        font-size: 11px;
+    }
+
+.recipient_name {
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.Co_011 {
+    width: 11%;
+    float: right;
+    margin-bottom: 6px;
+    margin-top: -11px;
+    border-radius: 44px;
+    margin-right: -17px;
+    cursor: pointer;
+    box-shadow: 1px 1px 11px 0px #e8e8e8;
+}
+
+.Co_012 {
+    font-size: 11px;
+}
+
+.Co_013 {
+    margin-top: -7px;
+}
+
+.Co_014 {
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.card-header {
+    padding: 12px 15px !important;
+}
+
+.fpds__data {
+    background-color: white;
+    border: 1px solid #ccc;
+    height: 355px;
+    overflow-y: auto;
+}
+
+.fpds__heading {
+    Background-color: #f4e3ff
+}
+
+    .fpds__heading h4 {
+        font-size: 18px;
+        font-weight: 700;
+        margin: 0px;
+    }
+
+.fpds__list {
+    padding: 6px 10px;
+}
+
+.fpds__list_mid {
+    padding: 6px 10px;
+}
+
+    .fpds__list_mid .table th {
+        width: 140px;
+    }
+
+.fpds__list ul li {
+    font-size: 14px;
+}
+
+.table td, .table th {
+    padding: 3px 9px !important;
+    font-size: 12px;
+}
+
+.table th {
+    width: 200px;
+}
+
+.table thead th {
+    vertical-align: top;
+}

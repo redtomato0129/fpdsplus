@@ -1,0 +1,52 @@
+body {
+    overflow-y:auto;
+}
+
+.auth-wrapper .auth-box {
+    max-width: 700px !important;
+    margin: 0px !important;
+}
+
+.Verification {
+    display: none;
+}
+
+
+
+.R001 {
+    width: 90%;
+    border-bottom: 1px solid #d2d2d2;
+    margin-left: 14px;
+    margin-top: 10px;
+}
+
+.R002 {
+    font-size: 13px;
+    width: 88%;
+    color: #afafaf;
+    margin-left: 37px;
+    margin-top: 16px;
+}
+
+.R003 {
+    text-align: center;
+    width: 100%;
+}
+
+.B_R001 {
+    border: none;
+    background: #5f00a4;
+    color: white;
+    width: 9%;
+    border-radius: 4px;
+    margin-top: 48px;
+    padding: 4px 5px;
+}
+
+.B_R002 {
+    margin-top: 65px;
+    width: 24%;
+    display: initial !important;
+}
+
+

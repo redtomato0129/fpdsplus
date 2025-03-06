@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "Chat with docs";
+
+}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="~/Content/AppCss/chatDocs.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<script src="~/Scripts/AppJS/chatdocs.js" defer></script>
+<div class="container-fluid" style="margin-left:0px !important;">
+    <div class="row">
+        <div class="col-8">
+            <div class="scp-breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="">Opportunity</a></li>
+                    <li class="breadcrumb-item" id="page1"><a href="">Chat</a></li>
+                </ol>
+            </div>
+        </div>
+        <div class="col-4 my-2">
+
+            <button class="btn btn-purple" style="float:right" onclick="showOpportunityModal()">Opportunity Details</button>
+        </div>
+    </div>
+</div>
+
+<div class="light_mode">
+
+
+    <!-- Chats container -->
+
+
+    <div class="chat-container">
+
+    </div>
+
+
+    <!-- Typing container -->
+    <div class="typing-container">
+        <div class="typing-content">
+            <div class="typing-textarea">
+                <textarea id="chat-input" spellcheck="false" placeholder="Enter a prompt here" required></textarea>
+                <span id="send-btn" class="material-symbols-rounded">send</span>
+            </div>
+            <!--<div class="typing-controls">-->
+            @*  <span id="theme-btn" class="material-symbols-rounded">light_mode</span>*@
+            <!--<span id="delete-btn" class="material-symbols-rounded">send</span>
+            </div>-->
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="opportunityDetails" tabindex="-1" aria-labelledby="exampleModalLabel"
+     role="dialog" data-backdrop="static" data-keyboard="false" aria-modal="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable" style="max-width:80%">
+        <div class="modal-content">
+            <div class="modal-body pb-5">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-11">
+                                    <h2 class="heading" style="float: left; margin-bottom: 20px;">Opportunity Details</h2>
+                                </div>
+                                <div class="col-1" style="
+    float: right;
+    text-align: right;
+"><i class="fa fa-times" aria-hidden="true" id="closeDealModal" onclick="closeOpportunityModal()" style="cursor:pointer"></i></div>
+                            </div>
+                          
+
+
+                        </div>
+
+                    </div>
+                    <div class="row g-3">
+
+                                @*  <div class="col-6">
+                    <h1 class="heading-title"><strong>Questions</strong></h1>
+                </div>*@
+                                <div class="table-responsive">
+                                    <table id="opportunityList" class="table" style="width:100%">
+                                        <thead>
+                                            <tr class="bg-purple-header text-black">
+
+
+                                                <th>Title</th>
+                                                <th>Funding Agency</th>
+                                                <th>Funding Sub Agency</th>
+                                                <th>Base Type</th>
+                                                <th>Posted Date</th>
+                                            </tr>
+                                        </thead>
+
+
+                                        <tbody id="opportunityListtable">
+                                        </tbody>
+                                    </table>
+                                </div>
+                      
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

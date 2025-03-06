@@ -1,0 +1,309 @@
+﻿@{
+    ViewBag.Title = "Add Deals";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+<script src="~/Scripts/module/ajaxRequestHandler.js"></script>
+<script src="~/Scripts/AppJS/Deals.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    body {
+        background-color: #FAFBFC;
+    }
+
+    .heading-title {
+        color: #571C7A;
+    }
+
+    .dealbtn {
+        background-color: #571C7A;
+        color: white;
+        border: 1px solid #571C7A;
+    }
+
+        .dealbtn:hover {
+            background-color: #fff;
+            color: #571C7A;
+        }
+
+    .deal-data {
+        border-radius: 10px;
+        background-color: #fff;
+    }
+
+    .page-wrapper {
+        display: block !important;
+        margin-left: 250px !important;
+    }
+</style>
+
+
+<div class="row justify-content-between align-items-center my-3">
+    <div class="col-6">
+        <h1 class="heading-title"><strong>Add New Deal</strong></h1>
+    </div>
+    <div class="col-6 text-right">
+        <button class="btn dealbtn" type="submit" id="AddDeal">Save</button>
+    </div>
+    <div class="col-12">
+        <div class="deal-data p-5">
+            <form>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="txtDealtitle" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="txtdealtitle"
+                                   aria-describedby="emailHelp">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="status" class="form-label d-block">Status</label>
+                            <select class="form-control" id="DDdealsstatus" aria-label="Default select example">
+                                <option selected>Please Choose one</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-4">
+
+                        <div class="mb-3">
+                            <label for="txtDealFundingAgencyCode" class="form-label">Funding Agency code </label>
+                            <input type="text" class="form-control" id="txtDealFundingAgencyCode">
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="txtDealNAICS" class="form-label">NAICS</label>
+                            <input type="text" class="form-control" id="txtDealNAICS">
+                        </div>
+                    </div>
+
+
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="txtDealNAICSDescription" class="form-label">NAICS Description</label>
+                            <input type="text" class="form-control" id="txtDealNAICSDescription">
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="txtDealGovwinID" class="form-label"> Govwin ID</label>
+                            <input type="number" class="form-control" id="txtDealGovwinID">
+                        </div>
+                    </div>
+
+
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="txtDealGovwinLink" class="form-label"> Govwin Link</label>
+                            <input type="text" class="form-control" id="txtDealGovwinLink">
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="txtDealSolicitationNumber" class="form-label">Solicitation Number</label>
+                            <input type="text" class="form-control" id="txtDealSolicitationNumber"
+                                   aria-describedby="emailHelp">
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="status" class="form-label d-block">Stage</label>
+                            <select class="form-control" id="DDdealsstage" aria-label="Default select example">
+                                <option selected>Please Choose one</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="txtDealAwardingAgencycode" class="form-label">Awarding Agency code</label>
+                            <input type="text" class="form-control" id="txtDealAwardingAgencycode">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="txtDealFundingAgencyName" class="form-label">Funding Agency Name</label>
+                            <input type="text" class="form-control" id="txtDealFundingAgencyName">
+                        </div>
+                    </div>
+
+
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="txtDealPSC" class="form-label">PSC</label>
+                            <input type="text" class="form-control" id="txtDealPSC">
+                        </div>
+                    </div>
+                    <div class="col-4">
+
+                        <div class="mb-3">
+                            <label for="txtDealPSCDescription" class="form-label">PSC Description</label>
+                            <input type="text" class="form-control" id="txtDealPSCDescription">
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+
+
+                        <div class="mb-3">
+                            <label for="txtDealPotentialAwardAmount" class="form-label">Potential Award Amount  $k</label>
+                            <input type="number" class="form-control" id="txtDealPotentialAwardAmount">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="txtDealPriority" class="form-label">Priority</label>
+                            <input type="text" class="form-control" id="txtDealPriority">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="txtDealSamGovLink" class="form-label">Sam.Gov Link</label>
+                            <input type="text" class="form-control" id="txtDealSamGovLink"
+                                   aria-describedby="emailHelp">
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="txtDealDueDate" class="form-label">Due Date</label>
+                            <input type="date" class="form-control" id="txtDealDueDate"
+                                   aria-describedby="emailHelp">
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="txtDealAwardingAgencyName" class="form-label">Awarding Agency Name</label>
+                            <input type="text" class="form-control" id="txtDealAwardingAgencyName">
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="txtDealFundingSubAgencyCode" class="form-label">Funding Sub Agency Code</label>
+                            <input type="text" class="form-control" id="txtDealFundingSubAgencyCode">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="txtDealFundingSubAgencyName" class="form-label">Funding Sub Agency Name</label>
+                            <input type="text" class="form-control" id="txtDealFundingSubAgencyName">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="DDAwardType" class="form-label d-block">Award Type</label>
+                            <select class="form-control" id="DDAwardType" aria-label="Default select example">
+                                <option selected>Please Choose one</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="status" class="form-label d-block">Set Aside</label>
+                            <select class="form-control" id="DDSetAside" aria-label="Default select example">
+                                <option selected>Please Choose one</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="col-8">
+                        <div class="mb-3">
+                            <label for="txSetAsideDescription" class="form-label">SetAside Description</label>
+                            <textarea class="form-control" id="txSetAsideDescription" rows="1"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="txtDealIncumbentUEI" class="form-label">Incumbent UEI</label>
+                            <input type="text" class="form-control" id="txtDealIncumbentUEI">
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="txtDealIncumbentName" class="form-label">Incumbent Name</label>
+                            <input type="text" class="form-control" id="txtDealIncumbentName">
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+
+                        <div class="mb-3">
+                            <label for="dateexpiry" class="form-label"> Expiration Date</label>
+                            <input type="date" class="form-control" id="dateexpiry">
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+
+                        <div class="mb-3">
+                            <label for="userid" class="form-label"> User ID</label>
+                            <input type="text" class="form-control" id="userid">
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+
+                        <div class="mb-3">
+                            <label for="user_domain" class="form-label"> User Domain</label>
+                            <input type="text" class="form-control" id="user_domain">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <label for="txtDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="txtDescription" rows="3"></textarea>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+

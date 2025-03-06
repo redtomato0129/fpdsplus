@@ -1,0 +1,279 @@
+﻿@{
+    ViewBag.Title = "Activity List";
+
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/AppCss/activities.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <div class="main_content">
+
+                    <div class="tab">
+                        <button class="tablinks active" onclick="openCity(event, 'Notes')">Notes</button>
+                        <button class="tablinks" onclick="openCity(event, 'Calls')">Calls</button>
+                        <button class="tablinks" onclick="openCity(event, 'Emails')">Emails</button>
+                        <button class="tablinks" onclick="openCity(event, 'Files')">Files</button>
+                    </div>
+
+                    <!-- Tab content -->
+                    <div id="Notes" class="tabcontent">
+                        <form action="form_handler.php" method="post">
+                            <div>
+                                <textarea cols="80" rows="10" id="articleContent" name="articleContent">
+                    &lt;h1&gt;Article Title&lt;/h1&gt;
+                    &lt;p&gt;Here's some sample text&lt;/p&gt;
+                  </textarea>
+
+                                <div class="buttons my-2 text-right">
+                                    <input type="submit" class="btn btn-outline-secondary" value="Cancel" />
+                                    <input type="submit" class="btn btn-success" value="Save" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="Calls" class="tabcontent p-4">
+                        <form class="row g-3 calls__form">
+                            <div class="col-md-4 mb-3">
+                                <label for="datepicker" class="form-label">Date / Time</label>
+                                <div><input type="text" value="2021-04-16 14:45" class="form-control default" /></div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="inputPassword4" class="form-label">Organization</label>
+                                <input type="password" class="form-control" id="inputPassword4">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="inputAddress2" class="form-label">Contact</label>
+                                <input type="text" class="form-control" id="inputAddress2">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn add__Call">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Add
+                                    Call
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="Emails" class="tabcontent p-4">
+                        <form class="row g-3 email__form">
+                            <div class="col-md-4 mb-3">
+                                <label for="datepicker" class="form-label">Date / Time</label>
+                                <input type="text" class="form-control default" value="2021-04-16 14:45">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="inputPassword4" class="form-label">Name</label>
+                                <input type="password" class="form-control" id="inputPassword4">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="inputAddress2" class="form-label">Email Address</label>
+                                <input type="text" class="form-control" id="inputAddress2">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="inputAddress2" class="form-label">Subject</label>
+                                <input type="text" class="form-control" id="inputAddress2">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Body</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn add__Call">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Add
+                                    Email
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="Files" class="tabcontent p-4">
+                        <div class="files__select">
+                            <div class="form-group inputDnD">
+                                <label class="sr-only" for="inputFile">Drag files here or Select from computer</label>
+                                <input type="file" class="form-control-file font-weight-bold" id="inputFile" accept="image/*"
+                                       onchange="readUrl(this)" data-title="Drag files here or Select from computer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="col-4">
+
+                <div class="history-tl-container">
+                    <ul class="tl">
+                        <li class="tl-item" ng-repeat="item in retailer_history">
+                            <div class="msg_content">
+
+                                <div class="item-detail">27 July 8:00AM John Doe</div>
+                                <div class="item-title">Start from Shire</div>
+                            </div>
+                        </li>
+                        <li class="tl-item" ng-repeat="item in retailer_history">
+                            <div class="msg_content">
+                                <div class="item-detail">27 July 8:00AM John Doe</div>
+                                <div class="item-title">Kill some Orcs</div>
+                            </div>
+                        </li>
+                        <li class="tl-item" ng-repeat="item in retailer_history">
+                            <div class="msg_content">
+                                <div class="item-detail">27 July 8:00AM John Doe</div>
+                                <div class="item-title">Throw that goddamn ring in the lava</div>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+
+    <link rel="stylesheet" href="../fedpipeline UI/css/bootstrap-datetimepicker.min.css" />
+    <!-- JavaScript -->
+    <script src="/fedpipeline UI/js/bootstrap-datetimepicker.min.js"></script>
+    <!-- Languages -->
+    <script src="/fedpipeline UI/js/locales/bootstrap-datetimepicker.es.js"></script>
+
+    <script src="./main.js"></script>
+
+
+    <script type="text/javascript">
+        $(function () {
+            $('.default').datetimepicker();
+        });
+
+
+//       $(".default").datetimepicker({
+
+// // parent container
+// container: 'body',
+
+// // language
+// // you can find all languages under the locales folder
+// // attribute: data-date-language
+// language: 'en',
+
+// // RTL mode
+// rtl: false,
+
+// // step size
+// // attributes: data-minute-step
+// minuteStep: 5,
+
+// // attributes: data-picker-position
+// pickerPosition: 'bottom-right',
+
+// // enable meridian views for day and hour views
+// // attributes: data-show-meridian
+// showMeridian: false,
+
+// // initial date
+// initialDate: new date(),
+
+// // z-index property
+// // attributes: data-z-index
+// zIndex: undefined,
+
+// // ISO-8601 valid datetime
+// format: 'mm/dd/yyyy',
+
+// // 0 = Sunday
+// // 6 = Saturday
+// // attributes: data-date-weekstart
+// weekStart: 0,
+
+// // start/end dates
+// // attributes: data-date-startdate and data-date-enddate
+// startDate: -Infinity,
+// endDate: Infinity,
+
+// // days of the week that should be disabled
+// // 0 = Sunday
+// // 6 = Saturday
+// // attributes: data-date-days-of-week-disabled
+// daysOfWeekDisabled: [],
+
+// // auto close the picker after selection
+// // attributes: data-date-autoclose
+// autoclose: false,
+
+// // auto close the picker after selection
+// // attributes: data-date-autoclose
+// autoclose: false,
+
+// // 0 or 'hour' for the hour view
+// // 1 or 'day' for the day view
+// // 2 or 'month' for month view (the default)
+// // 3 or 'year' for the 12-month overview
+// // 4 or 'decade' for the 10-year overview.
+// // attributes: data-start-view
+// startView: 2,
+
+// // attributes:data-min-view
+// minView: 0,
+
+// // attributes: data-max-view
+// maxView: 4,
+
+// // select the view from which the date will be selected
+// // 'decade', 'year', 'month', 'day', 'hour'
+// // attributes: data-view-select
+// viewSelect: 0,
+
+// // show Today button
+// // attributes: data-date-today-btn
+// todayBtn: false,
+
+// // highlight the current date
+// todayHighlight: false,
+
+// // enable keyboard navigation
+// // attributes: data-date-keyboard-navigation
+// // keyboard<a href="https://www.jqueryscript.net/tags.php?/Navigation/">Navigation</a>: true,
+
+// // whether or not to force parsing of the input value when the picker is closed
+// // attributes: data-date-force-parse
+// forceParse: false,
+
+// });
+    </script>
+
+    <!-- <script src="./ckeditor/ckeditor.js"></script> -->
+    <!-- <script type="text/javascript">
+     $( '#articleContent' ).ckeditor();
+    </script> -->
+</body>
+
+</html>

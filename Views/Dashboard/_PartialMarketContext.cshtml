@@ -1,0 +1,512 @@
+﻿
+<style>
+    .container {
+        display: block;
+        margin: 17px 10px;
+        /* padding: 11px; */
+        position: relative;
+        padding-left: 27px;
+        font-family: Rubik,sans-serif;
+        /* margin-bottom: 12px; */
+        cursor: pointer;
+        font-weight: 300;
+        font-size: 13px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        /* width: auto; */
+        float: right;
+        -ms-user-select: none;
+        user-select: none;
+        text-align: left;
+    }
+
+        /* Hide the browser's default checkbox */
+        .container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+    /* Create a custom checkbox */
+    .checkmark {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        height: 17px !important;
+        width: 17px !important;
+        background-color: #ffffff !important;
+        border-radius: 0%;
+        border: 1px solid #d4d4d4;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .container:hover input ~ .checkmark {
+        background-color: #ccc;
+    }
+
+    /* When the checkbox is checked, add a blue background */
+    .container input:checked ~ .checkmark {
+        background-color: #30bf29 !important;
+    }
+
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark:after {
+        content: "" !important;
+        position: absolute !important;
+        background-color: #30bf29 !important;
+        display: none;
+    }
+
+    /* Show the checkmark when checked */
+    .container input:checked ~ .checkmark:after {
+        display: block;
+    }
+
+    /* Style the checkmark/indicator */
+    .container .checkmark:after {
+        background: none;
+        left: 1px;
+        top: -2px;
+        border-radius: 0px;
+        background-color: #30bf29 !important;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    .bottom-footer {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .right-footer-btn-sec {
+        margin-left: auto;
+        width: 143px;
+    }
+
+    .left-footer-sec label {
+        padding-right: 16px;
+    }
+</style>
+<div class="row col-lg-12">
+    <div class="col-lg-4 mc_0001">
+
+        <div id="AddDeptAgency" class="mc_002" style="margin-top: 34px;">
+            <label>Add Funding Agency/Sub Agency <span>+</span></label>
+        </div>
+        <div class="row">
+            <div class="mt-3 col-lg-12" id="DeptAgencyBody" style="display:none">
+                <div class="header">Funding Agency & Sub Agency</div>
+                <div class="mc_003 BindDeptAgency"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mc_0001">
+        <div class="col-sm-7">
+            <button type="button" class="btn btn-toggle_Naics" data-toggle="button" aria-pressed="false" autocomplete="off">
+                <div class="handle"></div>
+            </button>
+        </div>
+        <div id="AddNaicsCode" class="mc_002"><label>Add NAICS <span>+</span></label></div>
+        <div style="display:none" id="AddNaicsFamilyCode" class="mc_002"><label>Add NAICS Family <span>+</span></label></div>
+        <div class="row">
+            <div class="mt-3 col-lg-12" id="NaicsBody" style="display:none">
+                <div class="header" id="toggleNaicHeader">NAICS</div>
+                <div class="header" id="toggleNaicFamilyHeader" style="display:none">NAICS Family</div>
+                <div class="mc_003 BindNaicsCode">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 mc_0001">
+
+        <div id="AddPCS" class="mc_002" style="margin-top: 34px;">
+            <label>Add PSC <span>+</span></label>
+        </div>
+        <div class="row">
+            <div class="mt-3 col-lg-12" id="PSCBody" style="display:none">
+                <div class="header"> PSC </div>
+                <div class="mc_003 BindPSC"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row col-lg-12">
+    <label style="display:none" class="MarketContextMasterID"></label>
+
+
+
+    <div class="col-lg-4" id="PSCBody" style="display:none">
+        <div class="header"> PSC </div>
+        <div class="mc_003 BindPSC"></div>
+    </div>
+</div>
+<div class="row col-md-12">
+    <label class="container">
+        Use Market Context in Searches
+        <input id="chkMC" type="checkbox">
+        <span class="checkmark"></span>
+    </label>
+</div>
+
+
+
+<!-- Modal for  Naics family -->
+<div class="modal fade" id="NaicsfamilyModal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title">Add NAICS Family</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row col-md-12 s021">
+                            <div class="col-md-12" style="padding: 0px;">
+                                <div class="naicsincrFam  col-md-12">
+                                    <div class="naicsFam row">
+                                        <div class="col-md-3 dis_able0 s004">
+                                            <label class="lbl_S001">NAICS Family Code</label>
+                                            <div class="input-group mb-3" style="width:108%">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text btnnaicsfamilyrowclear" id="btnnaicsfamrowclear_2" data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                                                </div>
+                                                <input style="font-size: 13px;" type="text" id="txtnaicsfamcode_2" class="DIS_002 form-control NaicsFamCode dis_able0" name="textbox" />
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text s001">
+                                                        <i class="ti-info-alt infoIcon s002 NFC" data-toggle="tooltip"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-9">
+                                            <div class="row">
+                                                <div class="col-md-11">
+                                                    <label class="lbl_S001">NAICS Family Description</label><span class="reqNaics"></span>
+                                                    <div class="input-group mb-3">
+                                                        <input disabled type="text" id="txtnaicsfamdesc_2" class="form-control dis_able0" name="textbox" style="margin-bottom: 4px;" />
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text s001">
+                                                                <i class="ti-info-alt infoIcon s002 NFD" data-toggle="tooltip"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <button type="button" class="s022 btn  btn-sm add-textboxfam dis_able0 B_s001" data-toggle="tooltip" title="Click here to add more NAICS">
+                                                        <i class="ti-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row col-md-12">
+                    <div class="col-md-12" style="text-align: center"><label class="s009 s010 AlertMsgNaics" id=""></label></div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+                <div class="bottom-footer">
+                    <div class="left-footer-sec">
+                        <label class="form-control-static pull-left lbl_S001">Begin typing or click the space bar to see the list</label>
+                    </div>
+                    <div class="right-footer-btn-sec">
+                        <button type="button" class="btn btn-default" id="btnmdnaicsfamilyclose">OK</button>
+                        <button type="button" class="btn btn-secondary" id="btnNaicsFamilCancel">Cancel</button>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Modal for  Naics Code -->
+<div class="modal fade" id="NaicsCodeModal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title">Add NAICS </h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="row col-md-12 s021">
+                            <div class="col-md-12" style="padding: 0px;">
+                                <div class="naicsincr col-md-12">
+                                    <div class="naics row">
+                                        <div class="col-md-3 s004">
+                                            <label class="lbl_S001">NAICS Code</label>
+                                            <div class="input-group mb-3" style="width:108%">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text btnnaicscoderowclear" id="btnnaicsfourrowclear_2" data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                                                </div>
+                                                <input style="font-size: 13px;" type="text" id="txtnaicscode_2" class="DIS_002 form-control NaicsCode dis_able1" name="textbox" />
+
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text s001">
+                                                        <i class="ti-info-alt infoIcon s002 NC" data-toggle="tooltip"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-9">
+                                            <div class="row">
+                                                <div class="col-md-11">
+                                                    <label class="lbl_S001">NAICS Description</label><span class="reqNaics"></span>
+                                                    <div class="input-group mb-3">
+                                                        <input disabled type="text" id="txtnaicsdesc_2" class="form-control dis_able1" name="textbox" style="margin-bottom: 4px;" />
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text s001">
+                                                                <i class="ti-info-alt infoIcon s002 NCD" data-toggle="tooltip"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <button type="button" class="s022 btn  btn-sm add-textboxcode dis_able1 B_s001" data-toggle="tooltip" title="Click here to add more NAICS">
+                                                        <i class="ti-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row col-md-12">
+                    <div class="col-md-12" style="text-align: center"><label class="s009 s010 AlertMsgNaics" id=""></label></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <div class="bottom-footer">
+                    <div class="left-footer-sec">
+                        <label class="form-control-static pull-left lbl_S001">Begin typing or click the space bar to see the list</label>
+                    </div>
+                    <div class="right-footer-btn-sec">
+                        <button type="button" class="btn btn-default" id="btnmdnaicscodeclose">OK</button>
+                        <button type="button" class="btn btn-secondary" id="btnNaicsCodeCancel">Cancel</button>
+                    </div>
+
+                </div>
+        
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Modal for Funding Agency, Funding Sub Agency-->
+<!-- Modal for department and agency -->
+<div class="modal fade" id="myModal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title">Add Funding Agency and Sub Agency</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 row MG001">
+                        <div class="dept_Agency col-md-12 row MG001">
+                            <div class="deptincr  row col-md-6 MG001">
+                                <div class="dept row col-md-12">
+                                    <div class="col-md-11 dis_able0 s004">
+                                        <label class="lbl_S001">Funding Agency</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text btndeptrowclear" id="btndeptrowclear_2" data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                                            </div>
+                                            <input style="font-size: 13px;" type="text" id="txtdept_2" class="DIS_002 form-control txtdept" name="textbox" />
+                                            <label id="lbldept_2" style="display:none;" class="lbldept"></label>
+                                            <label id="lbldeptDesc_2" style="display:none;"></label>
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text s001">
+                                                    <i class="ti-info-alt infoIcon s002 DEPT" data-toggle="tooltip"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <div class="row">
+
+                                            <div class="col-md-12">
+                                                <button type="button" class="s022 btn btn-sm add-textboxdept  B_s001" title="Click here to add more department" style="margin-left:auto">
+                                                    <i class="ti-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row col-md-1 MG001"></div>
+                            <div class="agencyincr  row col-md-5 MG001">
+                                <div class="agency row col-md-12">
+                                    <div class="col-md-12 dis_able0 s004">
+                                        <label class="lbl_S001">Funding Sub Agency</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="btnagencyrowclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                                            </div>
+                                            <input style="font-size: 13px;" type="text" id="txtagency_2" class="DIS_002 form-control txtagency agecls" name="textbox" />
+                                            <label id="lblagency_2" style="display:none;" class="lblagency"></label>
+                                            <label id="lblAgencyDesc_2" style="display:none;"></label>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text s001">
+                                                    <i class="ti-info-alt infoIcon s002 AGCY" data-toggle="tooltip"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div><label class="Com_001 add-textboxdept">+Add more</label></div>*@
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+
+                <div class="bottom-footer">
+                    <div class="left-footer-sec">
+                        <label class="form-control-static pull-left lbl_S001">Begin typing or click the space bar to see the list</label>
+                    </div>
+                    <div class="right-footer-btn-sec">
+                        <button type="button" class="btn btn-default" id="btnmdclose">OK</button>
+                        <button type="button" class="btn btn-secondary" id="btnmdcancel">Cancel</button>
+                    </div>
+
+                </div>
+
+                
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal for Awarding Agency, Awarding Sub Agency and Awarding Office-->
+<!-- Modal for Psc -->
+<div class="modal fade" id="PscModal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title">Add Product or Service Code</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="pscincr  row col-md-12">
+                            <div class="psc row col-md-12">
+                                <div class="col-md-3 dis_able0 s004">
+                                    <label class="lbl_S001">Product or Service Code</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text btnpscrowclear" id="btnpscrowclear_2" data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                                        </div>
+                                        <input style="font-size: 13px;" type="text" id="txtpsccode_2" class="DIS_002 PSCode form-control" name="textbox" />
+                                        <div class="input-group-append">
+                                            <span class="input-group-text s001">
+                                                <i class="ti-info-alt infoIcon s002 PSCC" data-toggle="tooltip"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <label class="lbl_S001">Product or Service Description</label>
+                                            <div class="input-group mb-3">
+                                                <input disabled type="text" id="txtpscdesc_2" class="form-control txtpsc" name="textbox" style="margin-bottom: 4px;" />
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text s001">
+                                                        <i class="ti-info-alt infoIcon s002 PSCD" data-toggle="tooltip"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button type="button" class="s022 btn btn-success btn-sm add-textboxpsc  B_s001" data-toggle="tooltip" title="Click here to add another row">
+                                                <i class="ti-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+                <div class="bottom-footer">
+                    <div class="left-footer-sec">
+                        <label class="form-control-static pull-left lbl_S001">Begin typing or click the space bar to see the list</label>
+                    </div>
+                    <div class="right-footer-btn-sec">
+                        <button type="button" class="btn btn-default" id="btnmdpscclose">OK</button>
+                        <button type="button" class="btn btn-secondary" id="btnmdpsccancel">Cancel</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,279 @@
+﻿body {
+}
+
+.ui-autocomplete.ui-widget {
+   background-color: rgb(239, 239, 239);
+}
+
+/*=====================Datatable======================*/
+.table td, .table th {
+    padding: 10px 9px !important;
+    vertical-align: top;
+    border-top: 1px solid rgba(0,0,0,.1);
+}
+
+table.table-bordered.dataTable th{
+    text-transform: uppercase !important;
+    font-size: 10px !important;
+    font-weight: 500 !important;
+}
+
+table.table-bordered.dataTable th>label{
+    text-transform: uppercase !important;
+    font-size: 10px !important;
+    font-weight: 400 !important;
+}
+
+
+.dataTables_wrapper .dt-buttons {
+    float: right !important;
+    text-align: right;
+}
+
+div.dataTables_wrapper div.dataTables_filter label {
+    font-weight: normal;
+    white-space: nowrap;
+    font-size: 12px !important;
+    text-align: left;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+    float: left;
+    font-size: 12px !important;
+}
+
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+    margin: 2px 0;
+    font-size: 12px !important;
+    white-space: nowrap;
+    justify-content: flex-end;
+}
+
+div.dataTables_wrapper div.dataTables_filter {
+    text-align: left;
+    margin-bottom: 12px !important;
+}
+
+.btn-cyan:hover {
+    color: #212529;
+    background-color: #5f5f5f !important;
+    border-color: #5f5f5f !important;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #622c83 !important;
+    border-color: #622c83 !important;
+}
+
+.mr-1, .mx-1 {
+    margin-right: 0px !important;
+}
+/*=====================Datatable======================*/
+
+
+.bg-success {
+    background-color: #622c83 !important;
+}
+
+.card-header {
+    padding: 7px 15px !important;
+}
+
+.dataTables_wrapper .dt-buttons {
+    float: none;
+    text-align: right;
+}
+
+
+.btn-primary:disabled {
+    color: #fff;
+    width: 100% !important;
+    background-color: #561c79 !important;
+    border-color: #561c79 !important;
+}
+
+.loadbtn {
+    /*display: none;*/
+}
+
+
+.MG001 {
+    margin: 0px;
+}
+
+.ui-autocomplete {
+    overflow-y:auto;
+    max-height:200px;
+    overflow-x: hidden;
+    z-index: 9999999 !important;
+}
+
+.btn-cyan {
+    color: #212529;
+    background-color: #2fbe28;
+    border-color: #2fbe28;
+}
+
+.add-textboxcodemodal, .add-textboxcode {
+    border: 1px solid #32c02b !important;
+}
+
+.remove-textboxnaicsfour {
+    border: 1px solid #a0a0a0 !important;
+}
+
+.ti-plus {
+    color: #32c02b !important;
+}
+
+.ti-minus {
+    color: #a0a0a0 !important;
+}
+
+tbody > tr:hover {
+    /*background-color: #e1f0f1 !important;*/
+    background-color: #f4e3ff !important;
+    cursor: pointer;
+}
+
+
+.Com_001 {
+    color: #5c2178;
+    text-decoration: underline;
+    font-size: 11px;
+    font-weight: 400;
+    padding: 20px;
+    cursor: pointer;
+}
+
+
+/* .GoContact, .GoReference { */
+/* color: rebeccapurple; */
+/* text-decoration: underline; */
+/* } */
+
+/* .GoContact:hover, .GoReference:hover { */
+/* color: blue; */
+/* cursor: pointer; */
+/* text-decoration: underline; */
+/* } */
+.GoContact, .GoReference, .GoVendor, .GoVendor_OppNaics, .GoVendor_OppPSC {
+    color: rebeccapurple;
+    text-decoration: underline;
+}
+
+    .GoContact:hover, .GoReference:hover, .GoVendor:hover, .GoVendor_OppNaics:hover, .GoVendor_OppPSC:hover {
+        color: blue;
+        cursor: pointer !important;
+        text-decoration: underline;
+    }
+
+.OP001 {
+    color: rebeccapurple;
+    text-decoration: underline;
+}
+
+    .OP001:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+.GoDeptSearch, .GoAgencySearch {
+    color: #2fb129;
+    text-decoration: underline;
+}
+
+    .GoDeptSearch:hover, .GoAgencySearch:hover {
+        cursor: pointer;
+        text-decoration: underline;
+        color: #2fb129 !important;
+    }
+
+.GoFundingAgency, .GoFundingSubAgency, .GoFundingOffice, .GoAwardingAgency, .GoAwardingSubAgency, .GoAwardingOffice {
+    color: #2fb129;
+    text-decoration: underline;
+}
+
+    .GoFundingAgency:hover, .GoFundingSubAgency:hover, .GoFundingOffice:hover, .GoAwardingAgency :hover, .GoAwardingSubAgency::after hover, .GoAwardingOffice:hover {
+        cursor: pointer;
+        text-decoration: underline;
+        color: #2fb129 !important;
+    }
+
+
+.hide {
+    display: none;
+}
+
+.Com_002 {
+    width: 165px !important;
+}
+
+.Com_003 {
+    text-align: right;
+}
+
+.Com_004 {
+    text-align: center;
+}
+
+
+
+.Com_005 {
+    background-color: #ffffff;
+    color: #581e7b;
+    border: 1px solid #581e7b;
+    text-transform: uppercase;
+}
+
+.Com_006 {
+    color: #fff;
+    font-size: 11px;
+    background-color: #581e7b;
+    border-color: #581e7b;
+    text-transform: uppercase;
+    font-size: 10px;
+}
+
+.s011:hover {
+    background-color: #ff9800;
+    color: white;
+    border-color: #ff9800;
+}
+
+table.dataTable thead th, table.dataTable tbody td {
+    text-align: center;
+}
+
+.Com_008 {
+    width: 8%;
+    margin-left: 4px;
+    cursor: pointer;
+}
+
+.Com_007 {
+    width: 8%;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.B_Com001 {
+    background-color: #561c79;
+    border-color: #561c79;
+    color: white;
+    width: 100%;
+    font-weight: 200;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+    .B_Com001:hover {
+        color: white;
+    }
+
+
+.infoIcon {
+    cursor:pointer;
+}

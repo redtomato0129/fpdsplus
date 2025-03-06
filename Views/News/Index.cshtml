@@ -1,0 +1,638 @@
+﻿@{
+    ViewBag.Title = "Social";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link rel="stylesheet" type="text/css" href="~/Content/AppCss/news.css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+    .heading {
+        color: purple;
+    }
+
+    .breadcrum {
+        color: purple;
+    }
+
+    .pull-right {
+        float: left !important;
+    }
+
+    .btn-purple {
+        background-color: purple;
+        color: white;
+    }
+
+    .wrapper, .attachments-show {
+        display: none;
+        padding: 20px;
+        margin: 0px 0;
+    }
+
+    textarea {
+        border: 1px solid #DDDFE2;
+        width: 100%;
+        color: #6e6e6e;
+        font-family: 'Rubik';
+        text-decoration: none;
+        display: inline;
+        font-weight: 400;
+        font-size: 13px;
+        background: #fff;
+        border-radius: 10px;
+        padding: 15px;
+    }
+
+    .comnt-load {
+        margin: 0px;
+        padding: 0px;
+        color: #6e6e6e;
+        text-decoration: none;
+        display: flex;
+        font-weight: 500;
+        font-size: 14px;
+        margin-left: 8px;
+    }
+
+        .comnt-load:focus {
+            box-shadow: none;
+        }
+
+    .attachment-load {
+        margin: 0px;
+        padding: 0px;
+        color: #6e6e6e;
+        text-decoration: none;
+        display: flex;
+        font-weight: 500;
+        font-size: 14px;
+        margin-left: 8px;
+    }
+
+    button.attachment-load:focus {
+        box-shadow: none;
+    }
+
+    button.comnt {
+        color: #fff;
+        background-color: #571C7A;
+        border-color: #571C7A;
+        font-family: 'Rubik';
+        font-weight: 400;
+        padding: 6px 20px 6px 20px;
+        font-size: 14px;
+    }
+
+        button.comnt:hover {
+            color: #fff;
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+    .comment__list {
+        background-color: #DDDFE2;
+        border-radius: 3px;
+    }
+
+    .companyblock .likeblock .likebtn {
+        visibility: hidden;
+    }
+</style>
+
+<style>
+    .heading-title {
+        color: #571C7A;
+    }
+
+    .dealbtn {
+        background-color: #571C7A;
+        color: white;
+        border: 1px solid #571C7A;
+    }
+
+        .dealbtn:hover {
+            background-color: #fff;
+            color: #571C7A;
+        }
+
+    .page-link {
+        color: #571C7A;
+    }
+
+    .page-item.active .page-link {
+        color: #fff;
+        background-color: #571C7A;
+        border-color: #571C7A;
+    }
+
+    .page-wrapper {
+        display: block !important;
+        margin-left: 250px !important;
+    }
+
+
+    .Lay_001 {
+        height: 50px;
+    }
+
+    .table td, .table th {
+    }
+
+    .dt-body-nowrap {
+        white-space: break-spaces;
+    }
+
+    ul#promos {
+        text-align: center;
+    }
+
+        ul#promos li {
+            width: 10px;
+            height: 10px;
+            background: red;
+        }
+
+
+
+    /*Css by Usama*/
+    div.popup_content {
+        display: none;
+        position: absolute;
+        width: 180px;
+        padding: 10px;
+        background: #eeeeee;
+        color: #000000;
+        border: 1px solid #1a1a1a;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .popup_content ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .popup_content ul li {
+            display: flex;
+            align-items: center;
+        }
+
+            .popup_content ul li div {
+                width: 12px;
+                height: 12px;
+                background-color: transparent;
+            }
+
+            .popup_content ul li:first-child div {
+                background-color: red;
+            }
+
+            .popup_content ul li:nth-child(1) div {
+                background-color: #4040a3;
+            }
+
+            .popup_content ul li:nth-child(2) div {
+                background-color: #c74747;
+            }
+
+            .popup_content ul li:nth-child(3) div {
+                background-color: blueviolet;
+            }
+
+            .popup_content ul li:nth-child(4) div {
+                background-color: orange;
+            }
+
+            .popup_content ul li:nth-child(5) div {
+                background-color: magenta;
+            }
+
+            .popup_content ul li:nth-child(6) div {
+                background-color: blueviolet;
+            }
+</style>
+
+<div class="container-fluid" style="margin-left:0px !important;">
+    <div class="row">
+        <div class="col-11">
+            @*<div class="scp-breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Dashboard/Index">Dashboard</a></li>
+                <li class="breadcrumb-item active">Social</li>
+            </ol>
+        </div>*@
+            <nav class="breadcrumb" style="padding: 0px 2px; margin-bottom: 10px; background-color:transparent">
+                <a class="breadcrumb-item sear" href="/Dashboard/Index">Dashboard</a>
+                <a class="breadcrumb-item active">Social</a>
+            </nav>
+        </div>
+        <div class="col-1" id="shareIcon" style="cursor: pointer;">
+            <img src="~/Content/assets/images/share.png" data-toggle="tooltip" data-placement="bottom" title="Share URL" onclick="copyToClipboard()" style="float: right; width: 30px; height: 30px;" />
+        </div>
+    </div>
+</div>
+
+<div class="row" id="dealsListHidden" style="display:none">
+    <div class="col-6">
+        <h1 class="heading-title"><strong>Add Social to Deal</strong></h1>
+    </div>
+    <div class="col-12">
+        <div class="table-responsive">
+            <table id="deallist" class="table nowrap table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        @*<th> </th>*@
+                        @*<th>Created Date</th>*@
+                        <th>Title</th>
+                        @*<th>Description</th>*@
+                        <th>RFP Release Date</th>
+                        <th>Status</th>
+                        @*<th>Stage</th>*@
+                        <th>Funding Sub Agency</th>
+                        @*<th>Award Type</th>*@
+                        <!-- New Header-->
+                        <th>Set Aside</th>
+                        <th>NAICS</th>
+                        <th>PSC</th>
+                        <th>Incumbent</th>
+                        <th>Award $k</th>
+                        @*<th>Expiration</th>*@
+                        @*<th>Govwin Link</th>*@
+                        <th>Priority</th>
+                       
+                    </tr>
+                </thead>
+
+
+                <tbody id="deallisttable">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="margin-left:0px !important;">
+    <div class="row">
+        @*  <div class="col-12">
+                <div class="scp-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="#">Deals</a></li>
+                        <li class="breadcrumb-item active">Add News</li>
+                    </ol>
+                </div>
+            </div>*@
+        <div class="col-6">
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="main_content">
+
+
+                        <!-- Tab content -->
+                        <div id="Notes">
+                            <div class="main_heading">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="heading">
+                                            <h1>Social</h1>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                           
+                                <div>
+                                    <textarea cols="80" rows="80" id="editfull" name="articleContent" placeholder="Start Typing"> </textarea>
+                                    <div class="buttons my-2 text-right">
+                                        <div class="d-inline" style="margin-right: 8px;">
+                                            @*  <a id="attachDeal" style="cursor:pointer;text-decoration:underline;">Attach to Deal</a>*@
+                                            <input id="attachFileButton" type="button" class="btn btn-success" @*class="btn btn-primary"*@ style=""
+                                                   value="Attach File" />
+                                        </div>
+                                        <div class="d-inline" style="margin-right: 8px;">
+                                            @*  <a id="attachDeal" style="cursor:pointer;text-decoration:underline;">Attach to Deal</a>*@
+                                            <input id="attachDeal" @* class="btn btn-primary"*@
+                                                   type="button" class="btn btn-success" @*style="background-color: #37d72e; border-color: #37d72e;"*@ value="Attach to Deal" />
+                                        </div>
+                                        <input type="submit" class="btn btn-success" value="Save" id="submitPost" disabled="true" />
+                                    </div>
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <div class="col-12 " id="newsList">
+
+                </div>
+                @*<div class="col-12 mrt20">
+                        <div class="companyblock">
+                            <div class="main_header">
+                                <div class="nameblock">
+                                    <img src="/Content/assets/images/logo.png" width="45">
+                                    <div class="text">
+                                        <h2>Hasio New Company Name</h2>
+                                        <h4>09/22/22  8:00 AM</h4>
+                                    </div>
+                                </div>
+                                <div class="text-right toggle"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                            </div>
+                            <div class="centerblock">
+                                <p>This text is, of course, editable, and if you choose to be verbose will flow the entire layout as needed.This text is, of course, editable, and if you choose to be verbose will flow the entire layout as needed. This text is, of course, editable, and if you choose to be verbose will flow the entire layout as needed.This text is, of course, editable, and if you choose to be verbose will flow the entire layout as needed.This text is, of course, editable, and if you choose to be verbose will flow the entire layout as needed.This text is, of course, editable, and if you choose to be verbose will flow the entire layout as needed.</p>
+                            </div>
+                            <hr>
+                            <div class="likeblock">
+                                <div class="likebtn">
+                                    <img src="/Content/assets/images/new-like.png" width="25">
+                                    <div class="text">
+                                        <h4>564</h4>
+                                    </div>
+                                </div>
+                                <div class="text-right toggle">6587 Comments</div>
+                            </div>
+                            <hr>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-9 pd0">
+                                        <div class="comentico">
+                                            <img src="/Content/assets/images/icon-like.png" width="18" height="18">
+                                            <div class="text">
+                                                <h4><a href="">Like</a></h4>
+                                            </div>
+                                        </div>
+                                        <div class="comentico">
+                                            <img src="/Content/assets/images/icon-comment.png" width="18" height="17">
+                                            <div class="text">
+                                                <h4><a href="">Comments</a></h4>
+                                            </div>
+                                        </div>
+                                        <div class="comentico">
+                                            <img src="view.png" width="17" height="18">
+                                            <div class="text">
+                                                <h4><a href="">View Details</a></h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 text-right"><img src="/Content/assets/images/10.jpg" width="35" class="commentperson"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mrt20">
+                        <div class="companyblock">
+                            <div class="main_header">
+                                <div class="nameblock">
+                                    <img src="/Content/assets/images/logo.png" width="45">
+                                    <div class="text">
+                                        <h2>Hasio New Company Name</h2>
+                                        <h4>09/22/22  8:00 AM</h4>
+                                    </div>
+                                </div>
+                                <div class="text-right toggle"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                            </div>
+                            <div class="centerblock">
+                                <p>This text is, of course, editable, and if you choose to be verbose will flow the entire layout as needed.This text is, of course, editable, and if you choose to be verbose will flow the entire layout as needed. This text is, of course, editable, and if you choose to be verbose will flow the entire layout as needed.This text is, of course, editable, and if you choose to be verbose will flow the entire layout as needed.This text is, of course, editable, and if you choose to be verbose will flow the entire layout as needed.This text is, of course, editable, and if you choose to be verbose will flow the entire layout as needed.</p>
+                            </div>
+                            <hr>
+                            <div class="likeblock">
+                                <div class="likebtn">
+                                    <img src="/Content/assets/images/new-like.png" width="25">
+                                    <div class="text">
+                                        <h4>564</h4>
+                                    </div>
+                                </div>
+                                <div class="text-right toggle">6587 Comments</div>
+                            </div>
+                            <hr>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-9 pd0">
+                                        <div class="comentico">
+                                            <img src="/Content/assets/images/icon-like.png" width="18" height="18">
+                                            <div class="text">
+                                                <h4><a href="">Like</a></h4>
+                                            </div>
+                                        </div>
+                                        <div class="comentico">
+                                            <img src="/Content/assets/images/icon-comment.png" width="18" height="17">
+                                            <div class="text">
+                                                <h4><a href="">Comments</a></h4>
+                                            </div>
+                                        </div>
+                                        <div class="comentico">
+                                            <img src="/Content/assets/images/view.png" width="17" height="18">
+                                            <div class="text">
+                                                <h4><a href="">View Details</a></h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 text-right"><img src="/Content/assets/images/10.jpg" width="35" class="commentperson"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mrt20">
+                        <div class="companyblock">
+                            <div class="main_header">
+                                <div class="nameblock">
+                                    <img src="/Content/assets/images/logo.png" width="45">
+                                    <div class="text">
+                                        <h2>Hasio New Company Name</h2>
+                                        <h4>09/22/22  8:00 AM</h4>
+                                    </div>
+                                </div>
+                                <div class="text-right toggle"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                            </div>
+                            <div class="centerblock">
+                                <p>This text is, of course, editable, and if you choose to be verbose will flow the entire layout as needed.This text is, of course, editable, and if you choose to be verbose will flow the entire layout as needed. This text is, of course, editable, and if you choose to be verbose will flow the entire layout as needed.This text is, of course, editable, and if you choose to be verbose will flow the entire layout as needed.This text is, of course, editable, and if you choose to be verbose will flow the entire layout as needed.This text is, of course, editable, and if you choose to be verbose will flow the entire layout as needed.</p>
+                            </div>
+                            <hr>
+                            <div class="likeblock">
+                                <div class="likebtn">
+                                    <img src="/Content/assets/images/new-like.png" width="25">
+                                    <div class="text">
+                                        <h4>564</h4>
+                                    </div>
+                                </div>
+                                <div class="text-right toggle">6587 Comments</div>
+                            </div>
+                            <hr>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-9 pd0">
+                                        <div class="comentico">
+                                            <img src="/Content/assets/images/icon-like.png" width="18" height="18">
+                                            <div class="text">
+                                                <h4><a href="">Like</a></h4>
+                                            </div>
+                                        </div>
+                                        <div class="comentico">
+                                            <img src="/Content/assets/images/icon-comment.png" width="18" height="17">
+                                            <div class="text">
+                                                <h4><a href="">Comments</a></h4>
+                                            </div>
+                                        </div>
+                                        <div class="comentico">
+                                            <img src="/Content/assets/images/view.png" width="17" height="18">
+                                            <div class="text">
+                                                <h4><a href="">View Details</a></h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 text-right"><img src="/Content/assets/images/10.jpg" width="35" class="commentperson"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+        @*       <div class="col-6">
+
+                <div class="main_content">
+                    <div class="main_heading">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="heading">
+                                    <h1>Files</h1>
+                                </div>
+                            </div>
+                            <div class="col-4 text-right"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                            <div class="history-tl-container">
+                                <h1 class="recent-heading-title-file" style=""></h1>
+                                <ul id="files" style="overflow-y: scroll; height: 708px; width: 480px; margin-left: 58px;" class="tl"><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">chromium.txt</a></div><div class="item-detail">1/23/2023 6:38:13 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">DLA requires a complete technology refresh and replacement of the existing warehouse control system (WCS) Government-developed Information Technology (IT) software (IE: the Equipment Control System (E</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">ticket details.txt</a></div><div class="item-detail">1/20/2023 7:46:03 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">DLA requires a complete technology refresh and replacement of the existing warehouse control system (WCS) Government-developed Information Technology (IT) software (IE: the Equipment Control System (E</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">ticket details.txt</a></div><div class="item-detail">1/20/2023 7:45:55 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">DLA requires a complete technology refresh and replacement of the existing warehouse control system (WCS) Government-developed Information Technology (IT) software (IE: the Equipment Control System (E</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">python route.txt</a></div><div class="item-detail">1/20/2023 7:35:32 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">Python Script</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">chromium.txt</a></div><div class="item-detail">1/19/2023 12:42:06 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">ticket details.txt</a></div><div class="item-detail">1/19/2023 12:34:41 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">Ticket</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">ticket details.txt</a></div><div class="item-detail">1/19/2023 12:31:21 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">chromium.txt</a></div><div class="item-detail">1/19/2023 12:30:16 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">Software Enginner Mirza Mujtaba.pdf</a></div><div class="item-detail">1/19/2023 12:29:34 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">PDF</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">abc (8).PNG</a></div><div class="item-detail">1/19/2023 12:28:22 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">VPN_Setup (1) (1).txt</a></div><div class="item-detail">1/19/2023 12:26:41 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">a</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">call (1) (2).png</a></div><div class="item-detail">1/19/2023 12:24:54 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">a</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">Mirza Mujtaba (2).xls</a></div><div class="item-detail">1/19/2023 12:23:20 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">b</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">fedpipeline (4).png</a></div><div class="item-detail">1/19/2023 12:17:51 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">Mirza Mujtaba (2).xls</a></div><div class="item-detail">1/19/2023 12:17:25 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">call (1) (2).png</a></div><div class="item-detail">1/19/2023 12:13:18 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">VPN_Setup (1) (1).txt</a></div><div class="item-detail">1/19/2023 12:07:45 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">VPN_Setup (2).txt</a></div><div class="item-detail">1/19/2023 12:07:16 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">dhindora (3).mp3</a></div><div class="item-detail">1/19/2023 12:03:55 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">call (1) (2).png</a></div><div class="item-detail">1/19/2023 12:01:52 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">call (1) (2).png</a></div><div class="item-detail">1/19/2023 12:01:20 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">fedpipeline (5).png</a></div><div class="item-detail">1/19/2023 12:00:31 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">File</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">VPN_Setup (1).txt</a></div><div class="item-detail">1/18/2023 11:58:23 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">_PartialMarketContext (10).cshtml</a></div><div class="item-detail">1/18/2023 11:57:52 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">File</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">VPN_Setup (4).txt</a></div><div class="item-detail">1/18/2023 10:47:57 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">VPN_Setup (4).txt</a></div><div class="item-detail">1/18/2023 10:45:44 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">VPN</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">VPN_Setup (3).txt</a></div><div class="item-detail">1/18/2023 10:43:10 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">VPN</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">call (1).png</a></div><div class="item-detail">1/18/2023 10:42:41 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABVC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">call (1).png</a></div><div class="item-detail">1/18/2023 10:42:24 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">call (1).png</a></div><div class="item-detail">1/18/2023 10:42:10 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">phone-receiver (2).png</a></div><div class="item-detail">1/18/2023 10:39:18 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">dhindora (4).mp3</a></div><div class="item-detail">1/18/2023 10:38:38 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">MP3</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">call (1).png</a></div><div class="item-detail">1/18/2023 10:37:44 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">abc</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">_PartialMarketContext.cshtml</a></div><div class="item-detail">1/16/2023 5:25:11 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">cc</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">_PartialMarketContext.cshtml</a></div><div class="item-detail">1/16/2023 4:25:15 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">popup.css</a></div><div class="item-detail">1/13/2023 11:08:03 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">popup.css</a></div><div class="item-detail">1/13/2023 6:44:33 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">dcfgvbhjnmk,l;</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">VPN_Setup.txt</a></div><div class="item-detail">1/13/2023 3:25:49 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">VPN</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">VPN_Setup.txt</a></div><div class="item-detail">1/12/2023 4:30:53 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">DLA requires a complete technology refresh and replacement of the existing warehouse control system (WCS) Government-developed Information Technology (IT) software (IE: the Equipment Control System (E</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">VPN_Setup.txt</a></div><div class="item-detail">1/6/2023 5:16:32 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">VPN</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">Task (project.task).xlsx</a></div><div class="item-detail">1/6/2023 4:12:07 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">TASK</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">Mirza Mujtaba.xls</a></div><div class="item-detail">1/6/2023 3:39:31 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">paper-clip.png</a></div><div class="item-detail">1/6/2023 3:33:40 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">fedpipeline.png</a></div><div class="item-detail">1/6/2023 3:32:20 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">fedpipeline.png</a></div><div class="item-detail">1/6/2023 3:29:33 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">fedpipeline.png</a></div><div class="item-detail">1/6/2023 3:29:20 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">fedpipeline.png</a></div><div class="item-detail">1/6/2023 3:29:12 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">paper-clip.png</a></div><div class="item-detail">1/6/2023 3:26:27 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">paper-clip.png</a></div><div class="item-detail">1/6/2023 3:18:34 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">dhindora.mp3</a></div><div class="item-detail">1/6/2023 3:16:44 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">dhindora.mp3</a></div><div class="item-detail">1/6/2023 3:14:55 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">Mp3 file</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">dhindora.mp3</a></div><div class="item-detail">1/6/2023 3:10:18 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">mp3 file</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">phone-receiver.png</a></div><div class="item-detail">1/6/2023 12:42:42 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">call.png</a></div><div class="item-detail">1/6/2023 12:31:43 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">This is call icon</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">call.png</a></div><div class="item-detail">1/6/2023 12:23:58 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">This is call icon</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">call.png</a></div><div class="item-detail">1/6/2023 12:21:54 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">This is call icon</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">dhindora.mp3</a></div><div class="item-detail">1/6/2023 12:06:37 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">Mp3 files</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">writing.png</a></div><div class="item-detail">1/5/2023 1:04:16 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">Ha</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">writing.png</a></div><div class="item-detail">1/5/2023 1:03:41 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">Ha</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">sticky-note.png</a></div><div class="item-detail">1/5/2023 12:57:10 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">Sticky</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">sticky-note.png</a></div><div class="item-detail">1/5/2023 12:57:02 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">Sticky</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">email.png</a></div><div class="item-detail">1/5/2023 12:09:45 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">Email</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">email.png</a></div><div class="item-detail">1/5/2023 12:05:41 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">Email</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">email.png</a></div><div class="item-detail">1/5/2023 12:04:28 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">Email</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">fedpipeline.png</a></div><div class="item-detail">1/5/2023 12:00:00 AM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">fedpipeline.png</a></div><div class="item-detail">1/4/2023 11:59:55 PM&nbsp;&nbsp;&nbsp;awais.malik@txend.com</div><div class="item-title box4">ABC</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">File2.jpg</a></div><div class="item-detail">11/9/2022 12:00:00 AM&nbsp;&nbsp;&nbsp;jim@rturner.net</div><div class="item-title box4">Hello Usama, I am sending you proposal</div></li><li class="tl-item"><div class="iconFile"></div> <div class="item-title getfile"><a href="#">File1.jpg</a></div><div class="item-detail">11/9/2022 12:00:00 AM&nbsp;&nbsp;&nbsp;jim@rturner.net</div><div class="item-title box4">Hello John, I am sending you proposal</div></li></ul>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+
+            </div>*@
+    </div>
+</div>
+
+
+
+<script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+
+
+<script src="~/Scripts/AppJS/News.js"></script>
+
+
+<div class="modal fade" id="dealsModal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h2 class="modal-title heading">Add Social to Deal </h2>
+                <i class="fa fa-times" aria-hidden="true" id="closeDealModal" onclick="closeDealModal()" style="cursor:pointer"></i>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="lbl_S001">Search for a Deal</label>
+                        <div class="input-group mb-3">
+                            <input style="font-size: 13px; font-size: 13px; height: 40px;" type="text" autocomplete="off" id="dealsInput"
+                                   class="DIS_002 form-control  dis_able1" name="textbox" />
+                            <label id="dealsInput" style="display:none;" class="lbldept lblclr"></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer" style="justify-content:flex-start;">
+                <div class="bottom-footer main_content">
+                    <div class="right-footer-btn-sec  buttons ">
+                        <button style="float:right" type="button" class="btn btn-success" onclick="onSelectDeal()" disabled="true" id="selectDealButton">Attach</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="filesModal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h2 class="modal-title heading">Attach File </h2>
+                <i class="fa fa-times" aria-hidden="true" id="closeFileModal" onclick="closeFileModal()" style="cursor:pointer"></i>
+            </div>
+            <div class="modal-body">
+                <div id="Files" style="visibility: visible; height: 470px" class=" p-4">
+                    <div class="files__select">
+                        <div class="form-group inputDnD">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="sr-only" for="inputFile">Drag files here or Select from computer</label>
+                                    <input type="file" name="file" id="FileUpload1" accept="/*"
+                                           data-title="Drag files here or Select from computer" onchange="documentUpload(event)">
+                                </div>
+
+                                <div class="col-3 bottom-footer main_content">
+                                    <span id="preivewText" style=" display:none" class="right-footer-btn-sec  buttons ">
+
+                                        <a id="downloadFile" download class="btn btn-success" role="button">Download</a>
+                                    </span>
+                                </div>
+
+                            </div>
+                            <div class="col-12 error_file_size mt-2" style="">
+                                <p class="text-danger">Max Size: 50mb</p>
+                            </div>
+                            <br />
+                            <div class="col-12 mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                                <textarea class="form-control" style="height:250px" rows="3" id="txtDescFile" maxlength="1000"></textarea>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer" style="justify-content:flex-start;">
+                <div class="bottom-footer main_content">
+                    <div class="right-footer-btn-sec  buttons ">
+                        <button style="float:right" type="button" class="btn btn-success" disabled
+                                id="saveFileButton">
+                            Save
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

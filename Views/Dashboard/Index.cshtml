@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<link href="~/Content/AppCss/CommonUse.css" rel="stylesheet" />
+<link href="~/Content/AppCss/Search.css" rel="stylesheet" />
+<link href="~/Content/AppCss/MarketContext.css" rel="stylesheet" />
+<link href="~/Content/AppCss/toggle.css" rel="stylesheet" />
+
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="~/Scripts/AppJS/MarketContext.js"></script>
+
+<div style="text-align:center;display:none">
+    <img class="Apploader" src="~/Content/assets/images/Fed/loader.gif" />
+</div>
+<div class="innerbody row col-lg-12">
+    <div class="col-lg-11">
+        <nav class="breadcrumb" style="padding: 0px 2px;margin-bottom: 10px">
+            <a class="breadcrumb-item sear" id="">Dashboard</a>
+            <a class="breadcrumb-item active">Market Context</a>
+        </nav>
+    </div>
+    <div class="col-1" id="shareIcon" style="cursor: pointer;">
+        <img src="~/Content/assets/images/share.png" data-toggle="tooltip" data-placement="bottom" title="Share URL" onclick="copyToClipboard()" style="float: right; width: 30px; height: 30px;" />
+    </div>
+</div>
+
+<div class="card-group">
+
+    @Html.Partial("~/Views/Dashboard/_PartialMarketContext.cshtml")
+
+</div>

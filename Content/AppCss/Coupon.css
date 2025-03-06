@@ -1,0 +1,79 @@
+﻿body {
+}
+body {
+}
+
+table {
+font-size:12px;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+}
+
+.container {
+    padding-left: 29px;
+    padding-top: 5px;
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    font: 600 10px Raleway, sans-serif;
+    cursor: pointer;
+    font-size: 11px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+label.with-square-checkbox {
+    cursor: pointer;
+    margin-top: 0px;
+    /* margin-right: 7px; */
+    width: 19%;
+}
+
+.container .checkmark:after {
+    content: "";
+    top: 6px;
+    left: 6px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    margin: 6px 0px 0px 6px;
+    background: white;
+}
+
+.container input:checked ~ .checkmark:after {
+    content: "";
+    display: block;
+}
+
+.container input:checked ~ .checkmark {
+    background-color: #30bf29;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.sb001 {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.sb002 {
+    font-size: 15px;
+}

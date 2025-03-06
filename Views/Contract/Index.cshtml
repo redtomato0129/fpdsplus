@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Contract Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="~/Content/AppCss/Contract.css" rel="stylesheet" />
+<script src="~/Scripts/module/ExcelDownload/js/xlsx.core.min.js"></script>
+<script src="~/Scripts/module/ExcelDownload/js/FileSaver.js"></script>
+<script src="~/Scripts/module/ExcelDownload/js/jhxlsx.js"></script>
+
+<script type="text/javascript" src="//unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+
+<script src="https://rawgit.com/google/code-prettify/master/loader/run_prettify.js?autoload=true&amp;skin=sunburst&amp;lang=css" defer></script>
+<script src="~/Scripts/AppJS/Contract.js"></script>
+@*<script src="~/Scripts/module/excelexportjs.js"></script>*@
+
+<div style="text-align:center">
+    <img class="Apploader" src="~/Content/assets/images/Fed/loader.gif" />
+</div>
+<div class="innerbody row col-lg-12">
+    <div class="col-lg-8">
+        <nav class="breadcrumb ContractPartial" style="padding: 0px 2px;margin-bottom: 10px;display:none">
+            <a class="breadcrumb-item sear" id=""></a>
+            <a class="breadcrumb-item active" id="cont" style="display:none">Contract</a>
+        </nav>
+        <nav class="breadcrumb ReferanceIDVPartial" style="padding: 0px 2px;margin-bottom: 10px;display:none">
+            <a class="breadcrumb-item sear" id=""></a>
+            <a class="breadcrumb-item active" id="cont" style="display:none">Contract</a>
+        </nav>
+    </div>
+    <div class="col-lg-4"  style="display:none" id="dvPastPerformance">
+        <button id="btnIDVPastPerformance" class="float-right dt-button buttons-excel buttons-html5 btn btn-cyan text-white mr-1" tabindex="0" aria-controls="opportunityreportData" id="btnRelatedVendors"><span>Past Performance</span></button>
+    </div>
+    <div class="col-lg-4 ContractPartial" style="display:none">
+        <img class="Co_011" id="ExcelContract" src="~/Content/assets/images/excel.png" />
+    </div>
+</div>
+
+<div id="dvjson"></div>
+
+<div class="ContractPartial" style="display:none">
+    @Html.Partial("~/Views/Contract/_PartialContract.cshtml");
+</div>
+
+<div class="ReferanceIDVPartial" style="display:none">
+    @Html.Partial("~/Views/Contract/_PartialReferenceIDV.cshtml");
+</div>
+<div class="modal fade" id="IDVCompetitiveContractor" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-static modal-dialog-centered">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="pt-3">
+
+                <h3 class="modal-title text-center text-dark"> Competitive Vendors</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="card formlisting">
+                            <div class="card-body text-left">
+                                <label id="IDVpastPerformanceText">
+
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="btnOkIDVCompetitiveContractor">OK</button>
+                <button type="button" class="btn btn-secondary" id="btnCancelIDVCompetitiveContractor">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+

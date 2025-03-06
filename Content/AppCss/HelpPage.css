@@ -1,0 +1,129 @@
+.nav-item {
+    cursor: pointer;
+}
+
+.heading {
+    color: purple;
+}
+
+.breadcrum {
+    color: purple;
+}
+
+.pull-right {
+    float: left !important;
+}
+
+.btn-purple {
+    background-color: purple;
+    color: white;
+}
+
+.wrapper, .attachments-show {
+    display: none;
+    padding: 20px;
+    margin: 0px 0;
+}
+
+textarea {
+    border: 1px solid #DDDFE2;
+    width: 100%;
+    color: #6e6e6e;
+    font-family: 'Rubik';
+    text-decoration: none;
+    display: inline;
+    font-weight: 400;
+    font-size: 13px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.comnt-load {
+    margin: 0px;
+    padding: 0px;
+    color: #6e6e6e;
+    text-decoration: none;
+    display: flex;
+    font-weight: 500;
+    font-size: 14px;
+    margin-left: 8px;
+}
+
+    .comnt-load:focus {
+        box-shadow: none;
+    }
+
+.attachment-load {
+    margin: 0px;
+    padding: 0px;
+    color: #6e6e6e;
+    text-decoration: none;
+    display: flex;
+    font-weight: 500;
+    font-size: 14px;
+    margin-left: 8px;
+}
+
+button.attachment-load:focus {
+    box-shadow: none;
+}
+
+button.comnt {
+    color: #fff;
+    background-color: #571C7A;
+    border-color: #571C7A;
+    font-family: 'Rubik';
+    font-weight: 400;
+    padding: 6px 20px 6px 20px;
+    font-size: 14px;
+}
+
+    button.comnt:hover {
+        color: #fff;
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+.comment__list {
+    background-color: #DDDFE2;
+    border-radius: 3px;
+}
+
+.companyblock .likeblock .likebtn {
+    visibility: hidden;
+}
+
+.bg-purple-header {
+    background-color: #571C7A;
+}
+.scp-breadcrumb {
+    margin: 0px;
+    padding: 0px;
+}
+
+    .scp-breadcrumb .breadcrumb {
+        background-color: transparent;
+        font-family: 'Rubik';
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        color: #47505A;
+        /* margin: 30px 0px 20px 0px;*/
+        padding: 0px;
+    }
+.heading-title {
+    color: #571C7A;
+}
+
+.table tbody tr:nth-of-type(odd) {
+    background-color: rgba(219,219,219,219) /*#f4e3ff*/ !important;
+}
+.table tbody tr:nth-of-type(even) {
+    background-color: #fff /*#afe6ac*/  !important;
+}
+.no_data {
+    font-size: 60px;
+    margin-top: 250px;
+    text-align: center;
+}

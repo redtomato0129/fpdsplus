@@ -1,0 +1,62 @@
+﻿<link href="~/Content/AppCss/subscription.css" rel="stylesheet" />
+<div class="row">
+    <div class="col-md-2">
+        <label id="lblTransId" style="display:none;"></label>
+        <label class="A008">Subscription Code</label><input maxlength="9" type="text" class="form-control" id="txtSubscriptionCode" />
+    </div>
+    <div class="col-md-3">
+        <label class="A008">Subscription Name</label><input type="text" style="font-family: revert;" class="form-control" id="txtSubscriptionName" />
+    </div>
+    <div class="col-md-2">
+        <label class="A008">Value</label><input type="text" style="font-family: revert;" class="form-control" id="txtSubscriptionValue" />
+    </div>
+    <div class="col-md-2">
+        <label class="A008">Display Position</label>
+        <select name="position" id="ddlposition" class="form-control">
+            <option>~select~</option>
+
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+
+        <label class="A008">Active</label>
+        <div class="row">
+            <div class="col-md-5" style="margin-top: 10px;padding-right: 0px;">
+                <label class="container">
+                    YES<input type="radio" name="active" class="radiocheck yes" value="Yes">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="col-md-5" style="margin-top: 10px;padding-right: 0px;">
+                <label class="container">
+                    NO<input type="radio" name="active" class="radiocheck No" value="No">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+        </div>
+
+    </div>
+   
+    
+
+</div>
+<div class="row">
+    <div class="col-md-10">
+        <label class="A008">Subscription Description</label><input  type="text" class="form-control" id="txtSubscriptionDesc" />
+    </div>
+    <div class="col-md-2">
+        <button id="btnSubscription" class="btn btn-block btn-lg btn-info sb001"></button>
+    </div>
+
+
+</div>
+@*<div class="row ">
+        <div class="col-md-12">
+            <button id="btnSubscription" class="css02 pull-right" style="width:10%">Save</button>
+        </div>
+    </div>*@
+

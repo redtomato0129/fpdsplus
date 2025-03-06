@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Scraper";
+
+}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="~/Content/AppCss/Scraper.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<script src="~/Scripts/AppJS/Scraper.js" defer></script>
+
+<div class="row">
+    <div class="col-9"></div>
+    <div class="col-3 text-right">
+        <button class="namespace-btn" id="newNameSpace">Create Namespace</button>
+    </div>
+</div>
+
+<!--<div class="container light_mode">
+    <div>
+        <h2>Upload File</h2>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="fileInput">Formats allowed are .pdf, .docx, .xlx</label>
+                <input type="file" class="form-control-file" id="fileInput" name="file">
+            </div>-->
+@*<div id="dropZone">Drag and drop files here</div>*@
+<!--<button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+        <div id="message" class="mt-3"></div>
+    </div>
+</div>-->
+
+<div class="container-fluid mt-2" style="margin-left:0px !important;">
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table" style="width:100%">
+                <thead>
+                    <tr class="bg-purple-header text-white">
+                        <th style="width: 5%;">#</th>
+                        <th style="width: 50%;">Namespace</th>
+                        <th style="text-align: center;">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="scraperTable">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Add Doc Modal -->
+<div class="modal fade" id="addDocModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="questionHelpTitle">Add Document</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2>Upload File</h2>
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="fileInput">Formats allowed are .pdf, .docx, .xlx</label>
+                        <input type="file" class="form-control-file" id="fileInput" name="file">
+                    </div>
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

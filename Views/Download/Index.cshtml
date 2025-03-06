@@ -1,0 +1,38 @@
+﻿
+@{
+	ViewBag.Title = "Download";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+	.excel-btn {
+		width: 35px;
+	}
+	.table tbody tr:nth-of-type(odd) {
+		background-color: #ede7f1 !important;
+	}
+
+	.table tbody tr:nth-of-type(even) {
+		background-color: #fff !important;
+	}
+</style>
+
+<script src="~/Scripts/AppJS/Download.js"></script>
+
+<div class="row">
+	<div class="col-md-12">
+		<div style="width: 100%;margin-left: 0px;border: 1px solid #e6e6e6;padding: 10px;">
+			<table class="table table-striped table-bordered dt-responsive dataTable" style="font-family: sans-serif; width: 100%;">
+				<thead class="text-white" style="background-color: #571C7A; font-size: 15px !important; text-align:center">
+					<tr>
+						<td><strong>Report #</strong></td>
+						<td><strong>Report Name</strong></td>
+						<td><strong>Report Description</strong></td>
+						<td><strong>Download Report</strong></td>
+					</tr>
+				</thead>
+				<tbody id="dowloadReportGrid_tbody" style="font-size:15px !important;"> </tbody>
+			</table>
+		</div>
+
+	</div>
+</div>

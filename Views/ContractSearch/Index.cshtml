@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Contract Search";
+}
+
+<link href="~/Content/AppCss/Search.css" rel="stylesheet" />
+<link href="~/Content/AppCss/toggle.css" rel="stylesheet" />
+@*<link href="~/Content/AppCss/ContractSearch.css" rel="stylesheet" />*@
+<link href="~/Content/AppCss/Opportunity.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/Scripts/AppJS/ContractSearch.js"></script>
+
+<div style="text-align:center">
+    <img style="position: fixed;
+    z-index: 100;
+    width: 11%;
+    display: none;
+    right:41%;
+    top: 230px;" class="Downloadloader" src="~/Content/assets/images/Fed/dloader.gif" />
+</div>
+
+<div class="innerbody">
+    <div class="row mb-2">
+        <div class="col-11">
+            <nav class="breadcrumb" style="padding: 0px 2px;margin-bottom: 10px;">
+                <a class="breadcrumb-item" id="sear">Contract Search</a>
+                <a class="breadcrumb-item active" id="cont" style="display:none">Contract Search Detail</a>
+            </nav>
+        </div>
+        <div class="col-1" id="shareIcon" style="cursor: pointer;">
+            <img src="~/Content/assets/images/share.png" data-toggle="tooltip" data-placement="bottom" title="Share URL" onclick="copyToClipboard()" style="float: right; width: 30px; height: 30px;" />
+        </div>
+    </div>
+
+    <div class="col-md-12" id="ShowContactSearch">
+        @Html.Partial("~/Views/ContractSearch/_PartialContractSearch.cshtml")
+    </div>
+    <div class="col-md-12" id="ShowcontractSearchDetail" style="display:none">
+        <div class="card card-body">
+            @Html.Partial("~/Views/ContractSearch/_PartialContractDetail.cshtml")
+        </div>
+    </div>
+</div>

@@ -1,0 +1,693 @@
+﻿<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,nofollow">
+    <title>@ViewBag.Title</title>
+    @*<link rel="canonical" href="https://www.wrappixel.com/templates/niceadmin/" />*@
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="../favicon.ico">
+    @*<link rel="icon" type="image/png" sizes="16x16" href="~/Content/assets/images/favicon.png">*@
+    <!-- Custom CSS -->
+    <!-- ============================================================== -->
+    <!---------------------------DataTable CSS--------------------------->
+    @*<link href="~/Content/DataTable/jquery.dataTables.min.css" rel="stylesheet" />
+        <link href="~/Content/DataTable/buttons.dataTables.min.css" rel="stylesheet" />*@
+    <!---------------------------DataTable CSS--------------------------->
+    <!-- ============================================================== -->
+    @*<link href="~/Scripts/AutoComplete/jquery-ui.css" rel="stylesheet" />*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @*<link href="~/Content/DataTable/buttons.dataTables.min.css" rel="stylesheet" />
+        <link href="~/Content/DataTable/jquery.dataTables.min.css" rel="stylesheet" />*@
+    <link href="~/Content/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/extra-libs/datatables.net-bs4/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    @*<link href="~/Content/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css" rel="stylesheet" />*@
+    <!-- Custom CSS -->
+    <link href="~/Content/dist/css/custom.css" rel="stylesheet" />
+    <link href="~/Content/dist/css/style.min.css" rel="stylesheet">
+    @*<link href="~/Content/Sweetalert/sweetalert2.min.css" rel="stylesheet" />*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.1.1/sweetalert2.min.css" integrity="sha512-17gTpzfhri+M3c6bgT9JtKGB1v4wGQ69MI7sEPPk0b5LzlNj2EzqvXJ6DK9SOqC+u90pYemeLZGg6403/apZ1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="~/Content/AppCss/CommonUse.css" rel="stylesheet" />
+    @*<link href="~/Content/assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
+        <link href="~/Content/assets/extra-libs/c3/c3.min.css" rel="stylesheet">*@
+
+
+
+
+
+
+
+    <!-- ============================================================== -->
+    <!---------------------------App CSS--------------------------->
+    <!-- ============================================================== -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    @*<script src="~/Content/AppJs/jquery.min.js"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js" integrity="sha512-suUtSPkqYmFd5Ls30Nz6bjDX+TCcfEzhFfqjijfdggsaFZoylvTj+2odBzshs0TCwYrYZhQeCgHgJEkncb2YVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    @*<script src="~/Scripts/AutoComplete/jquery-ui-1.12.1.js"></script>*@
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+    @*<script src="~/Content/Sweetalert/sweetalert2.min.js"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.1.1/sweetalert2.min.js" integrity="sha512-vCd9tcfZXjsHMfRBMHuiLcKUrZR1Szm7Z4z9XSTOTth3ZImVYP3adN5zvj2+nSb34BtmR+GWORoLliv6dXNoOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/Scripts/module/ajaxRequestHandler.js"></script>
+    <script src="~/Scripts/AppJS/HelpIcons.js"></script>
+
+    <script>
+        
+        $(document).on('click', '#Logout', function () {
+            delete_cookie("username");
+            window.location.href = origin + "/login/login";
+        });
+
+        function delete_cookie(name) {
+            document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        }
+       
+
+    </script>
+
+    <style>
+        .ui-autocomplete.ui-widget {
+            font-family: Verdana,Arial,sans-serif;
+            font-size: 13px;
+        }
+
+        .ui-menu-item-wrapper:hover {
+            background-color: #d9daba;
+            border-color: #d9daba;
+            color: black;
+        }
+
+        div.dataTables_wrapper div.dataTables_filter {
+            text-align: left;
+        }
+
+        .sidebar-bold-menu-text {
+            color: #afafaf !important;
+            font-weight: 600 !important;
+            opacity: 1 !important;
+        }
+
+        .footerDiv {
+            align-items: center;
+            text-align: center;
+        }
+
+		#teaming_list1, #teaming_list2 {
+			display: none;
+			padding-left: 20px;
+		}
+
+    </style>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <div style="text-align:center">
+        <img style="position: absolute;
+    z-index: 100;
+    width: 7%;
+    display: none;
+    top: 187px;" class="Apploader" src="~/Content/assets/images/Fed/loader.gif" />
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header">
+                    <!-- This is for the sidebar toggle which is visible on mobile only -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)">
+                        <i class="ti-menu ti-close"></i>
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <div class="navbar-brand">
+                        <a href="" class="logo">
+                            <!--End Logo icon -->
+                            <!-- Logo text -->
+                            <span class="logo-text">
+                                <!-- dark Logo text -->
+                                @*<img class="Lay_001" id="fed" src="~/Content/assets/images/FedpipelineLogo.png" />*@
+                                <img class="Lay_001" id="fpds" src="~/Content/assets/images/FedpipelineFPDSLogo.png" />
+                                <!-- Light Logo text -->
+                            </span>
+                        </a>
+                        <a class="sidebartoggler d-none d-md-block" href="javascript:void(0)" data-sidebartype="mini-sidebar">
+                            <i class="mdi mdi-toggle-switch mdi-toggle-switch-off font-20" data-toggle="tooltip" title="Click to collapse side menu"></i>
+                        </a>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Toggle which is visible on mobile only -->
+                    <!-- ============================================================== -->
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent"
+                       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="ti-more"></i>
+                    </a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mx-auto" id="acha">
+                        <!-- <li class="nav-item d-none d-md-block">
+                            <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar">
+                                <i class="mdi mdi-menu font-24"></i>
+                            </a>
+                        </li> -->
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <style>
+                            .has-search {
+                                margin-bottom: 0px !important;
+                            }
+
+                                .has-search .form-control {
+                                    padding-left: 1.375rem;
+                                    border-radius: 50px;
+                                    /*min-width: 350px;*/
+                                }
+
+                                .has-search .form-control-feedback {
+                                    position: absolute;
+                                    z-index: 2;
+                                    display: block;
+                                    width: 2.375rem;
+                                    height: 2.375rem;
+                                    line-height: 2.375rem;
+                                    text-align: center;
+                                    pointer-events: none;
+                                    color: #aaa;
+                                }
+                        </style>
+                        <li class="nav-item search-box" id="gridSearch" style="display:none">
+                            <!-- Actual search box -->
+                            <div class="form-group has-search">
+                                @*<span class="fa fa-search form-control-feedback" style="right:670px"></span>*@
+                                <input type="text" class="form-control" id="search_field" placeholder="Start Typing to Search" onkeyup="OnGridSearchKeyUp(event)">
+
+                            </div>
+
+                        </li>
+                        <li class="nav-item search-box" style="display:none">
+                            <a class="nav-link waves-effect waves-dark" href="javascript:void(0)">
+                                <div class="d-flex align-items-center">
+                                    <i class="mdi mdi-magnify font-20 mr-1"></i>
+                                    <div class="ml-1 d-none d-sm-block">
+                                        <span>Search</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <form class="app-search position-absolute">
+                                <input type="text" class="form-control" placeholder="Search &amp; enter">
+                                <a class="srh-btn">
+                                    <i class="ti-close"></i>
+                                </a>
+                            </form>
+                        </li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav">
+
+                        <!-- ============================================================== -->
+                        <!-- End Comment -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user-circle Lay_002"></i>
+                                <span class="m-l-5 font-medium d-none d-sm-inline-block">
+                                    @if (Session["User_FirstName"] != null)
+                                    {
+                                        @Session["User_FirstName"].ToString()<i class="mdi mdi-chevron-down"></i>
+                                    }
+                                    else
+                                    {
+                                        Response.Redirect("../login");
+                                    }
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
+                                <span class="with-arrow">
+                                    <span style="background-color: #5c237e;"></span>
+                                </span>
+                                <div class="d-flex no-block align-items-center p-15 text-white m-b-10" style="background-color: #5c237e;">
+                                    <div class="">
+                                        <i style="color:white" class="fas fa-user-circle Lay_002"></i>
+                                    </div>
+                                    <div class="m-l-10">
+                                        <h4 style="color:white" class="m-b-0">
+                                            @if (Session["User_FirstName"] != null)
+                                            {
+                                                @Session["User_FirstName"].ToString()
+                                            }
+                                            else
+                                            {
+                                                Response.Redirect("../login");
+                                            }
+
+                                        </h4>
+                                        <p style="color:white" class="m-b-0">
+                                            @if (Session["User_Email"] != null)
+                                            {
+                                                @Session["User_Email"].ToString()
+                                            }
+                                            else
+                                            {
+                                                Response.Redirect("../login");
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="profile-dis scrollable">
+                                    <a class="dropdown-item" href="~/User/Index">
+                                        <i class="ti-user m-r-5 m-l-5"></i> My Profile
+                                    </a>
+                                    @if (Session["Buy"] != null && Session["Buy"].ToString() != "1")
+                                    {
+                                        if (Session["IsPaidUser"] != null && !(bool)Session["IsPaidUser"])
+                                        {
+                                            <a class="dropdown-item" href="~/Payment/PaymentWithPaypal">
+                                                <i class="ti-wallet m-r-5 m-l-5"></i> Purchase Subscription
+                                            </a>
+                                        }
+                                        <a class="dropdown-item" href="~/SubscriptionHistory/Index">
+                                            <i class="ti-wallet m-r-5 m-l-5"></i> Subscription History
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="dropdown-item" href="~/Billing/Index">
+                                            <i class="ti-wallet m-r-5 m-l-5"></i> Billing
+                                        </a>
+                                    }
+                                    @*<a class="dropdown-item" href="~/Contact/Index">
+                                            <i class="ti-wallet m-r-5 m-l-5"></i> Contact
+                                        </a>*@
+                                    <a class="dropdown-item" href="~/Feedback/InstantFeedback">
+                                        <i class="ti-wallet m-r-5 m-l-5"></i> Feedback
+                                    </a>
+                                    <a class="dropdown-item" target="_blank" href="https://docs.google.com/spreadsheets/d/1lAc6jMR82AuAfGGQSNCpon0szMbjD6fRZ8jOPQHH148/edit?usp=sharing">
+                                        <i class="ti-wallet m-r-5 m-l-5"></i> FAQ
+                                    </a>
+                                    @*<a class="dropdown-item" href="javascript:void(0)">
+                                            <i class="ti-email m-r-5 m-l-5"></i> Inbox
+                                        </a>*@
+                                    @*<div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="javascript:void(0)">
+                                            <i class="ti-settings m-r-5 m-l-5"></i> Account Setting
+                                        </a>*@
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" id="Logout">
+                                        <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                </div>
+                                <div class="p-l-30 p-10">
+                                    @*<a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a>*@
+                                </div>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+
+
+                @if ((Session["IsPaidUser"] != null && (bool)Session["IsPaidUser"] == true) ||
+                    (Session["isTrialUser"] != null && (int)Session["isTrialUser"] == 1))
+                {
+                    <nav class="sidebar-nav">
+                        <ul id="sidebarnav">
+                            <li class="nav-small-cap sidebar-bold-menu-text">
+                                <i class="mdi mdi-dots-horizontal"></i>
+                                <span class="hide-menu">Answers</span>
+                            </li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/AnswerWizard/Index" aria-expanded="false"><i class="mdi mdi-av-timer"></i><span class="hide-menu">Wizard</span></a></li>
+                            @*@if (Session["User_Domain"] != null && (Session["User_Domain"].ToString() == "rturner.net" || Session["User_Domain"].ToString() == "txend.com"))
+                            {
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/Scraper/Index" aria-expanded="false"><i class="mdi mdi-av-timer"></i><span class="hide-menu">Scraper</span></a></li>
+                            }*@
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/QuestionSearchHistory/Index" aria-expanded="false"><i class="mdi mdi-av-timer"></i><span class="hide-menu">History</span></a></li>
+                                
+                                @*<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/Dashboard/Index" aria-expanded="false"><i class="mdi mdi-av-timer"></i><span class="hide-menu">Market Context</span></a></li>*@
+
+                                @*<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/SubscriptionHistory/Index" aria-expanded="false"><i class="mdi mdi-wallet-membership"></i><span class="hide-menu">Subscription History</span></a></li>*@
+
+
+
+                                <li class="nav-small-cap sidebar-bold-menu-text">
+                                    <i class="mdi mdi-dots-horizontal"></i>
+                                    <span class="hide-menu" id="navSearchHeading"></span>
+                                </li>
+                                <li class="sidebar-item" id="vendorLi"> </li>
+                                <li class="sidebar-item" id="contractLi"></li>
+                                <li class="nav-small-cap sidebar-bold-menu-text full_nav">
+                                    <i class="mdi mdi-dots-horizontal"></i>
+                                    <span class="hide-menu">Search</span>
+                                </li>
+                                <li class="sidebar-item full_nav"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Dashboard/Index?id=1" aria-expanded="false"><i class="ti-search"></i><span class="hide-menu">Market Context</span></a></li>
+                                <li class="sidebar-item full_nav"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/VendorSearch/Index" aria-expanded="false"><i class="ti-search"></i><span class="hide-menu">Vendor</span></a></li>
+                                <li class="sidebar-item full_nav"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/ContractSearch/Index" aria-expanded="false"><i class="ti-search"></i><span class="hide-menu">Contract</span></a></li>
+                                <li class="sidebar-item full_nav"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/OpportunitySearch/Index?id=1" aria-expanded="false"><i class="ti-search"></i><span class="hide-menu">Opportunity</span></a></li>
+                                <!-- Teaming Forms Section Start-->
+                                @*<li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/Teaming/Index" aria-expanded="false">
+                    <i class="fa-solid fa-chart-line"></i><span class="hide-menu">Teaming Form 2</span>
+                </a>
+            </li>*@
+
+                                <!-- CRM Section Start-->
+                                <li class="nav-small-cap sidebar-bold-menu-text full_nav">
+                                    <i class="mdi mdi-dots-horizontal"></i>
+                                    <span class="hide-menu">CRM</span>
+                                </li>
+                                <li class="sidebar-item full_nav">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/CrmDashboard/Index" aria-expanded="false">
+                                        <i class="fa-solid fa-chart-line"></i><span class="hide-menu">Dashboard</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item full_nav">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/CrmDeals/Index" aria-expanded="false">
+                                        <i class="fa-solid fa-handshake"></i>
+                                        <span class="hide-menu">Deals</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item full_nav">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/CrmActivities/Index" aria-expanded="false">
+                                        <i class="fa-solid fa-clipboard-check"></i>
+
+                                        <span class="hide-menu">Activities</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item full_nav">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/News/index" aria-expanded="false">
+                                        @*<i class="fa-solid fa-users-rays"></i>*@
+                                        <span style="width:35px;display:flex;justify-content:center"><img src="~/Content/assets/images/SettingIcon.png" style="width: 20px;" /></span>
+                                        <span class="hide-menu">Social</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item full_nav">
+
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/CrmPeople/Index" aria-expanded="false">
+                                        <i class="fa-solid fa-people-group"></i>
+                                        <span class="hide-menu">People</span>
+                                    </a>
+                                </li>
+                                <!--CRM Section End-->
+                                <!-- CMI Section-->
+                                @*<li class="nav-small-cap sidebar-bold-menu-text">
+                <i class="mdi mdi-dots-horizontal"></i>
+                <span class="hide-menu">CMI</span>
+            </li>*@
+                                <li class="sidebar-item full_nav">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/CmiNews/Index"
+                                       aria-expanded="false">
+                                        <i class="fa-solid fa-book-open"></i>
+                                        <span class="hide-menu">News</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item full_nav">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/EmailNotification/Index"
+                                       aria-expanded="false">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                        <span class="hide-menu">Email Notification</span>
+                                    </a>
+                                </li>
+
+                                <li class="nav-small-cap sidebar-bold-menu-text">
+                                    <i class="mdi mdi-dots-horizontal"></i>
+                                    <span class="hide-menu">Resources</span>
+                                </li>
+                                @*@if (Session["User_Domain"] != null && (Session["User_Domain"].ToString() == "rturner.net" ||
+                Session["User_Domain"].ToString() == "hdrinc.com" || Session["User_Domain"].ToString() == "txend.com"))
+            {
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/HDR/Index?category=contract" aria-expanded="false"><i class="ti-bar-chart"></i><img class="Com_007" src="~/Content/assets/images/HDR_logo.svg" /></a></li>
+            }*@
+                                <li class="sidebar-item full_nav"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/UserReports/Index" aria-expanded="false"><i class="fa-solid fa-file"></i><span class="hide-menu">Reports</span></a></li>
+                                <li class="sidebar-item"> @*<a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/Taxonomy/Index" aria-expanded="false"><img class="Com_007" src="~/Content/assets/images/taxonomy.png"><span class="hide-menu">Dept/Agency/Office Taxonomy</span></a>*@</li>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/Taxonomy/Index" aria-expanded="false"><i class="fa-solid fa-code-fork"></i><span class="hide-menu">Agency Taxonomy</span></a></li>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/TaxonomyPSC/Index" aria-expanded="false"><i class="fa-solid fa-code-compare"></i><span class="hide-menu">NAICS/PSC Taxonomy</span></a></li>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/TaxonomyUNSPSC/Index" aria-expanded="false"><i class="fa-solid fa-code-compare"></i><span class="hide-menu">UNSPSC Taxonomy</span></a></li>
+                                @*<li class="sidebar-item">
+                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/Download/Index" aria-expanded="false"><i class="fa-solid fa-download"></i><span class="hide-menu">Download</span></a>
+            </li>*@
+                                <li class="sidebar-item" id="downloadReports"> </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="" target="_blank" aria-expanded="false" id="faqNav"><i class="fa fa-question"></i><span class="hide-menu">FAQ</span></a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="" target="_blank" aria-expanded="false" id="videoNav"><i class="ti-video-camera"></i><span class="hide-menu">Support Videos</span></a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/Feedback/InstantFeedback" aria-expanded="false"><i class="ti-comment-alt"></i><span class="hide-menu">Feedback</span></a>
+                                </li>
+
+
+
+                            </ul>
+                    </nav>
+                }
+                else
+                {
+                    Response.Redirect("../login");
+                }
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb" style="display:none">
+                <div class="row">
+                    <div class="col-5 align-self-center">
+                        <h4 class="page-title">Dashboard</h4>
+                    </div>
+                    <div class="col-7 align-self-center">
+                        <div class="d-flex align-items-center justify-content-end">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a href="~/Dashboard/Index">Dashboard</a>
+                                    </li>
+                                    <li class="breadcrumb-item active" aria-current="page">Search</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer">
+                <div class="footerDiv">
+                    All Rights Reserved by
+                    <a href="http://fedpipeline.com/">FedPipeline</a>.
+                    @if (Session["isTrialUser"] != null && (int)Session["isTrialUser"] == 1)
+                    {
+                        <h6 style="background-color:indigo; color:white; padding:10px"> Trial expires at 11:59 PM on Sunday </h6>
+                    }
+
+
+                </div>
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- customizer Panel -->
+    <!-- ============================================================== -->
+
+    <div class="chat-windows">
+
+    </div>
+
+
+
+    
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-------------------------- AppJS------------------------------>
+    @*<script src="~/Content/DataTable/jquery.dataTables.min.js"></script>
+        <script src="~/Content/DataTable/dataTables.buttons.min.js"></script>
+        <script src="~/Content/DataTable/jszip.min.js"></script>
+        <script src="~/Content/DataTable/buttons.html5.min.js"></script>*@
+    <script src="~/Scripts/AppJS/Timeout.js"></script>
+    @*<script src="~/Scripts/AppJS/Timeout.js?V=@DateTime.Now.ToString("yyyyMMddHHmmss")"></script>*@
+
+    <script src="~/Content/jquery.mask.js"></script>
+    <script src="~/Scripts/module/ajaxRequestHandler.js"></script>
+    <script src="~/Content/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/assets/extra-libs/datatables.net-bs4/js/dataTables.responsive.min.js"></script>
+    @*<script src="~/Content/dist/js/pages/datatable/datatable-basic.init.js"></script>*@
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+    @*<script src="../../dist/js/pages/datatable/datatable-advanced.init.js"></script>*@
+    <script src="~/Content/dist/js/pages/datatable/datatable-advanced.init.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/disableautofill/src/jquery.disableAutoFill.min.js"></script>*@
+    <script src="~/Scripts/module/jquery.disableAutoFill.min.js"></script>
+
+    @*<script src="~/Scripts/AutoComplete/jquery-ui-1.12.1.js"></script>*@
+
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    @*<script src="~/Content/assets/libs/jquery/dist/jquery.min.js"></script>*@
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/Content/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="~/Content/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- apps -->
+    <script src="~/Content/dist/js/app.min.js"></script>
+    <script src="~/Content/dist/js/app.init.js"></script>
+    <script src="~/Content/dist/js/app-style-switcher.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/Content/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="~/Content/assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="~/Content/dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/Content/dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="~/Content/dist/js/custom.min.js"></script>
+    <!--This page JavaScript -->
+    <!--chartis chart-->
+    <script src="~/Content/assets/libs/chartist/dist/chartist.min.js"></script>
+    <script src="~/Content/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src="~/Content/dist/js/pages/chartist/chartist-plugin-tooltip.js"></script>
+    <!--c3 charts -->
+    <script src="~/Content/assets/extra-libs/c3/d3.min.js"></script>
+    <script src="~/Content/assets/extra-libs/c3/c3.min.js"></script>
+    <script src="~/Content/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="~/Content/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
+    @*<script src="~/Content/dist/js/pages/chartist/chartist-init.js"></script>
+        <script src="~/Content/dist/js/pages/chartist/chartist-plugin-tooltip.js"></script>*@
+    <script src="~/Content/dist/js/pages/dashboards/dashboard1.js"></script>
+</body>
+
+</html>
+
+@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>*@

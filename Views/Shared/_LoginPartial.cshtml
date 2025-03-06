@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @*<meta name="keywords" content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 4 admin, bootstrap 4, css3 dashboard, bootstrap 4 dashboard, nice admin bootstrap 4 dashboard, frontend, responsive bootstrap 4 admin template, material design, material dashboard bootstrap 4 dashboard template">*@
+    @*<meta name="description" content="Nice is powerful and clean admin dashboard template, inpired from Google's Material Design">*@
+    <meta name="robots" content="noindex,nofollow">
+    <title>@ViewBag.Title</title>
+    <!-- Favicon icon -->
+    @*<link rel="icon" type="image/png" sizes="16x16" href="~/Content/assets/images/favicon.png">*@
+    <!-- Custom CSS -->
+    <link href="~/Content/dist/css/style.min.css" rel="stylesheet">
+    <link href="~/Content/dist/css/custom.css" rel="stylesheet" />
+    @*<link href="~/Content/Sweetalert/sweetalert2.min.css" rel="stylesheet" />*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.1.1/sweetalert2.min.css" integrity="sha512-17gTpzfhri+M3c6bgT9JtKGB1v4wGQ69MI7sEPPk0b5LzlNj2EzqvXJ6DK9SOqC+u90pYemeLZGg6403/apZ1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- ============================================================== -->
+    <!---------------------------App CSS--------------------------->
+    @*<link href="~/Scripts/AutoComplete/jquery-ui.css" rel="stylesheet" />*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-------------------------- AppJS------------------------------>
+    @*<script src="~/Content/AppJs/jquery.min.js"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js" integrity="sha512-suUtSPkqYmFd5Ls30Nz6bjDX+TCcfEzhFfqjijfdggsaFZoylvTj+2odBzshs0TCwYrYZhQeCgHgJEkncb2YVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    @*<script src="~/Content/AppJs/jquery-1.12.4.js"></script>*@
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    @*<script src="~/Scripts/AutoComplete/jquery-ui-1.12.1.js"></script>*@
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script src="~/Scripts/module/ajaxRequestHandler.js"></script>
+    @*<script src="~/Content/Sweetalert/sweetalert2.min.js"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.1.1/sweetalert2.min.js" integrity="sha512-vCd9tcfZXjsHMfRBMHuiLcKUrZR1Szm7Z4z9XSTOTth3ZImVYP3adN5zvj2+nSb34BtmR+GWORoLliv6dXNoOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- ============================================================== -->
+
+
+    <style>
+        .LogoImg {
+            width: 25%;
+            padding: 5px 26px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="row">
+        <span class="db"><img class="LogoImg"  alt="logo" /></span>
+    </div>
+    <div class="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+
+        <div class="auth-wrapper d-flex flex-column no-block justify-content-center align-items-center">
+                
+                    @RenderBody()
+        </div>
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+    </div>
+
+
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    <script src="~/Content/assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/Content/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="~/Content/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- apps -->
+    <script src="~/Content/dist/js/app.min.js"></script>
+    <script src="~/Content/dist/js/app.init.js"></script>
+    <script src="~/Content/dist/js/app-style-switcher.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/Content/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="~/Content/assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="~/Content/dist/js/waves.js"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugin js -->
+    <!-- ============================================================== -->
+    <script>
+        $('[data-toggle="tooltip"]').tooltip();
+        $(".preloader").fadeOut();
+        // ==============================================================
+        // Login and Recover Password
+        // ==============================================================
+        $('#to-recover').on("click", function () {
+            $("#loginform").slideUp();
+            $("#recoverform").fadeIn();
+        });
+        $(".LogoImg").prop('src', window.location.origin.includes('fpdsplus') ? '/Content/assets/images/FedpipelineFPDSLogo.png' :'/Content/assets/images/FedpipelineFPDSLogo.png')
+        document.title = window.location.origin.includes('fpdsplus') ? 'FPDSplus - ' + document.title : 'FPDSplus - ' + document.title 
+    </script>
+</body>
+
+</html>

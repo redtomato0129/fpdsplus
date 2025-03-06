@@ -1,0 +1,118 @@
+﻿@{
+    ViewBag.Title = "Taxonomy";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+@*<link rel="stylesheet" type="text/css" href="~/Content/AppCss/newsModalCss.css" />*@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="~/Content/AppCss/Taxonomy.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/assets/libs/bootstrap-multiselect/bootstrap-multiselect.css" />
+
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-11" style="cursor: pointer;">
+        </div>
+        <div class="col-1" id="shareIcon" style="cursor: pointer;">
+            <img src="~/Content/assets/images/share.png" data-toggle="tooltip" data-placement="bottom" title="Share URL" onclick="copyToClipboard()" style="float: right; width: 30px; height: 30px;" />
+        </div>
+    </div>
+</div>
+
+
+@*<div class="container" style="margin-left:0px !important;">
+    <div class="row">
+        <div class="col-12">
+            <div class="scp-breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active">Wizard</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+<div class="container-fluid" style="margin-left:0px !important;">
+    <div class="row">
+        <div class="col-12">
+			<div class="row">
+				<div class="col-lg-8 center">
+					<div class="input-group mb-3">
+					<label for="basic-url">Department Name</label>
+						<div class="input-group-prepend pl-3">
+							<span class="input-group-text OpenDeptPopup btndeptrowclear" id="btndeptrowclear_2"
+								  data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+						</div>
+						<input type="text" class="DIS_002 form-control txtdept" id="txtdept_2"  />
+						<label id="lbldept_2" style="display:none;" class="lbldept lblclr"></label>
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+
+	<!-- Search -->
+	<div class="row">
+		<div class="col-6 form-group has-search pb-2">
+			<input type="text" class="form-control" id="searchAgencyInput" onkeyup="searchAgency(event)" placeholder="Search within Agencies">
+			<h5 class="records_text" id="agency_records"></h5>
+		</div>
+		@*<div class="col-6 form-group has-search pb-2">
+			<h5 id="agency_records"></h5>
+		</div>*@
+
+		<div class="col-6 form-group has-search pb-2">
+			<input type="text" class="form-control" id="searchOfficeInput" onkeyup="searchOffice(event)" placeholder="Search within Offices">
+			<h5 class="records_text" id="office_records"></h5>
+		</div>
+		@*<div class="col-6 form-group has-search pb-2">
+			<h5 id="office_records"></h5>
+		</div>*@
+	</div>
+
+	<div class="row">
+		
+		<div class="col-6 agencyTable">
+			<table class="table table-striped" id="searchAgencyTable">
+				<thead class="bg-purple-header text-white">
+					<tr>
+						<th>#</th>
+						<th>Agency Name</th>
+					</tr>
+				</thead>
+				<tbody id="tableBodyAgency">
+				</tbody>
+			</table>
+		</div>
+
+		<div class="col-6 officeTable">
+			<table class="table table-striped" id="searchOfficeTable">
+				<thead class="bg-purple-header text-white">
+					<tr>
+						<th>#</th>
+						<th>Office Name</th>
+					</tr>
+				</thead>
+				<tbody id="tableBodyOffice">
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>
+
+
+
+
+
+<script src="~/Scripts/AppJS/Taxonomy.js"></script>

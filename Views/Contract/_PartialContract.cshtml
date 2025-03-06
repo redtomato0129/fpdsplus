@@ -1,0 +1,155 @@
+﻿
+<div class="col-md-12" id="ContactSearch" style="text-transform: uppercase;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-group" style="margin-bottom: 9px">
+                <!-- Column -->
+                <div class="card bg-success">
+                    <div class="card-body text-white Co_002" style="height: 64px;">
+                        <div class="row">
+                            <div class="col-lg-1"><label class="Co_008">Vendor</label></div>
+                            <div class="col-lg-7"><label class="recipient_name Co_007"></label></div>
+                            <div class="col-lg-4">
+                                <button class="float-right dt-button buttons-excel buttons-html5 btn btn-cyan text-white mr-1" tabindex="0" aria-controls="contractreportData" id="btnContractPastPerformance"><span>Past Performance</span></button>
+                            </div>
+                            @*<div class="col-lg-11"><label class="recipient_name Co_007"></label></div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>       
+    </div>
+</div>
+
+<div class="container-fluid" style="margin-left:0px !important;">
+
+    @*1st row*@
+
+    <div class="row">
+
+        <div class="col-lg-4">
+            <div class="fpds__data">
+                <div class="p-1 fpds__heading">
+                    <h4>Vendor Identification</h4>
+                </div>
+                <div class="fpds__list">
+                    @*<table class="table table-borderless" style="width:100%">
+
+        </table>*@
+                    <div class="col-lg-6"><div><label class="Co_008">Funding Agency</label></div><div class="Co_013"><label id="funding_agency_name" class="Co_007 Co_012"></label></div></div>
+                    <div class="col-lg-6"><div><label class="Co_008">Awarding Agency</label></div><div class="Co_013"><label id="awarding_agency_name" class="Co_007 Co_012"></label></div></div>
+                    <div class="col-lg-6"><div><label class="Co_008">Funding Sub Agency</label></div><div class="Co_013"><label id="funding_sub_agency_name" class="Co_007 Co_012"></label></div></div>
+                    <div class="col-lg-6"><div><label class="Co_008">Awarding Sub Agency</label></div><div class="Co_013"><label id="awarding_sub_agency_name" class="Co_007 Co_012"></label></div></div>
+                    <div class="col-lg-6"><div><label class="Co_008">FUNDING OFFICE NAME</label></div><div class="Co_013"><label id="funding_office_name" class="Co_007 Co_012"></label></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="fpds__data">
+                <div class="p-1 fpds__heading">
+                    <h4>Contract Details</h4>
+                </div>
+                <div class="fpds__list">
+                    <div class="col-lg-8"><div><label class="Co_008">NAICS</label></div><div class="Co_012 Co_013"><label style="margin: 0;" id="naics_description" class="Co_007"></label>&nbsp;<label id ="naics_code"> </label></div> </div>
+                    <div class="col-lg-4"><div><label class="Co_008">Type of Set Aside</label></div><div class="Co_012 Co_013"><label id="type_of_set_aside" class="Co_007"></label></div></div>
+                    <div class="col-lg-8"><div><label class="Co_008">PSC</label></div><div class="Co_012 Co_013"><label style="margin: 0;" id="psc_description" class="Co_007 "></label>&nbsp;<label id ="psc_code"></label></div></div>
+                    <div class="col-lg-4"><div><label class="Co_008">Award Delivery</label></div><div class="Co_012 Co_013"><label id="award_type" class="Co_007 "></label></div></div>
+                    <div class="col-lg-8"><div><label class="Co_008"> Contract pricing: </label><span class="Co_012 Co_013 Co_007">$</span> <label class="Co_012 Co_013 Co_007" style="margin: 0;" id="ContractPricing"></label></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="fpds__data">
+                <div class="p-1 fpds__heading">
+                    <h4>Agency Identification</h4>
+                </div>
+                <div class="fpds__list" id="BindContractData" style="padding: 10px 10px;">
+                       
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    @*2nd row*@
+
+    @*<div class="row" style="margin-top:40px">
+
+
+
+        <div class="col-lg-4">
+            <div class="fpds__data">
+                <div class="p-1 fpds__heading">
+                    <h4>Contract History</h4>
+                </div>
+                <div class="contract_history fpds__list">
+
+                    <table class="table table-borderless" style="width:100%">
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="fpds__data">
+                <div class="p-1 fpds__heading">
+                    <h4>Contract Description</h4>
+                </div>
+                <div class="fpds__list">
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="fpds__data">
+                <div class="p-1 fpds__heading">
+                    <h4>Contract & Competition Information</h4>
+                </div>
+                <div class="fpds__list">
+                    <table class="table table-borderless" style="width:100%">
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>*@
+</div>
+
+<div class="modal fade" id="CompetitiveContractor" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-static modal-dialog-centered">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="pt-3">
+
+                <h3 class="modal-title text-center text-dark"> Competitive Vendors</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="card formlisting">
+                            <div class="card-body text-left">
+                                <label id="pastPerformanceText">
+
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="btnOkCompetitiveContractor">OK</button>
+                <button type="button" class="btn btn-secondary" id="btnCancelCompetitiveContractor">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>

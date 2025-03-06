@@ -1,0 +1,91 @@
+table {
+	font-size: 13px;
+}
+
+.bg-purple-header {
+	background-color: #f4e3ff;
+	color:black;
+}
+
+.hourglass {
+	display: block;
+	background: #ede7f1;
+	margin: 3em auto;
+	width: 2em;
+	height: 4em;
+	-webkit-animation: hourglass 1s linear infinite;
+	animation: hourglass 1s linear infinite;
+}
+
+.outer {
+	fill: #571c7a;
+}
+
+.middle {
+	fill: #ede7f1;
+}
+
+@-webkit-keyframes hourglass {
+	0% {
+		transform: rotate(0deg);
+		box-shadow: inset #571c7a 0 0em 0 0, inset #ede7f1 0 -2em 0 0, inset #571c7a 0 -4em 0 0;
+	}
+
+	80% {
+		transform: rotate(0deg);
+		box-shadow: inset #571c7a 0 -2em 0 0, inset #ede7f1 0 -2em 0 0, inset #571c7a 0 -2em 0 0;
+	}
+
+	100% {
+		transform: rotate(180deg);
+		box-shadow: inset #571c7a 0 -2em 0 0, inset #ede7f1 0 -2em 0 0, inset #571c7a 0 -2em 0 0;
+	}
+}
+
+@keyframes hourglass {
+	0% {
+		transform: rotate(0deg);
+		box-shadow: inset #571c7a 0 0em 0 0, inset #ede7f1 0 -2em 0 0, inset #571c7a 0 -4em 0 0;
+	}
+
+	80% {
+		transform: rotate(0deg);
+		box-shadow: inset #571c7a 0 -2em 0 0, inset #ede7f1 0 -2em 0 0, inset #571c7a 0 -2em 0 0;
+	}
+
+	100% {
+		transform: rotate(180deg);
+		box-shadow: inset #571c7a 0 -2em 0 0, inset #ede7f1 0 -2em 0 0, inset #571c7a 0 -2em 0 0;
+	}
+}
+.vendor_name_display {
+	color: #571C7A;
+	font-family: 'Rubik';
+	text-decoration: none;
+	display: inline;
+	font-weight: 500;
+	font-size: 16px;
+}
+.column-graph tr td {
+	font-size: 14px;
+}
+
+.table tbody tr:nth-of-type(odd) {
+	background-color: #ede7f1 !important;
+}
+
+.table tbody tr:nth-of-type(even) {
+	background-color: #fff !important;
+}
+
+.btn.focus, .btn:focus {
+	box-shadow: none !important;
+}
+.fpds__heading {
+	Background-color: #f4e3ff;
+}
+	.fpds__heading h4 {
+		font-size: 15px;
+		font-weight: 700;
+		margin: 0px;
+	}

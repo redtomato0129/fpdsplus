@@ -1,0 +1,104 @@
+﻿body {
+}
+
+label {
+    margin-bottom: 0px;
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.mc_0001 {
+    text-align: center;
+}
+
+.mc_002 {
+    background-color: white;
+    border-radius: 37px;
+    padding: 3px 0px;
+    border: 1px solid #e4e4e4;
+    cursor: pointer;
+    box-shadow: 5px 5px 6px -3px #ccc;
+}
+
+    .mc_002 > label {
+        cursor: pointer;
+    }
+
+    .mc_002:hover {
+        background-color: #591f7b;
+        color: white;
+    }
+
+.header {
+    background-color: #ff9800;
+    color: white;
+    padding: 7px 5px;
+    font-size: 13px;
+    font-weight: unset;
+}
+
+.mc_003 {
+    border: 1px solid #c3c3c3;
+    background-color: white;
+    /*overflow: scroll;*/
+    overflow-x: hidden;
+    height: 275px;
+}
+
+.mc_004 {
+    border-bottom: 1px solid #e6e6e6;
+    padding: 8px 7px;
+}
+
+.mc_005 {
+    font-size: 10px;
+    color: grey;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.ti-pencil {
+    float: right;
+    margin: -36px 3px 5px 5px;
+    font-size: 14px;
+}
+
+.ti-close {
+    float: right;
+    margin-top: 5px;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+    .ti-close:hover {
+        color: red;
+    }
+
+.mc_006 {
+    color: black;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 9px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #b0b0b0; 
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+  cursor:pointer;
+}

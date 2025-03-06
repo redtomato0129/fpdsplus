@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="col-md-6" id="FYCheck">
+    <label class="lbl_S001">FY Range (Start / End)</label> <span class="req"></span>
+    <div class="input-group mb-3">
+        <input type="text" id="FY" style="display:none" />
+        <div id="FYDIV" class="s005" style="padding: 4px;">
+            <input class="s006 startYear" placeholder="start" maxlength=4 /> <span>/</span>
+            <input class="s007 EndYear" placeholder="End" maxlength=4 />
+        </div>
+        <span class="input-group-text s001">
+            <i class="ti-info-alt infoIcon s002" data-toggle="tooltip" title="Here you can see Naice description and NAICS basic information"></i>
+        </span>
+    </div>
+</div>
+<div class="col-md-6">
+    <label class="lbl_S001">Min Contract Size</label> <span class="req"></span>
+    <div class="input-group mb-3">
+        <select class="form-control MinContractSize" ></select><div class="input-group-append">
+            <span class="input-group-text s001">
+                <i class="ti-info-alt infoIcon s002" data-toggle="tooltip" title="Here you can see Naice description and NAICS basic information"></i>
+            </span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,202 @@
+﻿@{
+    ViewBag.Title = "Activities";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.1/jquery.twbsPagination.min.js"></script>
+<link rel="stylesheet" type="text/css" href="~/Content/AppCss/activities.css" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/Scripts/AppJS/Activities.js"></script>
+
+
+
+<style>
+    .heading {
+        color: purple;
+    }
+
+    .breadcrum {
+        color: purple;
+    }
+
+    .pull-right {
+        float: left !important;
+    }
+
+    .btn-purple {
+        background-color: purple;
+        color: white;
+    }
+</style>
+
+<style>
+    .heading-title {
+        color: #571C7A;
+    }
+
+    .dealbtn {
+        background-color: #571C7A;
+        color: white;
+        border: 1px solid #571C7A;
+    }
+
+        .dealbtn:hover {
+            background-color: #fff;
+            color: #571C7A;
+        }
+
+    .page-link {
+        color: #571C7A;
+    }
+
+    .page-item.active .page-link {
+        color: #fff;
+        background-color: #571C7A;
+        border-color: #571C7A;
+    }
+
+    .page-wrapper {
+        display: block !important;
+        margin-left: 250px !important;
+    }
+
+
+    .Lay_001 {
+        height: 50px;
+    }
+
+    .table td, .table th {
+       
+    }
+    .dt-body-nowrap {
+        white-space:break-spaces;
+    }
+
+    ul#promos {
+        text-align: center;
+    }
+
+        ul#promos li {
+            width: 10px;
+            height: 10px;
+            background: red;
+        }
+
+
+
+    /*Css by Usama*/
+    div.popup_content {
+        display: none;
+        position: absolute;
+        width: 180px;
+        padding: 10px;
+        background: #eeeeee;
+        color: #000000;
+        border: 1px solid #1a1a1a;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .popup_content ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .popup_content ul li {
+            display: flex;
+            align-items: center;
+        }
+
+            .popup_content ul li div {
+                width: 12px;
+                height: 12px;
+                background-color: transparent;
+            }
+
+            .popup_content ul li:first-child div {
+                background-color: red;
+            }
+
+            .popup_content ul li:nth-child(1) div {
+                background-color: #4040a3;
+            }
+
+            .popup_content ul li:nth-child(2) div {
+                background-color: #c74747;
+            }
+
+            .popup_content ul li:nth-child(3) div {
+                background-color: blueviolet;
+            }
+
+            .popup_content ul li:nth-child(4) div {
+                background-color: orange;
+            }
+
+            .popup_content ul li:nth-child(5) div {
+                background-color: magenta;
+            }
+
+            .popup_content ul li:nth-child(6) div {
+                background-color: blueviolet;
+            }
+</style>
+<div id="userId" style="display:none;">
+    @Session["User_ID"].ToString()
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-11">
+            <h1 class="heading-title"><strong>Activity</strong></h1>
+        </div>
+        <div class="col-1" id="shareIcon" style="cursor: pointer;">
+            <img src="~/Content/assets/images/share.png" data-toggle="tooltip" data-placement="bottom" title="Share URL" onclick="copyToClipboard()" style="float: right; width: 30px; height: 30px;" />
+        </div>
+    </div>
+</div>
+<div class="row justify-content-between align-items-center">
+
+    <div class="col-8">
+        @*<h1 class="heading-title"><strong>Activity</strong></h1>*@
+    </div>
+    <div class="col-4 text-right">
+        <button class="btn dealbtn" id="routeActivityAddButton">+ Add Activity to Deals</button>
+    </div>
+    @*<div class="col-2 my-3">
+        <nav aria-label="...">
+            <ul id="pagingUL" class="pagination justify-content-end">
+                sdfsdssddsd
+            </ul>
+        </nav>
+    </div>*@
+
+    <div class="col-12 my-3">
+        <nav aria-label="...">
+            <ul id="pagingUL" class="pagination justify-content-end">
+            </ul>
+        </nav>
+    </div>
+
+    <div class="table-responsive">
+        <table id="activitytable" class="table table-striped" >
+            <thead>
+                <tr>
+
+                    <th>Deal</th>
+                    <th>Created Date</th>
+                    <th>Activity</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody id="activitylisttable"></tbody>
+        </table>
+    </div>
+</div>

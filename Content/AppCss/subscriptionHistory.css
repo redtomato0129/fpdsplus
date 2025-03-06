@@ -1,0 +1,48 @@
+﻿body {
+}
+
+table {
+    font-size: 12px;
+}
+
+.sb001 {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.sb002 {
+    font-size: 15px;
+}
+
+div .dt-buttons {
+    float: left;
+}
+
+.dataTables_length {
+    float: left;
+}
+
+#subscriptionHistoryData_wrapper .dt-buttons .dt-button {
+    color: #fff;
+    background-color: #581e7b;
+    border-color: #581e7b;
+    text-transform: uppercase;
+    padding: 5px;
+}
+
+#subscriptionHistoryData_wrapper .dt-buttons {
+    position: absolute;
+    top: 0;
+    right: 0
+}
+
+    #subscriptionHistoryData_wrapper .dt-buttons .dt-button:hover {
+        background-color: #ff9800;
+        color: white;
+        border-color: #ff9800;
+    }
+
+#subscriptionHistoryData_wrapper .dataTables_length {
+    float: left;
+    padding-right: 50px;
+}

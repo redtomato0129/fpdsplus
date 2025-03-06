@@ -1,0 +1,80 @@
+﻿.btn-toggle_Naics {
+    margin: 0 5rem;
+    padding: 0;
+    position: relative;
+    border: none;
+    height: 1.5rem;
+    width: 3rem;
+    border-radius: 1.5rem;
+    color: #581e7b;
+    background: #581e7b;
+        margin-bottom:10px;
+            left: -25px;
+}
+
+    .btn-toggle_Naics:focus, .btn-toggle_Naics:focus.active, .btn-toggle_Naics.focus, .btn-toggle_Naics.focus.active {
+        outline: none;
+    }
+
+    .btn-toggle_Naics:before, .btn-toggle_Naics:after {
+        line-height: 1.5rem;
+        /*width: 4rem;*/
+        text-align: center;
+        font-weight: 600;
+        font-size: 12px;
+        text-transform: uppercase;
+        /*letter-spacing: 2px;*/
+        position: absolute;
+        bottom: 0;
+        transition: opacity .25s;
+    }
+
+    .btn-toggle_Naics:before {
+        content: 'NAICS';
+        left: -3rem;
+          font-weight: 400;
+        color: #561c7a;
+    }
+
+    .btn-toggle_Naics:after {
+        content: 'NAICS FAMILY';
+        right: -5.5rem;
+        opacity: 0.7;
+        font-weight: 400;
+        color: #561c7a;
+    }
+
+    .btn-toggle_Naics > .handle {
+        position: absolute;
+        top: 0.1875rem;
+        left: 0.1875rem;
+        width: 1.125rem;
+        height: 1.125rem;
+        border-radius: 1.125rem;
+        background: #fff;
+        transition: left .25s;
+    }
+
+    .btn-toggle_Naics.active {
+        transition: background-color .25s;
+    }
+
+    .btn-toggle_Naics.active {
+        background-color: #561c7a;
+    
+    }
+
+        .btn-toggle_Naics.active > .handle {
+            left: 1.6875rem;
+            transition: left .25s;
+        }
+
+        .btn-toggle_Naics.active:before {
+            opacity: .5;
+            /*text-decoration: underline;*/
+        }
+
+        .btn-toggle_Naics.active:after {
+            opacity: 1;
+            /*text-decoration: underline;*/
+        }

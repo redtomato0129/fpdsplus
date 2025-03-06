@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Subscription History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/AppCss/subscriptionHistory.css" rel="stylesheet" />
+<script src="~/Scripts/AppJS/SubscriptionHistory.js"></script>
+
+<style>
+    .form-control {
+        padding: 0px 6px !important;
+        height: 32px;
+    }
+
+    table {
+        font-size: 13px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    }
+</style>
+
+<div class="innerbody">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-body">
+                <div class="col-md-12">
+                    <input type="hidden" id="isPlanSubscribed" name="isPlanSubscribed" value="@Session["IsPaidUser"].ToString()" />
+                    <table id="subscriptionHistoryData" class="table table-striped table-bordered" style="width: 100%;">
+                        <thead>
+                            <tr id="HeadR">
+                                <th style="display:none"><label>S:No</label></th>
+                                <th><label>S:No</label></th>
+                                <th><label>Subscription Id</label></th>
+                                <th><label>Plan Id</label></th>
+                                <th><label>Payer Id</label></th>
+                                <th><label>Start Date</label></th>
+                                <th><label>Next Payment Date</label></th>
+                                <th><label>Last Payment Date</label></th>
+                                <th><label>Last Payment Amount</label></th>
+                                <th><label>Status</label></th>
+                                <th><label>Cancel</label></th>
+                                <th style="display:none"><label>Suspend</label></th>
+                            </tr>
+                        </thead>
+                        <tbody id="subscriptionHistoryTable"></tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

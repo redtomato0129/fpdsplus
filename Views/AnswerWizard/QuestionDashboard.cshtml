@@ -1,0 +1,174 @@
+@{
+    ViewBag.Title = "Question Dashboard";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+@*<link rel="stylesheet" type="text/css" href="~/Content/AppCss/newsModalCss.css" />*@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="~/Content/AppCss/QuestionDashboard.css" />
+
+
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Amcharts-->
+<script src="~/Content/assets/libs/amcharts/cdn.amcharts.comlib5index.js"></script>
+<script src="~/Content/assets/libs/amcharts/cdn.amcharts.comlib5percent.js"></script>
+<script src="~/Content/assets/libs/amcharts/cdn.amcharts.comlib5themesAnimated.js"></script>
+<script src="~/Content/assets/libs/amcharts/cdn.amcharts.comlib5xy.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/plugins/exporting.js"></script>
+<script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/libs/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.min.js"></script>
+
+<div class="container-fluid">
+
+	<div class="row" style=" position: relative;">
+		@*<div class="adds" style="position: absolute; right: 5.33%; width: 53%;">
+			<img src="~/Content/assets/images/OrangeSlices1000.png" style="width: 100%; height: 80px;">
+		</div>*@
+		<div class="col-4">
+			<div class="scp-breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item" id="page1"><a href="/AnswerWizard/Index">Wizard</a></li>
+					<li class="breadcrumb-item" id="categoryQuestion"><a href="http://localhost:64182/AnswerWizard/QuestionView?category=agency">Agency Question List</a></li>
+					<li class="breadcrumb-item" id="page3"><a>Search Criteria</a></li>
+					<li class="breadcrumb-item active">Chart 1</li>
+				</ol>
+			</div>
+		</div>
+		<div class="col-7" style="cursor: pointer;">
+
+		</div>
+		<div class="col-1" id="shareIcon" style="cursor: pointer;">
+			<img src="/Content/assets/images/share.png" data-toggle="tooltip" data-placement="bottom" title="" onclick="copyToClipboard()" style="float: right; width: 30px; height: 30px;" data-original-title="Share URL">
+		</div>
+
+	</div>
+	<!--<div class="row">
+		<div class="col-4">
+			<div class="scp-breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item" id="page1"><a href="/AnswerWizard/Index">Wizard</a></li>
+					<li class="breadcrumb-item" id="categoryQuestion"></li>-->
+					@*<li class="breadcrumb-item" id="page2"><a href="">Question List</a></li>*@
+					<!--<li class="breadcrumb-item" id="page3"><a href="">Search Criteria</a></li>
+					<li class="breadcrumb-item active">Chart 1</li>
+				</ol>
+			</div>
+		</div>
+		<div class="col-7" style="cursor: pointer;">
+			<img src="~/Content/assets/images/OrangeSlices1000.png" />
+		</div>
+		<div class="col-1" id="shareIcon" style="cursor: pointer;">
+			<img src="~/Content/assets/images/share.png" data-toggle="tooltip" data-placement="bottom" title="Share URL" onclick="copyToClipboard()" style="float: right; width: 30px; height: 30px;" />
+		</div>-->
+		@*<div class="col-1" style="cursor: pointer;">
+				<span data-toggle="modal" data-target="#exampleModalCenter">
+					<img src="~/Content/assets/images/help.png" data-toggle="tooltip" data-placement="bottom" title="Help" style="float: right; width: 30px; height: 30px;" />
+				</span>
+			</div>*@
+	<!--</div>-->
+</div>
+
+
+<div class="container-fluid" style="margin-left:0px !important;">
+    <div class="row">
+        <div class="col-5">
+            <h1 class="heading-title" id="heading" style="font-size: 1.5rem;"></h1>
+        </div>
+		<div class="col-6">
+
+		</div>
+        <div class="col-1" style="cursor: pointer;">
+            <span data-toggle="modal" data-target="#exampleModalCenter">
+                <img src="~/Content/assets/images/help.png" data-toggle="tooltip" data-placement="bottom" title="Help" style="float: right; width: 30px; height: 30px;" />
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <h5 class="question_decription_text" id="sub_heading"></h5>
+        </div>
+        <div class="col-4">
+            <h3 class="question_decription_text" id="description"></h3>
+        </div>
+    </div>
+
+    @*<div class="row">
+            <div class="col-12" id="pptExport"> <button onclick="exportToPpt()"> Export to PPT</button></div>
+        </div>*@
+    <div class="row">
+        <div class="col-12" id="noData">
+            <h1 class="no_data">No Records Found</h1>
+        </div>
+        <div class="col-8" id="chart">
+            <div class="column-graph">
+                <div id="chartDivBar"></div>
+            </div>
+            <h3 class="question_decription_text" style=" white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;">Zoom in the chart to see individual values more clearly.</h3>
+            @*<button style="align-items:end" onclick="exportToPpt()"> Export to PPT</button>*@
+        </div>
+
+		<div class="col-4" id="tables">
+
+			<div class="criteria__table">
+				<table class="table criteria-table">
+					<thead>
+						<tr>
+							<th colspan="2" style="color: #571c7a; ">CHART VALUES AND SEARCH CRITERIA</th>
+
+						</tr>
+					</thead>
+					<tbody id="paramRenderer">
+					</tbody>
+				</table>
+			</div>
+			@*<div class="form-group has-search pb-2">
+				<input type="text" class="form-control" id="searchOfficeInput" onkeyup="searchOffice(event)" placeholder="Search">
+			</div>*@
+			<div class="vendor__table">
+                <table class="table vendor-table" id="vendorTableRenderer">
+                    <thead style="position: sticky; top: 0px; background-color: white; border-bottom: 1px solid #ccc;">
+                        <tr id="searchTr">
+                            <td colspan="3">
+                                <input type="text" style="height: 25px; font-size: 12px;" class="form-control" id="searchVendorTable" onkeyup="searchFilter(event)" >
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="2" style="color: #571c7a;" id="xAxisHeader"></th>
+                            <th colspan="2" style="color: #571c7a;" id="yAxisHeader"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="vendorTableBody"></tbody>
+                </table>
+			</div>
+		</div>
+
+    </div>
+</div>
+
+<!-- Help Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="questionHelpTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="questionHelpDescription"></div>            
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/AppJS/QuestionHelp.js"></script>
+<script src="~/Scripts/AppJS/QuestionDashboard.js"></script>

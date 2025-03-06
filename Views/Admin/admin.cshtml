@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "admin";
+    Layout = "~/Views/Shared/_AdminLoginPartial.cshtml";
+}
+<script src="~/Scripts/AppJS/Admin.js"></script>
+
+<style>
+    body {
+        overflow-y: hidden;
+    }
+</style>
+
+<div class="auth-box">
+    <div id="loginform">
+        <div class="logo">
+            <h3 class="font-medium m-b-20 C001 cl001">Welcome!</h3>
+
+            <h5 class="font-medium m-b-20"> logIn to your admin account </h5>
+        </div>
+        <!-- Form -->
+        <div class="row">
+            <div class="col-12">
+                <div class="Login">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="ti-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control form-control-lg" id="txtAdminName" placeholder="Name" aria-label="Email" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon2"><i class="ti-lock"></i></span>
+                        </div>
+                        <input type="password" class="form-control form-control-lg" id="txtAdminPassword" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <div class="custom-control custom-checkbox d-flex align-items-center">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <div class="col-xs-12 p-b-20">
+                            <button class="btn btn-block btn-lg btn-info" id="LoginAdmin">Log In</button>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+</div>

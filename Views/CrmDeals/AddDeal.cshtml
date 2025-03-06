@@ -1,0 +1,1400 @@
+﻿
+@{
+    ViewBag.Title = "Add Deals";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    select {
+        border: 0px;
+        outline: 0px;
+    }
+    table#SimpleContractSearch thead tr th, table#SimpleContractSearch tbody tr td {
+        width: auto !important;
+    }
+    .infoIcon {
+        color: #561c79;
+    }
+
+     .infoIcon:hover {
+            color: #ff9800;
+        }
+
+    /* Chrome, Safari, Edge, Opera */
+    .removearrow::-webkit-outer-spin-button,
+    .removearrow::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    .removearrow[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    #selectContractSearchData table {
+        border-collapse: collapse;
+        width: 100%;
+        border: none;
+    }
+
+        #selectContractSearchData table td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+            #selectContractSearchData table td label {
+                margin-bottom: 0;
+            }
+
+
+        #selectContractSearchData table tbody > tr:hover {
+            /* background-color: #e1f0f1 !important; */
+            background-color: #f4e3ff !important;
+            cursor: pointer;
+        }
+
+        #selectContractSearchData table td:nth-child(even) label {
+            color: #058500;
+            font-family: inherit;
+        }
+
+        #selectContractSearchData table td:nth-child(odd) label {
+            margin-bottom: 0;
+            color: #5d247f;
+        }
+
+    .container {
+        display: block;
+        /*margin: 17px 10px;*/
+        /* padding: 11px; */
+        position: relative;
+        padding-left: 27px;
+        font-family: Rubik,sans-serif;
+        /* margin-bottom: 12px; */
+        cursor: pointer;
+        font-weight: 300;
+        font-size: 13px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        /* width: auto; */
+        float: right;
+        -ms-user-select: none;
+        user-select: none;
+        text-align: left;
+    }
+
+        /* Hide the browser's default checkbox */
+        .container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+    /* Create a custom checkbox */
+    .checkmark0 {
+        position: absolute !important;
+        top: 0 !important;
+        left: 60px !important;
+        height: 17px !important;
+        width: 17px !important;
+        background-color: #ffffff !important;
+        border-radius: 0%;
+        border: 1px solid #d4d4d4;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .container:hover input ~ .checkmark0 {
+        background-color: #ccc;
+    }
+
+    /* When the checkbox is checked, add a blue background */
+    .container input:checked ~ .checkmark0 {
+        background-color: #30bf29 !important;
+    }
+
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark0:after {
+        content: "" !important;
+        position: absolute !important;
+        background-color: #30bf29 !important;
+        display: none;
+    }
+
+    /* Show the checkmark when checked */
+    .container input:checked ~ .checkmark0:after {
+        display: block;
+    }
+
+    /* Style the checkmark/indicator */
+    .container .checkmark0:after {
+        background: none;
+        left: 5px;
+        top: 1px;
+        border-radius: 0px;
+        background-color: #30bf29 !important;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    #tbl_Socio_length {
+        display: none !important;
+    }
+
+    .table-responsive {
+        height: inherit;
+    }
+
+    #myModal .modal-dialog {
+        max-width: 1040px !important;
+    }
+
+    #awardingAgencyModal .modal-dialog {
+        max-width: 1040px !important;
+    }
+
+    #ShowContactSearch .dataTables_wrapper .dt-buttons .dt-button {
+        padding: 17px 40px;
+        line-height: 1.5;
+        background: url(/Content/assets/images/excel.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        border: none;
+        height: 54px;
+        margin-top: -11px;
+    }
+
+    #solicitationModal .modal-dialog {
+        max-width: 502px !important;
+    }
+
+    @@media (max-width:767px) {
+        .excelIcon {
+            text-align: center;
+            margin: 10px 0;
+            width: 100%;
+        }
+
+        .dt-buttons {
+            width: 100%;
+            padding-top: 10px;
+        }
+    }
+
+    #ShowContactSearch .dt-buttons .dt-button:focus {
+        outline: none;
+    }
+
+    .tableScroll {
+        width: 100% !important;
+        overflow-x: auto;
+        display: block;
+    }
+    /********form list*******/
+    .card.formlisting .card-body {
+        padding: 0;
+    }
+
+    .formlisting ul {
+        padding-left: 0;
+        list-style: none;
+    }
+
+        .formlisting ul li {
+            font-size: 14px;
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+
+            .formlisting ul li label {
+                margin-bottom: 0 !important;
+                color: rgb(137 137 137);
+                font-size: 15px;
+                line-height: normal;
+                font-weight: 500;
+            }
+
+            .formlisting ul li:nth-child(1) {
+                padding-top: 0;
+            }
+
+    #ContractSearchExcel h4.modal-title {
+        font-size: 18px;
+        color: #2c0f3e;
+        font-weight: 500;
+        font-family: inherit;
+    }
+
+    .title {
+        background: #f3f3f3;
+        padding: 8px 10px;
+        margin-bottom: 19px;
+    }
+
+    .title2 {
+        padding: 8px 10px;
+        margin-bottom: 19px;
+    }
+
+    .title label {
+        margin-bottom: 0;
+        font-size: 16px;
+        color: #3c3c3c;
+        font-weight: 500;
+    }
+
+    .bottom-footer {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .right-footer-btn-sec {
+        margin-left: auto;
+        width: 143px;
+    }
+
+    .left-footer-sec label {
+        padding-right: 16px;
+    }
+
+    .set-aside-radio {
+        font-family: Rubik,sans-serif !important;
+        font-size: 10px !important;
+        font-weight: 400 !important;
+        margin-bottom: 0px !important;
+    }
+</style>
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Add Deal</title>
+    <base href="/">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background-color: #FAFBFC;
+        }
+
+        .heading-title {
+            color: #571C7A;
+            color: #571C7A;
+        }
+
+        .dealbtn {
+            background-color: #571C7A;
+            color: white;
+            border: 1px solid #571C7A;
+        }
+
+            .dealbtn:hover {
+                background-color: #fff;
+                color: #571C7A;
+            }
+
+        .deal-data {
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        
+
+        .ui-widget {
+            font-family: Verdana,Arial,sans-serif;
+            font-size: 10px;
+        }
+
+        .ui-autocomplete.ui-widget {
+           
+            font-size: 16px;
+        }
+
+        .page-wrapper {
+            display: block !important;
+            margin-left: 250px !important;
+        }
+
+
+        .Lay_001 {
+            height: 50px;
+        }
+    </style>
+    <script src="~/Scripts/AppJS/AddDeals.js"></script>
+    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script>
+        function addCommas(str) {
+            return str.replace(/^0+/, '').replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function test() {
+            var val = document.getElementById('test').value;
+            document.getElementById('test').value = addCommas(val);
+        }
+    </script>
+</head>
+
+<body>
+    <section>
+        <div class="container-fluid">
+            <div class="row justify-content-between align-items-center my-3">
+                <div class="col-12">
+                    <h1 class="heading-title" id="heading" style=" white-space: nowrap;overflow: hidden;text-overflow: ellipsis; max-width: 100%;"></h1>
+                </div>
+
+                <div class="col-12">
+                    <div class="deal-data p-5">
+                        <form autocomplete="off">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label for="txtDealtitle" autocomplete='off' class="form-label">Title <span style="color:red;">*</span></label>
+                                        <input type="text" class="form-control" id="txtdealtitle"
+                                               aria-describedby="emailHelp">
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label for="txtDealSolicitationNumber" class="form-label">Solicitation Number</label>
+                                        <input type="text" class="form-control" id="txtDealSolicitationNumber"
+                                               aria-describedby="emailHelp">
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label for="txtDealSamGovLink" class="form-label">Sam.Gov Link</label>
+                                        <input type="text" class="form-control" id="txtDealSamGovLink"
+                                               aria-describedby="emailHelp">
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label for="status" class="form-label d-block">Status <span style="color:red;">*</span></label>
+                                        <select class="form-control" id="DDStatus" aria-label="Please choose One " required>
+                                            <option selected disabled="disabled">Please Choose one</option>
+                                            <option value="Awarded">Awarded</option>
+                                            <option value="Forecast Pre-RFP"> Forecast Pre-RFP</option>
+                                            <option value="Post-RFP">Post-RFP</option>
+                                            <option value="Pre-RFP">Pre-RFP</option>
+                                            <option value="Source Selection">Source Selection</option>
+                                            <option value="Sources Sought">Sources Sought</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label for="stage" class="form-label d-block">Stage <span style="color:red;">*</span></label>
+                                        <select class="form-control" id="DDdealsstage" aria-label="Default select example">
+                                            <option selected>Please Choose one</option>
+                                            <option value="Identify">Identify</option>
+                                            <option value="Qualify">Qualify</option>
+                                            <option value="Pursue">Pursue</option>
+                                            <option value="Capture">Capture</option>
+                                            <option value="Bid">Bid</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label for="txtDealDueDate" class="form-label">RFP Release Date<span style="color:red;">*</span></label>
+                                        <input type="date" class="form-control" id="txtDealDueDate"
+                                               aria-describedby="emailHelp" max=2099-12-31 min="2000-01-01">
+                                    </div>
+                                </div>
+
+                                <div class="col-4" hidden>
+
+                                    <div class="mb-3">
+                                        <label for="txtDealFundingAgencyCode" class="form-label">Funding Agency </label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text btndeptrowclear" id="btnfundingagencyclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="fa-solid fa-xmark"></i></span>
+
+                                            <input type="text" class="form-control" id="txtDealFundingAgencyCode">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label for="DDAwardType" class="form-label d-block">Award Type</label>
+                                        <select class="form-control" id="DDAwardType" aria-label="Default select example">
+                                            <option selected>Please Choose one</option>
+                                            <option value="Award Notice">Award Notice</option>
+                                            <option value="Combined Synopsis/Solicitation">Combined Synopsis/Solicitation</option>
+                                            <option value="Fair Opportunity / Limited Sources Justification">Fair Opportunity / Limited Sources Justification</option>
+                                            @*<option value="3">Fair Opportunity / Limited Sources Justification</option>*@
+                                            <option value="Foreign Government Standard">Foreign Government Standard</option>
+                                            <option value="Intent to Bundle Requirements">Intent to Bundle Requirements</option>
+                                            <option value="Justification">Justification</option>
+                                            <option value="Justification and Approval (J&A)">Justification and Approval (J&A)</option>
+                                            <option value="Modification/Amendment/Cancel">Modification/Amendment/Cancel</option>
+                                            <option value="Presolicitation">Presolicitation</option>
+                                            <option value="Sale of Surplus Property">Sale of Surplus Property</option>
+
+                                            <option value="Solicitation">Solicitation</option>
+
+                                            <option value="Sources Sought">Sources Sought</option>
+                                            <option value="Special Notice">Special Notice</option>
+
+
+
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+
+                                    <div class="mb-3">
+                                        <label for="txtDealFundingSubAgencyCode" class="form-label">Funding Sub Agency </label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text btndeptrowclear" id="btnsubfundingagencyclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="fa-solid fa-xmark"></i></span>
+                                            <input type="text" class="form-control" id="txtDealFundingSubAgencyCode">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                                <div class="col-4" hidden>
+                                    <div class="mb-3">
+                                        <label for="txtDealAwardingAgencycode" class="form-label">Awarding Agency</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text btndeptrowclear" id="btnawardingagencyclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="fa-solid fa-xmark"></i></span>
+                                            <input type="text" class="form-control" id="txtDealAwardingAgencycode">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label for="txtDealAwardingSubAgencycode" class="form-label">Awarding Sub Agency</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text btndeptrowclear" id="btnawardingsubagencyclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="fa-solid fa-xmark"></i></span>
+
+
+                                            <input type="text" class="form-control" id="txtDealAwardingSubAgencycode">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label for="txtDealNAICS" class="form-label">NAICS</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text btndeptrowclear" id="btnnaicsCodeclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="fa-solid fa-xmark"></i></span>
+                                            <input type="text" class="form-control" id="txtDealNAICS" onkeyup="onNaicsCodeChange(event)">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label for="txtDealNAICSDesc" class="form-label">NAICS Description</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text btndeptrowclear" id="btnnaicsDescclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="fa-solid fa-xmark"></i></span>
+                                            <input type="text" class="form-control" id="txtDealNAICSDesc" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <div class="mb-3">
+                                            <label for="txtSetAside" class="form-label">Set Aside</label><span class="req"></span>
+                                            <input type="text" class="form-control OpenMinContSize" id="txtSetAside" onkeyup="onSetAsideCodeChange()" />
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label for="txtDealPSC" class="form-label">PSC</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text btndeptrowclear" id="btnPSCCodeclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="fa-solid fa-xmark"></i></span>
+                                            <input type="text" class="form-control" id="txtDealPSC" onkeyup="onPSCCodeChange(event)">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label for="txtDealPSCDesc" class="form-label">PSC Description</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text btndeptrowclear" id="btnnPSCCodeclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="fa-solid fa-xmark"></i></span>
+                                            <input type="text" class="form-control" id="txtDealPSCDesc" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label for="DDPriority" class="form-label d-block">Priority <span style="color:red;">*</span></label>
+                                        <select class="form-control" id="Priority" aria-label="Default select example">
+                                            <option selected  disabled="disabled" value="">Please Choose one</option>
+                                            <option value="Low">Low</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="High">High</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                @*<div class="col-4">
+            <div class="mb-3">
+                <label for="txtDealNAICSDescription" class="form-label">NAICS Description</label>
+                <input type="text" class="form-control" id="txtDealNAICSDescription">
+            </div>
+        </div>*@
+
+
+                                <div class="col-4">
+
+
+                                    <div class="mb-3">
+                                        <label for="txtDealPotentialAwardAmount" class="" number-separator">Award Amount  $k</label>
+                                        <input type="number" class="form-control removearrow" id="txtDealPotentialAwardAmount">
+                                    </div>
+                                </div>
+
+
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label for="txtDealIncumbentName" class="form-label">Incumbent Name</label>
+                                        <input type="text" class="form-control" id="txtDealIncumbentName" onkeyup="OnIncumbentNameChange(event)">
+                                    </div>
+                                </div>
+
+                                @*<div class="col-4" hidden>
+            <div class="mb-3">
+                <label for="txtDealIncumbentUEI" class="form-label">Incumbent UEI</label>
+                <input type="text" class="form-control" id="txtDealIncumbentUEI">
+            </div>
+        </div>*@
+
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label for="txtDealGovwinID" class="form-label"> Govwin ID</label>
+                                        <input type="number" class="form-control removearrow" id="txtDealGovwinID">
+                                    </div>
+                                </div>
+
+
+                                @*<div class="col-4">
+            <div class="mb-3">
+                <label for="txtDealGovwinLink" class="form-label"> Govwin Link</label>
+                <input type="text" class="form-control" id="txtDealGovwinLink">
+            </div>
+        </div>*@
+
+
+
+
+
+                                @*<div class="col-4">
+            <div class="mb-3">
+                <label for="txtDealFundingAgencyName" class="form-label">Funding Agency Name</label>
+                <input type="text" class="form-control" id="txtDealFundingAgencyName">
+            </div>
+        </div>
+
+
+
+        <div class="col-4">
+
+            <div class="mb-3">
+                <label for="txtDealPSCDescription" class="form-label">PSC Description</label>
+                <input type="text" class="form-control" id="txtDealPSCDescription">
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="col-4">
+            <div class="mb-3">
+                <label for="txtDealAwardingAgencyName" class="form-label">Awarding Agency Name</label>
+                <input type="text" class="form-control" id="txtDealAwardingAgencyName">
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="mb-3">
+                <label for="txtDealFundingSubAgencyCode" class="form-label">Funding Sub Agency Code</label>
+                <input type="text" class="form-control" id="txtDealFundingSubAgencyCode">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="mb-3">
+                <label for="txtDealFundingSubAgencyName" class="form-label">Funding Sub Agency Name</label>
+                <input type="text" class="form-control" id="txtDealFundingSubAgencyName">
+            </div>
+        </div>
+
+
+
+        <div class="col-8">
+            <div class="mb-3">
+                <label for="txSetAsideDescription" class="form-label">SetAside Description</label>
+                <textarea class="form-control" id="txSetAsideDescription" rows="1"></textarea>
+            </div>
+        </div>*@
+
+
+
+
+
+                                <div class="col-4 d-none">
+
+                                    <div class="mb-3">
+                                        <label for="dateexpiry" class="form-label"> Expiration Date</label>
+                                        <input type="date" class="form-control" id="dateexpiry">
+                                    </div>
+                                </div>
+
+                                <div class="col-4" hidden>
+
+                                    <div class="mb-3">
+                                        <label for="userid" class="form-label"> User ID</label>
+                                        <input type="text" class="form-control" id="userid" value="@Session["User_ID"].ToString()">
+                                    </div>
+                                </div>
+
+                                <div class="col-4" hidden>
+
+                                    <div class="mb-3">
+                                        <label for="userDomain" class="form-label"> User ID</label>
+                                        <input type="text" class="form-control" id="userDomain" value="@Session["User_Domain"].ToString()">
+                                    </div>
+                                </div>
+
+
+
+                                @*<div class="col-4">
+
+            <div class="mb-3">
+                <label for="user_domain" class="form-label"> User Domain</label>
+                <input type="text" class="form-control" id="user_domain">
+            </div>
+        </div>*@
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="txtDescription" class="form-label">Description</label>
+                                        <textarea class="form-control" id="txtDescription" rows="3"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 float-right">
+                                    <button class="btn dealbtn float-right" type="button" id="SaveDeal">Save</button>
+                                </div>
+</form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <script src="~/Scripts/module/ajaxRequestHandler.js"></script>
+    <script src="~/Scripts/AppJS/Deals.js"></script>
+    <script src="js/easy-number-separator.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <!-- Modal for  Naics Code -->
+    <div class="modal fade" id="naicsModal" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title">Add NAICS </h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="lbl_S001">NAICS Code</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text btnnaicscoderowclear" id="btnnaicsfourrowclear_2" data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                                </div>
+                                <input style="font-size: 13px;" type="text" autocomplete="off" id="Naicscode"
+                                       class="DIS_002 form-control NaicsCode dis_able1" name="textbox" />
+                                <label id="lbldept_2" style="display:none;" class="lbldept lblclr"></label>
+                                <i class="fa-solid fa-circle-exclamation ml-3 d-flex align-items-center infoIcon" data-toggle="tooltip" data-placement="left" title="Choose a department(s) for your search.  Enter any part of a department name to search the list"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-9 MG001">
+                            <label class="lbl_S001">NAICS Description</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text btndeptrowclear" id="txtnaicsdesc_2" data-toggle="tooltip" title="Click to clear the data in this row"><i class="fa-solid fa-xmark"></i></span>
+                                </div>
+                                <input style="font-size: 13px;" type="text" id="txtnaics_2" class="DIS_002 form-control txtdept" name="textbox" onkeyup="onNaicsCodeChange(event)" />
+                                <label id="lbldept_2" style="display:none;" class="lbldept lblclr"></label>
+                                <i class="fa-solid fa-circle-exclamation ml-3 d-flex align-items-center infoIcon" data-toggle="tooltip" data-placement="left" title="Choose a department(s) for your search.  Enter any part of a department name to search the list"></i>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="row">
+
+                            <div class="col-md-12">
+                                <div class="row col-md-12 s021">
+                                    <div class="col-md-12" style="padding: 0px;">
+                                        <div class="naicsincr col-md-12">
+                                            <div class="naics row">
+                                                <div class="col-md-3 s004">
+                                                    <label class="lbl_S001">NAICS Code</label>
+                                                    <div class="input-group mb-3" style="width:108%">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text btnnaicscoderowclear" id="btnnaicsfourrowclear_2" data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                                                        </div>
+                                                        <input style="font-size: 13px;" type="text" onkeyup="onNaicsCodeChange(event)"
+                                                               class="DIS_002 form-control NaicsCode dis_able1" name="textbox" id="txtnaicscode_1" />
+
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text s001">
+                                                                <i class="ti-info-alt infoIcon s002 NC" data-toggle="tooltip"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-9">
+                                                    <div class="row">
+                                                        <div class="col-md-11">
+                                                            <label class="lbl_S001">NAICS Description</label><span class="reqNaics"></span>
+                                                            <div class="input-group mb-3">
+                                                                <input disabled type="text" id="txtnaicsdesc_2" class="form-control dis_able1 lblnaicsdesc" name="textbox" style="margin-bottom: 4px;" />
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text s001">
+                                                                        <i class="ti-info-alt infoIcon s002 NCD" data-toggle="tooltip"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <button type="button" class="s022 btn  btn-sm add-textboxcode dis_able1 B_s001" data-toggle="tooltip" title="Click here to add another row on NAICS Code">
+                                                                <i class="ti-plus"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                </div>
+                <div class="modal-footer">
+                    <div class="bottom-footer">
+                        <div class="left-footer-sec">
+                            <p>Begin typing or click the space bar to see the list</p>
+                        </div>
+                        <div class="right-footer-btn-sec">
+                            <button type="button" class="btn btn-primary" id="btnmdnaicscodeclose" onclick="saveNaicsData()">OK</button>
+                            <button type="button" class="btn btn-secondary" id="btnNaicsCodeCancel">Cancel</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal for Psc -->
+    <div class="modal fade" id="PscModal" role="dialog" data-backdrop="static">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title">Add Product or Service Code</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4 dis_able0 s004">
+                            <label class="lbl_S001">Product or Service Code</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text btndeptrowclear" id="btndeptrowclear_2" data-toggle="tooltip" title="Click to clear the data in this row"><i class="fa-solid fa-xmark"></i></span>
+                                </div>
+                                <input style="font-size: 13px;" autocomplete="off" type="text" id="txtPSC_1" class="DIS_002 form-control txtdept" name="textbox" onkeyup="onPSCCodeChange(event)" />
+                                <label id="lbldept_2" style="display:none;" class="lbldept lblclr"></label>
+                                <i class="fa-solid fa-circle-exclamation ml-3 d-flex align-items-center infoIcon" data-toggle="tooltip" data-placement="left" title="Choose a department(s) for your search.  Enter any part of a department name to search the list"></i>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <label class="lbl_S001">Product or Service Description</label>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text btndeptrowclear" id="btndeptrowclear_2" data-toggle="tooltip" title="Click to clear the data in this row"><i class="fa-solid fa-xmark"></i></span>
+                                        </div>
+                                        <input style="font-size: 13px;" type="text" id="txtPSC_2" class="DIS_002 form-control txtdept" name="textbox" />
+                                        <label id="lbldept_2" style="display:none;" class="lbldept lblclr"></label>
+                                        <i class="fa-solid fa-circle-exclamation ml-3 d-flex align-items-center infoIcon" data-toggle="tooltip" data-placement="left" title="Choose a department(s) for your search.  Enter any part of a department name to search the list"></i>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-2 align-self-center">
+                                    <button type="button" class="s022 btn btn-sm border add-textboxpsc  B_s001" data-toggle="tooltip" title="Click here to add another row">
+                                        <i class="fa-light fa-plus text-success"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="bottom-footer">
+                        <div class="left-footer-sec">
+                            <p> Begin typing or click the space bar to see the list</p>
+                        </div>
+                        <div class="right-footer-btn-sec">
+                            <button type="button" class="btn btn-primary" id="btnmdpscclose">OK</button>
+                            <button type="button" class="btn btn-secondary" id="btnmdpsccancel">Cancel</button>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Funding Information</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <label class="lbl_S001">Funding Agency</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text btndeptrowclear" id="btndeptrowclear_2" data-toggle="tooltip" title="Click to clear the data in this row"><i class="fa-solid fa-xmark"></i></span>
+                                </div>
+                                <input style="font-size: 13px;" type="text" id="txtfund_1" class="DIS_002 form-control txtdept" name="textbox" autocomplete="off" onkeyup="onFundingCodeChange(event)" />
+                                <label id="lbldept_2" style="display:none;" class="lbldept lblclr"></label>
+                                <i class="fa-solid fa-circle-exclamation ml-3 d-flex align-items-center infoIcon infoIcon" data-toggle="tooltip" data-placement="left" title="Choose a department(s) for your search.  Enter any part of a department name to search the list"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-6 MG001">
+                            <label class="lbl_S001">Funding Sub Agency</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text btndeptrowclear" id="btndeptrowclear_2" data-toggle="tooltip" title="Click to clear the data in this row"><i class="fa-solid fa-xmark"></i></span>
+                                </div>
+                                <input style="font-size: 13px;" type="text" id="txtfund_2" class="DIS_002 form-control txtdept" name="textbox" onkeyup="onFundingCodeChange(event)" />
+                                <label id="lbldept_2" style="display:none;" class="lbldept lblclr"></label>
+                                <i class="fa-solid fa-circle-exclamation ml-3 d-flex align-items-center infoIcon" data-toggle="tooltip" data-placement="left" title="Choose a department(s) for your search.  Enter any part of a department name to search the list"></i>
+                            </div>
+                            @*<div class="officeincr row col-md-4 MG001">
+                                    <div class="office row col-md-12">
+                                        <div class="col-md-12 dis_able0 s004">
+                                            <label class="lbl_S001">Funding Office</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="btnofficerowclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                                                </div>
+                                                <input style="font-size: 13px;" type="text" id="txtoffice_2" class="DIS_002 form-control txtoffice" name="textbox" /><label id="lbloffice_2" style="display:none;" class="lbloffice lblclr"></label>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text s001">
+                                                        <i class="ti-info-alt infoIcon s002 FOFFC" data-toggle="tooltip"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="bottom-footer">
+                        <div class="left-footer-sec">
+                            <p class="m-0">Begin typing or click the space bar to see the list</p>
+                        </div>
+                        <div class="right-footer-btn-sec">
+                            <button type="button" class="btn btn-primary mr-2" id="btnmdclose">OK</button>
+                            <button type="button" class="btn btn-secondary" id="btnmdcancel">Cancel</button>
+                        </div>
+
+                    </div>
+
+                    @*style="display:none"*@
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="myIncumentModal" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title">Incumebent Name</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 row MG001">
+                            <div class="dept_Agency col-md-12 row MG001">
+                                <div class="deptincr  row col-md-4 MG001">
+                                    <div class="dept row col-md-12">
+                                        <div class="col-md-11 dis_able0 s004">
+                                            <label class="lbl_S001">CageCode</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text btndeptrowclear" id="btndeptrowclear_2" data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                                                </div>
+                                                <input style="font-size: 13px;" type="text" id="txtcagecode_2" class="DIS_002 form-control txtdept" name="textbox" onkeyup="onCageCodeChange(event)" />
+                                                <label id="lbldept_2" style="display:none;" class="lbldept lblclr"></label>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text s001">
+                                                        <i class="ti-info-alt infoIcon s002 DEPT" data-toggle="tooltip"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-1">
+                                            <div class="row">
+
+                                                <div class="col-md-12">
+                                                    <button type="button" class="s022 btn btn-sm add-textboxdept  B_s001" title="Click here to add more funding agency" style="margin-left:auto">
+                                                        <i class="ti-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="agencyincr  row col-md-4 MG001">
+                                    <div class="agency row col-md-12">
+                                        <div class="col-md-12 dis_able0 s004">
+                                            <label class="lbl_S001">Incumbent Name</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="btnagencyrowclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                                                </div>
+                                                <input style="font-size: 13px;" type="text" id="txtIncumbentName_2" class="DIS_002 form-control txtagency" name="textbox" /><label id="lblagency_2" style="display:none;" class="lblagency lblclr"></label>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text s001">
+                                                        <i class="ti-info-alt infoIcon s002 AGCY" data-toggle="tooltip"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="officeincr row col-md-4 MG001">
+                                        <div class="office row col-md-12">
+                                            <div class="col-md-12 dis_able0 s004">
+                                                <label class="lbl_S001">Funding Office</label>
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="btnofficerowclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                                                    </div>
+                                                    <input style="font-size: 13px;" type="text" id="txtoffice_2" class="DIS_002 form-control txtoffice" name="textbox" /><label id="lbloffice_2" style="display:none;" class="lbloffice lblclr"></label>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text s001">
+                                                            <i class="ti-info-alt infoIcon s002 FOFFC" data-toggle="tooltip"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="bottom-footer">
+                        <div class="left-footer-sec">
+                            <p class="m-0">Begin typing or click the space bar to see the list</p>
+                        </div>
+                        <div class="right-footer-btn-sec">
+                            <button type="button" class="btn btn-primary" id="btnmdIncumbentNameclose">OK</button>
+                            <button type="button" class="btn btn-secondary" id="btnmdcancel">Cancel</button>
+                        </div>
+
+                    </div>
+
+                    @*style="display:none"*@
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="myIncumentModalUEI" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title">Incumebent UEI</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 row MG001">
+                            <div class="dept_Agency col-md-12 row MG001">
+                                <div class="deptincr  row col-md-4 MG001">
+                                    <div class="dept row col-md-12">
+                                        <div class="col-md-11 dis_able0 s004">
+                                            <label class="lbl_S001">CageCode</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text btndeptrowclear" id="btndeptrowclear_2" data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                                                </div>
+                                                <input style="font-size: 13px;" type="text" id="txtcagecode_2" class="DIS_002 form-control txtdept" name="textbox" onkeyup="onCageCodeChangeUEI(event)" />
+                                                <label id="lbldept_2" style="display:none;" class="lbldept lblclr"></label>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text s001">
+                                                        <i class="ti-info-alt infoIcon s002 DEPT" data-toggle="tooltip"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-1">
+                                            <div class="row">
+
+                                                <div class="col-md-12">
+                                                    <button type="button" class="s022 btn btn-sm add-textboxdept  B_s001" title="Click here to add more funding agency" style="margin-left:auto">
+                                                        <i class="ti-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="agencyincr  row col-md-4 MG001">
+                                    <div class="agency row col-md-12">
+                                        <div class="col-md-12 dis_able0 s004">
+                                            <label class="lbl_S001">Incumbent UEI</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="btnagencyrowclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                                                </div>
+                                                <input style="font-size: 13px;" type="text" id="txtIncumbentUEI_2" class="DIS_002 form-control txtagency" name="textbox" /><label id="lblagency_2" style="display:none;" class="lblagency lblclr"></label>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text s001">
+                                                        <i class="ti-info-alt infoIcon s002 AGCY" data-toggle="tooltip"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="officeincr row col-md-4 MG001">
+                                        <div class="office row col-md-12">
+                                            <div class="col-md-12 dis_able0 s004">
+                                                <label class="lbl_S001">Funding Office</label>
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="btnofficerowclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                                                    </div>
+                                                    <input style="font-size: 13px;" type="text" id="txtoffice_2" class="DIS_002 form-control txtoffice" name="textbox" /><label id="lbloffice_2" style="display:none;" class="lbloffice lblclr"></label>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text s001">
+                                                            <i class="ti-info-alt infoIcon s002 FOFFC" data-toggle="tooltip"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="bottom-footer">
+                        <div class="left-footer-sec">
+                            <p class="m-0">Begin typing or click the space bar to see the list</p>
+                        </div>
+                        <div class="right-footer-btn-sec">
+                            <button type="button" class="btn btn-primary" id="btnmdIncumbentUEIclose">OK</button>
+                            <button type="button" class="btn btn-secondary" id="btnmdcancel">Cancel</button>
+                        </div>
+
+                    </div>
+
+                    @*style="display:none"*@
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="awardingAgencyModal" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title">Awarding Information</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <label class="lbl_S001">Awarding Agency</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text btnawagencyrowclear" id="btnawagencyrowclear_2" data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                                </div>
+                                <input style="font-size: 13px;" autocomplete="off" type="text" id="txtaward_2" class="DIS_002 form-control txtdept" name="textbox" onkeyup="onAwardingCodeChange(event)" />
+                                <label id="lbldept_3" style="display:none;" class="lbldept lblclr"></label>
+                                <i class="fa-solid fa-circle-exclamation ml-3 d-flex align-items-center infoIcon" data-toggle="tooltip" data-placement="left" title="Choose a department(s) for your search.  Enter any part of a department name to search the list"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-6 MG001">
+                            <label class="lbl_S001">Awarding Sub Agency</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="btnawsubagencyrowclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                                </div>
+                                <input style="font-size: 13px;" type="text" id="txtawsubagency_2" class="DIS_002 form-control txtawsubagency" name="textbox" /><label id="lblawsubagency_2" style="display:none;" class="lblawsubagency lblclr"></label>
+                                <label id="lbldept_4" style="display:none;" class="lbldept lblclr"></label>
+                                <i class="fa-solid fa-circle-exclamation ml-3 d-flex align-items-center infoIcon" data-toggle="tooltip" data-placement="left" title="Choose a department(s) for your search.  Enter any part of a department name to search the list"></i>
+                            </div>
+                            @*<div class="officeincr row col-md-4 MG001">
+                                    <div class="office row col-md-12">
+                                        <div class="col-md-12 dis_able0 s004">
+                                            <label class="lbl_S001">Funding Office</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="btnofficerowclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                                                </div>
+                                                <input style="font-size: 13px;" type="text" id="txtoffice_2" class="DIS_002 form-control txtoffice" name="textbox" /><label id="lbloffice_2" style="display:none;" class="lbloffice lblclr"></label>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text s001">
+                                                        <i class="ti-info-alt infoIcon s002 FOFFC" data-toggle="tooltip"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
+                        </div>
+                    </div>
+                    <!--<div class="row">
+                    <div class="col-md-12 row MG001">
+                        <div class="award_Agency col-md-12 row MG001">
+                            <div class="awagencyincr  row col-md-4 MG001">
+                                <div class="awagency row col-md-12">
+                                    <div class="col-md-11 dis_able0 s004">
+                                        <label class="lbl_S001">Awarding Agency</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text btnawagencyrowclear" id="btnawagencyrowclear_2" data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                                            </div>
+                                            <input style="font-size: 13px;" type="text" id="txtawagency_2" class="DIS_002 form-control txtawagency" name="textbox" onkeyup=onAwardingCodeChange(event) />
+                                            <label id="lblawagency_2" style="display:none;" class="lblawagency lblclr"></label>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text s001">
+                                                    <i class="ti-info-alt infoIcon s002 AWAGCY" data-toggle="tooltip"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <div class="row">
+
+                                            <div class="col-md-12">
+                                                <button type="button" class="s022 btn btn-sm add-textboxawagency  B_s001" title="Click here to add more awarding agency" style="margin-left:auto">
+                                                    <i class="ti-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="awsubagencyincr  row col-md-4 MG001">
+                                <div class="awsubagency row col-md-12">
+                                    <div class="col-md-12 dis_able0 s004">
+                                        <label class="lbl_S001">Awarding Sub Agency</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="btnawsubagencyrowclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                                            </div>
+                                            <input style="font-size: 13px;" type="text" id="txtawsubagency_2" class="DIS_002 form-control txtawsubagency" name="textbox" /><label id="lblawsubagency_2" style="display:none;" class="lblawsubagency lblclr"></label>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text s001">
+                                                    <i class="ti-info-alt infoIcon s002 AWSAGCY" data-toggle="tooltip"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>-->
+                    @*<div class="awofficeincr row col-md-4 MG001">
+                            <div class="awoffice row col-md-12">
+                                <div class="col-md-12 dis_able0 s004">
+                                    <label class="lbl_S001">Awarding Office</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="btnawofficerowclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                                        </div>
+                                        <input style="font-size: 13px;" type="text" id="txtawoffice_2" class="DIS_002 form-control txtawoffice" name="textbox" /><label id="lblawoffice_2" style="display:none;" class="lblawoffice lblclr"></label>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text s001">
+                                                <i class="ti-info-alt infoIcon s002 AWOFFC" data-toggle="tooltip"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    <!--</div>
+                        </div>
+                    </div>-->
+
+                </div>
+                <div class="modal-footer">
+                    <div class="bottom-footer">
+                        <div class="left-footer-sec">
+                            <label class="form-control-static pull-left lbl_S001">Start your search with one or more characters or use a single space to see the entire list</label>
+                        </div>
+                        <div class="right-footer-btn-sec">
+                            <button type="button" class="btn btn-primary" id="btnamdclose">OK</button>
+                            <button type="button" class="btn btn-secondary" id="btnamdcancel">Cancel</button>
+                        </div>
+
+                    </div>
+
+                    @*style="display:none"*@
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" id="Mysocio" role="dialog" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title">Choose Set-aside Type(s)</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div id="SBusiness" class="">
+                        </div>
+                        @*<div class="SocioList">
+
+                            </div>*@
+                        <div style="width: 100%;padding: 0px 19px;height: 600px;">
+                            <div class="table-responsive">
+                                <table id="tbl_Socio" class="table table-striped table-bordered" style="width:100% !important;height:200px">
+                                    <thead>
+                                        <tr id="HeadR">
+                                            <th><label>Row #</label></th>
+                                            <th style="width:50%;"><label>Description</label></th>
+                                            <th><label>Abbr.</label></th>
+                                            <th><label>Select</label></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbody_Socio" class="clsSocioeconomic"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="OKSocio">OK</button>
+                    <button type="button" class="btn btn-secondary" id="CancelSocio">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

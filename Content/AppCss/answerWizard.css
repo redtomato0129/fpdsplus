@@ -1,0 +1,113 @@
+.wizards_con {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 310px);
+    margin: auto;
+   
+}
+
+#agency {
+    height: 300px;
+    width: 300px;
+    background-color: #7f569a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 22px;
+    margin: 10px;
+    border: 2px solid white;
+    -webkit-box-shadow: 0 0px 30px rgb(82 85 90 / 70%);
+    -moz-box-shadow: 0 0px 30px rgb(82 85 90 / 70%);
+    box-shadow: 0 0px 30px rgb(82 85 90 / 70%);
+    text-transform: uppercase;
+    cursor: pointer
+}
+#vendor {
+    height: 300px;
+    width: 300px;
+    background-color: #ff9800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 22px;
+    border: 2px solid white;
+    -webkit-box-shadow: 0 0px 30px rgb(82 85 90 / 70%);
+    -moz-box-shadow: 0 0px 30px rgb(82 85 90 / 70%);
+    box-shadow: 0 0px 30px rgb(82 85 90 / 70%);
+    text-transform: uppercase;
+    cursor: pointer
+}
+#contract {
+    height: 300px;
+    width: 300px;
+    background-color: #81AEFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 22px;
+    margin: 10px;
+    border: 2px solid white;
+    -webkit-box-shadow: 0 0px 30px rgb(82 85 90 / 70%);
+    -moz-box-shadow: 0 0px 30px rgb(82 85 90 / 70%);
+    box-shadow: 0 0px 30px rgb(82 85 90 / 70%);
+    text-transform: uppercase;
+    cursor: pointer
+}
+#opport {
+    height: 300px;
+    width: 300px;
+    background-color: #56c950;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 22px;
+    margin-top: 10px;
+    border: 2px solid white;
+    -webkit-box-shadow: 0 0px 30px rgb(82 85 90 / 70%);
+    -moz-box-shadow: 0 0px 30px rgb(82 85 90 / 70%);
+    box-shadow: 0 0px 30px rgb(82 85 90 / 70%);
+    text-transform: uppercase;
+    cursor: pointer
+}
+.first_row div:hover {
+    opacity: 0.5
+}
+
+.second_row div:hover {
+    opacity: 0.5
+}
+
+.scp-breadcrumb {
+    margin: 0px;
+    padding: 0px;
+}
+.scp-breadcrumb .breadcrumb {
+    background-color: transparent;
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #47505A;
+    /* margin: 30px 0px 20px 0px;*/
+    padding: 0px;
+}
+/**@media screen and (max-width: 1360px) {
+    #agency, #contract, #opport, #vendor {
+        height: 120px;
+        width: 120px;
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 1280px){
+    #agency, #contract, #opport, #vendor {
+        height: 60px;
+        width: 80px;
+        font-size: 11px;
+    }
+}**/

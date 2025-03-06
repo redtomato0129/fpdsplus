@@ -1,0 +1,182 @@
+﻿@model FedPipelineApplication.Models.SubscriptionPlanData
+@{
+    ViewBag.Title = "PaymentWithPaypal";
+    Layout = "~/Views/Shared/_LoginPartial.cshtml";
+    //var disabled = string.Empty;
+}
+<script src="~/Scripts/AppJS/Payument.js"></script>
+<style>
+    .card {
+        min-height: 250px;
+    }
+
+    .plan-name {
+        font-weight: 500;
+    }
+
+    .btn-subsciber {
+        background: #ffc439;
+        display: block;
+        width: 100%;
+        padding: 8px 12px;
+    }
+
+        .btn-subsciber img {
+            width: 72px;
+        }
+
+        .btn-subsciber span {
+            font-size: 16px;
+            color: #525252;
+            padding-left: 4px;
+        }
+
+    .subscribe-plan-sec {
+        background: rgb(42 189 36 / 6%);
+        padding: 55px 35px 55px 35px;
+        box-shadow: 0 0 6px #dddcdc;
+        cursor: pointer;
+    }
+
+    .plan-name {
+        padding-bottom: 32px;
+    }
+
+        .plan-name h2 {
+            color: #571C7A;
+            font-weight: 500;
+            border-bottom: 2px solid #2abd24;
+            display: inline-block;
+            padding-bottom: 6px;
+            font-size: 26px;
+        }
+
+    .user-limit {
+        margin-bottom: 0;
+        font-size: 20px;
+        color: #2abd24;
+        font-weight: 400;
+        padding-bottom: 12px;
+    }
+
+    .price-user-package-sec h3 {
+        margin-bottom: 0;
+        color: #999;
+        font-size: 20px;
+        font-weight: 400;
+        padding-bottom: 30px;
+    }
+
+    .price-user-package-sec h1 {
+        margin-bottom: 0;
+        color: #000;
+        font-size: 34px;
+        font-weight: 500;
+        padding-bottom: 9px;
+    }
+
+    .subscribe-description {
+        margin-bottom: 0;
+        font-size: 16px;
+        color: #666;
+        line-height: 25px;
+        padding-bottom: 26px;
+    }
+
+    .btn-purchase {
+        background: #571C7A;
+        color: #fff;
+        border-radius: 7px;
+        padding: 8px 30px;
+        font-size: 16px;
+        border: 1px solid #571C7A;
+    }
+
+        .btn-purchase:hover {
+            background: transparent;
+            color: #571C7A;
+        }
+
+    .subscribe-plan-sec:hover {
+        background: linear-gradient(355deg, rgb(242 221 255), #ffffff);
+    }
+</style>
+
+<div class="container" style="text-align: center;">
+    <div class="row">
+        @{
+            if (Model.Subscriptions.Count > 0)
+            {
+                var i = 0;
+                foreach (var plans in Model.Subscriptions)
+                {
+                    if (i == 0)
+                    {
+                        <div class="col-md-4">
+                                    <div class="subscribe-plan-sec">
+                                        <div class="plan-name">
+                                            <h2>@plans.Name</h2>
+                                        </div>
+                                        <div class="price-user-package-sec">
+                                            <p class="user-limit">@plans.Description</p>
+                                            <h1>$@plans.Value / Month</h1>
+                                            <h3>Billed Monthly</h3>
+                                        </div>
+                                        <p class="subscribe-description">
+                                            *Analyze data in  excel with unlimited* exports
+                                        </p>
+                                        <button class="btn btn-purchase" onclick="location.href='@Url.Action("RedirectToPaypalSubscribe", "Payment", new { planId = plans.PlanID })'">
+                                           Purchase</button>
+                                    </div>
+                        </div>
+                    }
+                    if (i == 1)
+                    {
+                        <div class="col-md-4">
+                            <div class="subscribe-plan-sec">
+                                <div class="plan-name">
+                                    <h2>@plans.Name</h2>
+                                </div>
+                                <div class="price-user-package-sec">
+                                    <p class="user-limit">@plans.Description</p>
+                                    <h1>$@plans.Value / Year</h1>
+                                    <h3>Billed Annually</h3>
+                                </div>
+                                <p class="subscribe-description">
+                                    *Analyze data in  excel with unlimited* exports
+                                </p>
+                                <button class="btn btn-purchase" onclick="location.href='@Url.Action("RedirectToPaypalSubscribe", "Payment", new { planId = plans.PlanID })'">
+                                    Purchase
+                                </button>
+                            </div>
+                        </div>
+                    }
+                    if (i == 2)
+                    {
+                        <div class="col-md-4">
+                            <div class="subscribe-plan-sec">
+                                <div class="plan-name">
+                                    <h2>@plans.Name</h2>
+                                </div>
+                                <div class="price-user-package-sec">
+                                    <p class="user-limit">@plans.Description</p>
+                                    <h1>$@plans.Value / Year</h1>
+                                    <h3>Billed Annually</h3>
+                                </div>
+                                <p class="subscribe-description">
+                                    *Analyze data in  excel with unlimited* exports
+                                </p>
+                                <button class="btn btn-purchase" onclick="location.href='@Url.Action("RedirectToPaypalSubscribe", "Payment", new { planId = plans.PlanID })'">
+                                    Purchase
+                                </button>
+                            </div>
+                        </div>
+                    }
+                    i = i + 1;
+                }
+            }
+        }
+
+    </div>
+    @*@Html.Partial("~/Views/Payment/PaymentPartial.cshtml")*@
+</div>

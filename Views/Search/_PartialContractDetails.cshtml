@@ -1,0 +1,132 @@
+﻿<div class="row">
+    <div class="col-lg-12 row">
+        <div class="col-md-5">
+            <div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="s012" style="color:#5f00a4;">Legal Business Name :</label>
+                    </div>
+                    <div class="col-md-8"><label class="s013-link" id="LEGAL_BUSINESS_NAME"></label></div>
+                </div>
+                <div class="row" style="display:none">
+                    <div class="col-md-4"><label class="s012" style="color: #5f00a4;">DUNS :</label></div>
+                    <div class="col-md-8">
+                        <label class="s013" id="DUNS" style="font-family:sans-serif;"></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><label class="s012" style="color: #5f00a4;">CAGE :</label></div>
+                    <div class="col-md-8">
+                        <label class="s013 usp" id="CAGE_CODE" style="font-family: sans-serif;color: rebeccapurple;font-weight:600"></label>
+                        @*<img class="Com_008 usp" src="~/Content/assets/images/Logos/Sam_2.png" />*@
+                    </div>
+                    <label id="lbldunsurl" style="display:none;"></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div><label class="s012" style="color: #5f00a4;">Address :</label></div>
+                </div>
+                <div class="col-md-8">
+                    <div><label class="s013" id="address_line1"></label><label id="address_line2"></label></div>
+                    <div><label class="s013" id="city"></label></div>
+                    @*<div><label class="s013" id="state"></label></div>
+                        <div><label class="s013" style="font-family: sans-serif;" id="zip_code"></label></div>
+                        <div><label class="s013" style="font-family: sans-serif;" id="zip_code_4"></label></div>*@
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="">
+                <div class="col-lg-12" style="background: #f5f5f5;padding: 8px 0px 3px 0px; border-bottom: 3px solid #5f00a4;">
+                    <label style="font-size: 13px; margin: 0px; " class="s012">Listed Company Points Of Contact</label>
+                </div>
+                <div class="row col-lg-12" style="padding: 10px 0px;">
+                    <div class="col-md-3">
+                        <div><label style="font-size: 11px; margin: 0px;font-weight: 500;line-height: 13px;border-bottom: 1px solid #c7c7c7;" class="s012">Govt POC</label></div>
+                        <div><label class="s013" id="contact_first_name_1"></label>&nbsp;<label class="s013" id="contact_last_name_1"></label></div>
+                        <div><label class="s013 lblphoneno" id="contact_phone_1"></label></div>
+                        <div><label class="s013" id="contact_email_1" style="display: block;"></label></div>
+                    </div>
+                    <div class="col-md-3">
+                        <div><label style="font-size: 11px; margin: 0px;font-weight: 500;line-height: 13px;border-bottom: 1px solid #c7c7c7;" class="s012">ALT Govt POC</label></div>
+                        <div><label class="s013" id="contact_first_name_2"></label>&nbsp;<label class="s013" id="contact_last_name_2"></label></div>
+                        <div><label class="s013 lblphoneno" id="contact_phone_2"></label></div>
+                        <div><label class="s013" id="contact_email_2" style="display: block;"></label></div>
+                    </div>
+                    @*</div>
+                        <div class="row">*@
+                    <div class="col-md-3">
+                        <div><label style="font-size: 11px; margin: 0px;font-weight: 500;line-height: 13px;border-bottom: 1px solid #c7c7c7;" class="s012">Past Perf POC</label></div>
+                        <div><label class="s013" id="contact_first_name_3"></label>&nbsp;<label class="s013" id="contact_last_name_3"></label></div>
+                        <div><label class="s013 lblphoneno" id="contact_phone_3"></label></div>
+                        <div><label class="s013" id="contact_email_3" style="display: block;"></label></div>
+                    </div>
+                    <div class="col-md-3">
+                        <div><label style="font-size: 11px; margin: 0px;font-weight: 500;line-height: 13px;border-bottom: 1px solid #c7c7c7;" class="s012">ALT Past Perf POC</label></div>
+                        <div><label class="s013" id="contact_first_name_4"></label>&nbsp;<label class="s013" id="contact_last_name_4"></label></div>
+                        <div><label class="s013 lblphoneno" id="contact_phone_4"></label></div>
+                        <div><label class="s013" id="contact_email_4" style="display: block;"></label></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row col-lg-12">
+        <div class="col-md-5">
+            <div><label class="s016" style="color: #5f00a4;font-weight: 400;">Small Business Designation</label></div>
+            <div style="border: 1px solid #e0e0e0;">
+                <div class="row" style="padding: 4px 0px 0px 0px;background: #fbfbfb;width: 100%;border-bottom: 1px solid #eaeaea;margin-left: 0px;">
+                    <div class="col-md-4"><label style="font-size: 11px;font-weight: 500;">NAICS</label></div>
+                    <div class="col-md-6"><label style="font-size: 11px;font-weight: 500;">Size Standard</label></div>
+                    <div class="col-md-2"><label style="font-size: 11px;font-weight: 500;">Small?</label></div>
+                </div>
+                <div id="LoadsmallBusiness" style="height: 87px ;overflow: scroll;overflow-x: hidden;padding: 7px;">
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-7">
+            <div><label class="s016" style="color: #5f00a4;font-weight: 400;">Socio-Economic Designation(s)</label></div>
+            <div id="LoadSocio" class="row" style="height: 122px;border: 1px solid #e6e6e6;margin: 0px;padding: 16px 16px;overflow: auto;"></div>
+        </div>
+
+    </div>
+    <div class="row col-md-12" style="margin-top: 12px;">
+
+        <div class="col-md-12">
+            <div class="gridTbl" style="width: 100%;margin-left: 0px;border: 1px solid #e6e6e6;padding: 10px;">
+                <table id="ContractorGrid_tbl" class="table table-striped table-bordered dt-responsive" style="font-size: 11px;font-family: sans-serif;height:200px;width: 100%">
+                    <thead>
+                        <tr>
+                            <th><label>Row</label></th>
+                            <th><label>Contract Number</label></th>
+                            <th><label>IDV ID</label></th>
+                            <th class="Com_002"><label>Funding Agency</label></th>
+                            <th class="Com_002"><label>Funding Sub Agency</label></th>
+                            <th><label>Contract Type</label></th>
+                            <th><label>Contract Pricing</label></th>
+                            <th><label>FY</label></th>
+                            
+                            <th class="s032"><label>NAICS</label></th>
+                            <th class="s032"><label>opp#</label></th>
+                            
+                            <th class="s033"><label>PSC</label></th>
+                            <th class="s033"><label>opp#</label></th>
+
+                            @*<th><label>ALL#</label></th>*@
+                            <th><label>Total Base + All Options</label></th>
+                            @*<th><label>Link</label></th>*@
+                        </tr>
+                    </thead>
+                    <tbody id="ContractorGrid_tbody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

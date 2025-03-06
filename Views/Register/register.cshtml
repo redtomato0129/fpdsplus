@@ -1,0 +1,330 @@
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LoginPartial.cshtml";
+}
+<link href="~/Content/AppCss/Register.css" rel="stylesheet" />
+<script src="~/Scripts/AppJS/Register.js"></script>
+<style>
+    .card {
+        min-height: 250px;
+    }
+
+    .plan-name {
+        font-weight: 500;
+    }
+
+    .btn-subsciber {
+        background: #ffc439;
+        display: block;
+        width: 100%;
+        padding: 8px 12px;
+    }
+
+        .btn-subsciber img {
+            width: 72px;
+        }
+
+        .btn-subsciber span {
+            font-size: 16px;
+            color: #525252;
+            padding-left: 4px;
+        }
+
+    .subscribe-plan-sec {
+        background: rgb(42 189 36 / 6%);
+        padding: 55px 35px 55px 35px;
+        box-shadow: 0 0 6px #dddcdc;
+        cursor: pointer;
+    }
+
+    .plan-name {
+        padding: 55px 35px 32px 35px;
+        text-align:center;
+    }
+
+        .plan-name h2 {
+            color: #571C7A;
+            font-weight: 500;
+            border-bottom: 2px solid #2abd24;
+            display: inline-block;
+            padding-bottom: 6px;
+            font-size: 26px;
+        }
+
+    .user-limit {
+        margin-bottom: 0;
+        font-size: 20px;
+        color: #2abd24;
+        font-weight: 400;
+        padding-bottom: 12px;
+    }
+
+    .price-user-package-sec h3 {
+        margin-bottom: 0;
+        color: #999;
+        font-size: 20px;
+        font-weight: 400;
+        padding-bottom: 30px;
+    }
+
+    .price-user-package-sec h1 {
+        margin-bottom: 0;
+        color: #000;
+        font-size: 34px;
+        font-weight: 500;
+        padding-bottom: 9px;
+    }
+
+    .subscribe-description {
+        margin-bottom: 0;
+        font-size: 16px;
+        color: #666;
+        line-height: 25px;
+        padding-bottom: 26px;
+        text-align:center;
+    }
+
+    .btn-purchase {
+        background: #571C7A;
+        color: #fff;
+        border-radius: 7px;
+        padding: 8px 30px;
+        font-size: 16px;
+        border: 1px solid #571C7A;
+        display:block;
+        margin:0 auto;
+    }
+
+        .btn-purchase:hover {
+            background: transparent;
+            color: #571C7A;
+        }
+
+    .subscribe-plan-sec:hover {
+        background: linear-gradient(355deg, rgb(242 221 255), #ffffff);
+    }
+    .auth-wrapper.register {
+        display: block !important;
+        margin: 0 auto;
+    }
+        .auth-wrapper.register .auth-box {
+            margin: 0 auto !important;
+        }
+    .plan-sec {
+        padding: 65px 355px;
+    }
+    .price-user-package-sec {
+        text-align:center;
+    }
+</style>
+ <div class="auth-box">
+        <div id="loginform">
+            <div class="logo Register">
+                <h3 class="font-medium m-b-20 C001 cl001">Welcome!</h3>
+
+                <h5 class="font-medium m-b-20">Please create your account</h5>
+            </div>
+            <!-- Form -->
+            <div class="row">
+                <div class="col-12">
+                    @*<form class="form-horizontal m-t-20" id="loginform" >*@
+                    <div class="Register">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i class="ti-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control form-control-lg" id="txtregfirstname" placeholder="First Name" aria-label="Email" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i class="ti-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control form-control-lg" id="txtreglastname" placeholder="Last Name" aria-label="Email" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon2"><i class="ti-email"></i></span>
+                            </div>
+                            <input type="text" class="form-control form-control-lg" id="txtregemail" placeholder="Email" aria-label="Password" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="col-md-12">
+                            <label style="color:red;display:none;font-weight: 100;font-size: 13px;" id="errregemail">The email address you have entered is already registered. Please try another</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i class="ti-briefcase"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control form-control-lg" id="txtregcompany" placeholder="Company" aria-label="Email" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="basic-addon1"><i class="fas fa-mobile-alt"></i></span>
+									</div>
+									@*<input type="text" class="form-control form-control-lg" id="txtregphoneno" placeholder="Phone" aria-label="Email" aria-describedby="basic-addon1">*@
+									<input type="text" class="form-control form-control-lg" id="txtregphoneno" placeholder="Phone" minlength="10" maxlength="10" title="Enter a 10 digit mobile number">
+								</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i class="far fa-address-card"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control form-control-lg" id="txtregstreet" placeholder="Address" aria-label="Email" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-city"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control form-control-lg" id="txtregcity" placeholder="City" aria-label="Email" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-globe"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control form-control-lg" id="txtregstate" placeholder="State" aria-label="Email" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-globe"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control form-control-lg" id="txtregzip" placeholder="Zip Code" aria-label="Email" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group text-center">
+                            <div class="col-xs-12 p-b-20">
+                                <button class="btn btn-block btn-lg btn-info" id="RegisterUser" type="submit">Register</button>
+                            </div>
+                        </div>
+                        <div class="form-group m-b-0 m-t-10">
+                            <div class="col-sm-12 text-center" id="errregmandatory"></div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="Verification">
+                        <div class="row">
+                            <div class="R003">
+                                <h4><img style="padding-right: 13px;" src="~/Content/assets/images/Fed/check.png" />A verification Email Has been sent to your email account</h4>
+                            </div>
+                            <div class="R001"></div>
+                            <div class="R003"><h4 class="R002">Check your email for a message that contains a click the link to verify your email and continue the registration process</h4></div>
+                            @*<div class="R003">
+                                    <button  class="btn btn-block btn-lg btn-info B_R002" id="go">Ok</button>
+                                </div>*@
+                        </div>
+
+
+                    </div>
+                    @*</form>*@
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<div class="plan-sec">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="subscribe-plan-sec">
+                <div class="plan-name">
+                    <h2>Free Trial</h2>
+                </div>
+                <div class="price-user-package-sec">
+                    <p class="user-limit">1 User</p>
+                    <h1>Free</h1>
+                    <h3>Password reset weekly</h3>
+                </div>
+                <p class="subscribe-description">
+                    Full access to Fed Pipeline in Free trial
+                </p>
+                <button class="btn btn-purchase" id="freeTrials">
+                    Start
+                </button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="subscribe-plan-sec">
+                <div class="plan-name">
+                    <h2>Basic</h2>
+                </div>
+                <div class="price-user-package-sec">
+                    <p class="user-limit">1 to 2 Users</p>
+                    <h1>$95 / Mo</h1>
+                    <h3>Paid Monthly</h3>
+                </div>
+                <p class="subscribe-description">
+                    *Analyze data in  excel with unlimited* exports
+                </p>
+                <button class="btn btn-purchase" id="purchaseBtn">
+                    Purchase
+                </button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="subscribe-plan-sec">
+                <div class="plan-name">
+                    <h2>Premium</h2>
+                </div>
+                <div class="price-user-package-sec">
+                    <p class="user-limit">1 to 3 Users</p>
+                    <h1>$950 / Yr</h1>
+                    <h3>Paid Annually</h3>
+                </div>
+                <p class="subscribe-description">
+                    *Analyze data in  excel with unlimited* exports
+                </p>
+                <button class="btn btn-purchase" id="purchaseBtn">
+                    Purchase
+                </button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="subscribe-plan-sec">
+                <div class="plan-name">
+                    <h2>Platinum</h2>
+                </div>
+                <div class="price-user-package-sec">
+                    <p class="user-limit">Up to 8 Users</p>
+                    <h1>$2000 / Yr</h1>
+                    <h3>Paid Annually</h3>
+                </div>
+                <p class="subscribe-description">
+                    *Analyze data in  excel with unlimited* exports
+                </p>
+                <button class="btn btn-purchase" id="purchaseBtn">
+                    Purchase
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+</div>

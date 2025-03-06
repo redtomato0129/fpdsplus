@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewBag.Title = "Opportunity Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="~/Content/AppCss/Contract.css" rel="stylesheet" />
+@*<script src="~/Scripts/AppJS/Contract.js"></script>*@
+<script src="~/Scripts/AppJS/OppSolicitation.js"></script>
+
+
+<style>
+    .Ops001 {
+        margin-top: 10px;
+    }
+
+    #module .collapse:not(.show) {
+        display: block;
+        height: 2rem;
+        overflow: hidden;
+    }
+
+    #module .collapsing {
+        height: 2rem;
+    }
+
+    #module a.collapsed::after {
+        content: '+ Show More';
+        font-size: 11px;
+    }
+
+    #module a:not(.collapsed)::after {
+        content: '- Show Less';
+        font-size: 11px;
+    }
+
+
+    .accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none !important;
+        /* font-size: 15px; */
+        transition: 0.4s;
+         border: none;
+    }
+
+        .active, .accordion:hover {
+            background-color: #ccc;
+        }
+
+    .FirstCard {
+         background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none !important;
+        /* font-size: 15px; */
+        transition: 0.4s;
+         border: none;
+    }
+
+   
+
+    .panel {
+        background-color: white;
+        /*max-height: max-content;*/
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+</style>
+<div style="text-align:center">
+    <img class="Apploader" src="~/Content/assets/images/Fed/loader.gif" />
+</div>
+<div class="innerbody row col-lg-12">
+    
+            <div class="col-lg-8">
+                <nav class="breadcrumb SolicitationPartial" style="padding: 0px 2px;margin-bottom: 10px;display:none">
+                    <a class="breadcrumb-item" id="sear">Solicitation</a>
+                    <a class="breadcrumb-item active" id="cont" style="display:none">Contract</a>
+                </nav>
+            </div>
+            <div class="col-lg-4">
+                <button class="float-right dt-button buttons-excel buttons-html5 btn btn-cyan text-white mr-1" tabindex="0" aria-controls="opportunityreportData" id="btnRelatedVendors"><span>Past Performance</span></button>
+            </div>
+        
+        @*<nav class="breadcrumb ReferanceIDVPartial" style="padding: 0px 2px;margin-bottom: 10px;display:none">
+            <a class="breadcrumb-item" id="sear">Reference IDV</a>
+            <a class="breadcrumb-item active" id="cont" style="display:none">Contract</a>
+        </nav>*@
+    
+</div>
+
+
+<div class="SolicitationPartial" style="display:none">
+    @Html.Partial("~/Views/OppSolicitation/_PartialOppSolicitation.cshtml")
+</div>
+
+@*<div class="ReferenceIDVPartial" style="display:none">
+        @Html.Partial("~/Views/Contract/_PartialReferenceIDV.cshtml");
+    </div>*@
+
+
+<div class="modal fade" id="CompetitiveVendor" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-static modal-dialog-centered">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="pt-3">
+
+                <h3 class="modal-title text-center text-dark"> Competitive Vendors</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                       
+                        <div class="card formlisting">
+                            <div class="card-body text-left">
+                                <label id="pastPerformanceText">
+                                    
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="btnOkCompetitiveVendor">OK</button>
+                <button type="button" class="btn btn-secondary" id="btnCancelCompetitiveVendor">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,177 @@
+﻿
+@{
+    ViewBag.Title = "Contact Us";
+
+}
+
+<script src="~/Scripts/AppJS/Contact.js"></script>
+
+<div class="auth-box">
+    <div class="logo Register">
+        <h3 class="font-medium m-b-20 C001 cl001">Welcome!</h3>
+
+        <h5 class="font-medium m-b-20">Give me your contact details</h5>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <div class="input-group mb-3">
+                                <label class="col-md-12">First Name</label>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ti-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control form-control-lg" id="txtcontactfirstname" placeholder="First Name" aria-label="text">
+                            </div>
+
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="input-group mb-3">
+                                <label class="col-md-12">Last Name</label>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ti-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control form-control-lg" id="txtcontactlastname" placeholder="Last Name" aria-label="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <div class="input-group mb-3">
+                                <label class="col-md-12">Email</label>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ti-email"></i></span>
+                                </div>
+                                <input type="Email" class="form-control form-control-lg" id="txtcontactemail" placeholder="Email" aria-label="Email">
+                            </div>
+
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="input-group mb-3">
+                                <label class="col-md-12">Businees Name</label>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ti-desktop"></i></span>
+                                </div>
+                                <input type="text" class="form-control form-control-lg" id="txtcontactbusinessname" placeholder="Businees Name" aria-label="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <label class="col-md-12">Message</label>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ti-hand-point-right"></i></span>
+                            </div>
+                            <textarea class="form-control form-control-lg" id="txtareacontactmessage" placeholder="Message" aria-label="textarea" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <div class="col-xs-12 p-b-20">
+                            <button class="btn btn-block btn-lg btn-info float-right" id="btnContact" style="width:20%">Contact Me</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+@*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="~/Scripts/module/ajaxRequestHandler.js"></script>
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/landing/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/custom_css.css" rel="stylesheet" />
+    <script src="~/Scripts/AppJS/Contact.js"></script>
+    <link href="~/Content/Sweetalert/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/Content/Sweetalert/sweetalert2.min.js"></script>
+
+    <style>
+        .image {
+            width: 84%;
+            height: auto;
+            border-radius: 10px 0px 0px 10px;
+            padding: 25px 20px 0px 0px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .req::after {
+            content: "*";
+            color: red;
+        }
+        .form-control{
+            padding:16px;
+        }
+
+    </style>
+
+
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card card-layout" style="padding: 0px; border-radius: 0px !important;top:0px">
+                <div class="row" style="margin: 0px !important;">
+                    <div class="col-md-6">
+                        <div style="font-size: 11px;font-weight: 500;">
+                            <i class="fa fa-caret-left css03"></i>
+                            <a class="css04" href="~/Landing/Index"><span style="color: grey;">Back To Home screen</span></a>
+                        </div>
+                        <div class="centers">
+                            <img src="~/Content/Landing/images/log01.jpg" class="image" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card card-body">
+                            <div class="row"><div class="header1"><h4>Welcome!</h4></div></div>
+                            <div class="row"><div class="header2"><h6>  Give me your contact details </h6></div></div>
+                            <div style="margin-top: 23px;">
+                                <div class="row css01">
+                                    <div class="col-md-6"><label class="css01 req">Firtst Name </label><input id="txtcontactfirstname" class="form-control" /> </div>
+                                    <div class="col-md-6"><label class="css01 req">Last Name </label> <input id="txtcontactlastname" class="form-control" /> </div>
+                                </div>
+                                <div class="row css01">
+                                    <div class="col-md-12"><label class="css01 req">Email </label><input id="txtcontactemail" class="form-control" /> </div>
+                                </div>
+                                <div class="row css01">
+                                    <div class="col-md-12"><label class="css01 req">Businees Name </label><input id="txtcontactbusinessname" class="form-control" /> </div>
+                                </div>
+                                <div class="row css01">
+                                    <div class="col-md-12"><label class="css01 req">Message </label><textarea class="form-control" id="txtareacontactmessage" rows="3"></textarea></div>
+                                </div>
+
+                                <div class="row center">
+                                    <div class="col-md-12"><button id="btnContact" class="css02" style="margin-bottom:0px;">Contact Me</button></div>
+                                </div>
+                                <div class="row css01">
+                                    <div class="col-md-12">
+                                        <label style="color:red;display:none;" id="errregmandatory"> All (*) fields are mandatory</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootbox/bootbox.min.js"></script>
+    <script src="~/Content/bootbox/bootbox.locales.min.js"></script>*@
+
+
+
+
+
+
+

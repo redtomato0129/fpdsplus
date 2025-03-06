@@ -1,0 +1,201 @@
+﻿@{
+    Layout = null;
+}
+
+
+<script src="https://www.paypal.com/sdk/js?client-id=AW8bjINwDco6JsM8SX7SZ3W5bdVAo_jb2tExBO-uL1CImOgXUE2iQPkazjTbkruE0ZfJrUq5VKkC66Nk&vault=true&intent=subscription&debug=true" data-sdk-integration-source="buttonfactory"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AW8bjINwDco6JsM8SX7SZ3W5bdVAo_jb2tExBO-uL1CImOgXUE2iQPkazjTbkruE0ZfJrUq5VKkC66Nk&vault=true&intent=subscription" data-sdk-integration-source="buttonfactory"></script>
+@*<script src="https://www.paypal.com/sdk/js?client-id=ASG3lh6Fd-XjC4OeI8mJKnF7yG-VPgGcDukya1okQNvBoZQAp8DTkxefthH_n5J3w8MIKe0pY6mCGQXA&vault=true&disable-funding=credit,card">// Required. Replace SB_CLIENT_ID with your sandbox client ID.</script>*@
+<script src="~/Scripts/AppJS/Payument.js"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AW8bjINwDco6JsM8SX7SZ3W5bdVAo_jb2tExBO-uL1CImOgXUE2iQPkazjTbkruE0ZfJrUq5VKkC66Nk&vault=true&disable-funding=credit,card">// Required. Replace SB_CLIENT_ID with your sandbox client ID.</script>
+<style>
+    .card {
+        min-height: 250px;
+    }
+</style>
+
+@*// ===================== Paypal subscription buttons ===================== //*@
+<div class="row">
+    <div class="col-md-4">
+        <label>MONTHLY SUBSCRIPTION ($50)</label>
+        <div id="paypal-button-container-P-77011295UJ454435FMB7HFOY"></div>
+    </div>
+    <div class="col-md-4">
+        <label>QUARTERLY SUBSCRIPTION ($135)</label>
+        <div id="paypal-button-container-P-8W495483YY9557049MB74Z5Y"></div>
+    </div>
+</div>
+
+@*// ===================== Paypal subscription buttons ===================== //*@
+
+
+<script>
+
+</script>
+
+
+<script>
+
+</script>
+
+<div class="container-fluid" style="display:none">
+    <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 Position1" id="id_SubscriptionPosition1">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal" id="plan_SubscriptionName1"></h4>
+            </div>
+            <div class="card-body d-flex flex-column">
+                <h1 class="card-title pricing-card-title">$<span id="SubscriptionValuePos1" class="value BuySubscription1"></span></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li><div class="media-body" id="SubscriptionDesc1"></div></li>
+
+                </ul>
+                <label class="SubscriptionCode_1" style="display:none"></label>
+                <label class="Amount_1" style="display:none"></label>
+                <button class="btn btn-block btn-lg btn-info buyplan" style="margin-top: auto;" id="SubscriptionCode_1">BUY NOW</button>
+
+            </div>
+        </div>
+        <div class="card mb-4 Position2" id="id_SubscriptionPosition2">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal" id="plan_SubscriptionName2"></h4>
+            </div>
+            <div class="card-body d-flex flex-column">
+                <h1 class="card-title pricing-card-title">$<span id="SubscriptionValuePos2" class="value BuySubscription1"></span></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li><div class="media-body" id="SubscriptionDesc2"></div></li>
+
+                </ul>
+                <label class="SubscriptionCode_2" style="display:none"></label>
+                <label class="Amount_2" style="display:none"></label>
+                <button class="btn btn-block btn-lg btn-info buyplan" style="margin-top: auto;" id="SubscriptionCode_2">BUY NOW</button>
+
+            </div>
+        </div>
+        <div class="card mb-4 Position3" id="id_SubscriptionPosition3">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal" id="plan_SubscriptionName3"></h4>
+            </div>
+            <div class="card-body d-flex flex-column">
+                <h1 class="card-title pricing-card-title">$<span id="SubscriptionValuePos3" class="value BuySubscription1"></span></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li><div class="media-body" id="SubscriptionDesc3"></div></li>
+
+                </ul>
+                <label class="SubscriptionCode_3" style="display:none"></label>
+                <label class="Amount_3" style="display:none"></label>
+                <button class="btn btn-block btn-lg btn-info buyplan" style="margin-top: auto;" id="SubscriptionCode_3">BUY NOW</button>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="PayPopup" role="dialog">
+        <div class="modal-dialog  modal-xl modal-dialog-centered">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close popclose" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-7" style="border-right: 1px solid #e6e6e6;">
+                            <div class="cs02">
+                                <label class="cs07">Secure Checkout</label>
+                                <div><label class="cd05">Start Using Your FedPipeline Plan Today</label></div>
+                                <div><label style="font-size: 14px;font-weight: 500;">Your Current Plan:</label></div>
+                                <div><label class="cs04" id="txtPlan"></label></div>
+                                <div class="cs03"></div>
+                                <div><label style="font-size: 14px;font-weight: 500;margin-bottom: 20px;">RECURRING COST</label></div>
+                                <div><label style="font-size: 16px;color: black;">Current Total (USD):: </label><label id="PlanAmount"></label></div>
+                                <div class="cs03"></div>
+
+                                <div><label class="cs06">By purchasing this plan, you confirm that you agree to our Terms of Service and consent to the storing and processing of your personal data as described in our Privacy Policy.</label></div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="cs12"></div>
+                            <div>
+                                <img style="width: 13%;" src="~/Content/assets/images/Logos/amex.png" />
+                                <img style="width: 15%;" src="~/Content/assets/images/Logos/visa.png" />
+                                <img style="width: 14%;" src="~/Content/assets/images/Logos/mastercard.png" />
+                                <img style="width: 10%;" src="~/Content/assets/images/Logos/paypal.png" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default popclose" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="SuccessPop" role="dialog">
+    <div class="modal-dialog" style="width: 40%;">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12" style="border-right: 1px solid #e6e6e6;">
+                        <div class="cs02" style="text-align: center;">
+                            <label class="cs07">Payment Successful !</label>
+                            <div>
+                                <label class="cd05" style="margin-bottom: 20px;margin-top:20px ">
+                                    <img style="width: 50%;" src="~/Content/assets/Images/payment_successful.gif" />
+                                </label>
+                            </div>
+                            <div style="text-align: center;"><label class="cs06" style="font-size: 14px;">Thank you! Your Payment was successfully processed.</label></div>
+                            <div style="text-align: center;"><label class="cs06" style="font-size: 14px;">Check your email for Confirmation.</label></div>
+                            <div style="text-align: center;"><label class="cs06" style="font-size: 14px;">Your OrderID :</label><label class="cs06" style="font-size: 14px;" id="OrderID"></label></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default popclose" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="FailedPop" role="dialog">
+    <div class="modal-dialog" style="width: 40%;">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12" style="border-right: 1px solid #e6e6e6;">
+                        <div class="cs02" style="text-align: center;">
+                            <label class="cs07">Payment Failed !</label>
+                            <div>
+                                <label class="cd05" style="margin-bottom: 36px;margin-top:20px ">
+                                    <img style="width: 40%;" src="~/Content/assets/Images/Error.gif" />
+                                </label>
+                            </div>
+                            <div style="text-align: center;"><label class="cs06" style="font-size: 14px;">Sorry! Your Payment has been Failed.</label></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default popclose" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,172 @@
+.Lay_001 {
+    height: 50px;
+}
+
+.scp-breadcrumb {
+    margin: 0px;
+    padding: 0px;
+}
+
+.page-wrapper {
+    display: block !important;
+    margin-left: 250px !important;
+}
+
+.heading-title {
+    color: #571C7A;
+}
+
+.dealbtn {
+    background-color: #571C7A;
+    color: white;
+    border: 1px solid #571C7A;
+}
+
+    .dealbtn:hover {
+        background-color: #fff;
+        color: #571C7A;
+    }
+
+.page-link {
+    color: #571C7A;
+}
+
+.page-item.active .page-link {
+    color: #fff;
+    background-color: #571C7A;
+    border-color: #571C7A;
+}
+
+.nav-tabs .nav-item a {
+    font-family: "Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+    font-size: 16px;
+    color: #571C7A;
+    font-weight: 700;
+    text-decoration: none;
+    border: 0px;
+}
+
+.nav-tabs {
+    border-bottom: 1px solid #E6E8ED;
+}
+
+    .nav-tabs .nav-item a.active {
+        border-bottom: 4px solid #571C7A !important;
+    }
+
+
+
+
+    #myTabContent .tab-pane .table-striped thead tr th {
+        font-family: "Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+        
+    }
+
+    #myTabContent .tab-pane .table-striped tbody tr td {
+        font-family: "Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+       
+    }
+
+.scp-breadcrumb .breadcrumb {
+    background-color: transparent;
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #47505A;
+    margin: 30px 0px 20px 0px;
+    padding: 0px;
+}
+
+    .scp-breadcrumb .breadcrumb .breadcrumb-item a {
+        background-color: transparent;
+        font-family: 'Rubik';
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        color: #47505A;
+        margin: 0px;
+        padding: 0px;
+    }
+
+.activities > td {
+    padding: 30px 20px !important;
+}
+
+.heading {
+    color: purple;
+}
+
+.history-tl-container {
+    margin: auto;
+    display: block;
+    position: relative;
+}
+
+.recent-heading-title-email {
+    color: #571C7A;
+    font-weight: 500;
+}
+
+.history-tl-container ul.tl {
+    margin: 20px 0;
+    padding: 0;
+    display: inline-block;
+}
+
+    .history-tl-container ul.tl li {
+        list-style: none;
+        margin: auto;
+        margin-left: 20px;
+        min-height: 50px;
+        /* background: rgba(255,255,0,0.1); */
+        border-left: 1px solid #DDDDDD;
+        padding: 0 0 5px 30px;
+        position: relative;
+    }
+
+        .history-tl-container ul.tl li .iconEmail {
+            position: absolute;
+            content: "";
+            left: -4%;
+            /* top: -1%; */
+            display: block;
+            /* background: url(../assets/images/email.png); */
+            height: 37px;
+            width: 37px;
+            transition: all 500ms ease-in-out;
+            background-color: #fff;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .history-tl-container ul.tl li .msg_content {
+            background: #FFFCDC;
+            padding: 14px 20px;
+        }
+
+ul.tl li .item-title {
+    font-size: 14px;
+    color: #303A42;
+    font-weight: 400;
+}
+
+.box3 {
+    inline-size: auto;
+    overflow-wrap: break-word;
+    white-space: break-spaces !important;
+}
+
+ul.tl li .item-title {
+    font-size: 14px;
+    color: #303A42;
+    font-weight: 400;
+}
+
+ul.tl li .item-detail {
+    font-size: 12px;
+    color: #7F7F7F;
+    font-weight: 400;
+}

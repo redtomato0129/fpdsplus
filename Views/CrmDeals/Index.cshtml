@@ -1,0 +1,1125 @@
+﻿@{
+    ViewBag.Title = "Deals List";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*Deal*@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@*Dropzone*@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js"></script>
+
+<script src="https://raw.githubusercontent.com/popoverjs/popoverjs/master/dist/popover.min.js"></script>
+@*Activity*@
+
+<link rel="stylesheet" type="text/css" href="~/Content/AppCss/activities.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/AppCss/newsModalCss.css" />
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+<script src="~/Scripts/AppJS/ckeditor.js"></script>
+
+<!-- JavaScript -->
+<script src="~/Scripts/AppJS/bootstrap-datetimepicker.min.js"></script>
+<!-- Languages -->
+<link rel="stylesheet" href="~/Content/AppCss/bootstrap-datetimepicker.min.css" />
+<script src="~/Scripts/AppJS/ckeditor.js"></script>
+
+<script src="~/Scripts/AppJS/main.js"></script>
+<script src="~/Scripts/AppJS/Deals.js"></script>
+<script src="~/Scripts/AppJS/DealPeople.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+<script>
+    CKEDITOR.replace('editor')</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.1/jquery.twbsPagination.min.js"></script>
+
+<style>
+    .heading-title {
+        color: #571C7A;
+    }
+
+    .recent-heading-title-notes {
+        color: #571C7A;
+        font-weight: 500;
+    }
+
+    .recent-heading-title-call {
+        color: #571C7A;
+        font-weight: 500;
+    }
+
+    .recent-heading-title-email {
+        color: #571C7A;
+        font-weight: 500;
+    }
+
+    .recent-heading-title-file {
+        color: #571C7A;
+        font-weight: 500;
+    }
+
+    .box {
+        inline-size: auto;
+        overflow-wrap: break-word;
+        white-space: break-spaces !important;
+    }
+
+    .box1 {
+        inline-size: auto;
+        overflow-wrap: break-word;
+        white-space: break-spaces !important;
+    }
+
+    .box2 {
+        inline-size: auto;
+        overflow-wrap: break-word;
+        white-space: break-spaces !important;
+    }
+
+    .box3 {
+        inline-size: auto;
+        overflow-wrap: break-word;
+        white-space: break-spaces !important;
+    }
+
+    .box4 {
+        inline-size: auto;
+        overflow-wrap: break-word;
+        white-space: break-spaces !important;
+    }
+
+    .getfile {
+        white-space: break-spaces !important;
+    }
+
+    .dealbtn {
+        background-color: #571C7A;
+        color: white;
+        border: 1px solid #571C7A;
+    }
+
+        .dealbtn:hover {
+            background-color: #fff;
+            color: #571C7A;
+        }
+
+    .page-link {
+        color: #571C7A;
+    }
+
+    .page-item.active .page-link {
+        color: #fff;
+        background-color: #571C7A;
+        border-color: #571C7A;
+    }
+
+    .page-wrapper {
+        display: block !important;
+        margin-left: 250px !important;
+    }
+
+
+    .Lay_001 {
+        height: 50px;
+    }
+
+    .table td, .table th {
+        /*vertical-align: middle !important;*/
+    }
+
+    ul#promos {
+        text-align: center;
+    }
+
+        ul#promos li {
+            width: 10px;
+            height: 10px;
+            background: red;
+        }
+
+    /*Css by Usama*/
+    div.popup_content {
+        display: none;
+        position: absolute;
+        width: 180px;
+        padding: 10px;
+        background: #eeeeee;
+        color: #000000;
+        border: 1px solid #1a1a1a;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .popup_content ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+
+        .popup_content ul li {
+            display: flex;
+            align-items: center;
+        }
+
+            .popup_content ul li div {
+                width: 12px;
+                height: 12px;
+                background-color: transparent;
+            }
+
+            .popup_content ul li:first-child div {
+                background-color: red;
+            }
+
+            .popup_content ul li:nth-child(1) div {
+                background-color: #4040a3;
+            }
+
+            .popup_content ul li:nth-child(2) div {
+                background-color: #c74747;
+            }
+
+            .popup_content ul li:nth-child(3) div {
+                background-color: blueviolet;
+            }
+
+            .popup_content ul li:nth-child(4) div {
+                background-color: orange;
+            }
+
+            .popup_content ul li:nth-child(5) div {
+                background-color: magenta;
+            }
+
+            .popup_content ul li:nth-child(6) div {
+                background-color: blueviolet;
+            }
+
+    .dropzone {
+        background: white;
+        border-radius: 5px;
+        border: 2px dashed rgb(0, 135, 247);
+        border-image: none;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .comnt-load {
+      @*  margin: 0px;
+        padding: 0px;*@
+        color: #6e6e6e;
+        text-decoration: none;
+        display: flex;
+        font-weight: 500;
+        font-size: 14px;
+        margin-left: 8px;
+    }
+
+        .comnt-load:focus {
+            box-shadow: none;
+        }
+
+
+    .people-load {
+        margin: 0px;
+        color: #6e6e6e;
+        text-decoration: none;
+        display: flex;
+        font-weight: 500;
+        font-size: 14px;
+        margin-left: 8px;
+    }
+
+        .people-load:focus {
+            box-shadow: none;
+        }
+
+    .wrapper, .attachments-show {
+        display: none;
+        padding: 20px;
+        margin: 0px 0;
+    }
+
+    button.attachment-load:focus {
+        box-shadow: none;
+    }
+
+    button.comnt {
+        color: #fff;
+        background-color: #571C7A;
+        border-color: #571C7A;
+        font-family: 'Rubik';
+        font-weight: 400;
+        padding: 6px 20px 6px 20px;
+        font-size: 14px;
+    }
+
+    .comment__list {
+        background-color: #DDDFE2;
+        border-radius: 3px;
+    }
+
+    .comments_textarea {
+        border: 1px solid #DDDFE2;
+        width: 100%;
+        color: #6e6e6e;
+        font-family: 'Rubik';
+        text-decoration: none;
+        display: inline;
+        font-weight: 400;
+        font-size: 13px;
+        background: #fff;
+        border-radius: 10px;
+        padding: 15px;
+    }
+
+    .form-control:disabled, .form-control[readonly] {
+        background-color: white !important;
+    }
+
+    .nested_comnt_list {
+        margin-left: 20px !important;
+    }
+
+    .reply-link {
+        padding: 0;
+        margin: 0;
+        margin-bottom: 5px;
+        line-height: 20px;
+    }
+
+        .reply-link span {
+            padding: 0 20px;
+            font-size: 14px;
+            color: #6e6e6e;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+    .more-comments span {
+        font-size: 14px;
+        color: #6e6e6e;
+        font-weight: 500;
+        cursor: pointer;
+    }
+</style>
+
+<div id="userId" style="display:none;">
+    @Session["User_ID"].ToString()
+</div>
+
+<div id="userDomain" style="display:none;">
+    @Session["User_Domain"].ToString()
+</div>
+<div id="firstName" style="display:none;">
+    @Session["User_FirstName"].ToString()
+</div>
+
+<div id="email" style="display:none;">
+    @Session["User_Email"].ToString()
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-11">
+            <h1 class="heading-title"><strong>Deals</strong></h1>
+        </div>
+        <div class="col-1" id="shareIcon" style="cursor: pointer;">
+            <img src="~/Content/assets/images/share.png" data-toggle="tooltip" data-placement="bottom" title="Share URL" onclick="copyToClipboard()" style="float: right; width: 30px; height: 30px;" />
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-between align-items-center my-3">
+    <div class="col-6">
+        @*<h1 class="heading-title"><strong>Deals</strong></h1>*@
+    </div>
+    <div class="col-6 text-right">
+        <button class="btn dealbtn" id="routeDealButton">+ Add Deal</button>
+    </div>
+    <div class="col-6 my-3">
+    @*    <div class="popup ">
+            <h6 onmouseover="document.getElementsByClassName('popup_content')[0].style.display = 'block';"
+                onmouseout="document.getElementsByClassName('popup_content')[0].style.display = 'none';"
+                style=" width: 25%; margin-right: 0px; padding-right: 0px; ">
+                <i class="fa-solid fa-ellipsis-vertical"></i> Color Scheme
+            </h6>
+            <div class="popup_content">
+                <ul>
+                    <li>
+                        <div class="mr-2 clrCode">
+                        </div>
+                        Identify
+                    </li>
+                    <li>
+                        <div class="mr-2 clrCode">
+                        </div>
+                        Qualify
+                    </li>
+                    <li>
+                        <div class="mr-2 clrCode">
+                        </div>
+                        Pursued
+                    </li>
+                    <li>
+                        <div class="mr-2 clrCode">
+                        </div>
+                        Capture
+                    </li>
+                    <li>
+                        <div class="mr-2 clrCode">
+                        </div>
+                        Bid
+                    </li>
+                </ul>
+            </div>
+        </div>*@
+    </div>
+    <div class="col-6 my-3">
+        <nav aria-label="...">
+            <ul id="pagingUL" class="pagination justify-content-end">
+            </ul>
+        </nav>
+    </div>
+    <div class="table-responsive">
+        <table id="deallist" class="table nowrap table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th> </th>
+                    @*<th>Created Date</th>*@
+                    <th>Deal ID</th>
+                    <th>Title</th>
+                    @*<th>Description</th>*@
+                    <th>RFP Release Date</th>
+                    <th>Status</th>
+                    <th>Stage</th>
+                    <th>Priority</th>
+                    <th>Funding Sub Agency</th>
+                    @*<th>Award Type</th>*@
+                    <!-- New Header-->
+                    <th>Set Aside</th>
+                    <th>NAICS</th>
+                    <th>PSC</th>
+                    <th>Incumbent</th>
+                    <th>Award $k</th>
+                    @* <th>Expiration</th>*@
+                    @*<th>Govwin Link</th>*@
+
+                    <th>People</th>
+                    <th>Activity</th>
+                    <th>Social</th>
+
+                </tr>
+            </thead>
+
+
+            <tbody id="deallisttable">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="Divactivity" hidden>
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <div class="main_content">
+
+                    <div class="tab">
+                        <button id="btnNotes" class="tablinks active" onclick="openCity(event, 'Notes')">Notes</button>
+                        <button  id="btnCalls" class="tablinks" onclick="openCity(event, 'Calls')">Calls</button>
+                        <button id="btnEmails" class="tablinks" onclick="openCity(event, 'Emails')">Emails</button>
+                        <button  id="btnDocuments" class="tablinks" onclick="openCity(event, 'Files')">Files</button>
+                    </div>
+
+                    <!-- Tab content -->
+                    <div id="Notes" class="tabcontent">
+                        <div>
+
+                            <input type="hidden" id="notesId"  />
+                            <textarea class="form-control" style="visibility: visible; height: 436px;" cols="80" rows="10" id="txtNotes"></textarea>
+                            <div class="buttons my-2 text-left">
+                                <input type="submit" class="btn Save__Notes" style="" id="AddNotes" value="Save" />
+                               
+                                <button type="button" class="btn Save__Notes" style=" visibility:hidden" id="addNoteButton">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Add
+                                    Note
+                                </button>
+                                @*<input type="button" class="btn Save__Notes" style="margin-right:1000px; visibility:hidden" id="addNoteButton" value="Add" />*@
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div id="Calls" style="height:475px" class="tabcontent p-4">
+                        <div class="row g-3 calls__form">
+                            <input type="hidden" id="callsId" />
+                            <div class="col-md-3 mb-3">
+                                <label for="datepicker" class="form-label">Date / Time</label>
+                                <div><input id="datePickertxt" type="date" max=2099-12-31 style="height:50px" min="2000-01-01" class="form-control default" /></div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="inputPassword4" class="form-label">Organization</label>
+                                <input type="text" class="form-control" style="height:50px" id="txtOrganization">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="inputAddress2" class="form-label">Contact</label>
+                                <input type="text" class="form-control" style="height:50px" id="txtContact">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                                <textarea class="form-control" style="height:254px" id="txtCallDescription" rows="3" maxlength="1000"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn add__Call" id="AddCall">
+                                    Save
+                                </button>
+                                <button type="button" class="btn Save__Notes" style="margin-right:1000px; visibility:hidden" id="addCallButton">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Add
+                                    Call
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="Emails" style="height:475px" class="tabcontent p-4">
+                        <div class="row g-3 calls__form">
+                            <input type="hidden" id="emailsId" />
+                            <div class="col-md-3 mb-3">
+                                <label for="datepicker" class="form-label">Date / Time</label>
+                                <input type="date" style="height:50px" class="form-control default" max=2099-12-31 min="2000-01-01" id="email_datetime">
+                            </div>
+                            <div class="col-md-5 mb-3">
+                                <label for="inputPassword4" class="form-label">Name</label>
+                                <input type="text" style="height:50px" class="form-control" id="txtNameEmail">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="inputAddress2" class="form-label">Email</label>
+                                <input type="text" style="height:50px" class="form-control" id="txtEMailAddress">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="inputAddress2" class="form-label">Subject</label>
+                                <input type="text" style="height:50px" class="form-control" id="txtSubjectEmail">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Body</label>
+                                <textarea class="form-control" style="height:150px" id="txtEmailDescription" rows="3" maxlength="1000"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn add__Call" id="AddEmail">
+                                    Save
+                                </button>
+                                <button type="submit" class="btn add__Call" id="AddEmailButton" style=" visibility:hidden">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Add
+                                    Email
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="Files" style="height:475px" class="tabcontent p-4">
+                        <div class="files__select">
+                            <div class="form-group inputDnD">
+                                <input type="hidden" id="documentsId" />
+                                <div class="row" id="fileInput">
+
+                                    <div class="col-6">
+                                        <label class="sr-only" for="inputFile">Drag files here or Select from computer</label>
+                                        <input type="file" name="file" id="FileUpload1" accept="/*"
+                                               data-title="Drag files here or Select from computer" onchange="documentUpload(event)">
+                                    </div>
+
+                                    <div class="col-3  ">
+                                        <span id="preivewText" style=" display:none" class="right-footer-btn-sec  buttons ">
+
+                                            <a id="downloadFile" class="btn btn-success" style="background: #571C7A !important; color: white; border-color: #571C7A !important;" role="button" download>Download</a>
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-3  " id="showDownloadLink" style=" display:none">
+                                        <span class="right-footer-btn-sec  buttons ">
+
+                                            <a id="downloadViewFile" class="btn btn-success" style="background: #571C7A !important; color: white; border-color: #571C7A !important;" role="button" download>Download</a>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 error_file_size mt-2">
+                                        <p class="text-danger">Max Size: 50mb</p>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="col-12 mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                                    <textarea class="form-control" style="height: 250px; resize: none;" rows="3" id="txtDescFile" maxlength="1000"></textarea>
+                                </div>
+
+                                @* <input type="submit" class="btn Save__Notes float-left" id="btnUpload" value="Save" />*@
+                                <button type="submit" class="btn add__Call" id="btnUpload">
+                                    Save
+                                </button>
+                                <button type="button" class="btn add__Call" id="btnUploadButton" style=" visibility:hidden">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Add
+                                    File
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            <div class="col-4">
+                <h1 class="recent-heading-title-notes"></h1>
+                <div class="history-tl-container">
+                    <ul style="overflow-y: scroll; height: 550px; width: 560px; margin-left: 50px;" id="notes" class="tl">
+                    </ul>
+
+                </div>
+
+                <div class="history-tl-container">
+                    <h1 class="recent-heading-title-call"></h1>
+                    <ul id="calls" style="overflow-y: scroll; height: 550px; width: 560px; margin-left: 50px;" class="tl">
+                        <li class="tl-item" ng-repeat="item in retailer_history">
+                            <div class="msg_content">
+
+                                @*<div id="Notes" class="item-detail">27 July 8:00AM John Doe</div>
+                                    <div id="NotesDescription" class="item-title">Start from Shire</div>*@
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+                <div class="history-tl-container">
+                    <h1 class="recent-heading-title-email"></h1>
+                    <ul id="emails" style="overflow-y: scroll; height: 550px; width: 480px; margin-left: 58px; " class="tl">
+                        <li class="tl-item" ng-repeat="item in retailer_history">
+                            <div class="msg_content">
+
+                                @*<div id="Notes" class="item-detail">27 July 8:00AM John Doe</div>
+                                    <div id="NotesDescription" class="item-title">Start from Shire</div>*@
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div class="history-tl-container">
+                    <h1 class="recent-heading-title-file"></h1>
+                    <ul id="files" style="overflow-y: scroll; height: 550px; width: 480px; margin-left: 58px;" class="tl">
+                        <li class="tl-item" ng-repeat="item in retailer_history">
+                            <div class="msg_content">
+
+                                @*<div id="Notes" class="item-detail">27 July 8:00AM John Doe</div>
+                                    <div id="NotesDescription" class="item-title">Start from Shire</div>*@
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="DivPeople" hidden>
+    <div class="">
+        <div class="row">
+            <div class="col-12">
+                <div class="main_content" style="width:100%;margin-left:0px;">
+                    <table id="basic-data-table" class="table nowrap table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+
+
+                                <th>Contact</th>
+                                <th>Title</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                               
+                               
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="peopleListTableRenderer">
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- View News Modal-->
+<!-- Modal -->
+<div class="modal fade" id="viewNewsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-body modal-body pb-5">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-11">
+
+                                    <div class="scp-breadcrumb">
+                                        <ol class="breadcrumb">
+                                            @* <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                                <li class="breadcrumb-item"><a href="#">Deals</a></li>
+                                                <li class="breadcrumb-item active">View News</li>*@
+                                        </ol>
+                                    </div>
+                                </div>
+                                <div class="col-1" style="
+    float: right;
+    text-align: right;
+"><i class="fa fa-times" aria-hidden="true" id="closeDealModal" onclick="closeNewsModal()" style="cursor:pointer"></i></div>
+                            </div>
+
+
+                            @*  <div class="row">
+                                    <div class="heading mb-3 col-3">
+                                        <h3><strong>News</strong></h3>
+                                    </div>
+                                    <div class="heading mb-3 col-7">
+                                        <div class="nameblock" style="float:right">
+
+                                            <div class="text d-flex align-items-center">
+                                                <h4>${item.title}</h4>&nbsp;&nbsp; | &nbsp;
+                                                <h4> ${item.status}</h4>&nbsp;&nbsp; | &nbsp;
+                                                <h4> ${item.due_date}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
+                            <div style="clear: both">
+                                <h2 class="heading" style="float: left; margin-bottom: 20px;">Social</h2>
+                                <div>
+                                    <h6 class="heading" style="float: right" id="dueDateNews"></h6>
+                                    <h6 class="heading" style="float: right" id="statusNews"></h6>
+                                    <h6 class="heading" style="float: right" id="titleStatus"></h6>
+                                </div>
+
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="row" id="newsListRender" style="max-height: 700px; overflow: auto; ">
+
+
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="attachPeopleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+     role="dialog" data-backdrop="static" data-keyboard="false" aria-modal="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content" style="@* height: calc(100vh - 70px); overflow-y: overlay;*@ height:100%">
+
+            <div class="modal-body modal-body pb-5">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-11">
+
+                            <div class="scp-breadcrumb">
+                                <ol class="breadcrumb">
+                                    @* <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="#">Deals</a></li>
+                    <li class="breadcrumb-item active">Attach People</li>*@
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="col-1" style="
+    float: right;
+    text-align: right;
+"><i class="fa fa-times" aria-hidden="true" id="closeDealModal" onclick="closeAttachPeopleModal()" style="cursor:pointer"></i></div>
+
+
+                        <div class="col-12">
+                            <div style="clear: both">
+                                @* <h2 class="heading" style="float: left; margin-bottom: 20px;">People</h2>*@
+                                <div>
+                                    <h6 class="heading" style="float: right" id="dueDateAttachPeople"></h6>
+                                    <h6 class="heading" style="float: right" id="statusAttachPeople"></h6>
+                                    <h6 class="heading" style="float: right" id="titleStatusAttachPeople"></h6>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+
+                        @* <div class="col-md-6 mb-3">
+            <label for="titleDeal" autocomplete="off" class="form-label">Title</label>
+            <input type="text" class="form-control" id="titleDeal" aria-describedby="title" readonly>
+        </div>*@
+                        <div class="col-5">
+                            <label class="lbl_S001">Organization / People Search</label>
+                            <div class="input-group mb-3">
+                                <input  type="text" autocomplete="off" id="peopleSearchInput" placeholder="Type here to search"
+                                       class="DIS_002 form-control  dis_able1" name="textbox"  style="display: block; width: 100%; height: calc(1.5em + 0.75rem + 2px); padding: 0.375rem rem 0.75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #495057; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; border-radius: 0.25rem;"/>
+                                <label id="peopleSearchInput" style="display:none;" class="lbldept lblclr"></label>
+                            </div>
+                        </div>
+                        <div class="col-5 mb-2">
+                            <label for="inputRelationShip" class="form-label">Relationship</label>
+                            <select class="form-control" id="inputRelationShip" aria-label="Please choose One " required>
+                            </select>
+                        </div>
+                        <div class="col-2 mt-3 align-self-center">
+                            <button class="btn dealbtn float-left  pr-4 pl-4" type="button" id="assignToDeal" onclick="attachPeopleToDeal()">Assign to Deal</button>
+                        </div>
+                        <input type="hidden" id="dealAttachInput" />
+                        <div class="col-6">
+
+                        </div>
+                        <div class="col-6">
+
+                           
+                        </div>
+
+                        <div class="col-3 my-4" >
+                            <button class="btn dealbtn float-left" onclick="addOrganizationModal()">+ Add Organization / People</button>
+                        </div>
+                        <div class="col-4 my-4">
+                            <div class="form-group has-search ">
+
+                                <input type="text" class="form-control" placeholder="Start Typing to Search within grid" onkeyup="OnPeopleSearch(event)">
+
+                            </div>
+                        </div>
+
+                        <div class="col-5 my-4">
+                            <nav aria-label="...">
+                                <ul class="pagination justify-content-end" id="pagingPeopleUL">
+                                </ul>
+                            </nav>
+                        </div>
+
+
+
+                        <div class="col-12 mt-2" style=" max-height: 490px; overflow-y: auto; ">
+                            <table id="peopleTable" class="table nowrap table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th width="60" style="text-align: center;"></th>
+                                        <th>Organization</th>
+                                        <th>Phone</th>
+                                        <th>Email</th>
+
+                                       @* <th>City</th>
+                                        <th>State</th>
+                                        <th>Zip</th>*@
+
+                                        <th width="60" style="text-align: center;">Edit</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="organizationDataRenderer">
+                                </tbody>
+                            </table>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="viewPeopleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+     role="dialog" data-backdrop="static" data-keyboard="false" aria-modal="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-body modal-body pb-5">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-11">
+
+                                    <div class="scp-breadcrumb">
+                                        <ol class="breadcrumb">
+                                            @* <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                                <li class="breadcrumb-item"><a href="#">Deals</a></li>
+                                                <li class="breadcrumb-item active">View People</li>*@
+                                        </ol>
+                                    </div>
+                                </div>
+                                <div class="col-1" style="
+    float: right;
+    text-align: right;
+"><i class="fa fa-times" aria-hidden="true" id="closeDealModal" onclick="closePeopleModal()" style="cursor:pointer"></i></div>
+                            </div>
+
+                            <div style="clear: both">
+                                <h2 class="heading" style="float: left; margin-bottom: 20px;">People</h2>
+                                <div>
+                                    <h6 class="heading" style="float: right" id="dueDatePeople"></h6>
+                                    <h6 class="heading" style="float: right" id="statusPeople"></h6>
+                                    <h6 class="heading" style="float: right" id="titleStatusPeople"></h6>
+                                    @* <h6 class="heading" style="float: right; color:green" id="relationshipPeole"></h6>*@
+                                </div>
+
+
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="col-12" id="peopleListRender" style="max-height: 700px; overflow: auto; ">
+
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addOrganizationModal" tabindex="-1" aria-labelledby="exampleModalLabel" role="dialog"
+     data-backdrop="static" data-keyboard="false" aria-modal="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable" style="max-width:80%">
+        <div class="modal-content">
+
+            <div class="modal-body pb-5">
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-11">
+
+                                </div>
+                                <div class="col-1" style="
+    float: right;
+    text-align: right;
+"><i class="fa fa-times" aria-hidden="true" id="closeDealModal" onclick="closeOrgModal()" style="cursor:pointer"></i></div>
+                            </div>
+                            <div style="clear: both">
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <form class="row g-3">
+
+                        <div class="col-md-4 mb-3">
+                            <label for="orgName" autocomplete="off" class="form-label">Organization Name <span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="orgName" aria-describedby="orgName" maxlength="200" name="newOrgaName" autocomplete="newOrgName">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputPhone" class="form-label">Phone</label>
+                            <input type="text" class="form-control" id="inputPhone" maxlength="20" name="orgPhone" autocomplete="orgPhone">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputEmail4" class="form-label">Email <span style="color:red">*</span></label>
+                            <input type="email" class="form-control" id="inputEmail4" maxlength="200" name="orgEmail" autocomplete="orgEmail">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputAddress" class="form-label">Address @*<span style="color:red">*</span>*@</label>
+                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" maxlength="100"
+                                   name="orgAddress" autocomplete="orgAddress">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputCity" class="form-label">City @*<span style="color:red">*</span>*@</label>
+                            <input type="text" class="form-control" id="inputCity" maxlength="50" name="orgCity" autocomplete="orgCity">
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label for="inputState" class="form-label">State @*<span style="color:red">*</span>*@</label>
+                            <input type="text" class="form-control" id="inputState" maxlength="5" name="orgState" autocomplete="orgState">
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label for="inputZip" class="form-label">Zip Code @*<span style="color:red">*</span>*@</label>
+                            <input type="text" class="form-control" id="inputZip" maxlength="10" name="orgZip" autocomplete="orgZip">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputUEI" class="form-label">UEI</label>
+                            <input type="text" class="form-control" id="inputUEI" maxlength="20" name="orgUei" autocomplete="orgUei">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputCage" class="form-label">Cage Code</label>
+                            <input type="text" class="form-control" id="inputCage" maxlength="20" name="orgCode" autocomplete="orgCode">
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="inputNotes" class="form-label">Notes</label>
+                            <textarea class="form-control" id="inputNotes" rows="3" maxlength="500" name="orgNote" autocomplete="orgNote"></textarea>
+                        </div>
+                      
+                        <div class="col-8" id="peopleHtml">
+                          
+                        </div>
+                        <div class="col-4">
+                            <div class="history-tl-container">
+                                <h1 class="recent-heading-title-email" style=""></h1>
+                                <ul id="poulateAddPeople" style="overflow-y: auto; height: 308px; width: 480px; margin-left: 58px;" class="tl">
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="EditOrganizationModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+     role="dialog" data-backdrop="static" data-keyboard="false" aria-modal="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable" style="max-width:80%">
+        <div class="modal-content">
+
+            <div class="modal-body pb-5">
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-11">
+
+                                </div>
+                                <div class="col-1" style="
+    float: right;
+    text-align: right;
+"><i class="fa fa-times" aria-hidden="true" id="closeDealModal" onclick="closeEditOrgModal()" style="cursor:pointer"></i></div>
+                            </div>
+                            <div style="clear: both">
+
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <form class="row g-3">
+
+                        <div class="col-md-4 mb-3">
+                            <label for="orgNameEdit" class="form-label">Organization Name <span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="orgNameEdit" aria-describedby="orgName" maxlength="200"
+                                   name="editOrgaName" autocomplete="editOrgName">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputPhoneEdit" class="form-label">Phone</label>
+                            <input type="text" class="form-control" id="inputPhoneEdit" maxlength="20" name="editPhone" autocomplete="editPhone">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputEmailEdit" class="form-label">Email <span style="color:red">*</span></label>
+                            <input type="email" class="form-control" id="inputEmailEdit" maxlength="200" name="editEmail" autocomplete="editEmail">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputAddressEdit" class="form-label">Address@* <span style="color:red">*</span>*@</label>
+                            <input type="text" class="form-control" id="inputAddressEdit" placeholder="1234 Main St" maxlength="100"
+                                   name="editAddress" autocomplete="editAddress">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputCityEdit" class="form-label">City @*<span style="color:red">*</span>*@</label>
+                            <input type="text" class="form-control" id="inputCityEdit" maxlength="50" name="editCity" autocomplete="editCity">
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label for="inputStateEdit" class="form-label">State @*<span style="color:red">*</span>*@</label>
+                            <input type="text" class="form-control" id="inputStateEdit" maxlength="5" name="editState" autocomplete="editState">
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label for="inputZipEdit" class="form-label">Zip Code @*<span style="color:red">*</span>*@</label>
+                            <input type="text" class="form-control" id="inputZipEdit" maxlength="10" name="editZip" autocomplete="editZip">
+                        </div>
+                        @* <div class="col-md-4 mb-2">
+                                <label for="inputUEIEdit" class="form-label">UEI</label>
+                                <input type="text" class="form-control" id="inputUEIEdit">
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="inputCageEdit" class="form-label">Cage Code</label>
+                                <input type="text" class="form-control" id="inputCageEdit" />
+                            </div>*@
+                        <div class="col-md-12 mb-3">
+                            <label for="inputNotesEdit" class="form-label">Notes</label>
+                            <textarea class="form-control" id="inputNotesEdit" rows="3" maxlength="500" name="editNotes" autocomplete="editNotes"></textarea>
+                        </div>
+                        <input type="hidden" id="editOrgId" value="" />
+                        @*  <div class="col-12 mb-2">
+                                <button class="btn dealbtn" type="button" id="AddPeople">+ Add People</button>
+                            </div>*@
+                        <div class="col-8" id="peopleHtmlEdit">
+
+                        </div>
+                        <div class="col-4">
+                            <div class="history-tl-container">
+                                <h1 class="recent-heading-title-email" style=""></h1>
+                                <ul id="poulateEditPeople" style="overflow-y: auto; height: 308px; width: 480px; margin-left: 58px;" class="tl">
+                                </ul>
+                            </div>
+                        </div>
+                        @*<div class="col-12">
+                                <button class="btn dealbtn float-right" type="button" id="EditOrganization" onclick="updateOrganizationData()">Save</button>
+                            </div>*@
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

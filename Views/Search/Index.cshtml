@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Vendor Search";
+}
+
+
+<link href="~/Content/AppCss/Search.css" rel="stylesheet" />
+<link href="~/Content/AppCss/toggle.css" rel="stylesheet" />
+<link href="~/Content/AppCss/Opportunity.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/Scripts/AppJS/Search.js"></script>
+
+
+
+@*<div style="text-align:center">
+        <img class="Apploader" src="~/Content/assets/images/Fed/loader.gif" />
+    </div>*@
+<div class="innerbody">
+    <div class="row mb-2">
+        <div class="col-11">
+            <nav class="breadcrumb" style="padding: 0px 2px;margin-bottom: 10px;">
+                <a class="breadcrumb-item" id="sear">Vendor Search</a>
+                <a class="breadcrumb-item active cont" id="" style="display:none">Vendor Detail</a>
+                @*<a class="breadcrumb-item" href="javascript:void(0)">Data</a>*@
+                @*<span class="breadcrumb-item active">Bootstrap</span>*@
+            </nav>
+        </div>
+        <div class="col-1" id="shareIcon" style="cursor: pointer;">
+            <img src="~/Content/assets/images/share.png" data-toggle="tooltip" data-placement="bottom" title="Share URL" onclick="copyToClipboard()" style="float: right; width: 30px; height: 30px;" />
+        </div>
+        @*<div class="col-md-9 cont" style="display:none;padding: 0;max-width: 80%;flex: 0 0 80%;">
+            <div class="row s026 AdvResults_CD" style="padding: 0px;margin-bottom: 12px;display:none">
+                <div class="col-lg-12 HD_NaicsFamily_CD">
+                    <label class="s023">Naics Family</label><label class="s024" id="HD_NaicsFamily_CD"></label>
+                    <label class="lbl_S001" style="cursor:pointer;display:none;color:#581e7b;text-decoration:underline" id="Res_totalNaicsFam_CD">
+                        +
+                        <label class="lbl_S001" id="lblRes_NaicsFam" style="text-decoration:underline;"></label>
+                    </label>
+                </div>
+                <div class="col-lg-4 HD_Naicscode_CD" style="padding: 0;">
+                    <label class="s023 s030 ">Naics Code</label><label class="s024 s030 s031" id="HD_Naicscode_CD"></label>
+                    <label class="lbl_S001" style="cursor:pointer;display:none;color:#581e7b;text-decoration:underline" id="Res_totalNaicsCode_CD">
+                        +
+                      (  <label class="lbl_S001" id="lblRes_NaicsCode_CD" style="text-decoration:underline;"></label> )
+                    </label>
+                </div>
+                <div class="col-lg-4" style="padding: 0;">
+                    <label class="s023 s030">Department</label>
+                    <label class="s024 s030 s031" id="HD_Dept_CD"></label>
+                    <label class="lbl_S001" style="cursor:pointer;display:none;color:#581e7b;text-decoration:underline" id="Res_totalDept_CD">
+                        +
+                       ( <label class="lbl_S001" id="lblRes_Dept_CD" style="text-decoration:underline;"></label> )
+                    </label>
+                </div>
+                <div class="col-lg-4" style="padding: 0;">
+                    <label class="s023 s030">Agency</label>
+                    <label class="s024 s030 s031" id="HD_Agency_CD"></label>
+                    <label class="lbl_S001" style="cursor:pointer;display:none;color:#581e7b;text-decoration:underline" id="Res_totalAgency_CD">
+                        +
+                       ( <label class="lbl_S001" id="lblRes_Agency_CD" style="text-decoration:underline;"></label> )
+                    </label>
+                </div>
+                <div class="col-lg-2" style="padding: 0;"><label class="s023 s030">Business Size</label><label class="s024 s030" id="HD_Business_CD"></label></div>
+                <div class="col-lg-2" style="padding: 0;"><label class="s023 s030">FY</label><label class="s024 s030" id="HD_FY_CD"></label></div>
+                <div class="col-lg-4" style="padding: 0;"><label class="s023 s030">Mininum Contract Size</label><label class="s024 s030" id="HD_MinContract_CD"></label></div>
+                <div class="col-lg-4" style="padding: 0;"><label class="s023 s030">Socio-Economic</label><label class="s024 s030" id="HD_Socio_CD"></label></div>
+            </div>
+
+            <div class="row s026 SimResults_CD" style="padding: 0px;margin-bottom: 12px;display:none">
+                <div class="col-lg-6"><label class="s023">Vendor Name:  </label><label class="s024" id="HDS_vendorname_CD"></label></div>
+                <div class="col-lg-2"><label class="s023">FY:  </label><label class="s024" id="HDS_fy_CD"></label></div>
+                <div class="col-lg-4"><label class="s023">Mininum Contract Size:  </label><label class="s024" id="HDS_mincontract_CD"></label></div>
+            </div>
+        </div>*@
+    </div>
+    <div class="col-md-12" id="ShowSearch">
+        @Html.Partial("~/Views/Search/_PartialSearch.cshtml")
+    </div>
+    <div class="col-md-12" id="ShowcontractDetail" style="display:none">
+        <div class="card card-body">
+            @Html.Partial("~/Views/Search/_PartialContractDetails.cshtml")
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />*@
