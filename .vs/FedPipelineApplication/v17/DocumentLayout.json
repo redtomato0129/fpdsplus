@@ -1,69 +1,12 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\fedpipeline\\fpdsplus-new\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|e:\\fedpipeline\\fpdsplus-new\\scripts\\appjs\\contractsearch.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:scripts\\appjs\\contractsearch.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|E:\\fedpipeline\\fpdsplus-new\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|E:\\fedpipeline\\fpdsplus-new\\scripts\\appjs\\cminews.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:scripts\\appjs\\cminews.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    }
-  ],
+  "WorkspaceRootPath": "E:\\Fed\\testTask\\fpdsplus-dev\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 1,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-new\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "E:\\fedpipeline\\fpdsplus-new\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAHoBAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-05T16:54:22.54Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ContractSearch.js",
-              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-new\\Scripts\\AppJS\\ContractSearch.js",
-              "RelativeDocumentMoniker": "Scripts\\AppJS\\ContractSearch.js",
-              "ToolTip": "E:\\fedpipeline\\fpdsplus-new\\Scripts\\AppJS\\ContractSearch.js",
-              "RelativeToolTip": "Scripts\\AppJS\\ContractSearch.js",
-              "ViewState": "AQIAAGEAAAAAAAAAAAAIwG8AAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-03-04T17:19:51.18Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CmiNews.js",
-              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-new\\Scripts\\AppJS\\CmiNews.js",
-              "RelativeDocumentMoniker": "Scripts\\AppJS\\CmiNews.js",
-              "ToolTip": "E:\\fedpipeline\\fpdsplus-new\\Scripts\\AppJS\\CmiNews.js",
-              "RelativeToolTip": "Scripts\\AppJS\\CmiNews.js",
-              "ViewState": "AQIAACgAAAAAAAAAAAAcwEEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-03-04T17:12:07.859Z"
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
