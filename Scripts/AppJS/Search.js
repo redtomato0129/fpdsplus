@@ -120,14 +120,15 @@ $(document).ready(function () {
     const myParam = urlParams.get('data');
     let paramData;
     if (myParam) {
-        paramData  = JSON.parse(myParam);
+        paramData = JSON.parse(myParam);
+        console.log(paramData)
     }
     set_Helpicon();
-    $('.startYear_1').val(DefaultStartDate);
-    $('.EndYear_1').val(DefaultEndDate);
+    $('.startYear_1').val(paramData ? paramData.FullSearch.FY : DefaultStartDate);
+    $('.EndYear_1').val(paramData ? paramData.FullSearch.FY_End : DefaultEndDate);
 
-    $('.startYear_2').val(DefaultStartDate);
-    $('.EndYear_2').val(DefaultEndDate);
+    $('.startYear_2').val(paramData ? paramData.FullSearch.FY : DefaultStartDate);
+    $('.EndYear_2').val(paramData ? paramData.FullSearch.FY_End : DefaultEndDate);
     $(".loadbtn").hide();
     $('.OpenDeptPopup').disableAutoFill();
     $(".MinContractSize_2").val('0');
@@ -2503,6 +2504,9 @@ $(document).on('click', '#btnSearch', function (event,copyClipBoard) {
     function searchData(copyClipBoard) {
         var data = "{FullSearch:" + JSON.stringify(SearchData) + "}";
         if (typeof copyClipBoard != 'undefined' && copyClipBoard.isCopyClipBoard) {
+            SearchData.department_name = $("#txtdept_2").val();
+            SearchData.agency_name = $("#txtagency_2").val();
+            SearchData.office_name = $("#txtoffice_2").val();
             const queryParams = JSON.stringify({ FullSearch: SearchData })
             var tempInput = document.createElement('input');
             tempInput.value = `${window.location.href}?data=${encodeURIComponent(queryParams)}`;
