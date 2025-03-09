@@ -58,13 +58,24 @@ var OKSocio = [];
 var searchParameters = {};
 
 function copyToClipboard() {
-    var tempInput = document.createElement('input');
-    tempInput.value = window.location.href;
-    document.body.appendChild(tempInput);
-    tempInput.select();
-    tempInput.setSelectionRange(0, 99999); /* For mobile devices */
-    document.execCommand('copy');
-    document.body.removeChild(tempInput);
+    //var tempInput = document.createElement('input');
+    //tempInput.value = window.location.href;
+    //document.body.appendChild(tempInput);
+    //tempInput.select();
+    //tempInput.setSelectionRange(0, 99999); /* For mobile devices */
+    //document.execCommand('copy');
+    //document.body.removeChild(tempInput);
+
+    //swal.fire({
+    //    title: "",
+    //    text: "URL copied to clipboard!",
+    //    type: "success",
+    //    showCancelButton: false,
+    //    showConfirmButton: false,
+    //    timer: 3000,
+    //})
+    $('#btnOpportunity').trigger('click', { isCopyClipBoard: true });
+
 
     swal.fire({
         title: "",
@@ -699,8 +710,8 @@ $(document).ready(function () {
 
     $(document).on('click', '#txtnaicscode_1', function () {
 
-       // $('.add-textboxcodemodal').trigger('click');
-          $('#NaicsCodeModal').modal('show');
+        // $('.add-textboxcodemodal').trigger('click');
+        $('#NaicsCodeModal').modal('show');
         NaicsCode_R = [];
         NaicsCode_R = NaicsCode.slice();
         setTimeout(function () {
@@ -774,8 +785,8 @@ $(document).ready(function () {
 
     $(document).on('click', '#txtpsccode_1', function () {
 
-       // $('.add-textboxmodalpsc').trigger('click');
-            PSC_R = [];
+        // $('.add-textboxmodalpsc').trigger('click');
+        PSC_R = [];
         PSC_R = PSC.slice();
         setTimeout(function () {
             $("#txtpsccode_2").focus();
@@ -786,7 +797,7 @@ $(document).ready(function () {
     });
 
     $(document).on("click", ".add-textboxmodalpsc", function (e) {
-       // $('#PscModal').modal('show');
+        // $('#PscModal').modal('show');
         PSC_R = [];
         PSC_R = PSC.slice();
         setTimeout(function () {
@@ -813,7 +824,7 @@ $(document).ready(function () {
 
     });
     $(document).on('click', '#btnpscrowclear_1', function () {
-        
+
         $('#txtpsccode_2').val("");
         $('#txtpscdesc_2').val("");
         $('.add-textboxmodalpsc').trigger('click');
@@ -1633,12 +1644,14 @@ $(document).ready(function () {
 
 
     //=============================== All Over Opportunity ==========================================//
-    $(document).on('click', '#btnOpportunity', function () {
+    $(document).on('click', '#btnOpportunity', function (event, copyClipBoard) {
 
 
 
         //alert("hi");
-        $('.Apploader').show();
+        if (typeof copyClipBoard == "undefined" || copyClipBoard.data) {
+            $('.Apploader').show();
+        }
         let OpportunityData = {}
         NaicsCode = [];
         DepartmentCode = [];
@@ -1853,7 +1866,7 @@ $(document).ready(function () {
         if (OpportunityData.Solicitation_Number == "" && Type == "Type2") {
 
             if (OpportunityData.PosteDateStart != "" && OpportunityData.PosteDateEnd != "") {
-                opportunityData();
+                opportunityData(copyClipBoard);
             }
             else {
                 //alert("fill all fields");
@@ -1867,7 +1880,7 @@ $(document).ready(function () {
             //======VAlidation for Simple search======//
         else {
             if (OpportunityData.Solicitation_Number != "" && Type == "Type1") {
-                opportunityData();
+                opportunityData(copyClipBoard);
             }
             else {
                 swal("", "Please fill in all required(*) fields");
@@ -1883,11 +1896,28 @@ $(document).ready(function () {
 
 
 
-        function opportunityData() {
+        function opportunityData(copyClipBoard) {
 
 
 
             var data = "{SearchOpportunity:" + JSON.stringify(OpportunityData) + "}";
+            if (typeof copyClipBoard != 'undefined' && copyClipBoard.isCopyClipBoard) {
+
+                const queryParams = JSON.stringify({ SearchOpportunity: data })
+                var tempInput = document.createElement('input');
+                tempInput.value = `${window.location.href}?data=${encodeURIComponent(queryParams)}`;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                tempInput.setSelectionRange(0, 99999); /* For mobile devices */
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                return;
+            }
+            if (typeof copyClipBoard != 'undefined' && copyClipBoard.data) {
+                //  copyClipBoard.data.SimpleSearch = JSON.parse(copyClipBoard.data.SimpleSearch);
+                data = copyClipBoard.data.SearchOpportunity;
+
+            }
             var url = "/Opportunity/SearchOpportunity";
             var result = AjaxPost(url, data);
             if (result.Error == "") {
@@ -2120,7 +2150,13 @@ $(document).ready(function () {
 
     });
     //=============================== All Over Opportunity ==========================================//
-
+    const urlParams = new URLSearchParams(window.location.search);
+    var myParam = urlParams.get('data');
+    let paramData = null;
+    if (myParam) {
+        paramData = JSON.parse(myParam);
+        $('#btnOpportunity').trigger('click', { data: paramData });
+    }
 
 });
 
