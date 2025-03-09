@@ -121,7 +121,6 @@ $(document).ready(function () {
     let paramData;
     if (myParam) {
         paramData = JSON.parse(myParam);
-        console.log(paramData)
     }
     set_Helpicon();
     $('.startYear_1').val(paramData ? paramData.FullSearch.FY : DefaultStartDate);

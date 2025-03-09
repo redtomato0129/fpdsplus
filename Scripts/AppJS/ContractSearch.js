@@ -103,13 +103,24 @@ function getParameterByName(name) {
 }
 
 function copyToClipboard() {
-    var tempInput = document.createElement('input');
-    tempInput.value = window.location.href;
-    document.body.appendChild(tempInput);
-    tempInput.select();
-    tempInput.setSelectionRange(0, 99999); /* For mobile devices */
-    document.execCommand('copy');
-    document.body.removeChild(tempInput);
+    //var tempInput = document.createElement('input');
+    //tempInput.value = window.location.href;
+    //document.body.appendChild(tempInput);
+    //tempInput.select();
+    //tempInput.setSelectionRange(0, 99999); /* For mobile devices */
+    //document.execCommand('copy');
+    //document.body.removeChild(tempInput);
+
+    //swal.fire({
+    //    title: "",
+    //    text: "URL copied to clipboard!",
+    //    type: "success",
+    //    showCancelButton: false,
+    //    showConfirmButton: false,
+    //    timer: 3000,
+    //})
+    $('#btnSearch').trigger('click', { isCopyClipBoard: true });
+
 
     swal.fire({
         title: "",
@@ -121,6 +132,7 @@ function copyToClipboard() {
     })
 }
 $(document).ready(function () {
+  
     set_Helpicon();
     GetUserInfo();
     getSolicitationProcedure();
@@ -1231,7 +1243,7 @@ $(document).ready(function () {
                 getAgency(depcod);
             }
         });
-
+        
 
 
     });
@@ -2108,6 +2120,13 @@ $(document).ready(function () {
         $("#SolicitationDDL").val("");
     });
 
+    const urlParams = new URLSearchParams(window.location.search);
+    var myParam = urlParams.get('data');
+    let paramData = null;
+    if (myParam) {
+        paramData = JSON.parse(myParam);
+        $('#btnSearch').trigger('click', { data: paramData });
+    }
 });
 
 $(document).on('click', '.btn-toggle', function () {
@@ -2342,15 +2361,17 @@ $(document).on('click', '.TypeTwo', function () {
 
     }
     // ################## Bind MarketContext Data ################## //
-   
+
+ 
 });
 
 
 //=============================== All Over Search ==========================================//
-$(document).on('click', '#btnSearch', function () {
+$(document).on('click', '#btnSearch', function (event, copyClipBoard) {
 
-   
-    $('.Apploader').show();
+    if (typeof copyClipBoard == "undefined" || copyClipBoard.data) {
+        $('.Apploader').show();
+    }
 
     let SearchData = {}
     NaicsCode = [];
@@ -2810,7 +2831,7 @@ $(document).on('click', '#btnSearch', function () {
             && (SearchData.awarding_agency_code.length != 0 && SearchData.awarding_sub_agency_code.length != 0 && (AwardingAgencyCodeWithoutFilter.length == AwardingSubAgencyCodeWithoutFilter.length))
             && SearchData.base_and_all_options_value != "" && SearchData.business_size) {
             setTimeout(function () {
-                searchData();            
+                searchData(copyClipBoard);            
                 $('.hideawardesc').show();
             }, 10);
         }
@@ -2870,7 +2891,7 @@ $(document).on('click', '#btnSearch', function () {
                                 });
                                 if (IsCodeValid == true) {
                                     setTimeout(function () {
-                                        searchData();                                      
+                                        searchData(copyClipBoard);                                      
                                         $('.hideawardesc').show();
                                     }, 10);
                                 }
@@ -2887,7 +2908,7 @@ $(document).on('click', '#btnSearch', function () {
                         }
                         else {
                             setTimeout(function () {
-                                searchData();                                
+                                searchData(copyClipBoard);                                
                                 $('.hideawardesc').show();
                             }, 10);
                         }
@@ -2991,7 +3012,7 @@ $(document).on('click', '#btnSearch', function () {
     else {
         if (SearchData.ContractNumber != "") {
             setTimeout(function () {
-                searchData();               
+                searchData(copyClipBoard);               
                 $('.hideawardesc').hide();
             }, 10);
         }
@@ -3004,11 +3025,28 @@ $(document).on('click', '#btnSearch', function () {
 
     }
 
-    function searchData() {
+    function searchData(copyClipBoard) {
         var ExcelRow = [];
         //console.log('[webTeaming_getInitialSearchResults]', NAICS, naics_family, business_type_code_list, '500000', business_size, department_code, agency_code, '2017', solicitation_code, funding_office_code);
 
         var data = "{SimpleSearch:" + JSON.stringify(SearchData) + "}";
+        if (typeof copyClipBoard != 'undefined' && copyClipBoard.isCopyClipBoard) {
+           
+            const queryParams = JSON.stringify({ SimpleSearch: data })
+            var tempInput = document.createElement('input');
+            tempInput.value = `${window.location.href}?data=${encodeURIComponent(queryParams)}`;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); /* For mobile devices */
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            return;
+        }
+        if (typeof copyClipBoard != 'undefined' && copyClipBoard.data) {
+          //  copyClipBoard.data.SimpleSearch = JSON.parse(copyClipBoard.data.SimpleSearch);
+            data = copyClipBoard.data.SimpleSearch;
+
+        }
         var excelData = {};
         excelData = SearchData;
         var url = "/ContractSearch/GetContractInfo";
