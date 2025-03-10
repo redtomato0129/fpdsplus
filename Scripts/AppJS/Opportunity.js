@@ -1897,15 +1897,11 @@ $(document).ready(function () {
 
 
         function opportunityData(copyClipBoard) {
-
-
-
             var data = "{SearchOpportunity:" + JSON.stringify(OpportunityData) + "}";
             if (typeof copyClipBoard != 'undefined' && copyClipBoard.isCopyClipBoard) {
-
                 const queryParams = JSON.stringify({ SearchOpportunity: data })
                 var tempInput = document.createElement('input');
-                tempInput.value = `${window.location.href}?data=${encodeURIComponent(queryParams)}`;
+                tempInput.value = `${window.location.href.split('?')[0]}?data=${encodeURIComponent(queryParams)}`;
                 document.body.appendChild(tempInput);
                 tempInput.select();
                 tempInput.setSelectionRange(0, 99999); /* For mobile devices */
