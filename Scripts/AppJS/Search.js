@@ -121,17 +121,18 @@ $(document).ready(function () {
     let paramData;
     if (myParam) {
         paramData = JSON.parse(myParam);
+        $("#SolicitationDDL").val(paramData.FullSearch.solicitation_name);
     }
     set_Helpicon();
     $('.startYear_1').val(paramData ? paramData.FullSearch.FY : DefaultStartDate);
     $('.EndYear_1').val(paramData ? paramData.FullSearch.FY_End : DefaultEndDate);
-
+    
     $('.startYear_2').val(paramData ? paramData.FullSearch.FY : DefaultStartDate);
     $('.EndYear_2').val(paramData ? paramData.FullSearch.FY_End : DefaultEndDate);
     $(".loadbtn").hide();
     $('.OpenDeptPopup').disableAutoFill();
-    $(".MinContractSize_2").val('0');
-    $(".MinContractSize_1").val('0');
+    $(".MinContractSize_2").val(paramData ? paramData.FullSearch.base_and_all_options_value:'0');
+    $(".MinContractSize_1").val(paramData ? paramData.FullSearch.base_and_all_options_value : '0');
     Type = 'Type1';
     GetSocioEconomic();
     GetUserInfo();
@@ -369,7 +370,7 @@ $(document).ready(function () {
     }
 
     function GetMasterData() {
-
+       
 
         $.ajax({
             type: "POST",
@@ -430,6 +431,7 @@ $(document).ready(function () {
         var filldata_PSC = '';
         var filldata_Department_Agency = '';
 
+       
 
         $.ajax({
             type: "POST",
@@ -439,8 +441,13 @@ $(document).ready(function () {
             dataType: "json",
             async: false,
             success: function (result) {
+                debugger;
+                const myParam = urlParams.get('data');
+                let paramData;
+                if (myParam) {
+                    paramData = JSON.parse(myParam);
+                }
                 if (result.length > 0) {
-
                     MC_AutoBindData = 1;
 
                     for (var i = 0; i < result.length; i++) {
@@ -456,9 +463,11 @@ $(document).ready(function () {
                             //                "</div>" +
                             //            "</div>";
 
-
-                            MarketContext_NaicsCode.push({ Description: result[i].Description, Code: result[i].Code });
-
+                         
+                            MarketContext_NaicsCode.push({
+                                Description: result[i].Description,
+                                Code:result[i].Code
+                            });
                         }
                         else if (result[i].Type == "PSC") {
 
@@ -476,13 +485,13 @@ $(document).ready(function () {
                             var Code = result[i].Code.split('/');
                             var Description = result[i].Description.split('/');
 
-                            var DeptDesc = Description[0];
-                            var AgencyDesc = Description[1];
-                            var OfficeDesc = Description[2];
+                            var DeptDesc = paramData ? paramData.FullSearch.department_name:Description[0];
+                            var AgencyDesc = paramData ? paramData.FullSearch.agency_name :Description[1];
+                            var OfficeDesc = paramData ? paramData.FullSearch.office_name :Description[2];
 
-                            var DeptCode = Code[0];
-                            var AgencyCode = Code[1];
-                            var OfficeCode = Code[2];
+                            var DeptCode = paramData ? paramData.FullSearch.department_code:Code[0];
+                            var AgencyCode = paramData ? paramData.FullSearch.agency_code :Code[1];
+                            var OfficeCode = paramData ? paramData.FullSearch.funding_office_code : Code[2];
 
                             MarketContext_DepartmentBind.push({ DeptDesc: DeptDesc, DeptCode: DeptCode, AgencyDesc: AgencyDesc, AgencyCode: AgencyCode, OfficeDesc: OfficeDesc, OfficeCode: OfficeCode });
                         }
@@ -503,6 +512,17 @@ $(document).ready(function () {
                         }
                     }
 
+                    if (paramData&& paramData.FullSearch.NAICS) {
+                        MarketContext_NaicsCode = [];
+                        paramData.FullSearch.NAICS.split(',').forEach((item, index) => {
+
+                            MarketContext_NaicsCode.push({
+                                Description: paramData.FullSearch.naics_name.split(',')[index],
+                                Code: item
+                            })
+                        });
+                        
+                    }
                     $(".TypeTwo").trigger("click");
 
 
@@ -1671,7 +1691,13 @@ $(document).on('click', '.TypeTwo', function () {
 
     //$(".naicsincrFam1").css("display", "none");
     //$(".naicsincr1").css("display", "block");
-    $(".MinContractSize_2").val('0');
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('data');
+    let paramData;
+    if (myParam) {
+        paramData = JSON.parse(myParam);
+    }
+    $(".MinContractSize_2").val(paramData ? paramData.FullSearch.base_and_all_options_value : '0');
     Businesssize = "ALL";
     $(':radio[value="ALL"]').prop('checked', true);
     $(".SIMSearchResults").hide();
@@ -2506,6 +2532,14 @@ $(document).on('click', '#btnSearch', function (event,copyClipBoard) {
             SearchData.department_name = $("#txtdept_2").val();
             SearchData.agency_name = $("#txtagency_2").val();
             SearchData.office_name = $("#txtoffice_2").val();
+            SearchData.naics_name = "";
+            let customIndexNaics = 0;
+            SearchData.NAICS.split(',').forEach((item, index) => {
+                customIndexNaics = index == 0 ? 2 : customIndexNaics + 1
+                SearchData.naics_name = SearchData.naics_name + `${index != 0 ? ',' : ''}`
+                    + $(`#txtnaicsdesc_${customIndexNaics}`).val();
+            })
+            SearchData.solicitation_name = $("#SolicitationDDL").val();
             const queryParams = JSON.stringify({ FullSearch: SearchData })
             var tempInput = document.createElement('input');
             tempInput.value = `${window.location.href}?data=${encodeURIComponent(queryParams)}`;
