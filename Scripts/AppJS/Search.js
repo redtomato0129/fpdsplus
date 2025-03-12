@@ -441,7 +441,6 @@ $(document).ready(function () {
             dataType: "json",
             async: false,
             success: function (result) {
-                debugger;
                 const myParam = urlParams.get('data');
                 let paramData;
                 if (myParam) {
@@ -2551,6 +2550,7 @@ $(document).on('click', '#btnSearch', function (event,copyClipBoard) {
             return;
         }
         if (typeof copyClipBoard != 'undefined' && copyClipBoard.data) {
+            $(".radiocheck[value='OTSB']").click()
             data = "{FullSearch:" + JSON.stringify(copyClipBoard.data.FullSearch) + "}";  
 
         }
@@ -3773,7 +3773,7 @@ function GetSocioEconomic() {
                 //    var text = result[i].abbreviation;
                 //    var value = result[i].business_type_code;
                 //    $("#SBusiness").append($("<li><input id=" + text + " class='Socioec' type='checkbox' value=" + value + " style='height:13px;cursor:pointer'><label class='lbl_S001'>  &nbsp;" + text + "</label></li>"));
-                //}
+                //} 
                 //$("#SBusiness").html("");
                 ////$("#SBusiness").append($("<option value=''>~ Select ~</option>"));
                 //for (i = 0; i < result.length; i++) {
@@ -3830,7 +3830,23 @@ function GetSocioEconomic() {
                         //searchPlaceholder: "Search within Grid"
                     }
                 });
-              
+                const urlParams = new URLSearchParams(window.location.search)
+                const myParam = urlParams.get('data');
+                let paramData;
+                if (myParam) {
+                    paramData = JSON.parse(myParam);
+                    if (paramData.FullSearch.business_type_code_list) {
+                        const codeList = paramData.FullSearch.business_type_code_list.split(',')
+                        $('#tbl_Socio input').each(function () {
+                            for (let a = 0; a < codeList.length; a++) {
+                                if (codeList[a] && codeList[a].indexOf(this.value) != -1) {
+                                    this.checked = true;
+                                }
+                            }
+                        });
+                        $("#OKSocioAside").click();
+                    }
+                }
                 if (typeof answerWidgetSocioCheck == 'function') {
                     answerWidgetSocioCheck();
                 }
