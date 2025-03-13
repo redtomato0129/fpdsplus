@@ -132,7 +132,15 @@ function copyToClipboard() {
     })
 }
 $(document).ready(function () {
-  
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('data');
+    let paramData;
+    if (myParam) {
+        paramData = JSON.parse(myParam);
+        MinContractSize = paramData.SimpleSearch.base_and_all_options_value
+        DefaultStartDate = paramData.SimpleSearch.FY;
+        DefaultEndDate = paramData.SimpleSearch.FY_End;
+    }
     set_Helpicon();
     GetUserInfo();
     getSolicitationProcedure();
@@ -426,9 +434,13 @@ $(document).ready(function () {
             dataType: "json",
             async: false,
             success: function (result) {
+                const urlParams = new URLSearchParams(window.location.search);
+                const myParam = urlParams.get('data');
+                let paramData;
+                if (myParam) {
+                    paramData = JSON.parse(myParam);
+                }
                 if (result.length > 0) {
-
-                   
                     $(':radio[value="ALL"]').prop('checked', true);
                     //
                     var businessSize = getParameterByName("Businesssize");
@@ -470,13 +482,13 @@ $(document).ready(function () {
                             var Code = result[i].Code.split('/');
                             var Description = result[i].Description.split('/');
 
-                            var DeptDesc = Description[0];
-                            var AgencyDesc = Description[1];
-                            var OfficeDesc = Description[2];
+                            var DeptDesc = paramData ? paramData.SimpleSearch.department_name : Description[0];
+                            var AgencyDesc = paramData ? paramData.SimpleSearch.agency_name : Description[1];
+                            var OfficeDesc = paramData ? paramData.SimpleSearch.office_name : Description[2];
 
-                            var DeptCode = Code[0];
-                            var AgencyCode = Code[1];
-                            var OfficeCode = Code[2];
+                            var DeptCode = paramData ? paramData.SimpleSearch.department_code : Code[0];
+                            var AgencyCode = paramData ? paramData.SimpleSearch.agency_code : Code[1];
+                            var OfficeCode = paramData ? paramData.SimpleSearch.funding_office_code : Code[2];
 
                             MarketContext_Department_Bind.push({ DeptDesc: DeptDesc, DeptCode: DeptCode, AgencyDesc: AgencyDesc, AgencyCode: AgencyCode, OfficeDesc: OfficeDesc, OfficeCode: OfficeCode });
                         }
@@ -497,7 +509,16 @@ $(document).ready(function () {
                         }
                     }
 
+                    if (paramData && paramData.SimpleSearch.NAICS) {
+                        MarketContext_NaicsCode = [];
+                        paramData.SimpleSearch.NAICS.split(',').forEach((item, index) => {
+                            MarketContext_NaicsCode.push({
+                                Description: paramData.SimpleSearch.naics_name.split(',')[index],
+                                Code: item
+                            })
+                        });
 
+                    }
                     // ################## Bind MarketContext Data ################## //
 
 
@@ -2120,9 +2141,8 @@ $(document).ready(function () {
         $("#SolicitationDDL").val("");
     });
 
-    const urlParams = new URLSearchParams(window.location.search);
-    var myParam = urlParams.get('data');
-    let paramData = null;
+    
+   
     if (myParam) {
         paramData = JSON.parse(myParam);
         $('#btnSearch').trigger('click', { data: paramData });
@@ -3029,10 +3049,19 @@ $(document).on('click', '#btnSearch', function (event, copyClipBoard) {
         var ExcelRow = [];
         //console.log('[webTeaming_getInitialSearchResults]', NAICS, naics_family, business_type_code_list, '500000', business_size, department_code, agency_code, '2017', solicitation_code, funding_office_code);
 
-        var data = "{SimpleSearch:" + JSON.stringify(SearchData) + "}";
+       
         if (typeof copyClipBoard != 'undefined' && copyClipBoard.isCopyClipBoard) {
-           
-            const queryParams = JSON.stringify({ SimpleSearch: data })
+            SearchData.department_name = $("#txtdept_2").val();
+            SearchData.agency_name = $("#txtagency_2").val();
+            SearchData.office_name = $("#txtoffice_2").val();
+            SearchData.naics_name = "";
+            let customIndexNaics = 0;
+            SearchData.NAICS.split(',').forEach((item, index) => {
+                customIndexNaics = index == 0 ? 2 : customIndexNaics + 1
+                SearchData.naics_name = SearchData.naics_name + `${index != 0 ? ',' : ''}`
+                    + $(`#txtnaicsdesc_${customIndexNaics}`).val();
+            })
+            const queryParams = JSON.stringify({ SimpleSearch: SearchData })
             var tempInput = document.createElement('input');
             tempInput.value = `${window.location.href}?data=${encodeURIComponent(queryParams)}`;
             document.body.appendChild(tempInput);
@@ -3042,9 +3071,11 @@ $(document).on('click', '#btnSearch', function (event, copyClipBoard) {
             document.body.removeChild(tempInput);
             return;
         }
+        var data = "{SimpleSearch:" + JSON.stringify(SearchData) + "}";
         if (typeof copyClipBoard != 'undefined' && copyClipBoard.data) {
-          //  copyClipBoard.data.SimpleSearch = JSON.parse(copyClipBoard.data.SimpleSearch);
-            data = copyClipBoard.data.SimpleSearch;
+            //  copyClipBoard.data.SimpleSearch = JSON.parse(copyClipBoard.data.SimpleSearch);
+            $(`.radiocheck[value='${copyClipBoard.data.SimpleSearch.business_size}']`).click()
+            data = "{SimpleSearch:" + JSON.stringify(copyClipBoard.data.SimpleSearch) + "}";
 
         }
         var excelData = {};
@@ -4300,7 +4331,23 @@ function GetSocioEconomicAside() {
                         //searchPlaceholder: "Search within Grid"
                     }
                 });
-
+                const urlParams = new URLSearchParams(window.location.search)
+                const myParam = urlParams.get('data');
+                let paramData;
+                if (myParam) {
+                    paramData = JSON.parse(myParam);
+                    if (paramData.SimpleSearch.type_of_set_aside) {
+                        const codeList = paramData.SimpleSearch.type_of_set_aside.split(',')
+                        $('#tbl_SocioAside input').each(function () {
+                            for (let a = 0; a < codeList.length; a++) {
+                                if (codeList[a] && codeList[a].indexOf(this.value) != -1) {
+                                    this.checked = true;
+                                }
+                            }
+                        });
+                        $("#OKSocioAside").click();
+                    }
+                }
                 if (typeof answerWidgetSocioCheck == 'function') {
                     answerWidgetSocioAsideCheck();
                 }
@@ -6800,7 +6847,7 @@ $(document).on('click', '#OKSocioAside', function () {
         OKSocioAside.push({ value: this.value, text: this.id });
     });
 
-    $('#MysocioAside').modal('toggle');
+    $('#MysocioAside').modal('hide');
 
     SocioCountAside();
 });
