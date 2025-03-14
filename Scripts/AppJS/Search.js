@@ -2550,7 +2550,7 @@ $(document).on('click', '#btnSearch', function (event,copyClipBoard) {
             return;
         }
         if (typeof copyClipBoard != 'undefined' && copyClipBoard.data) {
-            $(".radiocheck[value='OTSB']").click()
+            $(`.radiocheck[value='${copyClipBoard.data.FullSearch.business_size}']`).click()
             data = "{FullSearch:" + JSON.stringify(copyClipBoard.data.FullSearch) + "}";  
 
         }
