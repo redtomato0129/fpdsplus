@@ -225,11 +225,9 @@ $(document).ready(function () {
             if (myParam) {
                 paramData = JSON.parse(myParam);
             }
-            $('#txtposteddatestart').datepicker('setDate', paramData && paramData.SearchOpportunity ?
-                paramData.SearchOpportunity.PosteDateStart : today);
+            $('#txtposteddatestart').datepicker('setDate',today);
 
-            $('#txtposteddateend').datepicker('setDate', paramData && paramData.SearchOpportunity ?
-                paramData.SearchOpportunity.PosteDateEnd : new Date());
+            $('#txtposteddateend').datepicker('setDate',new Date());
         }
 
         setTimeout(function () {
@@ -458,6 +456,16 @@ $(document).ready(function () {
                     }
 
 
+                    if (paramData && paramData.SearchOpportunity.NAICS) {
+                        MarketContext_NaicsCode = [];
+                        paramData.SearchOpportunity.NAICS.split(',').forEach((item, index) => {
+                            MarketContext_NaicsCode.push({
+                                Description: paramData.SearchOpportunity.naics_name.split(',')[index],
+                                Code: item
+                            })
+                        });
+
+                    }
                     // ################## Bind MarketContext Data ################## //
 
                     // ============================================ NaicsCode ========================================= //
@@ -579,16 +587,7 @@ $(document).ready(function () {
                 if (paramData) {
                     $("#txtbasetype").val(paramData.SearchOpportunity.BaseType);
                 }
-                if (paramData && paramData.SearchOpportunity.NAICS) {
-                    MarketContext_NaicsCode = [];
-                    paramData.SearchOpportunity.NAICS.split(',').forEach((item, index) => {
-                        MarketContext_NaicsCode.push({
-                            Description: paramData.SearchOpportunity.naics_name.split(',')[index],
-                            Code: item
-                        })
-                    });
-
-                }
+                
 
 
             },
@@ -1947,6 +1946,8 @@ $(document).ready(function () {
             }
             if (typeof copyClipBoard != 'undefined' && copyClipBoard.data) {
                 //  copyClipBoard.data.SimpleSearch = JSON.parse(copyClipBoard.data.SimpleSearch);
+                $("#txtposteddatestart").val(paramData.SearchOpportunity.PosteDateStart);
+                $("#txtposteddateend").val(paramData.SearchOpportunity.PosteDateEnd);
                 OpportunityData = copyClipBoard.data.SearchOpportunity;
 
             }
