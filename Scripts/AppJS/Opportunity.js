@@ -219,10 +219,17 @@ $(document).ready(function () {
         else {
             var date = new Date();
             var today = new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7);
+            const urlParams = new URLSearchParams(window.location.search);
+            const myParam = urlParams.get('data');
+            let paramData;
+            if (myParam) {
+                paramData = JSON.parse(myParam);
+            }
+            $('#txtposteddatestart').datepicker('setDate', paramData && paramData.SearchOpportunity ?
+                paramData.SearchOpportunity.PosteDateStart : today);
 
-            $('#txtposteddatestart').datepicker('setDate', today);
-
-            $('#txtposteddateend').datepicker('setDate', new Date());
+            $('#txtposteddateend').datepicker('setDate', paramData && paramData.SearchOpportunity ?
+                paramData.SearchOpportunity.PosteDateEnd : new Date());
         }
 
         setTimeout(function () {
@@ -408,6 +415,12 @@ $(document).ready(function () {
             dataType: "json",
             async: false,
             success: function (result) {
+                const urlParams = new URLSearchParams(window.location.search);
+                const myParam = urlParams.get('data');
+                let paramData;
+                if (myParam) {
+                    paramData = JSON.parse(myParam);
+                }
                 if (result.length > 0) {
                     MC_AutoBindData = 1;
                     $(".TypeTwo").trigger("click");
@@ -433,11 +446,11 @@ $(document).ready(function () {
                             var Code = result[i].Code.split('/');
                             var Description = result[i].Description.split('/');
 
-                            var DeptDesc = Description[0];
-                            var AgencyDesc = Description[1];
+                            var DeptDesc = paramData ? paramData.SearchOpportunity.department_name : Description[0];
+                            var AgencyDesc = paramData ? paramData.SearchOpportunity.agency_name : Description[1];
 
-                            var DeptCode = Code[0];
-                            var AgencyCode = Code[1];
+                            var DeptCode = paramData ? paramData.SearchOpportunity.department_code : Code[0];
+                            var AgencyCode = paramData ? paramData.SearchOpportunity.agency_code : Code[1];
 
                             // ####### Dept/Agency Arr ####### //
                             MarketContext_DepartmentBind.push({ DeptDesc: DeptDesc, DeptCode: DeptCode, AgencyDesc: AgencyDesc, AgencyCode: AgencyCode });
@@ -562,6 +575,19 @@ $(document).ready(function () {
                     Type = 'Type2'; // Assign Type as Type2 to search as AdvanceSearch
 
                     // ################## Bind MarketContext Data ################## //
+                }
+                if (paramData) {
+                    $("#txtbasetype").val(paramData.SearchOpportunity.BaseType);
+                }
+                if (paramData && paramData.SearchOpportunity.NAICS) {
+                    MarketContext_NaicsCode = [];
+                    paramData.SearchOpportunity.NAICS.split(',').forEach((item, index) => {
+                        MarketContext_NaicsCode.push({
+                            Description: paramData.SearchOpportunity.naics_name.split(',')[index],
+                            Code: item
+                        })
+                    });
+
                 }
 
 
@@ -1897,9 +1923,19 @@ $(document).ready(function () {
 
 
         function opportunityData(copyClipBoard) {
-            var data = "{SearchOpportunity:" + JSON.stringify(OpportunityData) + "}";
+         
             if (typeof copyClipBoard != 'undefined' && copyClipBoard.isCopyClipBoard) {
-                const queryParams = JSON.stringify({ SearchOpportunity: data })
+                OpportunityData.department_name = $("#txtdept_2").val();
+                OpportunityData.agency_name = $("#txtagency_2").val();
+                OpportunityData.office_name = $("#txtoffice_2").val();
+                OpportunityData.naics_name = "";
+                let customIndexNaics = 0;
+                OpportunityData.NAICS.split(',').forEach((item, index) => {
+                    customIndexNaics = index == 0 ? 2 : customIndexNaics + 1
+                    OpportunityData.naics_name = OpportunityData.naics_name + `${index != 0 ? ',' : ''}`
+                        + $(`#txtnaicsdesc_${customIndexNaics}`).val();
+                })
+                const queryParams = JSON.stringify({ SearchOpportunity: OpportunityData })
                 var tempInput = document.createElement('input');
                 tempInput.value = `${window.location.href.split('?')[0]}?data=${encodeURIComponent(queryParams)}`;
                 document.body.appendChild(tempInput);
@@ -1911,9 +1947,10 @@ $(document).ready(function () {
             }
             if (typeof copyClipBoard != 'undefined' && copyClipBoard.data) {
                 //  copyClipBoard.data.SimpleSearch = JSON.parse(copyClipBoard.data.SimpleSearch);
-                data = copyClipBoard.data.SearchOpportunity;
+                OpportunityData = copyClipBoard.data.SearchOpportunity;
 
             }
+            var data = "{SearchOpportunity:" + JSON.stringify(OpportunityData) + "}";
             var url = "/Opportunity/SearchOpportunity";
             var result = AjaxPost(url, data);
             if (result.Error == "") {
@@ -2497,6 +2534,23 @@ function GetSocioEconomic() {
                         //searchPlaceholder: "Search within Grid"
                     }
                 });
+                const urlParams = new URLSearchParams(window.location.search)
+                const myParam = urlParams.get('data');
+                let paramData;
+                if (myParam) {
+                    paramData = JSON.parse(myParam);
+                    if (paramData.SearchOpportunity.business_type_code_list) {
+                        const codeList = paramData.SearchOpportunity.business_type_code_list.split(',')
+                        $('#tbody_Socio input').each(function () {
+                            for (let a = 0; a < codeList.length; a++) {
+                                if (codeList[a] && codeList[a].indexOf(this.value) != -1) {
+                                    this.checked = true;
+                                }
+                            }
+                        });
+                        $("#OKSocio").click();
+                    }
+                }
 
             }
             else {
@@ -3762,7 +3816,7 @@ $(document).on('click', '#OKSocio', function () {
         $(".OpenMinContSize").val('');
     }
     //console.log("getsoc", OKSocio);
-    $('#Mysocio').modal('toggle');
+    $('#Mysocio').modal('hide');
 
     SocioCount();
 });
