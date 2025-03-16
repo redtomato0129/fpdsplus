@@ -55,7 +55,9 @@ $(document).ready(function () {
             Deal_Expiration_Date: $('#dateexpiry').val(),
             user_id: document.getElementById("userid").value,
             user_domain: document.getElementById("userDomain").value,
-
+            Deal_Award: $('#Award option:selected').text() === "Please Choose one" ? "" : $('#Award option:selected').text(),
+            Deal_Type: $('#DType option:selected').text() === "Please Choose one" ? "" : $('#DType option:selected').text(),
+            Deal_Organization: $('#organizationList option:selected').text() === "Please Choose one" ? "" : $('#organizationList option:selected').text(),
             Description: $('#txtDescription').val(),
         }
 

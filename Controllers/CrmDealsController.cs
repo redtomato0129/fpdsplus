@@ -90,6 +90,9 @@ namespace FedPipelineApplication.Controllers
                         cmd1.Parameters.AddWithValue("@priority", Deal.Deal_Priority);
                         cmd1.Parameters.AddWithValue("@user_id", Deal.user_id);
                         cmd1.Parameters.AddWithValue("@user_domain", Deal.user_domain);
+                        cmd1.Parameters.AddWithValue("@multi_single_award", Deal.multi_single_award);
+                        cmd1.Parameters.AddWithValue("@deal_type", Deal.deal_type);
+                        cmd1.Parameters.AddWithValue("@organization_id", Deal.organization_id);
 
                         var result = obj.insertExecuteNonQuery_SP(cmd1);
                         if (result > 0 && Deal.Deal_ID != 0)
@@ -172,6 +175,9 @@ namespace FedPipelineApplication.Controllers
                         GetAll.Deal_Priority = rdr["priority"].ToString();
                         GetAll.user_id = Convert.ToInt32(rdr["user_id"]);
                         GetAll.user_domain = rdr["user_domain"].ToString();
+                        GetAll.multi_single_award = rdr["multi_single_award"].ToString();
+                        GetAll.deal_type = rdr["deal_type"].ToString();
+                        GetAll.organization_id = Convert.ToInt32(rdr["organization_id"]);
 
                         deallist.Add(GetAll);
                     }
@@ -243,6 +249,9 @@ namespace FedPipelineApplication.Controllers
                         GetAll.Deal_Priority = rdr["priority"].ToString();
                         GetAll.user_id = Convert.ToInt32(rdr["user_id"]);
                         GetAll.user_domain = rdr["user_domain"].ToString();
+                        GetAll.multi_single_award = rdr["multi_single_award"].ToString();
+                        GetAll.deal_type = rdr["deal_type"].ToString();
+                        GetAll.organization_id = Convert.ToInt32(rdr["organization_id"]);
 
                         deallist.Add(GetAll);
                     }
@@ -310,6 +319,9 @@ namespace FedPipelineApplication.Controllers
                         deal.Deal_Priority = rdr["priority"].ToString();
                         deal.user_id = Convert.ToInt32(rdr["user_id"]);
                         deal.user_domain = rdr["user_domain"].ToString();
+                        deal.multi_single_award = rdr["multi_single_award"].ToString();
+                        deal.deal_type = rdr["deal_type"].ToString();
+                        deal.organization_id = Convert.ToInt32(rdr["organization_id"]);
                     }
                 }
 
@@ -769,13 +781,13 @@ namespace FedPipelineApplication.Controllers
             public int Deal_Govwin_ID { get; set; }
             public string Deal_Priority { get; set; }
             public string Deal_Expiration_Date { get; set; }
-
             public string Deal_govwin_link { get; set; }
             public int user_id { get; set; }
             public string user_domain { get; set; }
-
-
             public string Description { get; set; }
+            public string multi_single_award { get; set; }
+            public string deal_type { get; set; }
+            public int organization_id { get; set; }
 
 
         }
