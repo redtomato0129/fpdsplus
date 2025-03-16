@@ -475,7 +475,7 @@
                                 <div class="col-4">
                                     <div class="mb-3">
                                         <label for="DType" class="form-label d-block">Deal Type</label>
-                                        <select class="form-control" id="DType" aria-label="Default select example">
+                                        <select class="form-control" id="DType" aria-label="Default select example" onchange="onChangeDealType(event)">
                                             <option selected disabled="disabled">Please Choose one</option>
                                             <option value="Commercial">Commercial</option>
                                             <option value="Federal">Federal</option>
@@ -528,7 +528,20 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <div id="peopleSection" class="col-12" style="display:none">
+                                    <div class="row">
+                                        <div class="col-4  ">
+                                                <label for="organizationList" class="form-label d-block">Organization List</label>
+                                                <select class="form-control" id="organizationList">
+                                                </select>
+                                        </div>
+                                        <div class="col-4  ">
+                                            <button class="btn dealbtn" style=" margin-top: 6%; ">
+                                            + Add Organization / People</button>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
                                 <div class="col-4">
                                     <div class="mb-3">
                                         <label for="txtDealNAICS" class="form-label">NAICS</label>

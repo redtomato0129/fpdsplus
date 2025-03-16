@@ -5,6 +5,7 @@ $(document).ready(function () {
     getSubAgencyList();
     GetAwardingSubAgency();
     GetIncumbent();
+    GetOrganizationList();
     //if (len == 6) {
     //    $('#txtnaicscode_2').val();
     //    /*  $('#txtnaicscode_2').val(Naics);*/
@@ -423,6 +424,32 @@ $(document).on('click', '#OKSocio', function () {
     SocioCount();
 });
 
+function GetOrganizationList() {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        url: "/CrmPeople/GetOrganizationListAll",
+        /* result = AjaxPost(url, data);*/
+        dataType: "json",
+        async: false,
+        success: function (result) {
+            //result = JSON.parse(result)
+            let html = '<option selected disabled="disabled">Please Choose one</option>';
+            if (result.records.length > 0) {
+                const data = result.records;                
+                for (let i = 0; i < data.length; i++) {
+                    html = html + `<option value="${data[i].organization_id}">${data[i].name}</option>`;
+                }
+            }
+            $("#organizationList").html(html)
+            $('.Apploader').hide();
+        },
+        error: function ajaxError(err) {
+            swal("", err);
+            $('.Apploader').hide();
+        }
+    });
+}
 function SocioCount() {
 
     $('.OpenMinContSize').val(OKSocio[0].value);
@@ -1436,43 +1463,6 @@ function GetDealById(dealId) {
         //;
         var result = AjaxPost(url, data);
 
-
-        // var Deal_ID = result.deal.dealDeal_ID;
-
-
-        /*var Created_Date = result.deal.dealdeallist[i].created_datetime*/
-        //var SolicitationNumber = result.deal.dealDeal_SolicitationNumber;
-
-        //var status = result.deal.dealDeal_Status;
-
-        //var stage = result.deal.dealDeal_Stage;
-        //var funding_agency_code = result.deal.dealDeal_Funding_Agency_code;
-        //var funding_agency_name = result.deal.dealDeal_Funding_Agency_Name;
-        //var funding_sub_agency_code = result.deal.dealDeal_funding_sub_agency_code;
-        //var funding_sub_agency_name = result.deal.dealDeal_funding_sub_agency_name;
-        //var awarding_agency_code = result.deal.dealDeal_awarding_agency_code;
-        //var awarding_agency_name = result.deal.dealDeal_awarding_agency_code;
-        //var award_type = result.deal.dealDeal_Award_Type;
-        //var set_aside = result.deal.dealDeal_Set_Aside;
-        //var set_aside_description = result.deal.dealset_aside_description;
-        //var naics = result.deal.dealDeal_naics_code;
-
-        //var naics_description = result.deal.dealDeal_naics_code;
-        //var psc_code = result.deal.dealDeal_PSC_code;
-        //var psc_description = result.deal.dealDeal_PSC_Description;
-        //var incumbent_name = result.deal.dealincumbent_name;
-        //var incumbent_uei = result.deal.dealincumbent_uei;
-        //var potential_award_amount = result.deal.dealDeal_Potential_Award_Amount;
-        //var expiration_date = result.deal.dealDeal_Expiration_Date;
-        //var govwin_id = result.deal.dealDeal_Govwin_ID;
-
-        //var govwin_link = result.deal.dealDeal_govwin_link;
-        //var priority = result.deal.dealDeal_Priority;
-        //var user_id = result.deal.dealuser_id;
-
-        //var user_domain = result.deal.dealuser_domain;
-
-
     $("#heading").html(`<strong>${result.deal.Deal_Title}</strong>`)
         $('#txtDealFundingAgencyName').val(result.deal.Deal_Funding_Agency_Name);
         $('#txtDealSamGovLink').val(result.deal.Deal_SamGov_Link);
@@ -1510,3 +1500,14 @@ function GetDealById(dealId) {
 
         $('#txtDescription').val(result.deal.Description);
     }
+
+
+function onChangeDealType(event) {
+    console.log("data", event.currentTarget.value)
+    if (event.currentTarget.value == 'Commercial') {
+        $("#peopleSection").show()
+    } else {
+        $("#peopleSection").hide()
+    }
+
+}

@@ -263,6 +263,52 @@ namespace FedPipelineApplication.Controllers
 
         }
 
+        public string GetOrganizationListAll()
+        {
+            List<OrganizationDetails> organizationList = new List<OrganizationDetails>();
+            string UserDomain = Session["User_Domain"].ToString();
+            using (SqlConnection con = new SqlConnection(MainCon))
+            {
+                con.Open();
+                var sp = "crm_organization_get";
+
+                using (SqlCommand cmd = new SqlCommand(sp, con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                   
+                    cmd.Parameters.AddWithValue("@user_domain", UserDomain);
+                    DataSet ds = obj.getDataSet_SP(cmd);
+                    if (ds.Tables["data"].Rows.Count > 0)
+                    {
+                        foreach (DataRow dr2 in ds.Tables["data"].Rows)
+                        {
+                            OrganizationDetails organization = new OrganizationDetails();
+                            organization.organization_id = Convert.ToInt32((dr2["organization_id"]));
+                            organization.name = (dr2["name"].ToString());
+                            organization.phone = (dr2["phone"].ToString());
+                            organization.email_address = (dr2["email_address"].ToString());
+                            organization.address = (dr2["address"].ToString());
+                            organization.city = (dr2["city"].ToString());
+                            organization.state = (dr2["state"].ToString());
+                            organization.zip_code = (dr2["zip_code"].ToString());
+                            organization.notes = (dr2["Notes"].ToString());
+                            organization.user_id = Convert.ToInt32((dr2["user_id"]));
+                            organization.uei = (dr2["UEI"].ToString());
+                            organization.cage_code = (dr2["CageCode"].ToString());
+
+                            organizationList.Add(organization);
+                        }
+                    }
+
+                }
+
+                con.Close();
+            }
+            // var pageSize = 15;
+           
+            return new JavaScriptSerializer().Serialize(new { records = organizationList });
+
+        }
 
         public string GetOrganizationById(int organizationId)
         {
