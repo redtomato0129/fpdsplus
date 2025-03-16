@@ -362,7 +362,7 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="mb-3">
-                                        <label for="txtDealtitle" autocomplete='off' class="form-label">Title <span style="color:red;">*</span></label>
+                                        <label for="txtDealtitle" autocomplete='off' class="form-label">Title<span style="color:red;">*</span></label>
                                         <input type="text" class="form-control" id="txtdealtitle"
                                                aria-describedby="emailHelp">
                                     </div>
@@ -386,7 +386,7 @@
 
                                 <div class="col-4">
                                     <div class="mb-3">
-                                        <label for="status" class="form-label d-block">Status <span style="color:red;">*</span></label>
+                                        <label for="status" class="form-label d-block">Status<span style="color:red;">*</span></label>
                                         <select class="form-control" id="DDStatus" aria-label="Please choose One " required>
                                             <option selected disabled="disabled">Please Choose one</option>
                                             <option value="Awarded">Awarded</option>
@@ -402,9 +402,9 @@
 
                                 <div class="col-4">
                                     <div class="mb-3">
-                                        <label for="stage" class="form-label d-block">Stage <span style="color:red;">*</span></label>
+                                        <label for="stage" class="form-label d-block">Stage<span style="color:red;">*</span></label>
                                         <select class="form-control" id="DDdealsstage" aria-label="Default select example">
-                                            <option selected>Please Choose one</option>
+                                            <option selected disabled="disabled">Please Choose one</option>
                                             <option value="Identify">Identify</option>
                                             <option value="Qualify">Qualify</option>
                                             <option value="Pursue">Pursue</option>
@@ -415,7 +415,6 @@
                                     </div>
                                 </div>
 
-
                                 <div class="col-4">
                                     <div class="mb-3">
                                         <label for="txtDealDueDate" class="form-label">RFP Release Date<span style="color:red;">*</span></label>
@@ -424,23 +423,11 @@
                                     </div>
                                 </div>
 
-                                <div class="col-4" hidden>
-
-                                    <div class="mb-3">
-                                        <label for="txtDealFundingAgencyCode" class="form-label">Funding Agency </label>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text btndeptrowclear" id="btnfundingagencyclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="fa-solid fa-xmark"></i></span>
-
-                                            <input type="text" class="form-control" id="txtDealFundingAgencyCode">
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="col-4">
                                     <div class="mb-3">
                                         <label for="DDAwardType" class="form-label d-block">Award Type</label>
                                         <select class="form-control" id="DDAwardType" aria-label="Default select example">
-                                            <option selected>Please Choose one</option>
+                                            <option selected disabled="disabled">Please Choose one</option>
                                             <option value="Award Notice">Award Notice</option>
                                             <option value="Combined Synopsis/Solicitation">Combined Synopsis/Solicitation</option>
                                             <option value="Fair Opportunity / Limited Sources Justification">Fair Opportunity / Limited Sources Justification</option>
@@ -452,34 +439,73 @@
                                             <option value="Modification/Amendment/Cancel">Modification/Amendment/Cancel</option>
                                             <option value="Presolicitation">Presolicitation</option>
                                             <option value="Sale of Surplus Property">Sale of Surplus Property</option>
-
                                             <option value="Solicitation">Solicitation</option>
-
                                             <option value="Sources Sought">Sources Sought</option>
                                             <option value="Special Notice">Special Notice</option>
-
-
-
                                         </select>
 
                                     </div>
                                 </div>
 
                                 <div class="col-4">
+                                    <div class="mb-3">
+                                        <label for="DDAward" class="form-label d-block">Multi/Single Award</label>
+                                        <select class="form-control" id="DDAward" aria-label="Default select example">
+                                            <option selected disabled="disabled">Please Choose one</option>
+                                            <option value="Single Award">Single Award</option>
+                                            <option value="Multi Award">Multiple Award</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label for="DDPriority" class="form-label d-block">Priority<span style="color:red;">*</span></label>
+                                        <select class="form-control" id="Priority" aria-label="Default select example">
+                                            <option selected disabled="disabled" value="">Please Choose one</option>
+                                            <option value="Low">Low</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="High">High</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label for="DType" class="form-label d-block">Deal Type</label>
+                                        <select class="form-control" id="DType" aria-label="Default select example">
+                                            <option selected disabled="disabled">Please Choose one</option>
+                                            <option value="Commercial">Commercial</option>
+                                            <option value="Federal">Federal</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-4" hidden>
 
                                     <div class="mb-3">
-                                        <label for="txtDealFundingSubAgencyCode" class="form-label">Funding Sub Agency </label>
+                                        <label for="txtDealFundingAgencyCode" class="form-label">Funding Agency</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text btndeptrowclear" id="btnfundingagencyclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="fa-solid fa-xmark"></i></span>
+
+                                            <input type="text" class="form-control" id="txtDealFundingAgencyCode">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+
+                                    <div class="mb-3">
+                                        <label for="txtDealFundingSubAgencyCode" class="form-label">Funding Sub Agency</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text btndeptrowclear" id="btnsubfundingagencyclear" data-toggle="tooltip" title="Click to clear the data in this row"><i class="fa-solid fa-xmark"></i></span>
                                             <input type="text" class="form-control" id="txtDealFundingSubAgencyCode">
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
-
 
                                 <div class="col-4" hidden>
                                     <div class="mb-3">
@@ -502,10 +528,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
 
                                 <div class="col-4">
                                     <div class="mb-3">
@@ -533,11 +555,8 @@
                                             <label for="txtSetAside" class="form-label">Set Aside</label><span class="req"></span>
                                             <input type="text" class="form-control OpenMinContSize" id="txtSetAside" onkeyup="onSetAsideCodeChange()" />
                                         </div>
-
-
                                     </div>
                                 </div>
-
 
                                 <div class="col-4">
                                     <div class="mb-3">
@@ -548,8 +567,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
 
                                 <div class="col-4">
                                     <div class="mb-3">
@@ -562,18 +579,6 @@
                                 </div>
 
 
-                                <div class="col-4">
-                                    <div class="mb-3">
-                                        <label for="DDPriority" class="form-label d-block">Priority <span style="color:red;">*</span></label>
-                                        <select class="form-control" id="Priority" aria-label="Default select example">
-                                            <option selected  disabled="disabled" value="">Please Choose one</option>
-                                            <option value="Low">Low</option>
-                                            <option value="Medium">Medium</option>
-                                            <option value="High">High</option>
-
-                                        </select>
-                                    </div>
-                                </div>
 
                                 @*<div class="col-4">
             <div class="mb-3">
@@ -584,8 +589,6 @@
 
 
                                 <div class="col-4">
-
-
                                     <div class="mb-3">
                                         <label for="txtDealPotentialAwardAmount" class="" number-separator">Award Amount  $k</label>
                                         <input type="number" class="form-control removearrow" id="txtDealPotentialAwardAmount">
