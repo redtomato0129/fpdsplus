@@ -279,7 +279,10 @@ function saveData() {
         var result = AjaxPost(url, data);
         if (result && result.records.length > 0) {
             var len = result.records.length;
-
+            if (typeof GetOrganizationListAll != "undefined") {
+                GetOrganizationListAll();
+                $("#addOrganizationModal").modal('hide')
+            }
             if (len > 0) {
                 const organizationId = result.records[0].organization_id;
                 if (peopleArray.length != 0) {
@@ -386,7 +389,7 @@ function fetchOrganizationList(searchText = "", pageNo=0) {
     var result = AjaxPost(url, data);
     if (result && result.records.length > 0) {
         var len = result.records.length;
-      
+       
         var filldata = "";
         if (len > 0) {
             for (var i = 0; i < len; i++) {
@@ -416,46 +419,10 @@ function GeneratePaging(searchKeyword, pagesCount, currentPage) {
             fetchOrganizationList(searchKeyword, page - 1)
         }
     });
-   /* var html = "";
-    if (currentPage == 1) {
-        html += '<li class="page-item disabled"> <a class="page-link" href="#" tabindex="-1"> Previous</a> </li > ';
-    }
-    else {
-        html += '<li class="page-item"  onclick=fetchOrganizationList("' + searchKeyword + '",' + (currentPage - 1) + ')> <a class="page-link" href = "#" tabindex = "-1"> Previous</a> </li> ';
-    }
-
-    for (var i = 0; i < pagesCount; i++) {
-        var pageNo = i + 1;
-        if (currentPage == pageNo) {
-            html += ' <li class="page-item active"><a class="page-link" href="#">' + pageNo + '</a></li>'
-        }
-        else {
-            html += ' <li onclick=fetchOrganizationList("' + searchKeyword + '",' + pageNo + ') class="page-item"><a class="page-link" href="#">' + pageNo + '</a></li>'
-        }
-
-    }
-
-    if (currentPage == pagesCount) {
-        html += '<li class="page-item disabled" > <a class="page-link" href = "#" > Next</a ></li> ';
-    }
-    else {
-        html += '<li class="page-item" onclick=fetchOrganizationList("' + searchKeyword + '"",' + (currentPage + 1) + ')> <a class="page-link" href = "#" > Next</a ></li>';
-    }
-
-
-
-    $("#pagingPeopleUL").html(html);*/
-
-
 
 }
 
 function OnPeopleSearch(event) {
-   /* if (event.keyCode === 13) {
-        var searchKeyword = event.currentTarget.value;
-        fetchOrganizationList(searchKeyword);
-    }*/
-
     var searchKeyword = event.currentTarget.value;
     if (searchKeyword.length > 2) {
 

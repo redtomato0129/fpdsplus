@@ -5,7 +5,7 @@ $(document).ready(function () {
     getSubAgencyList();
     GetAwardingSubAgency();
     GetIncumbent();
-    GetOrganizationList();
+    GetOrganizationListAll();
     //if (len == 6) {
     //    $('#txtnaicscode_2').val();
     //    /*  $('#txtnaicscode_2').val(Naics);*/
@@ -424,7 +424,7 @@ $(document).on('click', '#OKSocio', function () {
     SocioCount();
 });
 
-function GetOrganizationList() {
+function GetOrganizationListAll() {
     $.ajax({
         type: "POST",
         contentType: "application/json;charset=utf-8",
@@ -1500,7 +1500,6 @@ function GetDealById(dealId) {
 
         $('#txtDescription').val(result.deal.Description);
     }
-
 
 function onChangeDealType(event) {
     console.log("data", event.currentTarget.value)

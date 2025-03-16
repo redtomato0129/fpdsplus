@@ -311,7 +311,7 @@
             background-color: #fff;
         }
 
-        
+
 
         .ui-widget {
             font-family: Verdana,Arial,sans-serif;
@@ -319,7 +319,6 @@
         }
 
         .ui-autocomplete.ui-widget {
-           
             font-size: 16px;
         }
 
@@ -334,7 +333,8 @@
         }
     </style>
     <script src="~/Scripts/AppJS/AddDeals.js"></script>
-    
+    <script src="~/Scripts/AppJS/DealPeople.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.1/jquery.twbsPagination.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script>
         function addCommas(str) {
@@ -530,17 +530,18 @@
                                 </div>
                                 <div id="peopleSection" class="col-12" style="display:none">
                                     <div class="row">
-                                        <div class="col-4  ">
-                                                <label for="organizationList" class="form-label d-block">Organization List</label>
-                                                <select class="form-control" id="organizationList">
-                                                </select>
+                                        <div class="col-4">
+                                            <label for="organizationList" class="form-label d-block">Organization List</label>
+                                            <select class="form-control" id="organizationList">
+                                            </select>
                                         </div>
-                                        <div class="col-4  ">
-                                            <button class="btn dealbtn" style=" margin-top: 6%; ">
-                                            + Add Organization / People</button>
+                                        <div class="col-4">
+                                            <button class="btn dealbtn"type="button" style="margin-top: 6%;" onclick="addOrganizationModal()">
+                                                + Add Organization / People
+                                            </button>
                                         </div>
                                     </div>
-                                   
+
                                 </div>
                                 <div class="col-4">
                                     <div class="mb-3">
@@ -594,11 +595,11 @@
 
 
                                 @*<div class="col-4">
-            <div class="mb-3">
-                <label for="txtDealNAICSDescription" class="form-label">NAICS Description</label>
-                <input type="text" class="form-control" id="txtDealNAICSDescription">
-            </div>
-        </div>*@
+                                        <div class="mb-3">
+                                            <label for="txtDealNAICSDescription" class="form-label">NAICS Description</label>
+                                            <input type="text" class="form-control" id="txtDealNAICSDescription">
+                                        </div>
+                                    </div>*@
 
 
                                 <div class="col-4">
@@ -617,11 +618,11 @@
                                 </div>
 
                                 @*<div class="col-4" hidden>
-            <div class="mb-3">
-                <label for="txtDealIncumbentUEI" class="form-label">Incumbent UEI</label>
-                <input type="text" class="form-control" id="txtDealIncumbentUEI">
-            </div>
-        </div>*@
+                                        <div class="mb-3">
+                                            <label for="txtDealIncumbentUEI" class="form-label">Incumbent UEI</label>
+                                            <input type="text" class="form-control" id="txtDealIncumbentUEI">
+                                        </div>
+                                    </div>*@
 
                                 <div class="col-4">
                                     <div class="mb-3">
@@ -632,67 +633,67 @@
 
 
                                 @*<div class="col-4">
-            <div class="mb-3">
-                <label for="txtDealGovwinLink" class="form-label"> Govwin Link</label>
-                <input type="text" class="form-control" id="txtDealGovwinLink">
-            </div>
-        </div>*@
+                                        <div class="mb-3">
+                                            <label for="txtDealGovwinLink" class="form-label"> Govwin Link</label>
+                                            <input type="text" class="form-control" id="txtDealGovwinLink">
+                                        </div>
+                                    </div>*@
 
 
 
 
 
                                 @*<div class="col-4">
-            <div class="mb-3">
-                <label for="txtDealFundingAgencyName" class="form-label">Funding Agency Name</label>
-                <input type="text" class="form-control" id="txtDealFundingAgencyName">
-            </div>
-        </div>
+                                        <div class="mb-3">
+                                            <label for="txtDealFundingAgencyName" class="form-label">Funding Agency Name</label>
+                                            <input type="text" class="form-control" id="txtDealFundingAgencyName">
+                                        </div>
+                                    </div>
 
 
 
-        <div class="col-4">
+                                    <div class="col-4">
 
-            <div class="mb-3">
-                <label for="txtDealPSCDescription" class="form-label">PSC Description</label>
-                <input type="text" class="form-control" id="txtDealPSCDescription">
-            </div>
-        </div>
-
-
+                                        <div class="mb-3">
+                                            <label for="txtDealPSCDescription" class="form-label">PSC Description</label>
+                                            <input type="text" class="form-control" id="txtDealPSCDescription">
+                                        </div>
+                                    </div>
 
 
 
 
 
-        <div class="col-4">
-            <div class="mb-3">
-                <label for="txtDealAwardingAgencyName" class="form-label">Awarding Agency Name</label>
-                <input type="text" class="form-control" id="txtDealAwardingAgencyName">
-            </div>
-        </div>
-
-        <div class="col-4">
-            <div class="mb-3">
-                <label for="txtDealFundingSubAgencyCode" class="form-label">Funding Sub Agency Code</label>
-                <input type="text" class="form-control" id="txtDealFundingSubAgencyCode">
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="mb-3">
-                <label for="txtDealFundingSubAgencyName" class="form-label">Funding Sub Agency Name</label>
-                <input type="text" class="form-control" id="txtDealFundingSubAgencyName">
-            </div>
-        </div>
 
 
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <label for="txtDealAwardingAgencyName" class="form-label">Awarding Agency Name</label>
+                                            <input type="text" class="form-control" id="txtDealAwardingAgencyName">
+                                        </div>
+                                    </div>
 
-        <div class="col-8">
-            <div class="mb-3">
-                <label for="txSetAsideDescription" class="form-label">SetAside Description</label>
-                <textarea class="form-control" id="txSetAsideDescription" rows="1"></textarea>
-            </div>
-        </div>*@
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <label for="txtDealFundingSubAgencyCode" class="form-label">Funding Sub Agency Code</label>
+                                            <input type="text" class="form-control" id="txtDealFundingSubAgencyCode">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <label for="txtDealFundingSubAgencyName" class="form-label">Funding Sub Agency Name</label>
+                                            <input type="text" class="form-control" id="txtDealFundingSubAgencyName">
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-8">
+                                        <div class="mb-3">
+                                            <label for="txSetAsideDescription" class="form-label">SetAside Description</label>
+                                            <textarea class="form-control" id="txSetAsideDescription" rows="1"></textarea>
+                                        </div>
+                                    </div>*@
 
 
 
@@ -726,11 +727,11 @@
 
                                 @*<div class="col-4">
 
-            <div class="mb-3">
-                <label for="user_domain" class="form-label"> User Domain</label>
-                <input type="text" class="form-control" id="user_domain">
-            </div>
-        </div>*@
+                                        <div class="mb-3">
+                                            <label for="user_domain" class="form-label"> User Domain</label>
+                                            <input type="text" class="form-control" id="user_domain">
+                                        </div>
+                                    </div>*@
                                 <div class="col-12">
                                     <div class="mb-3">
                                         <label for="txtDescription" class="form-label">Description</label>
@@ -741,7 +742,7 @@
                                 <div class="col-12 float-right">
                                     <button class="btn dealbtn float-right" type="button" id="SaveDeal">Save</button>
                                 </div>
-</form>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -1411,6 +1412,94 @@
         </div>
     </div>
 
+    <div class="modal fade" id="addOrganizationModal" tabindex="-1" aria-labelledby="exampleModalLabel" role="dialog"
+         data-backdrop="static" data-keyboard="false" aria-modal="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable" style="max-width:80%">
+            <div class="modal-content">
+
+                <div class="modal-body pb-5">
+
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-11">
+
+                                    </div>
+                                    <div class="col-1" style="
+    float: right;
+    text-align: right;
+"><i class="fa fa-times" aria-hidden="true" id="closeDealModal" onclick="closeOrgModal()" style="cursor:pointer"></i></div>
+                                </div>
+                                <div style="clear: both">
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <form class="row g-3">
+
+                            <div class="col-md-4 mb-3">
+                                <label for="orgName" autocomplete="off" class="form-label">Organization Name <span style="color:red">*</span></label>
+                                <input type="text" class="form-control" id="orgName" aria-describedby="orgName" maxlength="200" name="newOrgaName" autocomplete="newOrgName">
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="inputPhone" class="form-label">Phone</label>
+                                <input type="text" class="form-control" id="inputPhone" maxlength="20" name="orgPhone" autocomplete="orgPhone">
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="inputEmail4" class="form-label">Email <span style="color:red">*</span></label>
+                                <input type="email" class="form-control" id="inputEmail4" maxlength="200" name="orgEmail" autocomplete="orgEmail">
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="inputAddress" class="form-label">Address @*<span style="color:red">*</span>*@</label>
+                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" maxlength="100"
+                                       name="orgAddress" autocomplete="orgAddress">
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="inputCity" class="form-label">City @*<span style="color:red">*</span>*@</label>
+                                <input type="text" class="form-control" id="inputCity" maxlength="50" name="orgCity" autocomplete="orgCity">
+                            </div>
+                            <div class="col-md-2 mb-2">
+                                <label for="inputState" class="form-label">State @*<span style="color:red">*</span>*@</label>
+                                <input type="text" class="form-control" id="inputState" maxlength="5" name="orgState" autocomplete="orgState">
+                            </div>
+                            <div class="col-md-2 mb-2">
+                                <label for="inputZip" class="form-label">Zip Code @*<span style="color:red">*</span>*@</label>
+                                <input type="text" class="form-control" id="inputZip" maxlength="10" name="orgZip" autocomplete="orgZip">
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="inputUEI" class="form-label">UEI</label>
+                                <input type="text" class="form-control" id="inputUEI" maxlength="20" name="orgUei" autocomplete="orgUei">
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="inputCage" class="form-label">Cage Code</label>
+                                <input type="text" class="form-control" id="inputCage" maxlength="20" name="orgCode" autocomplete="orgCode">
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="inputNotes" class="form-label">Notes</label>
+                                <textarea class="form-control" id="inputNotes" rows="3" maxlength="500" name="orgNote" autocomplete="orgNote"></textarea>
+                            </div>
+
+                            <div class="col-8" id="peopleHtml">
+
+                            </div>
+                            <div class="col-4">
+                                <div class="history-tl-container">
+                                    <h1 class="recent-heading-title-email" style=""></h1>
+                                    <ul id="poulateAddPeople" style="overflow-y: auto; height: 308px; width: 480px; margin-left: 58px;" class="tl">
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
