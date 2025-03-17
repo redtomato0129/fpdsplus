@@ -55,10 +55,26 @@ $(document).ready(function () {
             Deal_Expiration_Date: $('#dateexpiry').val(),
             user_id: document.getElementById("userid").value,
             user_domain: document.getElementById("userDomain").value,
-            Deal_Award: $('#Award option:selected').text() === "Please Choose one" ? "" : $('#Award option:selected').text(),
-            Deal_Type: $('#DType option:selected').text() === "Please Choose one" ? "" : $('#DType option:selected').text(),
-            Deal_Organization: $('#organizationList option:selected').text() === "Please Choose one" ? "" : $('#organizationList option:selected').text(),
+            Deal_Award: $('#Award').val() === "" ? "" : $('#Award').val(),
+            Deal_Type: $('#DType').val() === "" ? "" : $('#DType').val(),
+           
             Description: $('#txtDescription').val(),
+        }
+        if (Deal.Deal_Type === 'Commercial') {
+            Deal.Deal_Organization = $('#organizationList').val() === "" ? "" : $('#organizationList').val()
+        } else if (Deal.Deal_Type ==='Federal') {
+            if (!Deal.Deal_funding_sub_agency_code) {
+                swal.fire({
+                    icon: 'error',
+                    title: "Deal",
+                    text: "Please select Funding Sub Agency",
+                    type: "error",
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    timer: 3000,
+                })
+                return;
+            }
         }
 
         if (Deal.Deal_Title !== "" && Deal.Deal_Status !== "" && Deal.Deal_Stage !== "" && Deal.Deal_Priority !== "" && Deal.Deal_RFP_Release_Date !== "") {
@@ -337,7 +353,8 @@ $(document).ready(function () {
     $('#btnsubfundingagencyclear').click(function () {
 
         $('#txtDealFundingSubAgencyCode').val('');
-
+        SubAgencyCode = "";
+        Deal_Funding_Agency_Name = "";
 
 
     });
@@ -1481,7 +1498,9 @@ function GetDealById(dealId) {
         $('#DDdealsstage option:selected').text(result.deal.Deal_Stage);
         $('#txtDealAwardingAgencycode').val(result.deal.Deal_Awarding_Agency_code);
         $('#txtDealAwardingSubAgencycode').val(result.deal.Deal_Awarding_Agency_name);
-        $('#txtDealFundingSubAgencyCode').val(result.deal.Deal_funding_sub_agency_code);
+        $('#txtDealFundingSubAgencyCode').val(result.deal.Deal_Funding_Agency_Name);
+        SubAgencyCode = result.deal.Deal_funding_sub_agency_code;
+        SubAgencyNameDeals = result.deal.Deal_Funding_Agency_Name;
         $('#txtDealFundingSubAgencyName').val(result.deal.Deal_funding_sub_agency_name);
         $('#DDAwardType').val(result.deal.Deal_Award_Type);
         $('#txtDealPSC').val(result.deal.Deal_PSC_code);
@@ -1499,7 +1518,7 @@ function GetDealById(dealId) {
 
         $('#userid').val(result.deal.user_id);
         $('#user_domain').val(result.deal.user_domain);
-
+        $("#DType").val(result.deal.deal_type)
         $('#txtDescription').val(result.deal.Description);
     }
 

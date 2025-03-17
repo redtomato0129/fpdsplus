@@ -92,7 +92,9 @@ namespace FedPipelineApplication.Controllers
                         cmd1.Parameters.AddWithValue("@user_domain", Deal.user_domain);
                         cmd1.Parameters.AddWithValue("@multi_single_award", Deal.multi_single_award);
                         cmd1.Parameters.AddWithValue("@deal_type", Deal.deal_type);
-                        cmd1.Parameters.AddWithValue("@organization_id", Deal.organization_id);
+                        //cmd1.Parameters.AddWithValue("@organization_id", Deal.organization_id.HasValue ?DBNull.Value :
+                        //    Deal.organization_id);
+                        cmd1.Parameters.Add(new SqlParameter("@organization_id", Deal.organization_id));
 
                         var result = obj.insertExecuteNonQuery_SP(cmd1);
                         if (result > 0 && Deal.Deal_ID != 0)
@@ -177,7 +179,7 @@ namespace FedPipelineApplication.Controllers
                         GetAll.user_domain = rdr["user_domain"].ToString();
                         GetAll.multi_single_award = rdr["multi_single_award"].ToString();
                         GetAll.deal_type = rdr["deal_type"].ToString();
-                        GetAll.organization_id = Convert.ToInt32(rdr["organization_id"]);
+                        GetAll.organization_id = rdr["organization_id"].ToString();
 
                         deallist.Add(GetAll);
                     }
@@ -251,7 +253,7 @@ namespace FedPipelineApplication.Controllers
                         GetAll.user_domain = rdr["user_domain"].ToString();
                         GetAll.multi_single_award = rdr["multi_single_award"].ToString();
                         GetAll.deal_type = rdr["deal_type"].ToString();
-                        GetAll.organization_id = Convert.ToInt32(rdr["organization_id"]);
+                        GetAll.organization_id = rdr["organization_id"].ToString();
 
                         deallist.Add(GetAll);
                     }
@@ -321,7 +323,7 @@ namespace FedPipelineApplication.Controllers
                         deal.user_domain = rdr["user_domain"].ToString();
                         deal.multi_single_award = rdr["multi_single_award"].ToString();
                         deal.deal_type = rdr["deal_type"].ToString();
-                        deal.organization_id = Convert.ToInt32(rdr["organization_id"]);
+                        deal.organization_id = rdr["organization_id"].ToString();
                     }
                 }
 
@@ -787,7 +789,7 @@ namespace FedPipelineApplication.Controllers
             public string Description { get; set; }
             public string multi_single_award { get; set; }
             public string deal_type { get; set; }
-            public int organization_id { get; set; }
+            public string organization_id { get; set; }
 
 
         }
