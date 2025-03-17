@@ -55,13 +55,12 @@ $(document).ready(function () {
             Deal_Expiration_Date: $('#dateexpiry').val(),
             user_id: document.getElementById("userid").value,
             user_domain: document.getElementById("userDomain").value,
-            Deal_Award: $('#Award').val() === "" ? "" : $('#Award').val(),
+            multi_single_award: $('#Award').val() === "" ? "" : $('#Award').val(),
             Deal_Type: $('#DType').val() === "" ? "" : $('#DType').val(),
-           
             Description: $('#txtDescription').val(),
         }
         if (Deal.Deal_Type === 'Commercial') {
-            Deal.Deal_Organization = $('#organizationList').val() === "" ? "" : $('#organizationList').val()
+            Deal.organization_id = $('#organizationList').val() === "" ? "" : $('#organizationList').val()
         } else if (Deal.Deal_Type ==='Federal') {
             if (!Deal.Deal_funding_sub_agency_code) {
                 swal.fire({
@@ -1515,16 +1514,21 @@ function GetDealById(dealId) {
         $('#txtSetAside').val(result.deal.Deal_Set_Aside_Description);
         //$('#dateexpiry').val(new Date(result.deal.Deal_Expiration_Date));
         document.getElementById("dateexpiry").valueAsDate = new Date(result.deal.Deal_Expiration_Date);
-
+    $("#Award").val(result.deal.multi_single_award);
+  
+    $('#Award option:selected').text(!result.deal.multi_single_award ? "Please Choose one"
+        : result.deal.multi_single_award);
         $('#userid').val(result.deal.user_id);
         $('#user_domain').val(result.deal.user_domain);
-        $("#DType").val(result.deal.deal_type)
+    $("#DType").val(result.deal.deal_type);
+    $("#organizationList").val(result.deal.organization_id)
+    $("#DType").trigger("change")
         $('#txtDescription').val(result.deal.Description);
     }
 
-function onChangeDealType(event) {
-    console.log("data", event.currentTarget.value)
-    if (event.currentTarget.value == 'Commercial') {
+function onChangeDealType() {
+   
+    if ($("#DType").val() == 'Commercial') {
         $("#peopleSection").show()
     } else {
         $("#peopleSection").hide()
