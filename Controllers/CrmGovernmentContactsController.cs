@@ -18,7 +18,7 @@ namespace FedPipelineApplication.Controllers
         SendEmail mail = new SendEmail();
         SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["PipelineConn"].ConnectionString);
         string MainCon = ConfigurationManager.ConnectionStrings["PipelineDataConn"].ToString();
-        // GET: CrmPeople
+
         public ActionResult Index()
         {
             return View();
@@ -85,153 +85,90 @@ namespace FedPipelineApplication.Controllers
             return new JavaScriptSerializer().Serialize(new { response, error });
         }
 
-        public string GetOrganizationList(int pageNo, string keyword, int pageSize)
+        public string GetGovernmentContactsList()
         {
-            List<OrganizationDetails> organizationList = new List<OrganizationDetails>();
-            string UserDomain = Session["User_Domain"].ToString();
+            List<ContactDetails> contactList = new List<ContactDetails>();
             using (SqlConnection con = new SqlConnection(MainCon))
             {
                 con.Open();
-                var sp = string.IsNullOrEmpty(keyword) ? "crm_organization_get" : "crm_organization_search";
+                var sp = "crm_government_contacts_get_list";
                
                 using (SqlCommand cmd = new SqlCommand(sp, con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    if (!string.IsNullOrEmpty(keyword))
-                    {
-                        cmd.Parameters.AddWithValue("@organization_name", keyword);
-                       
-                    }
-                    cmd.Parameters.AddWithValue("@user_domain", UserDomain);
+                    
                     DataSet ds = obj.getDataSet_SP(cmd);
                     if (ds.Tables["data"].Rows.Count > 0)
                     {
                         foreach (DataRow dr2 in ds.Tables["data"].Rows)
                         {
-                            OrganizationDetails organization = new OrganizationDetails();
-                            organization.organization_id = Convert.ToInt32((dr2["organization_id"]));
-                            organization.name = (dr2["name"].ToString());
-                            organization.phone = (dr2["phone"].ToString());
-                            organization.email_address = (dr2["email_address"].ToString());
-                            organization.address = (dr2["address"].ToString());
-                            organization.city = (dr2["city"].ToString());
-                            organization.state = (dr2["state"].ToString());
-                            organization.zip_code = (dr2["zip_code"].ToString());
-                            organization.notes = (dr2["Notes"].ToString());
-                            organization.user_id = Convert.ToInt32((dr2["user_id"]));
-                            organization.uei = (dr2["UEI"].ToString());
-                            organization.cage_code = (dr2["CageCode"].ToString());
-
-                            organizationList.Add(organization);
+                            ContactDetails contact = new ContactDetails();
+                            contact.government_contact_id = Convert.ToInt32((dr2["government_contact_id"]));
+                            contact.name = (dr2["name"].ToString());
+                            contact.phone = (dr2["phone"].ToString());
+                            contact.email_address = (dr2["email_address"].ToString());
+                            contact.address = (dr2["address"].ToString());
+                            contact.city = (dr2["city"].ToString());
+                            contact.state = (dr2["state"].ToString());
+                            contact.zip_code = (dr2["zip_code"].ToString());
+                            contact.notes = (dr2["Notes"].ToString());
+                            contact.funding_agency_code = (dr2["funding_agency_code"].ToString());
+                            contact.funding_sub_agency_code = (dr2["funding_sub_agency_code"].ToString());
+                            contact.funding_office_code = (dr2["funding_office_code"].ToString());
+                            contact.user_id = Convert.ToInt32((dr2["user_id"]));
+                            contactList.Add(contact);
                         }
                     }
-
                 }
-
                 con.Close();
             }
-           // var pageSize = 15;
-            var paginatedResult = organizationList.Skip((pageNo - 1) * pageSize).Take(pageSize).ToList();
-            var pagesCount = Math.Ceiling((double)organizationList.Count / pageSize);
-            return new JavaScriptSerializer().Serialize(new { records = paginatedResult, pagesCount });
+            return new JavaScriptSerializer().Serialize(contactList);
 
         }
 
-        public string GetOrganizationListAll()
+        public string GetGovernmentContactById(int government_contact_id)
         {
-            List<OrganizationDetails> organizationList = new List<OrganizationDetails>();
-            string UserDomain = Session["User_Domain"].ToString();
-            using (SqlConnection con = new SqlConnection(MainCon))
-            {
-                con.Open();
-                var sp = "crm_organization_get";
-
-                using (SqlCommand cmd = new SqlCommand(sp, con))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                   
-                    cmd.Parameters.AddWithValue("@user_domain", UserDomain);
-                    DataSet ds = obj.getDataSet_SP(cmd);
-                    if (ds.Tables["data"].Rows.Count > 0)
-                    {
-                        foreach (DataRow dr2 in ds.Tables["data"].Rows)
-                        {
-                            OrganizationDetails organization = new OrganizationDetails();
-                            organization.organization_id = Convert.ToInt32((dr2["organization_id"]));
-                            organization.name = (dr2["name"].ToString());
-                            organization.phone = (dr2["phone"].ToString());
-                            organization.email_address = (dr2["email_address"].ToString());
-                            organization.address = (dr2["address"].ToString());
-                            organization.city = (dr2["city"].ToString());
-                            organization.state = (dr2["state"].ToString());
-                            organization.zip_code = (dr2["zip_code"].ToString());
-                            organization.notes = (dr2["Notes"].ToString());
-                            organization.user_id = Convert.ToInt32((dr2["user_id"]));
-                            organization.uei = (dr2["UEI"].ToString());
-                            organization.cage_code = (dr2["CageCode"].ToString());
-
-                            organizationList.Add(organization);
-                        }
-                    }
-
-                }
-
-                con.Close();
-            }
-            // var pageSize = 15;
-           
-            return new JavaScriptSerializer().Serialize(new { records = organizationList });
-
-        }
-
-        public string GetOrganizationById(int organizationId)
-        {
-            List<OrganizationDetails> organizationList = new List<OrganizationDetails>();
-            string UserDomain = Session["User_Domain"].ToString();
+            List<ContactDetails> contactList = new List<ContactDetails>();
             using (SqlConnection con = new SqlConnection(MainCon))
             {
                 con.Open();
                 
-
-                using (SqlCommand cmd = new SqlCommand("crm_organization_getByOrganization_id", con))
+                using (SqlCommand cmd = new SqlCommand("crm_government_contacts_get", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                   
-                     cmd.Parameters.AddWithValue("@organization_id", organizationId);
-                    cmd.Parameters.AddWithValue("@user_domain", UserDomain);
+                    cmd.Parameters.AddWithValue("@government_contact_id", government_contact_id);
 
                     DataSet ds = obj.getDataSet_SP(cmd);
                     if (ds.Tables["data"].Rows.Count > 0)
                     {
                         foreach (DataRow dr2 in ds.Tables["data"].Rows)
                         {
-                            OrganizationDetails organization = new OrganizationDetails();
-                            organization.organization_id = Convert.ToInt32((dr2["organization_id"]));
-                            organization.name = (dr2["name"].ToString());
-                            organization.phone = (dr2["phone"].ToString());
-                            organization.email_address = (dr2["email_address"].ToString());
-                            organization.address = (dr2["address"].ToString());
-                            organization.city = (dr2["city"].ToString());
-                            organization.state = (dr2["state"].ToString());
-                            organization.zip_code = (dr2["zip_code"].ToString());
-                            organization.notes = (dr2["Notes"].ToString());
-                            organization.user_id = Convert.ToInt32((dr2["user_id"]));
-                            organization.uei = (dr2["UEI"].ToString());
-                            organization.cage_code = (dr2["CageCode"].ToString());
-
-                            organizationList.Add(organization);
+                            ContactDetails contact = new ContactDetails();
+                            contact.government_contact_id = Convert.ToInt32((dr2["government_contact_id"]));
+                            contact.name = (dr2["name"].ToString());
+                            contact.phone = (dr2["phone"].ToString());
+                            contact.email_address = (dr2["email_address"].ToString());
+                            contact.address = (dr2["address"].ToString());
+                            contact.city = (dr2["city"].ToString());
+                            contact.state = (dr2["state"].ToString());
+                            contact.zip_code = (dr2["zip_code"].ToString());
+                            contact.notes = (dr2["Notes"].ToString());
+                            contact.funding_agency_code = (dr2["funding_agency_code"].ToString());
+                            contact.funding_sub_agency_code = (dr2["funding_sub_agency_code"].ToString());
+                            contact.funding_office_code = (dr2["funding_office_code"].ToString());
+                            contact.user_id = Convert.ToInt32((dr2["user_id"]));
+                            contactList.Add(contact);
                         }
                     }
-
                 }
 
                 con.Close();
             }
-            return new JavaScriptSerializer().Serialize(organizationList);
+            return new JavaScriptSerializer().Serialize(contactList);
 
         }
 
-        public string DeleteOrganization(int organizationId)
+        public string DeleteGovernmentContact(int government_contact_id)
         {
             int result = 0;
             var sp = string.Empty;
@@ -247,18 +184,18 @@ namespace FedPipelineApplication.Controllers
                     con.Open();
                   
 
-                    using (SqlCommand cmd = new SqlCommand("crm_organization_delete", con))
+                    using (SqlCommand cmd = new SqlCommand("crm_government_contacts_delete", con))
                     {
 
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@organization_id", organizationId);
+                        cmd.Parameters.AddWithValue("@government_contact_id", government_contact_id);
                         result = cmd.ExecuteNonQuery();
                         if (result > 0)
                         {
                             response = "Success";
                         }
                         else
-                            response = "fail";
+                            response = "Failed";
 
                     }
                     con.Close();
@@ -266,7 +203,7 @@ namespace FedPipelineApplication.Controllers
             }
             catch (Exception ex)
             {
-                response = "fail";
+                response = "Error";
                 error = ex.Message;
             }
             return new JavaScriptSerializer().Serialize(new { response, error });
@@ -275,7 +212,7 @@ namespace FedPipelineApplication.Controllers
 
         public class ContactDetails
         {
-            public int organization_id { get; set; }
+            public int government_contact_id { get; set; }
             public string name { get; set; }
             public string phone { get; set; }
             public string email_address { get; set; }
