@@ -1,4 +1,61 @@
 ﻿$(document).ready(function () {
+    if (!$("#scriptEleSocio").length) {
+        let scriptEleSocio = document.createElement("script");
+        scriptEleSocio.id = "scriptEleSocio";
+        scriptEleSocio.setAttribute("src", "/Scripts/AppJS/Search.js");
+        document.body.appendChild(scriptEleSocio);
+        scriptEleSocio.onload = function () {
+          
+        }
+        const subAgency = `
+                        <div class="col-md-4 mb-2 pr-2">
+                           <label for="basic-url">Sub Agency</label>
+							<!-- <span style="color:red;">*</span>-->
+                           <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text OpenAgencyPopup " id="btnagencyrowclear" data-toggle="tooltip" 
+								 title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                              </div>
+                              <input type="text" class="DIS_002 form-control txtagency" id="txtagency_2"  />
+								<label id="lblagency_2" style="display:none;" class="lblagency lblclr"></label>
+                           </div>
+                        </div>
+                     `
+       const fundingOffice = `
+                        <div class="col-md-4 mb-2 pr-2">
+                           <label for="basic-url">Office Name</label>
+							 <!-- <span style="color:red;">*</span>-->
+                           <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text OpenOffcPopup" data-toggle="tooltip" id="btnofficerowclear"
+								 title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                              </div>
+                              <input type="text" class="DIS_002 form-control txtoffice" id="txtoffice_2" />
+							  <label id="lbloffice_2" style="display:none;" class="lbloffice lblclr"></label>
+                           </div>
+                        </div>
+					`
+        const html = ` 
+					
+                        <div class="col-md-4 mb-2 pr-2" >
+                           <label for="basic-url">Agency</label>
+                           <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text OpenDeptPopup btndeptrowclear"
+								 data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                              </div>
+                              <input type="text" class="DIS_002 form-control txtdept" id="txtdept_2"     />
+								<label id="lbldept_2" style="display:none;" class="lbldept lblclr"></label>
+                           </div>
+                        </div>
+                     
+
+						   ${subAgency}
+							${fundingOffice}
+
+							`;
+        $("#agencyHtml").html(html);
+    }
     fetchGovernmentContactsList();
 });
 
@@ -22,7 +79,7 @@ function copyToClipboard() {
 }
 
 function addContactModal() {
-    $("#addContactModal").modal('toggle')
+    $("#addContactModal").modal('show')
     $("#contactName").val('');
     $("#contactPhone").val('');
     $("#contactEmail").val('');
@@ -54,15 +111,15 @@ function fetchGovernmentContactsList() {
         url: "/CrmGovernmentContacts/GetGovernmentContactsList",
         success: function (result) {
             result = jQuery.parseJSON(result);
-            if (result.records && result.records != 0) {
-                const records = result.records;
+            if (result.length != 0) {
+                const records = result;
                 let html = "";
                 for (let a = 0; a < records.length; a++) {
                     html = html + `<tr>
                                             <td>${a + 1}</td>
                                             <td>${records[a].name}</td>
                                             <td>${records[a].phone}</td>
-                                            <td>${records[a].email}</td>
+                                            <td>${records[a].email_address}</td>
                                             <td>${records[a].funding_agency_name}</td>
                                             <td>${records[a].funding_sub_agency_name}</td>
                                             <td>${records[a].funding_office_name}</td>
@@ -84,13 +141,20 @@ function fetchGovernmentContactsList() {
 function saveData() {
     const contactData = {
         name: $("#contactName").val(),
+        title: $("#contactTitle").val(),
         phone: $("#contactPhone").val(),
-        email: $("#contactEmail").val(),
+        email_address: $("#contactEmail").val(),
         address: $("#contactAddress").val(),
         city: $("#contactCity").val(),
         state: $("#contactState").val(),
         zip_code: $("#contactZip").val(),
-        notes: $("#contactNotes").val(),
+        notes: $("#inputNotes").val(),
+        funding_agency_name: $("#txtdept_2").val(),
+        funding_agency_code: $("#lbldept_2").text(),
+        funding_sub_agency_name: $("#txtagency_2").val(),
+        funding_sub_agency_code: $("#lblagency_2").text(),
+        funding_office_name: $("#txtoffice_2").val(),
+        funding_office_code: $("#lbloffice_2").text()
     }
     if (!checkContactValidation(contactData)) {
         Swal.fire({
@@ -106,12 +170,12 @@ function saveData() {
     }   
     $.ajax({
         type: "POST",
-        data: { contactData },
+        data: contactData ,
         enctype: 'multipart/form-data',
         url: "/CrmGovernmentContacts/AddGovernmentContact",
         success: function (result) {
             result = jQuery.parseJSON(result);
-            if (result == "Success") {
+            if (result.response == "Success") {
                 swal.fire({
                     title: "Success",
                     text: "Contact Added Successfully",

@@ -14,7 +14,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="~/Content/AppCss/people.css" />
-
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <div class="container-fluid">
     <div class="row">
         <div class="col-11">
@@ -94,33 +95,39 @@
                             <input type="text" class="form-control" id="contactName" aria-describedby="orgName" maxlength="200" name="newOrgaName" autocomplete="newOrgName">
                         </div>
                         <div class="col-md-4 mb-2">
+                            <label for="contactTitle" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="contactTitle" maxlength="20" name="orgTitle" autocomplete="orgPhone">
+                        </div>
+                        <div class="col-md-4 mb-2">
                             <label for="inputPhone" class="form-label">Phone</label>
                             <input type="text" class="form-control" id="contactPhone" maxlength="20" name="orgPhone" autocomplete="orgPhone">
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="inputEmail4" class="form-label">Email <span style="color:red">*</span></label>
-                            <input type="email" class="form-control" id="contactEmail" maxlength="200" name="orgEmail" autocomplete="orgEmail" >
+                            <input type="email" class="form-control" id="contactEmail" maxlength="200" name="orgEmail" autocomplete="orgEmail">
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="inputAddress" class="form-label">Address @*<span style="color:red">*</span>*@</label>
-                            <input type="text" class="form-control" id="contactAddress" placeholder="1234 Main St" maxlength="100" 
+                            <input type="text" class="form-control" id="contactAddress" placeholder="1234 Main St" maxlength="100"
                                    name="orgAddress" autocomplete="orgAddress">
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="inputCity" class="form-label">City @*<span style="color:red">*</span>*@</label>
-                            <input type="text" class="form-control" id="contactCity" maxlength="50"   name="orgCity" autocomplete="orgCity">
+                            <input type="text" class="form-control" id="contactCity" maxlength="50" name="orgCity" autocomplete="orgCity">
                         </div>
-                        <div class="col-md-2 mb-2">
+                        <div class="col-md-4 mb-2">
                             <label for="inputState" class="form-label">State @*<span style="color:red">*</span>*@</label>
                             <input type="text" class="form-control" id="contactState" maxlength="5" name="orgState" autocomplete="orgState">
                         </div>
-                        <div class="col-md-2 mb-2">
+                        <div class="col-md-4 mb-2">
                             <label for="inputZip" class="form-label">Zip Code @*<span style="color:red">*</span>*@</label>
-                            <input type="text" class="form-control" id="contactZip" maxlength="10"  name="orgZip" autocomplete="orgZip">
+                            <input type="text" class="form-control" id="contactZip" maxlength="10" name="orgZip" autocomplete="orgZip">
                         </div>
 
                         @*agency and sub agency*@
+                        <div id="agencyHtml" class="row col-12 mb-3 ml-0 pl-0">
 
+                        </div>
                         <div class="col-md-12 mb-3">
                             <label for="inputNotes" class="form-label">Notes</label>
                             <textarea class="form-control" id="inputNotes" rows="3" maxlength="500" name="orgNote" autocomplete="orgNote"></textarea>

@@ -45,7 +45,8 @@ namespace FedPipelineApplication.Controllers
                             contact.government_contact_id = Convert.ToInt32((dr2["government_contact_id"]));
                             contact.name = (dr2["name"].ToString());
                             contact.phone = (dr2["phone"].ToString());
-                            contact.email_address = (dr2["email_address"].ToString());
+                            contact.title = (dr2["title"].ToString());
+                            contact.email_address = (dr2["email"].ToString());
                             contact.address = (dr2["address"].ToString());
                             contact.city = (dr2["city"].ToString());
                             contact.state = (dr2["state"].ToString());
@@ -140,11 +141,16 @@ namespace FedPipelineApplication.Controllers
                     using (SqlCommand cmd = new SqlCommand(sp, con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@government_contact_id", contact.government_contact_id);
+                        if (contact.government_contact_id != 0)
+                        {
+                            cmd.Parameters.AddWithValue("@government_contact_id", contact.government_contact_id);
+                        }
+                        
                         cmd.Parameters.AddWithValue("@name", contact.name);
                         cmd.Parameters.AddWithValue("@phone", contact.phone);
+                        cmd.Parameters.AddWithValue("@title", contact.title);
                         cmd.Parameters.AddWithValue("@address", contact.address);
-                        cmd.Parameters.AddWithValue("@email_address", contact.email_address);
+                        cmd.Parameters.AddWithValue("@email", contact.email_address);
                         cmd.Parameters.AddWithValue("@city", contact.city);
                         cmd.Parameters.AddWithValue("@state", contact.state);
                         cmd.Parameters.AddWithValue("@zip_code", contact.zip_code);
@@ -223,6 +229,7 @@ namespace FedPipelineApplication.Controllers
         {
             public int government_contact_id { get; set; }
             public string name { get; set; }
+            public string title { get; set; }
             public string phone { get; set; }
             public string email_address { get; set; }
             public string address { get; set; }
