@@ -24,67 +24,6 @@ namespace FedPipelineApplication.Controllers
             return View();
         }
 
-        public string AddGovernmentContact(ContactDetails contact)
-        {
-            int result = 0;
-            var sp = string.Empty;
-            var error = string.Empty;
-            var response = string.Empty;
-           
-            string Error = "";
-
-            string UserID = Session["User_ID"].ToString();
-            try
-            {
-                using (SqlConnection con = new SqlConnection(MainCon))
-                {
-                    con.Open();
-                    if(contact.government_contact_id != 0)
-                    {
-                        sp = "crm_government_contacts_update";
-                    }
-                    else
-                    {
-                        sp = "crm_government_contacts_insert";
-                    }
-
-                    using (SqlCommand cmd = new SqlCommand(sp, con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@government_contact_id", contact.government_contact_id);
-                        cmd.Parameters.AddWithValue("@name", contact.name);
-                        cmd.Parameters.AddWithValue("@phone", contact.phone);
-                        cmd.Parameters.AddWithValue("@address", contact.address);
-                        cmd.Parameters.AddWithValue("@email_address", contact.email_address);
-                        cmd.Parameters.AddWithValue("@city", contact.city);
-                        cmd.Parameters.AddWithValue("@state", contact.state);
-                        cmd.Parameters.AddWithValue("@zip_code", contact.zip_code);
-                        cmd.Parameters.AddWithValue("@Notes", contact.notes);
-                        cmd.Parameters.AddWithValue("@funding_agency_code", funding_agency_code);
-                        cmd.Parameters.AddWithValue("@funding_sub_agency_code", contact.funding_sub_agency_code);
-                        cmd.Parameters.AddWithValue("@funding_office_code", contact.funding_office_code);
-                        cmd.Parameters.AddWithValue("@user_id", UserID);
-
-                        result = obj.insertExecuteNonQuery_SP(cmd);
-                        if (result > 0)
-                        {
-                            response = "Success";
-                        }
-                        else
-                            response = "Failed";
-
-                    }
-                    con.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                response = "Error";
-                error = ex.Message;
-            }
-            return new JavaScriptSerializer().Serialize(new { response, error });
-        }
-
         public string GetGovernmentContactsList()
         {
             List<ContactDetails> contactList = new List<ContactDetails>();
@@ -113,8 +52,11 @@ namespace FedPipelineApplication.Controllers
                             contact.zip_code = (dr2["zip_code"].ToString());
                             contact.notes = (dr2["Notes"].ToString());
                             contact.funding_agency_code = (dr2["funding_agency_code"].ToString());
+                            contact.funding_agency_name = (dr2["funding_agency_name"].ToString());
                             contact.funding_sub_agency_code = (dr2["funding_sub_agency_code"].ToString());
+                            contact.funding_sub_agency_name = (dr2["funding_sub_agency_name"].ToString());
                             contact.funding_office_code = (dr2["funding_office_code"].ToString());
+                            contact.funding_office_name = (dr2["funding_office_name"].ToString());
                             contact.user_id = Convert.ToInt32((dr2["user_id"]));
                             contactList.Add(contact);
                         }
@@ -154,8 +96,11 @@ namespace FedPipelineApplication.Controllers
                             contact.zip_code = (dr2["zip_code"].ToString());
                             contact.notes = (dr2["Notes"].ToString());
                             contact.funding_agency_code = (dr2["funding_agency_code"].ToString());
+                            contact.funding_agency_name = (dr2["funding_agency_name"].ToString());
                             contact.funding_sub_agency_code = (dr2["funding_sub_agency_code"].ToString());
+                            contact.funding_sub_agency_name = (dr2["funding_sub_agency_name"].ToString());
                             contact.funding_office_code = (dr2["funding_office_code"].ToString());
+                            contact.funding_office_name = (dr2["funding_office_name"].ToString());
                             contact.user_id = Convert.ToInt32((dr2["user_id"]));
                             contactList.Add(contact);
                         }
@@ -166,6 +111,70 @@ namespace FedPipelineApplication.Controllers
             }
             return new JavaScriptSerializer().Serialize(contactList);
 
+        }
+
+        public string AddGovernmentContact(ContactDetails contact)
+        {
+            var sp = string.Empty;
+            int result = 0;
+            var error = string.Empty;
+            var response = string.Empty;
+
+            string Error = "";
+
+            string UserID = Session["User_ID"].ToString();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(MainCon))
+                {
+                    con.Open();
+                    if (contact.government_contact_id != 0)
+                    {
+                        sp = "crm_government_contacts_update";
+                    }
+                    else
+                    {
+                        sp = "crm_government_contacts_insert";
+                    }
+
+                    using (SqlCommand cmd = new SqlCommand(sp, con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@government_contact_id", contact.government_contact_id);
+                        cmd.Parameters.AddWithValue("@name", contact.name);
+                        cmd.Parameters.AddWithValue("@phone", contact.phone);
+                        cmd.Parameters.AddWithValue("@address", contact.address);
+                        cmd.Parameters.AddWithValue("@email_address", contact.email_address);
+                        cmd.Parameters.AddWithValue("@city", contact.city);
+                        cmd.Parameters.AddWithValue("@state", contact.state);
+                        cmd.Parameters.AddWithValue("@zip_code", contact.zip_code);
+                        cmd.Parameters.AddWithValue("@Notes", contact.notes);
+                        cmd.Parameters.AddWithValue("@funding_agency_code", contact.funding_agency_code);
+                        cmd.Parameters.AddWithValue("@funding_agency_name", contact.funding_agency_name);
+                        cmd.Parameters.AddWithValue("@funding_sub_agency_code", contact.funding_sub_agency_code);
+                        cmd.Parameters.AddWithValue("@funding_sub_agency_name", contact.funding_sub_agency_name);
+                        cmd.Parameters.AddWithValue("@funding_office_code", contact.funding_office_code);
+                        cmd.Parameters.AddWithValue("@funding_office_name", contact.funding_office_name);
+                        cmd.Parameters.AddWithValue("@user_id", UserID);
+
+                        result = obj.insertExecuteNonQuery_SP(cmd);
+                        if (result > 0)
+                        {
+                            response = "Success";
+                        }
+                        else
+                            response = "Failed";
+
+                    }
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                response = "Error";
+                error = ex.Message;
+            }
+            return new JavaScriptSerializer().Serialize(new { response, error });
         }
 
         public string DeleteGovernmentContact(int government_contact_id)
@@ -222,8 +231,11 @@ namespace FedPipelineApplication.Controllers
             public string zip_code { get; set; }
             public string notes { get; set; }
             public string funding_agency_code { get; set; }
+            public string funding_agency_name { get; set; }
             public string funding_sub_agency_code { get; set; }
+            public string funding_sub_agency_name { get; set; }
             public string funding_office_code { get; set; }
+            public string funding_office_name { get; set; }
             public int user_id { get; set; }
 
 

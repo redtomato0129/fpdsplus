@@ -331,6 +331,7 @@
     <Compile Include="Controllers\CrmActivitiesController.cs" />
     <Compile Include="Controllers\CrmDashboardController.cs" />
     <Compile Include="Controllers\CrmDealsController.cs" />
+    <Compile Include="Controllers\CrmGovernmentContactsController.cs" />
     <Compile Include="Controllers\CrmPeopleController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DownloadController.cs" />
@@ -5695,6 +5696,7 @@
     <Content Include="Scripts\AppJS\FpdsCPARSPage.js" />
     <Content Include="Scripts\AppJS\FpdsPage.js" />
     <Content Include="Scripts\AppJS\FpdsSearch.js" />
+    <Content Include="Scripts\AppJS\GovernmentContacts.js" />
     <Content Include="Scripts\AppJS\HdrDataGrid.js" />
     <Content Include="Scripts\AppJS\HdrDrilldown.js" />
     <Content Include="Scripts\AppJS\HdrUEIplus.js" />
@@ -6416,6 +6418,7 @@
     <Content Include="Views\Scraper\NewNamespace.cshtml" />
     <Content Include="Views\TaxonomyUNSPSC\Index.cshtml" />
     <Content Include="Views\Scraper\ChatAI.cshtml" />
+    <Content Include="Views\CrmGovernmentContacts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

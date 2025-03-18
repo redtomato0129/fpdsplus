@@ -32,7 +32,7 @@
             <h1 class="heading-title"><strong>Government Contacts</strong></h1>
         </div>
         <div class="col-6 text-right">
-            <button class="btn dealbtn" onclick="addOrganizationModal()">+ Add Government Contacts</button>
+            <button class="btn dealbtn" onclick="addContactModal()">+ Add Government Contacts</button>
         </div>
         <div class="col-12 my-3">
             <nav aria-label="...">
@@ -47,14 +47,17 @@
                 <table id="peopleTable" class="table nowrap table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <th width="60" style="text-align: center;"></th>
-                            <th>Organization</th>
+                            <th width="60" style="text-align: center;">#</th>
+                            <th>Name</th>
                             <th>Phone</th>
                             <th>Email</th>
-                            <th width="60" style="text-align: center;">Edit</th>
+                            <th>Agency</th>
+                            <th>Sub Agency</th>
+                            <th>Office</th>
+                            @*<th width="60" style="text-align: center;">Edit</th>*@
                         </tr>
                     </thead>
-                    <tbody id="organizationDataRenderer">
+                    <tbody id="getGovernmentContacts">
                     </tbody>
                 </table>
             </div>
@@ -65,45 +68,7 @@
     </div>
 </div>
 
-<div id="Divactivity" hidden>
-    <div class="">
-        <div class="row">
-            <div class="col-12">
-                <div class="main_content">
-                    <table id="basic-data-table" class="table nowrap table-striped table-bordered" style="width:100%">
-                        <thead>
-                            <tr>
-
-
-                                <th>Contact</th>
-                                <th>Title</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                               @* <th>Address</th>
-                                <th>City</th>
-                                <th>State</th>
-                                <th>Zip</th>*@
-                                <th>Notes</th>
-                                <th>Edit</th>
-                            </tr>
-                        </thead>
-
-                        <tbody id="peopleListTableRenderer">
-                        </tbody>
-                    </table>
-
-                </div>
-
-
-
-            </div>
-
-        </div>
-
-    </div>
-</div>
-
-<div class="modal fade" id="addOrganizationModal" tabindex="-1" aria-labelledby="exampleModalLabel" role="dialog" 
+<div class="modal fade" id="addContactModal" tabindex="-1" aria-labelledby="exampleModalLabel" role="dialog" 
      data-backdrop="static" data-keyboard="false" aria-modal="true">
     <div class="modal-dialog modal-xl modal-dialog-scrollable" style="max-width:80%">
         <div class="modal-content">
@@ -115,123 +80,54 @@
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-11">
-
+                                    <h3 class="heading" style="float: left; margin-bottom: 20px;">Add Government Contact</h3>
                                 </div>
-                                <div class="col-1" style="
-    float: right;
-    text-align: right;
-"><i class="fa fa-times" aria-hidden="true" id="closeDealModal" onclick="closeOrgModal()" style="cursor:pointer"></i></div>
+                                <div class="col-1" style="float: right; text-align: right;">
+                                    <i class="fa fa-times" aria-hidden="true" id="closeDealModal" onclick="closeContactModal()" style="cursor:pointer"></i>
+                                </div>
                             </div>
-                            <div style="clear: both">
-                                @* <h2 class="heading" style="float: left; margin-bottom: 20px;">Add Organization</h2>*@
-
-                            </div>
-
-
                         </div>
-
                     </div>
                     <form class="row g-3">
-
                         <div class="col-md-4 mb-3">
-                            <label for="orgName" autocomplete="off" class="form-label">Organization Name <span style="color:red">*</span></label>
-                            <input type="text" class="form-control" id="orgName" aria-describedby="orgName" maxlength="200" name="newOrgaName" autocomplete="newOrgName">
+                            <label for="orgName" autocomplete="off" class="form-label">Name <span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="contactName" aria-describedby="orgName" maxlength="200" name="newOrgaName" autocomplete="newOrgName">
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="inputPhone" class="form-label">Phone</label>
-                            <input type="text" class="form-control" id="inputPhone" maxlength="20" name="orgPhone" autocomplete="orgPhone">
+                            <input type="text" class="form-control" id="contactPhone" maxlength="20" name="orgPhone" autocomplete="orgPhone">
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="inputEmail4" class="form-label">Email <span style="color:red">*</span></label>
-                            <input type="email" class="form-control" id="inputEmail4" maxlength="200" name="orgEmail" autocomplete="orgEmail" >
+                            <input type="email" class="form-control" id="contactEmail" maxlength="200" name="orgEmail" autocomplete="orgEmail" >
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="inputAddress" class="form-label">Address @*<span style="color:red">*</span>*@</label>
-                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" maxlength="100" 
+                            <input type="text" class="form-control" id="contactAddress" placeholder="1234 Main St" maxlength="100" 
                                    name="orgAddress" autocomplete="orgAddress">
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="inputCity" class="form-label">City @*<span style="color:red">*</span>*@</label>
-                            <input type="text" class="form-control" id="inputCity" maxlength="50"   name="orgCity" autocomplete="orgCity">
+                            <input type="text" class="form-control" id="contactCity" maxlength="50"   name="orgCity" autocomplete="orgCity">
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="inputState" class="form-label">State @*<span style="color:red">*</span>*@</label>
-                            <input type="text" class="form-control" id="inputState" maxlength="5" name="orgState" autocomplete="orgState">
+                            <input type="text" class="form-control" id="contactState" maxlength="5" name="orgState" autocomplete="orgState">
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="inputZip" class="form-label">Zip Code @*<span style="color:red">*</span>*@</label>
-                            <input type="text" class="form-control" id="inputZip" maxlength="10"  name="orgZip" autocomplete="orgZip">
+                            <input type="text" class="form-control" id="contactZip" maxlength="10"  name="orgZip" autocomplete="orgZip">
                         </div>
-                        @*  <div class="col-md-4 mb-2">
-                                <label for="inputCountry" class="form-label">Country</label>
-                                <input type="text" class="form-control" id="inputCountry">
-                            </div>*@
-                        <div class="col-md-4 mb-2">
-                            <label for="inputUEI" class="form-label">UEI</label>
-                            <input type="text" class="form-control" id="inputUEI" maxlength="20"  name="orgUei" autocomplete="orgUei">
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <label for="inputCage" class="form-label">Cage Code</label>
-                            <input type="text" class="form-control" id="inputCage" maxlength="20"   name="orgCode" autocomplete="orgCode">
-                        </div>
+
+                        @*agency and sub agency*@
+
                         <div class="col-md-12 mb-3">
                             <label for="inputNotes" class="form-label">Notes</label>
                             <textarea class="form-control" id="inputNotes" rows="3" maxlength="500" name="orgNote" autocomplete="orgNote"></textarea>
                         </div>
-                        @* <div class="col-12 mb-2">
-                                <button class="btn dealbtn" type="button" id="AddPeople">+ Add People</button>
-                            </div>*@
-                        <div class="col-8" id="peopleHtml">
-                            @*  <div class="row border p-2">
-                                    <div class="col-md-4 mb-3">
-                                        <label for="contactName" autocomplete="off" class="form-label">Contact Name</label>
-                                        <input type="text" class="form-control" id="contactName" >
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <label for="inputTitle" class="form-label">Title</label>
-                                        <input type="text" class="form-control" id="inputTitle">
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <label for="inputPeoplePhone" class="form-label">Phone</label>
-                                        <input type="text" class="form-control" id="inputPeoplePhone">
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <label for="inputEmail" class="form-label">Email</label>
-                                        <input type="text" class="form-control" id="inputEmail">
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <label for="inputAddress" class="form-label">Address</label>
-                                        <input type="text" class="form-control" id="inputAddress">
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <label for="inputContactCity" class="form-label">City</label>
-                                        <input type="text" class="form-control" id="inputContactCity">
-                                    </div>
-                                    <div class="col-md-2 mb-2">
-                                        <label for="inputContactState" class="form-label">State</label>
-                                        <input type="text" class="form-control" id="inputContactState">
-                                    </div>
-                                    <div class="col-md-2 mb-2">
-                                        <label for="inputContactZip" class="form-label">Zip Code</label>
-                                        <input type="text" class="form-control" id="inputContactZip">
-                                    </div>
-
-                                    <div class="col-md-12 mb-3">
-                                        <label for="inputContactNotes" class="form-label">Notes</label>
-                                        <textarea class="form-control" id="inputContactNotes" rows="3"></textarea>
-                                    </div>
-                                </div>*@
+                        <div class="col-12">
+                            <button class="btn dealbtn float-right" type="button" id="SaveContact" onclick="saveData()">Save</button>
                         </div>
-                        <div class="col-4">
-                            <div class="history-tl-container">
-                                <h1 class="recent-heading-title-email" style=""></h1>
-                                <ul id="poulateAddPeople" style="overflow-y: auto; height: 308px; width: 480px; margin-left: 58px;" class="tl">
-                                </ul>
-                            </div>
-                        </div>
-                       @* <div class="col-12">
-                            <button class="btn dealbtn float-right" type="button" id="SaveOrganization" onclick="saveData()">Save</button>
-                        </div>*@
                     </form>
 
                 </div>
@@ -240,7 +136,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="EditOrganizationModal" tabindex="-1" aria-labelledby="exampleModalLabel" 
+<!--<div class="modal fade" id="EditOrganizationModal" tabindex="-1" aria-labelledby="exampleModalLabel" 
      role="dialog" data-backdrop="static" data-keyboard="false" aria-modal="true">
 <div class="modal-dialog modal-xl modal-dialog-scrollable" style="max-width:80%">
     <div class="modal-content">
@@ -284,22 +180,22 @@
                         <input type="email" class="form-control" id="inputEmailEdit" maxlength="200"  name="editEmail" autocomplete="editEmail">
                     </div>
                     <div class="col-md-4 mb-2">
-                        <label for="inputAddressEdit" class="form-label">Address @*<span style="color:red">*</span>*@</label>
+                        <label for="inputAddressEdit" class="form-label">Address--> @*<span style="color:red">*</span>*@<!--</label>
                         <input type="text" class="form-control" id="inputAddressEdit" placeholder="1234 Main St" maxlength="100" 
                                name="editAddress" autocomplete="editAddress">
                     </div>
                     <div class="col-md-4 mb-2">
-                        <label for="inputCityEdit" class="form-label">City @*<span style="color:red">*</span>*@</label>
+                        <label for="inputCityEdit" class="form-label">City--> @*<span style="color:red">*</span>*@<!--</label>
                         <input type="text" class="form-control" id="inputCityEdit" maxlength="50"  name="editCity" autocomplete="editCity">
                     </div>
                     <div class="col-md-2 mb-2">
-                        <label for="inputStateEdit" class="form-label">State @*<span style="color:red">*</span>*@</label>
+                        <label for="inputStateEdit" class="form-label">State--> @*<span style="color:red">*</span>*@<!--</label>
                         <input type="text" class="form-control" id="inputStateEdit" maxlength="5" name="editState" autocomplete="editState">
                     </div>
                     <div class="col-md-2 mb-2">
-                        <label for="inputZipEdit" class="form-label">Zip Code @*<span style="color:red">*</span>*@</label>
+                        <label for="inputZipEdit" class="form-label">Zip Code--> @*<span style="color:red">*</span>*@<!--</label>
                         <input type="text" class="form-control" id="inputZipEdit" maxlength="10" name="editZip" autocomplete="editZip">
-                    </div>
+                    </div>-->
                    @* <div class="col-md-4 mb-2">
                         <label for="inputUEIEdit" class="form-label">UEI</label>
                         <input type="text" class="form-control" id="inputUEIEdit">
@@ -308,15 +204,15 @@
                         <label for="inputCageEdit" class="form-label">Cage Code</label>
                         <input type="text" class="form-control" id="inputCageEdit" />
                     </div>*@
-                    <div class="col-md-12 mb-3">
+                    <!--<div class="col-md-12 mb-3">
                         <label for="inputNotesEdit" class="form-label">Notes</label>
                         <textarea class="form-control" id="inputNotesEdit" rows="3" maxlength="500" name="editNotes" autocomplete="editNotes"></textarea>
                     </div>
-                    <input type="hidden" id="editOrgId" value="" />
+                    <input type="hidden" id="editOrgId" value="" />-->
                    @*  <div class="col-12 mb-2">
                             <button class="btn dealbtn" type="button" id="AddPeople">+ Add People</button>
                         </div>*@
-                    <div class="col-8" id="peopleHtmlEdit">
+                    <!--<div class="col-8" id="peopleHtmlEdit">
                         
                     </div>
                     <div class="col-4">
@@ -325,14 +221,14 @@
                             <ul id="poulateEditPeople" style="overflow-y: auto; height: 308px; width: 480px; margin-left: 58px;" class="tl">
                             </ul>
                         </div>
-                    </div>
+                    </div>-->
                     @*<div class="col-12">
                         <button class="btn dealbtn float-right" type="button" id="EditOrganization" onclick="updateOrganizationData()">Save</button>
                     </div>*@
-                </form>
+                <!--</form>
 
             </div>
         </div>
     </div>
 </div>
-</div>
+</div>-->
