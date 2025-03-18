@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "E:\\fedpipeline\\fpdsplus-dev\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|e:\\fedpipeline\\fpdsplus-dev\\scripts\\appjs\\adddeals.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:scripts\\appjs\\adddeals.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|e:\\fedpipeline\\fpdsplus-dev\\views\\crmdeals\\adddeal.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:views\\crmdeals\\adddeal.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|e:\\fedpipeline\\fpdsplus-dev\\controllers\\crmdealscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|E:\\fedpipeline\\fpdsplus-dev\\controllers\\crmdealscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:controllers\\crmdealscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|E:\\fedpipeline\\fpdsplus-dev\\controllers\\registerfpdspluscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:controllers\\registerfpdspluscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|e:\\fedpipeline\\fpdsplus-dev\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +18,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "CrmDealsController.cs",
               "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Controllers\\CrmDealsController.cs",
               "RelativeDocumentMoniker": "Controllers\\CrmDealsController.cs",
@@ -44,41 +36,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AddDeals.js",
-              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Scripts\\AppJS\\AddDeals.js",
-              "RelativeDocumentMoniker": "Scripts\\AppJS\\AddDeals.js",
-              "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Scripts\\AppJS\\AddDeals.js",
-              "RelativeToolTip": "Scripts\\AppJS\\AddDeals.js",
-              "ViewState": "AQIAANIFAAAAZGZmZmYwwFIAAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-03-16T21:09:19.401Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AddDeal.cshtml",
-              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Views\\CrmDeals\\AddDeal.cshtml",
-              "RelativeDocumentMoniker": "Views\\CrmDeals\\AddDeal.cshtml",
-              "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Views\\CrmDeals\\AddDeal.cshtml",
-              "RelativeToolTip": "Views\\CrmDeals\\AddDeal.cshtml",
-              "ViewState": "AQIAAAwCAAAAAAAAAAAYwBYCAABdAAAA",
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAIwBAAAAAAAAAADwv50BAABsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-16T02:41:44.187Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "RegisterFPDSplusController.cs",
-              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Controllers\\RegisterFPDSplusController.cs",
-              "RelativeDocumentMoniker": "Controllers\\RegisterFPDSplusController.cs",
-              "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Controllers\\RegisterFPDSplusController.cs",
-              "RelativeToolTip": "Controllers\\RegisterFPDSplusController.cs",
-              "ViewState": "AQIAAIQAAAAAmZmZmZktwBAAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-06T19:23:50.901Z",
+              "WhenOpened": "2025-03-18T02:35:01.941Z",
               "EditorCaption": ""
             }
           ]

@@ -1,0 +1,338 @@
+﻿@{
+    ViewBag.Title = "Government Contacts";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+@*<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>*@
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.1/jquery.twbsPagination.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/Scripts/AppJS/GovernmentContacts.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="~/Content/AppCss/people.css" />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-11">
+            <nav class="breadcrumb" style="padding: 0px 2px; margin-bottom: 10px; background-color:transparent">
+                <a class="breadcrumb-item sear" href="/Dashboard/Index">Dashboard</a>
+                <a class="breadcrumb-item active">Government Contacts</a>
+            </nav>
+        </div>
+        <div class="col-1" id="shareIcon" style="cursor: pointer;">
+            <img src="~/Content/assets/images/share.png" data-toggle="tooltip" data-placement="bottom" title="Share URL" onclick="copyToClipboard()" style="float: right; width: 30px; height: 30px;" />
+        </div>
+    </div>
+    <div class="row justify-content-between align-items-center my-3">
+        <div class="col-6">
+            <h1 class="heading-title"><strong>Government Contacts</strong></h1>
+        </div>
+        <div class="col-6 text-right">
+            <button class="btn dealbtn" onclick="addOrganizationModal()">+ Add Government Contacts</button>
+        </div>
+        <div class="col-12 my-3">
+            <nav aria-label="...">
+                <ul class="pagination justify-content-end" id="pagingUL">
+                   
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col-12 tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <table id="peopleTable" class="table nowrap table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th width="60" style="text-align: center;"></th>
+                            <th>Organization</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th width="60" style="text-align: center;">Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody id="organizationDataRenderer">
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="Divactivity" hidden>
+    <div class="">
+        <div class="row">
+            <div class="col-12">
+                <div class="main_content">
+                    <table id="basic-data-table" class="table nowrap table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+
+
+                                <th>Contact</th>
+                                <th>Title</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                               @* <th>Address</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Zip</th>*@
+                                <th>Notes</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="peopleListTableRenderer">
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="addOrganizationModal" tabindex="-1" aria-labelledby="exampleModalLabel" role="dialog" 
+     data-backdrop="static" data-keyboard="false" aria-modal="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable" style="max-width:80%">
+        <div class="modal-content">
+
+            <div class="modal-body pb-5">
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-11">
+
+                                </div>
+                                <div class="col-1" style="
+    float: right;
+    text-align: right;
+"><i class="fa fa-times" aria-hidden="true" id="closeDealModal" onclick="closeOrgModal()" style="cursor:pointer"></i></div>
+                            </div>
+                            <div style="clear: both">
+                                @* <h2 class="heading" style="float: left; margin-bottom: 20px;">Add Organization</h2>*@
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <form class="row g-3">
+
+                        <div class="col-md-4 mb-3">
+                            <label for="orgName" autocomplete="off" class="form-label">Organization Name <span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="orgName" aria-describedby="orgName" maxlength="200" name="newOrgaName" autocomplete="newOrgName">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputPhone" class="form-label">Phone</label>
+                            <input type="text" class="form-control" id="inputPhone" maxlength="20" name="orgPhone" autocomplete="orgPhone">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputEmail4" class="form-label">Email <span style="color:red">*</span></label>
+                            <input type="email" class="form-control" id="inputEmail4" maxlength="200" name="orgEmail" autocomplete="orgEmail" >
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputAddress" class="form-label">Address @*<span style="color:red">*</span>*@</label>
+                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" maxlength="100" 
+                                   name="orgAddress" autocomplete="orgAddress">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputCity" class="form-label">City @*<span style="color:red">*</span>*@</label>
+                            <input type="text" class="form-control" id="inputCity" maxlength="50"   name="orgCity" autocomplete="orgCity">
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label for="inputState" class="form-label">State @*<span style="color:red">*</span>*@</label>
+                            <input type="text" class="form-control" id="inputState" maxlength="5" name="orgState" autocomplete="orgState">
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label for="inputZip" class="form-label">Zip Code @*<span style="color:red">*</span>*@</label>
+                            <input type="text" class="form-control" id="inputZip" maxlength="10"  name="orgZip" autocomplete="orgZip">
+                        </div>
+                        @*  <div class="col-md-4 mb-2">
+                                <label for="inputCountry" class="form-label">Country</label>
+                                <input type="text" class="form-control" id="inputCountry">
+                            </div>*@
+                        <div class="col-md-4 mb-2">
+                            <label for="inputUEI" class="form-label">UEI</label>
+                            <input type="text" class="form-control" id="inputUEI" maxlength="20"  name="orgUei" autocomplete="orgUei">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputCage" class="form-label">Cage Code</label>
+                            <input type="text" class="form-control" id="inputCage" maxlength="20"   name="orgCode" autocomplete="orgCode">
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="inputNotes" class="form-label">Notes</label>
+                            <textarea class="form-control" id="inputNotes" rows="3" maxlength="500" name="orgNote" autocomplete="orgNote"></textarea>
+                        </div>
+                        @* <div class="col-12 mb-2">
+                                <button class="btn dealbtn" type="button" id="AddPeople">+ Add People</button>
+                            </div>*@
+                        <div class="col-8" id="peopleHtml">
+                            @*  <div class="row border p-2">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="contactName" autocomplete="off" class="form-label">Contact Name</label>
+                                        <input type="text" class="form-control" id="contactName" >
+                                    </div>
+                                    <div class="col-md-4 mb-2">
+                                        <label for="inputTitle" class="form-label">Title</label>
+                                        <input type="text" class="form-control" id="inputTitle">
+                                    </div>
+                                    <div class="col-md-4 mb-2">
+                                        <label for="inputPeoplePhone" class="form-label">Phone</label>
+                                        <input type="text" class="form-control" id="inputPeoplePhone">
+                                    </div>
+                                    <div class="col-md-4 mb-2">
+                                        <label for="inputEmail" class="form-label">Email</label>
+                                        <input type="text" class="form-control" id="inputEmail">
+                                    </div>
+                                    <div class="col-md-4 mb-2">
+                                        <label for="inputAddress" class="form-label">Address</label>
+                                        <input type="text" class="form-control" id="inputAddress">
+                                    </div>
+                                    <div class="col-md-4 mb-2">
+                                        <label for="inputContactCity" class="form-label">City</label>
+                                        <input type="text" class="form-control" id="inputContactCity">
+                                    </div>
+                                    <div class="col-md-2 mb-2">
+                                        <label for="inputContactState" class="form-label">State</label>
+                                        <input type="text" class="form-control" id="inputContactState">
+                                    </div>
+                                    <div class="col-md-2 mb-2">
+                                        <label for="inputContactZip" class="form-label">Zip Code</label>
+                                        <input type="text" class="form-control" id="inputContactZip">
+                                    </div>
+
+                                    <div class="col-md-12 mb-3">
+                                        <label for="inputContactNotes" class="form-label">Notes</label>
+                                        <textarea class="form-control" id="inputContactNotes" rows="3"></textarea>
+                                    </div>
+                                </div>*@
+                        </div>
+                        <div class="col-4">
+                            <div class="history-tl-container">
+                                <h1 class="recent-heading-title-email" style=""></h1>
+                                <ul id="poulateAddPeople" style="overflow-y: auto; height: 308px; width: 480px; margin-left: 58px;" class="tl">
+                                </ul>
+                            </div>
+                        </div>
+                       @* <div class="col-12">
+                            <button class="btn dealbtn float-right" type="button" id="SaveOrganization" onclick="saveData()">Save</button>
+                        </div>*@
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="EditOrganizationModal" tabindex="-1" aria-labelledby="exampleModalLabel" 
+     role="dialog" data-backdrop="static" data-keyboard="false" aria-modal="true">
+<div class="modal-dialog modal-xl modal-dialog-scrollable" style="max-width:80%">
+    <div class="modal-content">
+
+        <div class="modal-body pb-5">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-11">
+
+                            </div>
+                            <div class="col-1" style="
+    float: right;
+    text-align: right;
+"><i class="fa fa-times" aria-hidden="true" id="closeDealModal" onclick="closeEditOrgModal()" style="cursor:pointer"></i></div>
+                        </div>
+                        <div style="clear: both">
+                           
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <form class="row g-3">
+
+                    <div class="col-md-4 mb-3">
+                        <label for="orgNameEdit" class="form-label">Organization Name <span style="color:red">*</span></label>
+                        <input type="text" class="form-control" id="orgNameEdit" aria-describedby="orgName" maxlength="200" 
+                               name="editOrgaName" autocomplete="editOrgName">
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <label for="inputPhoneEdit" class="form-label">Phone</label>
+                        <input type="text" class="form-control" id="inputPhoneEdit" maxlength="20"   name="editPhone" autocomplete="editPhone">
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <label for="inputEmailEdit" class="form-label">Email <span style="color:red">*</span></label>
+                        <input type="email" class="form-control" id="inputEmailEdit" maxlength="200"  name="editEmail" autocomplete="editEmail">
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <label for="inputAddressEdit" class="form-label">Address @*<span style="color:red">*</span>*@</label>
+                        <input type="text" class="form-control" id="inputAddressEdit" placeholder="1234 Main St" maxlength="100" 
+                               name="editAddress" autocomplete="editAddress">
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <label for="inputCityEdit" class="form-label">City @*<span style="color:red">*</span>*@</label>
+                        <input type="text" class="form-control" id="inputCityEdit" maxlength="50"  name="editCity" autocomplete="editCity">
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <label for="inputStateEdit" class="form-label">State @*<span style="color:red">*</span>*@</label>
+                        <input type="text" class="form-control" id="inputStateEdit" maxlength="5" name="editState" autocomplete="editState">
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <label for="inputZipEdit" class="form-label">Zip Code @*<span style="color:red">*</span>*@</label>
+                        <input type="text" class="form-control" id="inputZipEdit" maxlength="10" name="editZip" autocomplete="editZip">
+                    </div>
+                   @* <div class="col-md-4 mb-2">
+                        <label for="inputUEIEdit" class="form-label">UEI</label>
+                        <input type="text" class="form-control" id="inputUEIEdit">
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <label for="inputCageEdit" class="form-label">Cage Code</label>
+                        <input type="text" class="form-control" id="inputCageEdit" />
+                    </div>*@
+                    <div class="col-md-12 mb-3">
+                        <label for="inputNotesEdit" class="form-label">Notes</label>
+                        <textarea class="form-control" id="inputNotesEdit" rows="3" maxlength="500" name="editNotes" autocomplete="editNotes"></textarea>
+                    </div>
+                    <input type="hidden" id="editOrgId" value="" />
+                   @*  <div class="col-12 mb-2">
+                            <button class="btn dealbtn" type="button" id="AddPeople">+ Add People</button>
+                        </div>*@
+                    <div class="col-8" id="peopleHtmlEdit">
+                        
+                    </div>
+                    <div class="col-4">
+                        <div class="history-tl-container">
+                            <h1 class="recent-heading-title-email" style=""></h1>
+                            <ul id="poulateEditPeople" style="overflow-y: auto; height: 308px; width: 480px; margin-left: 58px;" class="tl">
+                            </ul>
+                        </div>
+                    </div>
+                    @*<div class="col-12">
+                        <button class="btn dealbtn float-right" type="button" id="EditOrganization" onclick="updateOrganizationData()">Save</button>
+                    </div>*@
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
