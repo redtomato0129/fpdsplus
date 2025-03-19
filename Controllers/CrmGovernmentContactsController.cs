@@ -24,7 +24,7 @@ namespace FedPipelineApplication.Controllers
             return View();
         }
 
-        public string GetGovernmentContactsList()
+        public string GetGovernmentContactsList(int active)
         {
             List<ContactDetails> contactList = new List<ContactDetails>();
             using (SqlConnection con = new SqlConnection(MainCon))
@@ -35,7 +35,7 @@ namespace FedPipelineApplication.Controllers
                 using (SqlCommand cmd = new SqlCommand(sp, con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    
+                    cmd.Parameters.AddWithValue("@active", active);
                     DataSet ds = obj.getDataSet_SP(cmd);
                     if (ds.Tables["data"].Rows.Count > 0)
                     {

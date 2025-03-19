@@ -64,34 +64,67 @@ function agencyHtml(htmlId) {
        // $("#editAgency").html(html);
     
 }
-function fetchGovernmentContactsList() {
-    $.ajax({
-        type: "POST",
-        data: {},
-        enctype: 'multipart/form-data',
-        url: "/CrmGovernmentContacts/GetGovernmentContactsList",
-        success: function (result) {
-            result = jQuery.parseJSON(result);
-            if (result.length != 0) {
-                const records = result;
-                let html = "";
-                let count = 1;
-                for (let a = 0; a < records.length; a++) {
-                    //if (records[a].active == 1) {
-                        html = html + `<tr id='dt-${a}' object='${JSON.stringify(result[a]).replace(/'/g, "&apos;")}' onclick="editContactModal(${a})">
+function onInputChange() {
+    const name = $("#searchName").val().toLowerCase();
+    const agency = $("#searchSubAgency").val().toLowerCase();
+    if (name || agency) {
+        const data = listData.filter(item => {
+           
+            if (name && agency) {
+                return item.name.toLowerCase().includes(name) == true && item.funding_sub_agency_name.toLowerCase().includes(agency)
+            } else if (name) {
+                return item.name.toLowerCase().includes(name) == true
+            } else if (agency) {
+                return item.funding_sub_agency_name.toLowerCase().includes(agency.toLowerCase())
+            }
+           
+        })
+        renderList(data)
+    } else {
+        renderList(listData)
+    }
+}
+
+//function onAgenctChange() {
+//    if ($("#searchActive").val()) {
+
+//    }
+//}
+
+function renderList(records) {
+    $("#getGovernmentContacts").html()
+    let html = "";
+    let count = 1;
+    for (let a = 0; a < records.length; a++) {
+        //if (records[a].active == 1) {
+        html = html + `<tr id='dt-${a}' object='${JSON.stringify(records[a]).replace(/'/g, "&apos;")}' onclick="editContactModal(${a})">
                                             <td>${count}</td>
                                             <td>${records[a].name}</td>
                                             <td>${records[a].email_address}</td>
                                             <td>${records[a].funding_sub_agency_name}</td>
                                             <td>${records[a].funding_office_name}</td>
                                         </tr>`;
-                    //}
-                    //else {
-                    //    continue;
-                    //}
-                    count++;
-                }
-                $("#getGovernmentContacts").html(html)
+        //}
+        //else {
+        //    continue;
+        //}
+        count++;
+    }
+    $("#getGovernmentContacts").html(html)
+}
+let listData = [];
+function fetchGovernmentContactsList() {
+    $.ajax({
+        type: "POST",
+        data: { active: $("#searchActive").val()},
+        enctype: 'multipart/form-data',
+        url: "/CrmGovernmentContacts/GetGovernmentContactsList",
+        success: function (result) {
+            result = jQuery.parseJSON(result);
+            if (result.length != 0) {
+                const records = result;
+                listData = records;
+                renderList(records)
 
             }
             else {
@@ -329,4 +362,8 @@ function updateData() {
 
 function checkContactValidation(obj) {
     return obj.name && obj.email_address && obj.funding_agency_code && obj.funding_sub_agency_code ? true : false;
+}
+
+function onActiveChange() {
+    fetchGovernmentContactsList()
 }
