@@ -77,7 +77,7 @@ function fetchGovernmentContactsList() {
                 let html = "";
                 let count = 1;
                 for (let a = 0; a < records.length; a++) {
-                    if (records[a].active == 1) {
+                    //if (records[a].active == 1) {
                         html = html + `<tr id='dt-${a}' object='${JSON.stringify(result[a]).replace(/'/g, "&apos;")}' onclick="editContactModal(${a})">
                                             <td>${count}</td>
                                             <td>${records[a].name}</td>
@@ -85,10 +85,10 @@ function fetchGovernmentContactsList() {
                                             <td>${records[a].funding_sub_agency_name}</td>
                                             <td>${records[a].funding_office_name}</td>
                                         </tr>`;
-                    }
-                    else {
-                        continue;
-                    }
+                    //}
+                    //else {
+                    //    continue;
+                    //}
                     count++;
                 }
                 $("#getGovernmentContacts").html(html)
