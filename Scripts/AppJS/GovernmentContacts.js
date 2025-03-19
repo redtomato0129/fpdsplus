@@ -9,7 +9,7 @@
         }
         const subAgency = `
                         <div class="col-md-4 mb-2 pr-2">
-                           <label for="basic-url">Sub Agency</label>
+                           <label for="basic-url">Sub Agency</label><span style="color:red">*</span></label>
 							<!-- <span style="color:red;">*</span>-->
                            <div class="input-group mb-3">
                               <div class="input-group-prepend">
@@ -38,7 +38,7 @@
         const html = ` 
 					
                         <div class="col-md-4 mb-2 pr-2" >
-                           <label for="basic-url">Agency</label>
+                           <label for="basic-url">Agency</label><span style="color:red">*</span></label>
                            <div class="input-group mb-3">
                               <div class="input-group-prepend">
                                  <span class="input-group-text OpenDeptPopup btndeptrowclear"
@@ -55,9 +55,51 @@
 
 							`;
         $("#agencyHtml").html(html);
+        $("#editAgency").html(html);
     }
     fetchGovernmentContactsList();
 });
+
+function fetchGovernmentContactsList() {
+    $.ajax({
+        type: "POST",
+        data: {},
+        enctype: 'multipart/form-data',
+        url: "/CrmGovernmentContacts/GetGovernmentContactsList",
+        success: function (result) {
+            result = jQuery.parseJSON(result);
+            if (result.length != 0) {
+                const records = result;
+                let html = "";
+                let count = 1;
+                for (let a = 0; a < records.length; a++) {
+                    if (records[a].active == 1) {
+                        html = html + `<tr id='dt-${a}' object='${JSON.stringify(result[a]).replace(/'/g, "&apos;")}' onclick="editContactModal(${a})">
+                                            <td>${count}</td>
+                                            <td>${records[a].name}</td>
+                                            <td>${records[a].email_address}</td>
+                                            <td>${records[a].funding_sub_agency_name}</td>
+                                            <td>${records[a].funding_office_name}</td>
+                                        </tr>`;
+                    }
+                    else {
+                        continue;
+                    }
+                    count++;
+                }
+                $("#getGovernmentContacts").html(html)
+
+            }
+            else {
+                $('#getGovernmentContacts').html("<tr><td  style='text-align: center;'' colspan='7'>No Record</td></tr>");
+            }
+        },
+        error: function (error) {
+            $('#getGovernmentContacts').html("<tr><td  style='text-align: center;'' colspan='7'>Error</td></tr>");
+        }
+    });
+}
+
 
 function copyToClipboard() {
     var tempInput = document.createElement('input');
@@ -88,11 +130,37 @@ function addContactModal() {
     $("#contactState").val('');
     $("#contactZip").val('');
     $("#contactNotes").val('');
+    $("#txtdept_2").val('');
+    $("#txtagency_2").val('');
+    $("#txtoffice_2").val('');
+}
 
+function editContactModal(id) {
+    console.log($(`#dt-${id}`).attr("object"));
+    const object = JSON.parse($(`#dt-${id}`).attr("object"))
+    $("#editContactModal").modal('show')
+    $('#government_contact_id').val(object.government_contact_id)
+    $('#editName').val(object.name)
+    $('#editTitle').val(object.title)
+    $('#editPhone').val(object.phone)
+    $('#editEmail').val(object.email_address)
+    $('#editAddress').val(object.address)
+    $('#editCity').val(object.city)
+    $('#editState').val(object.state)
+    $('#editZip').val(object.zip_code)
+    $('#editNotes').val(object.notes)
+    $('#txtdept_2').val(object.funding_agency_name)
+    $('#lbldept_2').text(object.funding_agency_code)
+    $('#txtagency_2').val(object.funding_sub_agency_name)
+    $('#lblagency_2').text(object.funding_sub_agency_code)
+    $('#txtoffice_2').val(object.funding_office_name)
+    $('#lbloffice_2').text(object.funding_office_code)
+    $('#editActive').val(object.active)
 }
 
 function closeContactModal() {
     $("#addContactModal").modal('hide');
+    $("#editContactModal").modal('hide');
     $("#contactName").val('');
     $("#contactPhone").val('');
     $("#contactEmail").val('');
@@ -101,41 +169,9 @@ function closeContactModal() {
     $("#contactState").val('');
     $("#contactZip").val('');
     $("#contactNotes").val('');
-}
-
-function fetchGovernmentContactsList() {
-    $.ajax({
-        type: "POST",
-        data: {},
-        enctype: 'multipart/form-data',
-        url: "/CrmGovernmentContacts/GetGovernmentContactsList",
-        success: function (result) {
-            result = jQuery.parseJSON(result);
-            if (result.length != 0) {
-                const records = result;
-                let html = "";
-                for (let a = 0; a < records.length; a++) {
-                    html = html + `<tr>
-                                            <td>${a + 1}</td>
-                                            <td>${records[a].name}</td>
-                                            <td>${records[a].phone}</td>
-                                            <td>${records[a].email_address}</td>
-                                            <td>${records[a].funding_agency_name}</td>
-                                            <td>${records[a].funding_sub_agency_name}</td>
-                                            <td>${records[a].funding_office_name}</td>
-                                        </tr>`;
-                }
-                $("#getGovernmentContacts").html(html)
-
-            }
-            else {
-                $('#getGovernmentContacts').html("<tr><td  style='text-align: center;'' colspan='7'>No Record</td></tr>");
-            }
-        },
-        error: function (error) {
-            $('#getGovernmentContacts').html("<tr><td  style='text-align: center;'' colspan='7'>Error</td></tr>");
-        }
-    });
+    $("#txtdept_2").val('');
+    $("#txtagency_2").val('');
+    $("#txtoffice_2").val('');
 }
 
 function saveData() {
@@ -148,13 +184,14 @@ function saveData() {
         city: $("#contactCity").val(),
         state: $("#contactState").val(),
         zip_code: $("#contactZip").val(),
-        notes: $("#inputNotes").val(),
+        notes: $("#contactNotes").val(),
         funding_agency_name: $("#txtdept_2").val(),
         funding_agency_code: $("#lbldept_2").text(),
         funding_sub_agency_name: $("#txtagency_2").val(),
         funding_sub_agency_code: $("#lblagency_2").text(),
         funding_office_name: $("#txtoffice_2").val(),
-        funding_office_code: $("#lbloffice_2").text()
+        funding_office_code: $("#lbloffice_2").text(),
+        active: 1
     }
     if (!checkContactValidation(contactData)) {
         Swal.fire({
@@ -210,7 +247,81 @@ function saveData() {
     });
 }
 
+function updateData() {
+    const contactData = {
+        government_contact_id: $("#government_contact_id").val(),
+        name: $("#editName").val(),
+        title: $("#editTitle").val(),
+        phone: $("#editPhone").val(),
+        email_address: $("#editEmail").val(),
+        address: $("#editAddress").val(),
+        city: $("#editCity").val(),
+        state: $("#editState").val(),
+        zip_code: $("#editZip").val(),
+        notes: $("#editNotes").val(),
+        funding_agency_name: $("#txtdept_2").val(),
+        funding_agency_code: $("#lbldept_2").text(),
+        funding_sub_agency_name: $("#txtagency_2").val(),
+        funding_sub_agency_code: $("#lblagency_2").text(),
+        funding_office_name: $("#txtoffice_2").val(),
+        funding_office_code: $("#lbloffice_2").text(),
+        active: $("#editActive").val(),
+    }
+    return;
+    if (!checkContactValidation(contactData)) {
+        Swal.fire({
+            icon: 'error',
+            title: '',
+            buttons: true,
+            html: "Please fill in all required <span class='text-danger'>*</span> fields.",
+            showCancelButton: false,
+            showConfirmButton: false,
+            timer: 3000,
+        })
+        return
+    }
+    $.ajax({
+        type: "POST",
+        data: contactData,
+        enctype: 'multipart/form-data',
+        url: "/CrmGovernmentContacts/AddGovernmentContact",
+        success: function (result) {
+            result = jQuery.parseJSON(result);
+            if (result.response == "Success") {
+                swal.fire({
+                    title: "Success",
+                    text: "Contact Updated Successfully",
+                    type: "success",
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    timer: 3000,
+                })
+                closeContactModal();
+                fetchGovernmentContactsList();
+            }
+            else {
+                swal.fire({
+                    title: "Failed",
+                    text: "Contact Not Updated",
+                    type: "danger",
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    timer: 3000,
+                })
+            }
+        }, error: function (error) {
+            swal.fire({
+                title: "Error",
+                text: error,
+                type: "danger",
+                showCancelButton: false,
+                showConfirmButton: false,
+                timer: 3000,
+            })
+        }
+    });
+}
+
 function checkContactValidation(obj) {
-    //&& obj.city && obj.state && obj.address && obj.zip_code
-    return obj.name && obj.email_address ? true : false;
+    return obj.name && obj.email_address && obj.funding_agency_code && obj.funding_sub_agency_code ? true : false;
 }

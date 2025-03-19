@@ -59,6 +59,7 @@ namespace FedPipelineApplication.Controllers
                             contact.funding_office_code = (dr2["funding_office_code"].ToString());
                             contact.funding_office_name = (dr2["funding_office_name"].ToString());
                             contact.user_id = Convert.ToInt32((dr2["user_id"]));
+                            contact.active = Convert.ToInt32((dr2["active"]));
                             contactList.Add(contact);
                         }
                     }
@@ -103,6 +104,7 @@ namespace FedPipelineApplication.Controllers
                             contact.funding_office_code = (dr2["funding_office_code"].ToString());
                             contact.funding_office_name = (dr2["funding_office_name"].ToString());
                             contact.user_id = Convert.ToInt32((dr2["user_id"]));
+                            contact.active = Convert.ToInt32((dr2["active"]));
                             contactList.Add(contact);
                         }
                     }
@@ -162,6 +164,7 @@ namespace FedPipelineApplication.Controllers
                         cmd.Parameters.AddWithValue("@funding_office_code", contact.funding_office_code);
                         cmd.Parameters.AddWithValue("@funding_office_name", contact.funding_office_name);
                         cmd.Parameters.AddWithValue("@user_id", UserID);
+                        cmd.Parameters.AddWithValue("@active", contact.active);
 
                         result = obj.insertExecuteNonQuery_SP(cmd);
                         if (result > 0)
@@ -244,6 +247,7 @@ namespace FedPipelineApplication.Controllers
             public string funding_office_code { get; set; }
             public string funding_office_name { get; set; }
             public int user_id { get; set; }
+            public int active { get; set; }
 
 
         }
