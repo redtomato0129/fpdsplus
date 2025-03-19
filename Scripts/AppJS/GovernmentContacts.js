@@ -1,12 +1,18 @@
 ﻿$(document).ready(function () {
+   
+    fetchGovernmentContactsList();
+});
+
+function agencyHtml(htmlId) {
     if (!$("#scriptEleSocio").length) {
         let scriptEleSocio = document.createElement("script");
         scriptEleSocio.id = "scriptEleSocio";
         scriptEleSocio.setAttribute("src", "/Scripts/AppJS/Search.js");
         document.body.appendChild(scriptEleSocio);
         scriptEleSocio.onload = function () {
-          
+
         }
+    }
         const subAgency = `
                         <div class="col-md-4 mb-2 pr-2">
                            <label for="basic-url">Sub Agency</label><span style="color:red">*</span></label>
@@ -21,7 +27,7 @@
                            </div>
                         </div>
                      `
-       const fundingOffice = `
+        const fundingOffice = `
                         <div class="col-md-4 mb-2 pr-2">
                            <label for="basic-url">Office Name</label>
 							 <!-- <span style="color:red;">*</span>-->
@@ -41,7 +47,7 @@
                            <label for="basic-url">Agency</label><span style="color:red">*</span></label>
                            <div class="input-group mb-3">
                               <div class="input-group-prepend">
-                                 <span class="input-group-text OpenDeptPopup btndeptrowclear"
+                                 <span class="input-group-text OpenDeptPopup btndeptrowclear" id="btndeptrowclear_2"
 								 data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
                               </div>
                               <input type="text" class="DIS_002 form-control txtdept" id="txtdept_2"     />
@@ -54,12 +60,10 @@
 							${fundingOffice}
 
 							`;
-        $("#agencyHtml").html(html);
-        $("#editAgency").html(html);
-    }
-    fetchGovernmentContactsList();
-});
-
+    $(htmlId).html(html);
+       // $("#editAgency").html(html);
+    
+}
 function fetchGovernmentContactsList() {
     $.ajax({
         type: "POST",
@@ -121,6 +125,7 @@ function copyToClipboard() {
 }
 
 function addContactModal() {
+    agencyHtml("#agencyHtml")
     $("#addContactModal").modal('show')
     $("#contactName").val('');
     $("#contactPhone").val('');
@@ -136,7 +141,7 @@ function addContactModal() {
 }
 
 function editContactModal(id) {
-    console.log($(`#dt-${id}`).attr("object"));
+    agencyHtml("#editAgency")
     const object = JSON.parse($(`#dt-${id}`).attr("object"))
     $("#editContactModal").modal('show')
     $('#government_contact_id').val(object.government_contact_id)
@@ -158,9 +163,10 @@ function editContactModal(id) {
     $('#editActive').val(object.active)
 }
 
-function closeContactModal() {
-    $("#addContactModal").modal('hide');
-    $("#editContactModal").modal('hide');
+function closeContactModal(id) {
+    $(`#${id}`).modal('hide');
+    $("#agencyHtml").html('')
+    $("#editAgency").html('')    
     $("#contactName").val('');
     $("#contactPhone").val('');
     $("#contactEmail").val('');
@@ -221,7 +227,7 @@ function saveData() {
                     showConfirmButton: false,
                     timer: 3000,
                 })
-                closeContactModal();
+                closeContactModal('addContactModal');
                 fetchGovernmentContactsList();
             }
             else {
@@ -267,7 +273,6 @@ function updateData() {
         funding_office_code: $("#lbloffice_2").text(),
         active: $("#editActive").val(),
     }
-    return;
     if (!checkContactValidation(contactData)) {
         Swal.fire({
             icon: 'error',
@@ -296,7 +301,7 @@ function updateData() {
                     showConfirmButton: false,
                     timer: 3000,
                 })
-                closeContactModal();
+                closeContactModal('editContactModal');
                 fetchGovernmentContactsList();
             }
             else {
