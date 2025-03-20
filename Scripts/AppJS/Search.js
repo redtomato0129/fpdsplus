@@ -44,8 +44,12 @@ var AwOfficeDescription = [];
 
 var OKSocio = [];
 
-var DefaultStartDate = '2017';
-var DefaultEndDate = '2022';
+const { currentFY, pastFY } = getFiscalYearData();
+console.log("Current Fiscal Year:", currentFY);
+console.log("Fiscal Year 3 Years Ago:", pastFY);
+
+var DefaultStartDate = pastFY;
+var DefaultEndDate = currentFY;
 
 var dept = "";
 var awagency = "";
@@ -113,6 +117,16 @@ function copyToClipboard() {
         showConfirmButton: false,
         timer: 3000,
     })
+}
+
+function getFiscalYearData(date = new Date()) {
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+
+    let currentFY = month >= 10 ? year + 1 : year;
+    let pastFY = currentFY - 3;
+
+    return { currentFY, pastFY };
 }
 
 $(document).ready(function () {
