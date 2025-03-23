@@ -9,7 +9,6 @@ function openViewGovtContactsModal(dealId) {
         enctype: 'multipart/form-data',
         url: "/CrmGovernmentContacts/GetDealGovernmentContact",
         success: function (result) {
-            debugger;
             result = jQuery.parseJSON(result);
             if (result.length != 0) {
                 var govtContactList = result;
@@ -45,6 +44,7 @@ function openViewGovtContactsModal(dealId) {
 }
 
 function openAttachGovtContactsModal(deal_id) {
+    $("#AddAttachDealGovt").val(deal_id)
     $('#attachGovtContactModal').modal('toggle');
 }
 
@@ -102,7 +102,7 @@ function onActiveChange() {
 
 function assignToDeal(government_contact_id) {
     const dealData = {
-        deal_id:14,
+        deal_id: $("#AddAttachDealGovt").val(),
         govt_contact_id: government_contact_id,
     }
 
