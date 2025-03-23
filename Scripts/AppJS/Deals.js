@@ -1262,6 +1262,7 @@ function GetDeals(searchtext, pageNo) {
 
                
                 '<td class="text-center"><div class="d-flex  border-0"> <i class="fa-solid fa-eye mr-2"  onclick="openAttchViewPeopleModal(`' + Deal_ID + '`)" style="color: #571C7A;"></i> <i class="fa-solid fa-circle-plus" style="color: #08A742;"  onclick="openAttchPeopleModal(`' + Deal_ID + '`,`' + title + '`,`' + status + '`,`' + rfp_release_date + '`)" ></i></div></td>' +
+                '<td class="text-center"><div class="d-flex  border-0"> <i class="fa-solid fa-eye mr-2"  onclick="openViewGovtContactsModal(`' + Deal_ID + '`)" style="color: #571C7A;"></i> <i class="fa-solid fa-circle-plus" style="color: #08A742;"  onclick="openAttachGovtContactsModal(`' + Deal_ID + '`)" ></i></div></td>' +
                 '<td dealId=' + Deal_ID + ' class="dt-control"><div class="d-flex border-0" style="margin-right: 11px;"><i class="fa-solid fa-eye mr-2"  style="color: #571C7A;"></i> <i class="fa-solid fa-circle-plus" style="color: #08A742;"></i></div></td>' +
                 '<td> <div class="d-flex  border-0"><i class="fa-solid fa-eye  mr-2" style="color: #571C7A;" onclick="openNewsModal(' + Deal_ID + ')"></i><i class="fa-solid fa-circle-plus" style="color: #08A742;"  onclick="routeToNews(' + Deal_ID + ')"></i></div></td>';
             /*'<td style = "display:none"><i style="" class="fa fa-trash icons Deleteclass sb002" onclick="deletedeal(' + Deal_ID + ')"></i></td>'*/
@@ -1275,7 +1276,7 @@ function GetDeals(searchtext, pageNo) {
        
     }
     else {
-        $('#deallisttable').html("<tr><td  style='text-align: center;'' colspan='15'>  No record. </td></tr>");
+        $('#deallisttable').html("<tr><td  style='text-align: center;'' colspan='16'>  No record. </td></tr>");
 
     }
 

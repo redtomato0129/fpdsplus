@@ -5686,6 +5686,7 @@
     <Content Include="Scripts\AppJS\ContractSearch.js" />
     <Content Include="Scripts\AppJS\Coupon.js" />
     <Content Include="Scripts\AppJS\CrmDashboard.js" />
+    <Content Include="Scripts\AppJS\DealGovtContact.js" />
     <Content Include="Scripts\AppJS\DealPeople.js" />
     <Content Include="Scripts\AppJS\Deals.js" />
     <Content Include="Scripts\AppJS\Download.js" />

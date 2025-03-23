@@ -2,7 +2,6 @@
    
     fetchGovernmentContactsList();
 });
-
 function agencyHtml(htmlId) {
     if (!$("#scriptEleSocio").length) {
         let scriptEleSocio = document.createElement("script");
@@ -64,6 +63,7 @@ function agencyHtml(htmlId) {
        // $("#editAgency").html(html);
     
 }
+
 function onInputChange() {
     const name = $("#searchName").val().toLowerCase();
     const agency = $("#searchSubAgency").val().toLowerCase();
@@ -84,12 +84,6 @@ function onInputChange() {
         renderList(listData)
     }
 }
-
-//function onAgenctChange() {
-//    if ($("#searchActive").val()) {
-
-//    }
-//}
 
 function renderList(records) {
     $("#getGovernmentContacts").html()
@@ -136,7 +130,6 @@ function fetchGovernmentContactsList() {
         }
     });
 }
-
 
 function copyToClipboard() {
     var tempInput = document.createElement('input');
