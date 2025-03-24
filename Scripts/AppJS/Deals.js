@@ -1242,21 +1242,21 @@ function GetDeals(searchtext, pageNo) {
                 '</a>' +
 
                 '</td > ' +
-                  '<td> ' + Deal_ID + '</td > ' +
+                  //'<td> ' + Deal_ID + '</td > ' +
                 /*'<td> ' + Created_Date + '</td > ' +*/
                 '<td style="font-family: ;white-space: break-spaces;"> ' + title + '</td > ' +
                 /*'<td style="font-family: " FontAwesome";" > ' + description + '</td>' +*/
-                '<td style="font-family: " FontAwesome";" > ' + rfp_release_date + '</td>' +
-                '<td  style="font-family: " FontAwesome";" > ' + status + '</td > ' +
-                '<td style="font-family: " FontAwesome";" > ' + stage + '</td > ' +
-                '<td style="none: " FontAwesome";" > ' + priority + '</td>' +
-                '<td style="font-family: ;white-space: break-spaces;"> ' + funding_sub_agency_name + '</td>' +
+                '<td style="font-family: " FontAwesome";" >' + rfp_release_date + '</td>' +
+                '<td  style="font-family: " FontAwesome";">' + status + '</td > ' +
+                '<td style="font-family: " FontAwesome";">' + stage + '</td > ' +
+                '<td style="none: " FontAwesome";"> ' + priority + '</td>' +
+                '<td style="font-family: ;white-space: break-spaces;">' + funding_sub_agency_name + '</td>' +
                 /*'<td  style = "font-family: "FontAwesome";" > ' + award_type + '</td>' +*/
-                '<td style = "font-family: " FontAwesome";" > ' + set_aside + '</td>' +
-                '<td style="font-family: " FontAwesome";" > ' + naics + '</td>' +
-                '<td style="font-family: " FontAwesome";" > ' + psc_code + '</td>' +
-                '<td style="font-family: ;white-space: break-spaces;"> ' + incumbent_name + '</td>' +
-                '<td align="right" style="font-family: " FontAwesome";" > ' + ` ${ potential_award_amount? "$" +potential_award_amount.toLocaleString('en') :'' }` + '</td>' +
+                '<td style = "font-family: " FontAwesome";"> ' + set_aside + '</td>' +
+                '<td style="font-family: " FontAwesome";"> ' + naics + '</td>' +
+                '<td style="font-family: " FontAwesome";"> ' + psc_code + '</td>' +
+                '<td style="font-family: ;white-space: break-spaces;">' + incumbent_name + '</td>' +
+                '<td align="right" style="font-family: " FontAwesome";"> ' + ` ${ potential_award_amount? "$" +potential_award_amount.toLocaleString('en') :'' }` + '</td>' +
                /* '<td style="font-family: " FontAwesome";"  > ' + expiration_date + '</td>' +*/
                 /* '<td style="none: " FontAwesome";" > ' + SolicitationNumber + '</td>' +*/
 

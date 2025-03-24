@@ -397,10 +397,10 @@
                 <tr>
                     <th> </th>
                     @*<th>Created Date</th>*@
-                    <th>Deal ID</th>
+                    @*<th>Deal ID</th>*@
                     <th>Title</th>
                     @*<th>Description</th>*@
-                    <th>RFP Release Date</th>
+                    <th>RFP Release<br />Date</th>
                     <th>Status</th>
                     <th>Stage</th>
                     <th>Priority</th>
@@ -415,7 +415,7 @@
                     @* <th>Expiration</th>*@
                     @*<th>Govwin Link</th>*@
                     <th>People</th>
-                    <th>Govt. Contacts</th>
+                    <th>Govt.<br />Contacts</th>
                     <th>Activity</th>
                     <th>Social</th>
 
@@ -689,7 +689,7 @@
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-11">
-                                    <h2 class="heading" style="float: left; margin-bottom: 20px;">Government Contacts Assigned to this deal</h2>
+                                    <h2 class="heading" style="float: left; margin-bottom: 20px;">Government Contacts assigned to this deal</h2>
                                 </div>
                                 <div class="col-1" style="float: right; text-align: right;"><i class="fa fa-times" aria-hidden="true" id="closeDealModal" onclick="closeGovtContactsModal()" style="cursor:pointer"></i></div>
                             </div>
@@ -724,6 +724,7 @@
                             <h2 class="heading" style="float: left; margin-bottom: 20px;">Assign Government Contact</h2>
                         </div>
                         <div class="col-1" style="float: right; text-align: right;"><i class="fa fa-times" aria-hidden="true" onclick="closeGovtContactsModal()" style="cursor:pointer"></i></div>
+<<<<<<< Updated upstream
                         <input type="hidden" id="AddAttachDealGovt" value="" />
                         <div class="col-12">
                             <div style="clear: both">
@@ -734,6 +735,16 @@
                                 </div>
                             </div>
                         </div>
+=======
+                        <div style="clear: both">
+                            <div>
+                                <h6 class="heading" style="float: right" id="dueDateGovtContact"></h6>
+                                <h6 class="heading" style="float: right" id="statusGovtContact"></h6>
+                                <h6 class="heading" style="float: right" id="titleGovtContact"></h6>
+                            </div>
+                        </div>
+                        <input type="hidden" id="AddAttachDealGovt" value="" />
+>>>>>>> Stashed changes
                         <div class="row align-items-center">
                             <div class="col-10 d-flex align-items-center ml-3 mb-3">
                                 <div class="d-flex align-items-center mr-3">

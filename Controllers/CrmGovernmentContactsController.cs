@@ -228,7 +228,62 @@ namespace FedPipelineApplication.Controllers
             return new JavaScriptSerializer().Serialize(new { response, error });
         }
 
-        public string GetDealGovernmentContact(int deal_id)
+        public string GetDealGovernmentContactList(int deal_id)
+        {
+            List<DealContactDetails> contactList = new List<DealContactDetails>();
+            using (SqlConnection con = new SqlConnection(MainCon))
+            {
+                con.Open();
+                var sp = "crm_deal_govt_contact_get_all";
+
+                using (SqlCommand cmd = new SqlCommand(sp, con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@deal_id", deal_id);
+                    DataSet ds = obj.getDataSet_SP(cmd);
+                    if (ds.Tables["data"].Rows.Count > 0)
+                    {
+                        foreach (DataRow dr2 in ds.Tables["data"].Rows)
+                        {
+                            DealContactDetails contact = new DealContactDetails();
+                            contact.deal_id = Convert.ToInt32((dr2["deal_id"]));
+                            contact.govt_contact_id = Convert.ToInt32((dr2["govt_contact_id"]));
+                            contact.user_id = Convert.ToInt32((dr2["user_id"]));
+                            contact.deal_title = (dr2["deal_title"].ToString());
+                            contact.deal_status = (dr2["deal_status"].ToString());
+                            contact.deal_rfp_release_date = (dr2["deal_rfp_release_date"].ToString());
+                            contact.User_FirstName = (dr2["User_FirstName"].ToString());
+                            contact.User_LastName = (dr2["User_LastName"].ToString());
+                            contact.User_Company = (dr2["User_Company"].ToString());
+                            contact.User_Email = (dr2["User_Email"].ToString());
+                            contact.govt_contact_name = (dr2["govt_contact_name"].ToString());
+                            contact.govt_contact_title = (dr2["govt_contact_title"].ToString());
+                            contact.govt_contact_phone = (dr2["govt_contact_phone"].ToString());
+                            contact.govt_contact_email = (dr2["govt_contact_email"].ToString());
+                            contact.govt_contact_address = (dr2["govt_contact_address"].ToString());
+                            contact.govt_contact_state = (dr2["govt_contact_state"].ToString());
+                            contact.govt_contact_city = (dr2["govt_contact_city"].ToString());
+                            contact.govt_contact_notes = (dr2["govt_contact_notes"].ToString());
+                            contact.govt_contact_zip_code = (dr2["govt_contact_zip_code"].ToString());
+                            contact.funding_agency_code = (dr2["funding_agency_code"].ToString());
+                            contact.funding_agency_name = (dr2["funding_agency_name"].ToString());
+                            contact.funding_sub_agency_code = (dr2["funding_sub_agency_code"].ToString());
+                            contact.funding_sub_agency_name = (dr2["funding_sub_agency_name"].ToString());
+                            contact.funding_office_code = (dr2["funding_office_code"].ToString());
+                            contact.funding_office_name = (dr2["funding_office_name"].ToString());
+                            contact.government_contact_id = Convert.ToInt32((dr2["government_contact_id"]));
+                            contact.active = Convert.ToInt32((dr2["active"]));
+                            contactList.Add(contact);
+                        }
+                    }
+                }
+                con.Close();
+            }
+            return new JavaScriptSerializer().Serialize(contactList);
+
+        }
+
+        public string GetDealGovernmentContact(int deal_id, int govt_contact_id)
         {
             List<DealContactDetails> contactList = new List<DealContactDetails>();
             using (SqlConnection con = new SqlConnection(MainCon))
@@ -240,6 +295,7 @@ namespace FedPipelineApplication.Controllers
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@deal_id", deal_id);
+                    cmd.Parameters.AddWithValue("@govt_contact_id", govt_contact_id);
                     DataSet ds = obj.getDataSet_SP(cmd);
                     if (ds.Tables["data"].Rows.Count > 0)
                     {

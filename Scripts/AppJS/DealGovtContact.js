@@ -180,81 +180,43 @@ function assignToDeal(government_contact_id) {
 }
 
 function viewGovtContractRenderer(obj) {
-    return ` <div class="comment__sec ">
-                                    <div class="item-icon item-peopleIcon"></div>
-                                    <div class="companyblock">
-                                        <div class="main_header">
-                                            <div class="nameblock">
-                                                <div class="text">
-                                                    <h2  style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;max-width: 150px;">${obj.govt_contact_name}</h2>
-                                                </div>
-                                            </div>
-                                            <div class="nameblock" style="float:right">
-                                                <div class="text d-flex align-items-center">
-                                                        <h2 style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;max-width: 150px;  color:green">${obj.funding_sub_agency_name}</h2>&nbsp; | &nbsp;
-                                                        <h2 style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;max-width: 200px;">${obj.govt_contact_email}</h2>&nbsp; | &nbsp;
-                                                        <h2 style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;max-width: 120px;"> ${obj.govt_contact_phone}</h2>&nbsp; | &nbsp;
-                                                        <h2 style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;max-width: 100px;">${obj.govt_contact_address}</h2>
-                                                </div>
-                                            </div>
-                                        </div>
+    return ` 
+<div class="comment__sec ">
+    <div class="item-icon item-peopleIcon"></div>
+    <div class="companyblock">
+        <div class="main_header">
+            <div class="nameblock">
+                <div class="text">
+                    <h2 style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;max-width: 150px;">${obj.govt_contact_name}</h2>
+                </div>
+            </div>
+            <div class="nameblock" style="float:right">
+                <div class="text d-flex align-items-center">
+                    <h2 style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;max-width: 200px;">${obj.govt_contact_email}</h2>&nbsp; | &nbsp;
+                    <h2 style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;max-width: 120px;"> ${obj.govt_contact_phone}</h2>&nbsp; | &nbsp;
+                    <h2 style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;max-width: 100px;">${obj.govt_contact_address}</h2>
+                </div>
+            </div>
+        </div>
 
-                                        <div class="centerblock">
-                                          ${obj.govt_contact_notes}
-                                        </div>
-                                       <!-- <hr>
+        <div class="centerblock">
+            ${obj.govt_contact_notes}
+        </div>
 
-                                        <div class="likeblock">
-                                            <div class="likebtn d-flex justify-content-end">
-                                              
-                                            </div>
-                                        </div> -->
-                                        <hr>
-                                        <div class="col-12">
-                                                <div class="col-12 pd0">
-                                                    <div class="comentico">
-                                                       <i class="fa-solid fa-people-group"></i>
-                                                        <div class="text">
-                                                            <h4><button class="btn people-load" id="people_button_${obj.people_id}" people_id="${obj.people_id}">
-                                                                View organization</button></h4>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <div class="col-12 px-0 pb-2">
-                                              
-                                                <div class="people-show" id="people_${obj.people_id}" style="display:none">
-<div class="companyblock">
-                                        <div class="main_header">
-                                            <div class="nameblock">
-
-                                                <div class="text">
-                                                    <h2>${obj.organization_name}</h2>
-                                                
-                                                </div>
-                                            </div>
-                                            <div class="nameblock" style="float:right">
-                                                <div class="text d-flex align-items-center">
-                                            <h2 style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;max-width: 200px;">${obj.organization_email}</h2>&nbsp; | &nbsp;
-                                            <h2 style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;max-width: 200px;"> ${obj.organization_phone}</h2>&nbsp; | &nbsp;
-                                            <h2 style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;max-width: 200px;"> ${obj.organization_address}</h2>
-                                        </div>
-                                              
-                                            </div>
-                                        </div>
-
-                                        <div class="centerblock">
-                                          ${obj.organization_notes}
-                                        </div>
-                                      
-                                       
-                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-`
+        <hr>
+        <div class="col-12">
+            <div class="col-12 pd0">
+                <div class="comentico">
+                    <div class="text">
+                        <h6>${obj.funding_agency_name}</h6>
+                        <h6>${obj.funding_sub_agency_name}</h6>
+                        <h6>${obj.funding_office_name}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>`
 }
 
 function closeGovtContactsModal() {
