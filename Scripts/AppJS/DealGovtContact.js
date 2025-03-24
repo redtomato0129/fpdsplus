@@ -44,6 +44,17 @@ function openViewGovtContactsModal(dealId) {
 }
 
 function openAttachGovtContactsModal(deal_id) {
+    var url = "/CrmDeals/DealsById";
+    var data = "{dealId:" + JSON.stringify(deal_id) + "}";
+    //;
+    var result = AjaxPost(url, data);
+    const date = new Date(result.deal.Deal_RFP_Release_Date);
+    result.deal.Deal_RFP_Release_Date =
+        ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + date.getFullYear()
+
+    $("#dueDateAddGovernmentModal").html("&nbsp;&nbsp; | &nbsp;" + result.deal.Deal_RFP_Release_Date)
+    $("#statusAddGovernmentModal").html("&nbsp;&nbsp; | &nbsp;" + result.deal.Deal_Status)
+    $("#titleStatusAddGovernmentModal").html(result.deal.Deal_Status)
     $("#AddAttachDealGovt").val(deal_id)
     $('#attachGovtContactModal').modal('toggle');
 }
@@ -94,6 +105,27 @@ function fetchGovernmentContactsList() {
             $('#getGovernmentContacts').html("<tr><td  style='text-align: center;'' colspan='7'>Error</td></tr>");
         }
     });
+}
+
+function onInputChange() {
+    const name = $("#searchName").val().toLowerCase();
+    const agency = $("#searchSubAgency").val().toLowerCase();
+    if (name || agency) {
+        const data = listData.filter(item => {
+
+            if (name && agency) {
+                return item.name.toLowerCase().includes(name) == true && item.funding_sub_agency_name.toLowerCase().includes(agency)
+            } else if (name) {
+                return item.name.toLowerCase().includes(name) == true
+            } else if (agency) {
+                return item.funding_sub_agency_name.toLowerCase().includes(agency.toLowerCase())
+            }
+
+        })
+        renderList(data)
+    } else {
+        renderList(listData)
+    }
 }
 
 function onActiveChange() {
