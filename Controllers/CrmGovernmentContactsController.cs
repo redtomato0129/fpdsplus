@@ -283,7 +283,7 @@ namespace FedPipelineApplication.Controllers
 
         }
 
-        public string GetDealGovernmentContact(int deal_id, int govt_contact_id)
+        public string GetDealGovernmentContact(DealContactDetails contactPayload)
         {
             List<DealContactDetails> contactList = new List<DealContactDetails>();
             using (SqlConnection con = new SqlConnection(MainCon))
@@ -294,8 +294,8 @@ namespace FedPipelineApplication.Controllers
                 using (SqlCommand cmd = new SqlCommand(sp, con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@deal_id", deal_id);
-                    cmd.Parameters.AddWithValue("@govt_contact_id", govt_contact_id);
+                    cmd.Parameters.AddWithValue("@deal_id", contactPayload.deal_id);
+                    cmd.Parameters.AddWithValue("@govt_contact_id", contactPayload.govt_contact_id);
                     DataSet ds = obj.getDataSet_SP(cmd);
                     if (ds.Tables["data"].Rows.Count > 0)
                     {

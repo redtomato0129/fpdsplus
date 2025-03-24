@@ -7,7 +7,7 @@ function openViewGovtContactsModal(dealId) {
         type: "POST",
         data: { deal_id },
         enctype: 'multipart/form-data',
-        url: "/CrmGovernmentContacts/GetDealGovernmentContact",
+        url: "/CrmGovernmentContacts/GetDealGovernmentContactList",
         success: function (result) {
             result = jQuery.parseJSON(result);
             if (result.length != 0) {
@@ -54,7 +54,7 @@ function openAttachGovtContactsModal(deal_id) {
 
     $("#dueDateAddGovernmentModal").html("&nbsp;&nbsp; | &nbsp;" + result.deal.Deal_RFP_Release_Date)
     $("#statusAddGovernmentModal").html("&nbsp;&nbsp; | &nbsp;" + result.deal.Deal_Status)
-    $("#titleStatusAddGovernmentModal").html(result.deal.Deal_Status)
+    $("#titleStatusAddGovernmentModal").html(result.deal.Deal_Title)
     $("#AddAttachDealGovt").val(deal_id)
     $('#attachGovtContactModal').modal('toggle');
 }
@@ -137,34 +137,64 @@ function assignToDeal(government_contact_id) {
         deal_id: $("#AddAttachDealGovt").val(),
         govt_contact_id: government_contact_id,
     }
-
     $.ajax({
         type: "POST",
         data: dealData,
         enctype: 'multipart/form-data',
-        url: "/CrmGovernmentContacts/AddDealGovernmentContact",
-        success: function (result) {
-            result = jQuery.parseJSON(result);
-            if (result.response == "Success") {
-                swal.fire({
-                    title: "Success",
-                    text: "Govt. Contact Assigned to Deal",
-                    type: "success",
-                    showCancelButton: false,
-                    showConfirmButton: false,
-                    timer: 3000,
-                })
-                closeGovtContactsModal();
+        url: "/CrmGovernmentContacts/GetDealGovernmentContact",
+        success: function (response) {
+            response = jQuery.parseJSON(response);
+            if (response.length == 0) {
+                $.ajax({
+                    type: "POST",
+                    data: dealData,
+                    enctype: 'multipart/form-data',
+                    url: "/CrmGovernmentContacts/AddDealGovernmentContact",
+                    success: function (result) {
+                        result = jQuery.parseJSON(result);
+                        if (result.response == "Success") {
+                            swal.fire({
+                                title: "Success",
+                                text: "Govt. Contact Assigned to Deal",
+                                type: "success",
+                                showCancelButton: false,
+                                showConfirmButton: false,
+                                timer: 3000,
+                            })
+                            closeGovtContactsModal();
+                        }
+                        else {
+                            swal.fire({
+                                title: "Failed",
+                                text: "Govt. Contact Not Assigned",
+                                type: "danger",
+                                showCancelButton: false,
+                                showConfirmButton: false,
+                                timer: 3000,
+                            })
+                        }
+                    }, error: function (error) {
+                        swal.fire({
+                            title: "Error",
+                            text: error,
+                            type: "danger",
+                            showCancelButton: false,
+                            showConfirmButton: false,
+                            timer: 3000,
+                        })
+                    }
+                });
             }
             else {
                 swal.fire({
                     title: "Failed",
-                    text: "Govt. Contact Not Assigned",
+                    text: "Govt. Contact already assigned to this deal",
                     type: "danger",
                     showCancelButton: false,
                     showConfirmButton: false,
                     timer: 3000,
                 })
+                closeGovtContactsModal();
             }
         }, error: function (error) {
             swal.fire({
@@ -177,6 +207,8 @@ function assignToDeal(government_contact_id) {
             })
         }
     });
+
+   
 }
 
 function viewGovtContractRenderer(obj) {
