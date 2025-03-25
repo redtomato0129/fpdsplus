@@ -91,8 +91,9 @@ namespace FedPipelineApplication.Controllers
                             ContactDetails contact = new ContactDetails();
                             contact.government_contact_id = Convert.ToInt32((dr2["government_contact_id"]));
                             contact.name = (dr2["name"].ToString());
+                            contact.title = (dr2["title"].ToString());
                             contact.phone = (dr2["phone"].ToString());
-                            contact.email_address = (dr2["email_address"].ToString());
+                            contact.email_address = (dr2["email"].ToString());
                             contact.address = (dr2["address"].ToString());
                             contact.city = (dr2["city"].ToString());
                             contact.state = (dr2["state"].ToString());

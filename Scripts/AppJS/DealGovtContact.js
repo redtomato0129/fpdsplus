@@ -65,12 +65,12 @@ function renderList(records) {
     let count = 1;
     for (let a = 0; a < records.length; a++) {
         //if (records[a].active == 1) {
-        html = html + `<tr id='dt-${a}' object='${JSON.stringify(records[a]).replace(/'/g, "&apos;")}'">
+        html = html + `<tr id='dt-${a}' object='${JSON.stringify(records[a]).replace(/'/g, "&apos;")}' onclick="displayContactModal(${a})">
                                             <td>${count}</td>
                                             <td>${records[a].name}</td>
-                                            <td>${records[a].email_address}</td>
-                                            <td>${records[a].funding_sub_agency_name}</td>
-                                            <td>${records[a].funding_office_name}</td>
+                                            <td>${records[a].title}</td>
+                                            <td style="white-space: break-spaces;">${records[a].funding_agency_name}</td>
+                                            <td style="white-space: break-spaces;">${records[a].funding_sub_agency_name}</td>
                                             <td><button class="btn dealbtn float-left  pr-4 pl-4" type="button" id="assignToDeal" onclick="assignToDeal(${records[a].government_contact_id})">Assign</button></td>
                                         </tr>`;
         //}
@@ -251,10 +251,57 @@ function viewGovtContractRenderer(obj) {
 </div>`
 }
 
+function displayContactModal(id) {
+    $("#displayContactModal").modal('show');
+    const object = JSON.parse($(`#dt-${id}`).attr("object"))
+    let government_contact_id = object.government_contact_id
+    $.ajax({
+        type: "POST",
+        data: { government_contact_id },
+        enctype: 'multipart/form-data',
+        url: "/CrmGovernmentContacts/GetGovernmentContactById",
+        success: function (result) {
+            result = jQuery.parseJSON(result);
+            organizationList = result;
+            if (result != 0) {
+                $("#displayContactTable").html("")
+                let html = '';
+                html = html + `<tr><th>Name</th><td>${result[0].name}</td></tr>`;
+                html = html + `<tr><th>Title</th><td>${result[0].title}</td></tr>`;
+                html = html + `<tr><th>Phone</th><td>${result[0].phone}</td></tr>`;
+                html = html + `<tr><th>Email</th><td>${result[0].email_address}</td></tr>`;
+                html = html + `<tr><th>Address</th><td>${result[0].address}</td></tr>`;
+                html = html + `<tr><th>City</th><td>${result[0].city}</td></tr>`;
+                html = html + `<tr><th>State</th><td>${result[0].state}</td></tr>`;
+                html = html + `<tr><th>Zip Code</th><td>${result[0].zip_code}</td></tr>`;
+                html = html + `<tr><th>Agency</th><td>${result[0].funding_agency_name}</td></tr>`;
+                html = html + `<tr><th>Sub Agency</th><td>${result[0].funding_sub_agency_name}</td></tr>`;
+                html = html + `<tr><th>Office</th><td>${result[0].funding_office_name}</td></tr>`;
+                html = html + `<tr><th>Notes</th><td style="white-space: break-spaces;">${result[0].notes}</td></tr>`;
+                html = html + "</tr>"
+                $("#displayContactTable").append(html)
+            }
+            else {
+                console.log("No records")
+            }
+        },
+        error: function (error) {
+            console.log("Error: ", error)
+        }
+    });
+}
+
+
 function closeGovtContactsModal() {
     $("#viewGovtContactsModal").modal('hide');
     $("#attachGovtContactModal").modal('hide');
 }
+
+function closeDisplayContactModal() {
+    $("#displayContactModal").modal('hide');
+    $("#attachGovtContactModal").modal('show');
+}
+
 function agencyHtml(htmlId) {
     if (!$("#scriptEleSocio").length) {
         let scriptEleSocio = document.createElement("script");
@@ -316,6 +363,7 @@ function agencyHtml(htmlId) {
     // $("#editAgency").html(html);
 
 }
+
 function addContactModal() {
     $("#attachGovtContactModal").modal('hide')
     $("#AddAttachDealGovt").val()
@@ -354,6 +402,7 @@ function closeContactModal(id) {
 function checkContactValidation(obj) {
     return obj.name && obj.email_address && obj.funding_agency_code && obj.funding_sub_agency_code ? true : false;
 }
+
 function saveData() {
     const contactData = {
         name: $("#contactName").val(),
