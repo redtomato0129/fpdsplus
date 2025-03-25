@@ -19,16 +19,16 @@
       "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:controllers\\crmgovernmentcontactscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|E:\\fedpipeline\\fpdsplus-dev\\scripts\\appjs\\governmentcontacts.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:scripts\\appjs\\governmentcontacts.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|E:\\fedpipeline\\fpdsplus-dev\\views\\crmgovernmentcontacts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:views\\crmgovernmentcontacts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|E:\\fedpipeline\\fpdsplus-dev\\scripts\\appjs\\dealpeople.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:scripts\\appjs\\dealpeople.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|E:\\fedpipeline\\fpdsplus-dev\\scripts\\appjs\\governmentcontacts.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:scripts\\appjs\\governmentcontacts.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -48,10 +48,11 @@
               "RelativeDocumentMoniker": "Controllers\\CrmGovernmentContactsController.cs",
               "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Controllers\\CrmGovernmentContactsController.cs",
               "RelativeToolTip": "Controllers\\CrmGovernmentContactsController.cs",
-              "ViewState": "AQIAAHcAAAAAMzMzMzMfwB0BAABRAAAA",
+              "ViewState": "AQIAABQAAACAZWZmZmYswF0AAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-18T02:43:42.27Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -61,7 +62,7 @@
               "RelativeDocumentMoniker": "Scripts\\AppJS\\DealGovtContact.js",
               "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Scripts\\AppJS\\DealGovtContact.js",
               "RelativeToolTip": "Scripts\\AppJS\\DealGovtContact.js",
-              "ViewState": "AQIAADQAAAAAZmZmZmYqwEkAAABFAAAA",
+              "ViewState": "AQIAADoAAACA//////8rwEgAAABTAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-03-23T03:22:44.946Z",
               "EditorCaption": ""
@@ -74,14 +75,14 @@
               "RelativeDocumentMoniker": "Scripts\\AppJS\\Deals.js",
               "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Scripts\\AppJS\\Deals.js",
               "RelativeToolTip": "Scripts\\AppJS\\Deals.js",
-              "ViewState": "AQIAANgEAAAAAAAAAAAAAOUEAABcAAAA",
+              "ViewState": "AQIAANsEAAAAAAAAAAAAAOkEAABFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-03-23T04:33:06.537Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "DealPeople.js",
               "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Scripts\\AppJS\\DealPeople.js",
               "RelativeDocumentMoniker": "Scripts\\AppJS\\DealPeople.js",
@@ -99,26 +100,27 @@
               "RelativeDocumentMoniker": "Views\\CrmDeals\\Index.cshtml",
               "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Views\\CrmDeals\\Index.cshtml",
               "RelativeToolTip": "Views\\CrmDeals\\Index.cshtml",
-              "ViewState": "AQIAAOsCAAAANDMzMzMLwP4CAAAsAAAA",
+              "ViewState": "AQIAAAoDAAAAAAAAAAAgwAMFAABrAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-03-23T03:05:00.734Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "GovernmentContacts.js",
               "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Scripts\\AppJS\\GovernmentContacts.js",
               "RelativeDocumentMoniker": "Scripts\\AppJS\\GovernmentContacts.js",
               "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Scripts\\AppJS\\GovernmentContacts.js",
               "RelativeToolTip": "Scripts\\AppJS\\GovernmentContacts.js",
-              "ViewState": "AQIAAJgAAAAAoJmZmZnJvxcBAAABAAAA",
+              "ViewState": "AQIAAJgAAACAmZmZmZkjwKoAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-03-18T02:46:20.153Z"
+              "WhenOpened": "2025-03-18T02:46:20.153Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Index.cshtml",
               "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Views\\CrmGovernmentContacts\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\CrmGovernmentContacts\\Index.cshtml",
