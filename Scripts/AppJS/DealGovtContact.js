@@ -65,12 +65,12 @@ function renderList(records) {
     let count = 1;
     for (let a = 0; a < records.length; a++) {
         //if (records[a].active == 1) {
-        html = html + `<tr id='dt-${a}' object='${JSON.stringify(records[a]).replace(/'/g, "&apos;")}' onclick="displayContactModal(${a})">
-                                            <td>${count}</td>
-                                            <td>${records[a].name}</td>
-                                            <td>${records[a].title}</td>
-                                            <td style="white-space: break-spaces;">${records[a].funding_agency_name}</td>
-                                            <td style="white-space: break-spaces;">${records[a].funding_sub_agency_name}</td>
+        html = html + `<tr id='dt-${a}' object='${JSON.stringify(records[a]).replace(/'/g, "&apos;")}'>
+                                            <td onclick="displayContactModal(${a})">${count}</td>
+                                            <td onclick="displayContactModal(${a})">${records[a].name}</td>
+                                            <td onclick="displayContactModal(${a})">${records[a].title}</td>
+                                            <td onclick="displayContactModal(${a})" style="white-space: break-spaces;">${records[a].funding_agency_name}</td>
+                                            <td onclick="displayContactModal(${a})" style="white-space: break-spaces;">${records[a].funding_sub_agency_name}</td>
                                             <td><button class="btn dealbtn float-left  pr-4 pl-4" type="button" id="assignToDeal" onclick="assignToDeal(${records[a].government_contact_id})">Assign</button></td>
                                         </tr>`;
         //}
