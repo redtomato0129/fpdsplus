@@ -718,7 +718,7 @@
         <div class="modal-content">
 
             <div class="modal-body modal-body pb-5">
-                <div class="container">
+                <div class="">
                     <div class="row">
                         <div class="col-11">
                             <h2 class="heading" style="float: left; margin-bottom: 20px;">Assign Government Contact</h2>
@@ -734,9 +734,8 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" id="AddAttachDealGovt" value="" />
                         <div class="row align-items-center">
-                            <div class="col-10 d-flex align-items-center ml-3 mb-3">
+                            <div class="col-12 d-flex align-items-center ml-3 mb-3">
                                 <div class="d-flex align-items-center mr-3">
                                     <label for="searchName" class="mr-2" style="margin-top: 5px">Name:</label>
                                     <input type="text" class="form-control" style="width: 250px" id="searchName" onkeyup="onInputChange()">
@@ -751,6 +750,9 @@
                                         <option value=1>Active</option>
                                         <option value=0>Inactive</option>
                                     </select>
+                                </div>
+                                <div class="d-flex align-items-center mr-3">
+                                    <button type="button" class="btn dealbtn" onclick="addContactModal()">Add Government Contact</button>
                                 </div>
                             </div>
                         </div>
@@ -1184,6 +1186,82 @@
                         @*<div class="col-12">
                                 <button class="btn dealbtn float-right" type="button" id="EditOrganization" onclick="updateOrganizationData()">Save</button>
                             </div>*@
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="addContactModal" tabindex="-1" aria-labelledby="exampleModalLabel" role="dialog"
+     data-backdrop="static" data-keyboard="false" aria-modal="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable" style="max-width:80%">
+        <div class="modal-content">
+
+            <div class="modal-body pb-5">
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-11">
+                                    <h3 class="heading" style="float: left; margin-bottom: 20px;">Add Government Contact</h3>
+                                </div>
+                                <div class="col-1" style="float: right; text-align: right;">
+                                    <i class="fa fa-times" aria-hidden="true" id="closeDealModal" onclick="closeContactModal('addContactModal')" style="cursor:pointer"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="row g-3">
+                        <input type="hidden" id="dealIdAddContact"/>
+                        <div class="col-md-4 mb-3">
+                            <label for="orgName" autocomplete="off" class="form-label">Name<span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="contactName" aria-describedby="orgName" maxlength="200" name="newOrgaName" autocomplete="newOrgName">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="contactTitle" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="contactTitle" maxlength="20" name="orgTitle" autocomplete="orgPhone">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputPhone" class="form-label">Phone</label>
+                            <input type="text" class="form-control" id="contactPhone" maxlength="20" name="orgPhone" autocomplete="orgPhone">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputEmail4" class="form-label">Email<span style="color:red">*</span></label>
+                            <input type="email" class="form-control" id="contactEmail" maxlength="200" name="orgEmail" autocomplete="orgEmail">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputAddress" class="form-label">Address @*<span style="color:red">*</span>*@</label>
+                            <input type="text" class="form-control" id="contactAddress" maxlength="100"
+                                   name="orgAddress" autocomplete="orgAddress">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputCity" class="form-label">City @*<span style="color:red">*</span>*@</label>
+                            <input type="text" class="form-control" id="contactCity" maxlength="50" name="orgCity" autocomplete="orgCity">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputState" class="form-label">State @*<span style="color:red">*</span>*@</label>
+                            <input type="text" class="form-control" id="contactState" maxlength="5" name="orgState" autocomplete="orgState">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label for="inputZip" class="form-label">Zip Code @*<span style="color:red">*</span>*@</label>
+                            <input type="text" class="form-control" id="contactZip" maxlength="10" name="orgZip" autocomplete="orgZip">
+                        </div>
+
+                        @*agency and sub agency*@
+                        <div id="agencyHtml" class="row col-12 mb-3 ml-0 pl-0">
+
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="inputNotes" class="form-label">Notes</label>
+                            <textarea class="form-control" id="contactNotes" rows="3" maxlength="500" name="orgNote" autocomplete="orgNote"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn dealbtn float-right" type="button" id="SaveContact" onclick="saveData()">Save</button>
+                        </div>
                     </form>
 
                 </div>

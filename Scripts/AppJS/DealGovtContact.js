@@ -56,7 +56,7 @@ function openAttachGovtContactsModal(deal_id) {
     $("#statusAddGovernmentModal").html("&nbsp;&nbsp; | &nbsp;" + result.deal.Deal_Status)
     $("#titleStatusAddGovernmentModal").html(result.deal.Deal_Title)
     $("#AddAttachDealGovt").val(deal_id)
-    $('#attachGovtContactModal').modal('toggle');
+    $('#attachGovtContactModal').modal('show');
 }
 
 function renderList(records) {
@@ -255,4 +255,175 @@ function closeGovtContactsModal() {
     $("#viewGovtContactsModal").modal('hide');
     $("#attachGovtContactModal").modal('hide');
 }
+function agencyHtml(htmlId) {
+    if (!$("#scriptEleSocio").length) {
+        let scriptEleSocio = document.createElement("script");
+        scriptEleSocio.id = "scriptEleSocio";
+        scriptEleSocio.setAttribute("src", "/Scripts/AppJS/Search.js");
+        document.body.appendChild(scriptEleSocio);
+        scriptEleSocio.onload = function () {
 
+        }
+    }
+    const subAgency = `
+                        <div class="col-md-4 mb-2 pr-2">
+                           <label for="basic-url">Sub Agency</label><span style="color:red">*</span></label>
+							<!-- <span style="color:red;">*</span>-->
+                           <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text OpenAgencyPopup " id="btnagencyrowclear" data-toggle="tooltip" 
+								 title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                              </div>
+                              <input type="text" class="DIS_002 form-control txtagency" id="txtagency_2"  />
+								<label id="lblagency_2" style="display:none;" class="lblagency lblclr"></label>
+                           </div>
+                        </div>
+                     `
+    const fundingOffice = `
+                        <div class="col-md-4 mb-2 pr-2">
+                           <label for="basic-url">Office Name</label>
+							 <!-- <span style="color:red;">*</span>-->
+                           <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text OpenOffcPopup" data-toggle="tooltip" id="btnofficerowclear"
+								 title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                              </div>
+                              <input type="text" class="DIS_002 form-control txtoffice" id="txtoffice_2" />
+							  <label id="lbloffice_2" style="display:none;" class="lbloffice lblclr"></label>
+                           </div>
+                        </div>
+					`
+    const html = ` 
+					
+                        <div class="col-md-4 mb-2 pr-2" >
+                           <label for="basic-url">Agency</label><span style="color:red">*</span></label>
+                           <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text OpenDeptPopup btndeptrowclear" id="btndeptrowclear_2"
+								 data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                              </div>
+                              <input type="text" class="DIS_002 form-control txtdept" id="txtdept_2"     />
+								<label id="lbldept_2" style="display:none;" class="lbldept lblclr"></label>
+                           </div>
+                        </div>
+                     
+
+						   ${subAgency}
+							${fundingOffice}
+
+							`;
+    $(htmlId).html(html);
+    // $("#editAgency").html(html);
+
+}
+function addContactModal() {
+    $("#attachGovtContactModal").modal('hide')
+    $("#AddAttachDealGovt").val()
+    agencyHtml("#agencyHtml")
+    $("#addContactModal").modal('show')
+    $("#contactName").val('');
+    $("#contactPhone").val('');
+    $("#contactEmail").val('');
+    $("#contactAddress").val('');
+    $("#contactCity").val('');
+    $("#contactState").val('');
+    $("#contactZip").val('');
+    $("#contactNotes").val('');
+    $("#txtdept_2").val('');
+    $("#txtagency_2").val('');
+    $("#txtoffice_2").val('');
+}
+
+function closeContactModal(id) {
+    $(`#${id}`).modal('hide');
+    $("#agencyHtml").html('')
+    $("#editAgency").html('')
+    $("#contactName").val('');
+    $("#contactPhone").val('');
+    $("#contactEmail").val('');
+    $("#contactAddress").val('');
+    $("#contactCity").val('');
+    $("#contactState").val('');
+    $("#contactZip").val('');
+    $("#contactNotes").val('');
+    $("#txtdept_2").val('');
+    $("#txtagency_2").val('');
+    $("#txtoffice_2").val('');
+}
+
+function checkContactValidation(obj) {
+    return obj.name && obj.email_address && obj.funding_agency_code && obj.funding_sub_agency_code ? true : false;
+}
+function saveData() {
+    const contactData = {
+        name: $("#contactName").val(),
+        title: $("#contactTitle").val(),
+        phone: $("#contactPhone").val(),
+        email_address: $("#contactEmail").val(),
+        address: $("#contactAddress").val(),
+        city: $("#contactCity").val(),
+        state: $("#contactState").val(),
+        zip_code: $("#contactZip").val(),
+        notes: $("#contactNotes").val(),
+        funding_agency_name: $("#txtdept_2").val(),
+        funding_agency_code: $("#lbldept_2").text(),
+        funding_sub_agency_name: $("#txtagency_2").val(),
+        funding_sub_agency_code: $("#lblagency_2").text(),
+        funding_office_name: $("#txtoffice_2").val(),
+        funding_office_code: $("#lbloffice_2").text(),
+        active: 1
+    }
+    if (!checkContactValidation(contactData)) {
+        Swal.fire({
+            icon: 'error',
+            title: '',
+            buttons: true,
+            html: "Please fill in all required <span class='text-danger'>*</span> fields.",
+            showCancelButton: false,
+            showConfirmButton: false,
+            timer: 3000,
+        })
+        return
+    }
+    $.ajax({
+        type: "POST",
+        data: contactData,
+        enctype: 'multipart/form-data',
+        url: "/CrmGovernmentContacts/AddGovernmentContact",
+        success: function (result) {
+            result = jQuery.parseJSON(result);
+            if (result.response == "Success") {
+                swal.fire({
+                    title: "Success",
+                    text: "Contact Added Successfully",
+                    type: "success",
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    timer: 3000,
+                })
+                closeContactModal('addContactModal');
+                fetchGovernmentContactsList();
+                openAttachGovtContactsModal($("#AddAttachDealGovt").val())
+            }
+            else {
+                swal.fire({
+                    title: "Failed",
+                    text: "Contact Not Added",
+                    type: "danger",
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    timer: 3000,
+                })
+            }
+        }, error: function (error) {
+            swal.fire({
+                title: "Error",
+                text: error,
+                type: "danger",
+                showCancelButton: false,
+                showConfirmButton: false,
+                timer: 3000,
+            })
+        }
+    });
+}
