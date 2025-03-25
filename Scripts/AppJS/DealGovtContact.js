@@ -291,15 +291,14 @@ function displayContactModal(id) {
     });
 }
 
-
 function closeGovtContactsModal() {
     $("#viewGovtContactsModal").modal('hide');
     $("#attachGovtContactModal").modal('hide');
+    $("#displayContactModal").modal('hide');
 }
 
 function closeDisplayContactModal() {
     $("#displayContactModal").modal('hide');
-    $("#attachGovtContactModal").modal('show');
 }
 
 function agencyHtml(htmlId) {
