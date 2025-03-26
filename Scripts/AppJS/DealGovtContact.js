@@ -219,7 +219,7 @@ function viewGovtContractRenderer(obj) {
         <div class="main_header">
             <div class="nameblock">
                 <div class="text">
-                    <h2 style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;max-width: 150px;">${obj.govt_contact_name}</h2>
+                    <h2 style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;max-width: 150px; cursor:pointer" onclick="displayContactModalView(${obj.govt_contact_id})">${obj.govt_contact_name}</h2>
                 </div>
             </div>
             <div class="nameblock" style="float:right">
@@ -255,6 +255,44 @@ function displayContactModal(id) {
     $("#displayContactModal").modal('show');
     const object = JSON.parse($(`#dt-${id}`).attr("object"))
     let government_contact_id = object.government_contact_id
+    $.ajax({
+        type: "POST",
+        data: { government_contact_id },
+        enctype: 'multipart/form-data',
+        url: "/CrmGovernmentContacts/GetGovernmentContactById",
+        success: function (result) {
+            result = jQuery.parseJSON(result);
+            organizationList = result;
+            if (result != 0) {
+                $("#displayContactTable").html("")
+                let html = '';
+                html = html + `<tr><th>Name</th><td>${result[0].name}</td></tr>`;
+                html = html + `<tr><th>Title</th><td>${result[0].title}</td></tr>`;
+                html = html + `<tr><th>Phone</th><td>${result[0].phone}</td></tr>`;
+                html = html + `<tr><th>Email</th><td>${result[0].email_address}</td></tr>`;
+                html = html + `<tr><th>Address</th><td>${result[0].address}</td></tr>`;
+                html = html + `<tr><th>City</th><td>${result[0].city}</td></tr>`;
+                html = html + `<tr><th>State</th><td>${result[0].state}</td></tr>`;
+                html = html + `<tr><th>Zip Code</th><td>${result[0].zip_code}</td></tr>`;
+                html = html + `<tr><th>Agency</th><td>${result[0].funding_agency_name}</td></tr>`;
+                html = html + `<tr><th>Sub Agency</th><td>${result[0].funding_sub_agency_name}</td></tr>`;
+                html = html + `<tr><th>Office</th><td>${result[0].funding_office_name}</td></tr>`;
+                html = html + `<tr><th>Notes</th><td style="white-space: break-spaces;">${result[0].notes}</td></tr>`;
+                html = html + "</tr>"
+                $("#displayContactTable").append(html)
+            }
+            else {
+                console.log("No records")
+            }
+        },
+        error: function (error) {
+            console.log("Error: ", error)
+        }
+    });
+}
+
+function displayContactModalView(government_contact_id) {
+    $("#displayContactModal").modal('show');
     $.ajax({
         type: "POST",
         data: { government_contact_id },
