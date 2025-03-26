@@ -95,8 +95,8 @@ function renderList(records) {
                                             <td>${count}</td>
                                             <td>${records[a].name}</td>
                                             <td>${records[a].email_address}</td>
-                                            <td>${records[a].funding_sub_agency_name}</td>
-                                            <td>${records[a].funding_office_name}</td>
+                                            <td style="white-space: break-spaces;">${records[a].funding_sub_agency_name}</td>
+                                            <td style="white-space: break-spaces;">${records[a].funding_office_name}</td>
                                         </tr>`;
         //}
         //else {

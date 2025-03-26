@@ -28,6 +28,7 @@ namespace FedPipelineApplication.Controllers
         public string GetGovernmentContactsList(int active)
         {
             List<ContactDetails> contactList = new List<ContactDetails>();
+            string UserID = Session["User_ID"].ToString();
             using (SqlConnection con = new SqlConnection(MainCon))
             {
                 con.Open();
@@ -37,6 +38,7 @@ namespace FedPipelineApplication.Controllers
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@active", active);
+                    cmd.Parameters.AddWithValue("@user_id", UserID);
                     DataSet ds = obj.getDataSet_SP(cmd);
                     if (ds.Tables["data"].Rows.Count > 0)
                     {

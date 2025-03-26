@@ -48,11 +48,11 @@
             <div class="col-11 d-flex align-items-center ml-3 mb-3">
                 <div class="d-flex align-items-center mr-3">
                     <label for="searchName" class="mr-2" style="margin-top: 5px">Name:</label>
-                    <input type="text" class="form-control" style="width: 150px" id="searchName" onkeyup="onInputChange()">
+                    <input type="text" class="form-control" style="width: 250px" id="searchName" onkeyup="onInputChange()">
                 </div>
                 <div class="d-flex align-items-center mr-3">
                     <label for="searchSubAgency" class="mr-2" style="width: 90px; margin-top: 5px">Sub Agency:</label>
-                    <input type="text" class="form-control" style="width: 150px" id="searchSubAgency" onkeyup="onInputChange()">
+                    <input type="text" class="form-control" style="width: 250px" id="searchSubAgency" onkeyup="onInputChange()">
                 </div>
                 <div class="d-flex align-items-center mr-3">
                     <label for="searchActive" class="mr-2" style="margin-top: 5px">Status:</label>
@@ -63,7 +63,11 @@
                 </div>
             </div>
         </div>
-
+        <div class="row col-12">
+            <div class="col-6">
+                <p style="font-style: italic; color: purple;">Click on any row for more information</p>
+            </div>
+        </div>
         <div class="col-12 tab-content" id="myTabContent">
             <div class="table-responsive tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <table id="peopleTable" class="table nowrap table-striped table-bordered" style="width:100%;">
@@ -72,8 +76,8 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Sub Agency</th>
-                            <th>Office</th>
+                            <th style="white-space: break-spaces;">Sub Agency</th>
+                            <th style="white-space: break-spaces;">Office</th>
                             @*<th width="60" style="text-align: center;">Edit</th>*@
                         </tr>
                     </thead>
