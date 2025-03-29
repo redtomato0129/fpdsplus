@@ -162,12 +162,23 @@
                             </div>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon2"><i class="ti-email"></i></span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon2"><i class="ti-email"></i></span>
+                                </div>
+                                <input type="text" class="form-control form-control-lg" id="txtpublicemail" placeholder="Email" aria-label="Password" aria-describedby="basic-addon1">
+                            </div>
                         </div>
-                        <input type="text" class="form-control form-control-lg" id="txtpublicemail" placeholder="Email" aria-label="Password" aria-describedby="basic-addon1">
-
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon2"><i class="ti-home"></i></span>
+                                </div>
+                                <input type="text" class="form-control form-control-lg" id="txtpubliccompany" placeholder="Company" aria-label="Password" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
                     </div>
                     <span id="emailValidationMessage" class="text-danger"></span>
                     <div class="input-group mb-3">
@@ -241,23 +252,23 @@
 
                 </div>
 
-                <div class="Verification">
-                    <div class="row">
-                        <div class="R003">
-                            <h4><img style="padding-right: 13px; font-size:2px;" src="~/Content/assets/images/Fed/check.png" />An email has been sent to you</h4>
-                        </div>
-                        <div class="R001"></div>
-                        <div class="R003" ><h4 class="R002">Check your email @*for a message that contains a public email and password that will be valid till Sunday night*@</h4></div>
-                        <div class="R003">
-                                <button  class="btn btn-block btn-lg btn-info B_R002" id="goBack">Ok</button>
+                        <div class="Verification">
+                            <div class="row">
+                                <div class="R003">
+                                    <h4><img style="padding-right: 13px; font-size:2px;" src="~/Content/assets/images/Fed/check.png" />An email has been sent to you</h4>
+                                </div>
+                                <div class="R001"></div>
+                                <div class="R003"><h4 class="R002">Check your email @*for a message that contains a public email and password that will be valid till Sunday night*@</h4></div>
+                                <div class="R003">
+                                    <button class="btn btn-block btn-lg btn-info B_R002" id="goBack">Ok</button>
+                                </div>
                             </div>
+
+
+                        </div>
+                        @*</form>*@
                     </div>
-
-
                 </div>
-                @*</form>*@
-            </div>
-        </div>
     </div>
 
 </div>

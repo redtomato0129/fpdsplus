@@ -141,6 +141,7 @@ namespace FedPipelineApplication.Controllers
                                 cmd.Parameters.AddWithValue("@User_LastName", RegisterPublicUserDetails.LastName);
                                 cmd.Parameters.AddWithValue("@User_Email", RegisterPublicUserDetails.Email);
                                 cmd.Parameters.AddWithValue("@User_PhoneNo", RegisterPublicUserDetails.Phone);
+                                cmd.Parameters.AddWithValue("@User_Company", RegisterPublicUserDetails.Company);
                                 cmd.Parameters.AddWithValue("@Trial_User", 0);// count is 1 for trial users
                                 cmd.Parameters.AddWithValue("@User_OTP", OTP);
                                 cmd.Parameters.AddWithValue("@Public_Email", Public_Email);

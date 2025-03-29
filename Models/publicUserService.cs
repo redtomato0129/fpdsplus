@@ -121,6 +121,7 @@ namespace FedPipelineApplication.Models
         public string LastName { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
+        public string Company { get; set; }
         public string Public_Email { get; set; }
         public string Public_Password { get; set; }
         public DateTime CreatedDate { get; set; }

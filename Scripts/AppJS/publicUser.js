@@ -38,6 +38,7 @@ $(document).ready(function () {
         RegisterPublicUserDetails.LastName = $('#txtpubliclastname').val();
         RegisterPublicUserDetails.Phone = $('#txtpublicphone').val();
         RegisterPublicUserDetails.Email = $('#txtpublicemail').val();
+        RegisterPublicUserDetails.Company = $('#txtpubliccompany').val();
         if (!isEmailValidated) {
             swal("", "Email format is not correct", "warning");
         }
@@ -45,6 +46,7 @@ $(document).ready(function () {
         if (RegisterPublicUserDetails.FirstName != "" &&
             RegisterPublicUserDetails.LastName != "" &&
             RegisterPublicUserDetails.Email != "" &&
+            RegisterPublicUserDetails.Company != "" &&
             RegisterPublicUserDetails.Phone != "") {
             var data = "{RegisterPublicUserDetails:" + JSON.stringify(RegisterPublicUserDetails) + "}";
             var url = "/Register/PublicUserRegister";
