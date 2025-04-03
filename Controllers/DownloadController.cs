@@ -40,6 +40,8 @@ namespace FedPipelineApplication.Controllers
 						downloadObject.name = rdr["name"].ToString();
 						downloadObject.description = rdr["description"].ToString();
 						downloadObject.url = rdr["url"].ToString();
+						downloadObject.shopify_url = rdr["shopify_url"].ToString();
+						downloadObject.created_at = rdr["created_at"].ToString();
 						downloadList.Add(downloadObject);
 					}
 				}
@@ -56,6 +58,8 @@ namespace FedPipelineApplication.Controllers
 			public string name { get; set; }
 			public string description { get; set; }
 			public string url { get; set; }
+			public string shopify_url { get; set; }
+			public string created_at { get; set; }
 		}
 
 	}

@@ -11,7 +11,7 @@
         `<a class="sidebar-link waves-effect waves-dark sidebar-link" href="/ContractSearch/Index" aria-expanded="false"><i class="ti-search"></i><span class="hide-menu">Contract</span></a>`)
     origin.includes('local') || origin.includes('fpdsplus') ? $("#downloadReports").show() : $("#downloadReports").hide()
     $("#downloadReports").html(origin.includes('local') || origin.includes('fpdsplus') ?
-        `<a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Download/Index" aria-expanded="false"><i class="fa-solid fa-download"></i><span class="hide-menu">Download</span></a>` :
+        `<a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Download/Index" aria-expanded="false"><i class="fa-solid fa-file"></i><span class="hide-menu">Reports</span></a>` :
         `<a style="display:none;"></a>`)
 
     $("#videoNav").prop('href', origin.includes('answers') || origin.includes('fpdsplus')? 'https://www.youtube.com/playlist?list=PLLqOry17kGuSRV04rPnyhq15l6Wd2nLPv' :
