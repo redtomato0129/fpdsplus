@@ -453,10 +453,15 @@ function GetOrganizationListAll() {
         success: function (result) {
             //result = JSON.parse(result)
             let html = '<option selected disabled="disabled">Please Choose one</option>';
+            const domain = $("#userDomain").val();
             if (result.records.length > 0) {
                 const data = result.records;                
                 for (let i = 0; i < data.length; i++) {
-                    html = html + `<option value="${data[i].organization_id}">${data[i].name}</option>`;
+                    const emailDomain = data[i].email_address.split('@')[1];
+                    if (emailDomain === domain) {
+                        html = html + `<option value="${data[i].organization_id}">${data[i].name}</option>`;
+                    }
+                    
                 }
             }
             $("#organizationList").html(html)

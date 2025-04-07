@@ -120,7 +120,7 @@ namespace FedPipelineApplication.Controllers
             return new JavaScriptSerializer().Serialize(new { response, error });
         }
 
-        public string DealsList(int pageNo, string keyword)
+        public string DealsList(int pageNo, string keyword, string dealType)
         {
             string result = "";
             var error = string.Empty;
@@ -133,7 +133,7 @@ namespace FedPipelineApplication.Controllers
                 using (SqlConnection con = new SqlConnection(MainCon))
                 {
 
-                    var sp = string.IsNullOrEmpty(keyword) ? "crm_deal_getall" : "crm_deal_search_all";
+                    var sp = string.IsNullOrEmpty(keyword) ? "crm_deal_getallbycategory" : "crm_deal_search_allbycategory";
                     SqlCommand cmd1 = new SqlCommand(sp, con);
                     cmd1.CommandType = CommandType.StoredProcedure;
                     if (!string.IsNullOrEmpty(keyword))
@@ -141,6 +141,7 @@ namespace FedPipelineApplication.Controllers
                         cmd1.Parameters.AddWithValue("@search_text", keyword);
                     }
                     cmd1.Parameters.AddWithValue("@user_domain", UserDomain);
+                    cmd1.Parameters.AddWithValue("@deal_type", dealType);
                     con.Open();
                     SqlDataReader rdr = cmd1.ExecuteReader();
                     while (rdr.Read())

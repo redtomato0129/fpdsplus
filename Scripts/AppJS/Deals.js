@@ -104,7 +104,7 @@ $(document).ready(function () {
 
     GetDeals();
     $('.auth-wrapper').addClass('deals');
-    if (window.location.href.indexOf('CrmDeals/Index') != -1) {
+    if (window.location.href.indexOf('CrmDeals/Index') != -1 || window.location.href.indexOf('CrmCommercialDeal/Index') != -1) {
         $("#gridSearch").show();
     }
 
@@ -1116,7 +1116,8 @@ function datePickertxtShow() {
 
 function DealsList() {
     $('#deal-data-table').dataTable().fnDestroy();
-    var data = "{}";
+    const dealType = window.location.href.indexOf('CrmDeals/Index') != -1 ? 'Federal' : 'Commercial'
+    var data = { dealType };
     var url = "/CrmDeals/DealsList";
 
     var result = AjaxPost(url, data);
@@ -1172,8 +1173,8 @@ function GetDeals(searchtext, pageNo) {
        
     } else {
         url = "/CrmDeals/DealsList";
-
-        data = "{'pageNo': '" + pageNo + "','keyword': '" + searchtext + "'}";
+        const dealType = window.location.href.indexOf('CrmDeals/Index') != -1 ? 'Federal' : 'Commercial'
+        data = "{'pageNo': '" + pageNo + "','keyword': '" + searchtext + "','dealType':'" + dealType +"'}";
     }
    
     var result = AjaxPost(url, data);

@@ -329,6 +329,7 @@
     <Compile Include="Controllers\ContractSearchController.cs" />
     <Compile Include="Controllers\CouponController.cs" />
     <Compile Include="Controllers\CrmActivitiesController.cs" />
+    <Compile Include="Controllers\CrmCommercialDealController.cs" />
     <Compile Include="Controllers\CrmDashboardController.cs" />
     <Compile Include="Controllers\CrmDealsController.cs" />
     <Compile Include="Controllers\CrmGovernmentContactsController.cs" />
@@ -6420,6 +6421,7 @@
     <Content Include="Views\TaxonomyUNSPSC\Index.cshtml" />
     <Content Include="Views\Scraper\ChatAI.cshtml" />
     <Content Include="Views\CrmGovernmentContacts\Index.cshtml" />
+    <Content Include="Views\CrmCommercialDeal\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
