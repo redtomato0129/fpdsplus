@@ -3,36 +3,28 @@
   "WorkspaceRootPath": "E:\\fedpipeline\\fpdsplus-dev\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|e:\\fedpipeline\\fpdsplus-dev\\scripts\\appjs\\download.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:scripts\\appjs\\download.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|E:\\fedpipeline\\fpdsplus-dev\\controllers\\reportscentralcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:controllers\\reportscentralcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|E:\\fedpipeline\\fpdsplus-dev\\scripts\\appjs\\deals.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:scripts\\appjs\\deals.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|e:\\fedpipeline\\fpdsplus-dev\\views\\crmgovernmentcontacts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:views\\crmgovernmentcontacts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|E:\\fedpipeline\\fpdsplus-dev\\views\\crmdeals\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:views\\crmdeals\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|E:\\fedpipeline\\fpdsplus-dev\\controllers\\downloadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:controllers\\downloadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|E:\\fedpipeline\\fpdsplus-dev\\controllers\\crmdealscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:controllers\\crmdealscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|E:\\fedpipeline\\fpdsplus-dev\\views\\download\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:views\\download\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|E:\\fedpipeline\\fpdsplus-dev\\scripts\\appjs\\helpicons.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:scripts\\appjs\\helpicons.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|E:\\fedpipeline\\fpdsplus-dev\\views\\reportscentral\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:views\\reportscentral\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|E:\\fedpipeline\\fpdsplus-dev\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|E:\\fedpipeline\\fpdsplus-dev\\scripts\\appjs\\reportscentral.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:scripts\\appjs\\reportscentral.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|e:\\fedpipeline\\fpdsplus-dev\\content\\appcss\\reportscentral.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{F26A7418-FDB6-4C4E-ADC3-665265884C26}|FedPipelineApplication.csproj|solutionrelative:content\\appcss\\reportscentral.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,105 +34,86 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DownloadController.cs",
-              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Controllers\\DownloadController.cs",
-              "RelativeDocumentMoniker": "Controllers\\DownloadController.cs",
-              "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Controllers\\DownloadController.cs",
-              "RelativeToolTip": "Controllers\\DownloadController.cs",
-              "ViewState": "AQIAABsAAAAAyszMzMz8vzAAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T21:31:42.181Z",
-              "IsPinned": true
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Deals.js",
-              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Scripts\\AppJS\\Deals.js",
-              "RelativeDocumentMoniker": "Scripts\\AppJS\\Deals.js",
-              "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Scripts\\AppJS\\Deals.js",
-              "RelativeToolTip": "Scripts\\AppJS\\Deals.js",
-              "ViewState": "AQIAACoFAAAAAAAAAAApwDYFAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-04-02T22:25:57.57Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CrmDealsController.cs",
-              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Controllers\\CrmDealsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\CrmDealsController.cs",
-              "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Controllers\\CrmDealsController.cs",
-              "RelativeToolTip": "Controllers\\CrmDealsController.cs",
-              "ViewState": "AQIAACQAAAAQAAAAAAAwwEMAAAA8AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T22:14:23.072Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Download.js",
-              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Scripts\\AppJS\\Download.js",
-              "RelativeDocumentMoniker": "Scripts\\AppJS\\Download.js",
-              "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Scripts\\AppJS\\Download.js",
-              "RelativeToolTip": "Scripts\\AppJS\\Download.js",
-              "ViewState": "AQIAAAsAAABAMzMzMzMbwBgAAAA2AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-04-02T21:35:24.865Z",
+              "Title": "ReportsCentralController.cs",
+              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Controllers\\ReportsCentralController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ReportsCentralController.cs",
+              "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Controllers\\ReportsCentralController.cs",
+              "RelativeToolTip": "Controllers\\ReportsCentralController.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABIAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T19:57:24.886Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Views\\Download\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Download\\Index.cshtml",
-              "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Views\\Download\\Index.cshtml",
-              "RelativeToolTip": "Views\\Download\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAAWAAAA",
+              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Views\\CrmGovernmentContacts\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\CrmGovernmentContacts\\Index.cshtml",
+              "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Views\\CrmGovernmentContacts\\Index.cshtml",
+              "RelativeToolTip": "Views\\CrmGovernmentContacts\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-02T21:34:45.708Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "HelpIcons.js",
-              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Scripts\\AppJS\\HelpIcons.js",
-              "RelativeDocumentMoniker": "Scripts\\AppJS\\HelpIcons.js",
-              "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Scripts\\AppJS\\HelpIcons.js",
-              "RelativeToolTip": "Scripts\\AppJS\\HelpIcons.js",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAACNAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-04-02T19:50:34.59Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAANUBAAAAAAAAAAAowN4BAADJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-02T15:02:13.908Z"
+              "WhenOpened": "2025-04-09T18:16:12.228Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Views\\CrmDeals\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\CrmDeals\\Index.cshtml",
-              "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Views\\CrmDeals\\Index.cshtml",
-              "RelativeToolTip": "Views\\CrmDeals\\Index.cshtml",
-              "ViewState": "AQIAABUAAAAAaGZmZmYkwKgBAAAkAAAA",
+              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Views\\ReportsCentral\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\ReportsCentral\\Index.cshtml",
+              "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Views\\ReportsCentral\\Index.cshtml",
+              "RelativeToolTip": "Views\\ReportsCentral\\Index.cshtml",
+              "ViewState": "AQIAAGEAAACAMjMzMzMrwGcAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-23T03:05:00.734Z"
+              "WhenOpened": "2025-04-08T19:58:48.046Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ReportsCentral.js",
+              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Scripts\\AppJS\\ReportsCentral.js",
+              "RelativeDocumentMoniker": "Scripts\\AppJS\\ReportsCentral.js",
+              "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Scripts\\AppJS\\ReportsCentral.js",
+              "RelativeToolTip": "Scripts\\AppJS\\ReportsCentral.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-04-08T19:56:54.536Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ReportsCentral.css",
+              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Content\\AppCss\\ReportsCentral.css",
+              "RelativeDocumentMoniker": "Content\\AppCss\\ReportsCentral.css",
+              "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Content\\AppCss\\ReportsCentral.css",
+              "RelativeToolTip": "Content\\AppCss\\ReportsCentral.css",
+              "ViewState": "AQIAAGQAAAAAAAAAAAAiwH4AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-04-08T20:00:25.216Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "E:\\fedpipeline\\fpdsplus-dev\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "E:\\fedpipeline\\fpdsplus-dev\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAAoBAAAAAAAAAAASwBcBAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-02T15:02:13.908Z",
+              "EditorCaption": ""
             }
           ]
         }

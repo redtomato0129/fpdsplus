@@ -350,6 +350,7 @@
     <Compile Include="Controllers\QuestionSearcHistoryController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\RegisterFPDSplusController.cs" />
+    <Compile Include="Controllers\ReportsCentralController.cs" />
     <Compile Include="Controllers\ScraperController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SubscriptionController.cs" />
@@ -428,6 +429,7 @@
     <Content Include="Content\AppCss\QuestionParams.css" />
     <Content Include="Content\AppCss\questionView.css" />
     <Content Include="Content\AppCss\Register.css" />
+    <Content Include="Content\AppCss\ReportsCentral.css" />
     <Content Include="Content\AppCss\Scraper.css" />
     <Content Include="Content\AppCss\Search.css" />
     <Content Include="Content\AppCss\SearchHistory.css" />
@@ -5723,6 +5725,7 @@
     <Content Include="Scripts\AppJS\QuestionParamsVendorUei.js" />
     <Content Include="Scripts\AppJS\Register.js" />
     <Content Include="Scripts\AppJS\RelatedVendors.js" />
+    <Content Include="Scripts\AppJS\ReportsCentral.js" />
     <Content Include="Scripts\AppJS\Scraper.js" />
     <Content Include="Scripts\AppJS\Search.js" />
     <Content Include="Scripts\AppJS\SearchHistory.js" />
@@ -6422,6 +6425,7 @@
     <Content Include="Views\Scraper\ChatAI.cshtml" />
     <Content Include="Views\CrmGovernmentContacts\Index.cshtml" />
     <Content Include="Views\CrmCommercialDeal\Index.cshtml" />
+    <Content Include="Views\ReportsCentral\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
