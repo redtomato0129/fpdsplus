@@ -29,6 +29,7 @@ namespace FedPipelineApplication.Controllers
         {
             List<ContactDetails> contactList = new List<ContactDetails>();
             string UserID = Session["User_ID"].ToString();
+            string UserDomain = Session["User_Domain"].ToString();
             using (SqlConnection con = new SqlConnection(MainCon))
             {
                 con.Open();
@@ -39,6 +40,7 @@ namespace FedPipelineApplication.Controllers
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@active", active);
                     cmd.Parameters.AddWithValue("@user_id", UserID);
+                    cmd.Parameters.AddWithValue("@user_domain", UserDomain);
                     DataSet ds = obj.getDataSet_SP(cmd);
                     if (ds.Tables["data"].Rows.Count > 0)
                     {
@@ -76,6 +78,7 @@ namespace FedPipelineApplication.Controllers
         public string GetGovernmentContactById(int government_contact_id)
         {
             List<ContactDetails> contactList = new List<ContactDetails>();
+            string UserDomain = Session["User_Domain"].ToString();
             using (SqlConnection con = new SqlConnection(MainCon))
             {
                 con.Open();
@@ -84,6 +87,7 @@ namespace FedPipelineApplication.Controllers
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@government_contact_id", government_contact_id);
+                    cmd.Parameters.AddWithValue("@user_domain", UserDomain);
 
                     DataSet ds = obj.getDataSet_SP(cmd);
                     if (ds.Tables["data"].Rows.Count > 0)
@@ -130,6 +134,7 @@ namespace FedPipelineApplication.Controllers
             string Error = "";
 
             string UserID = Session["User_ID"].ToString();
+            string UserDomain = Session["User_Domain"].ToString();
             try
             {
                 using (SqlConnection con = new SqlConnection(MainCon))
@@ -169,6 +174,7 @@ namespace FedPipelineApplication.Controllers
                         cmd.Parameters.AddWithValue("@funding_office_name", contact.funding_office_name);
                         cmd.Parameters.AddWithValue("@user_id", UserID);
                         cmd.Parameters.AddWithValue("@active", contact.active);
+                        cmd.Parameters.AddWithValue("@user_domain", UserDomain);
 
                         result = obj.insertExecuteNonQuery_SP(cmd);
                         if (result > 0)

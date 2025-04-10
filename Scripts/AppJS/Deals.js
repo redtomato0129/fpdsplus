@@ -1222,6 +1222,7 @@ function GetDeals(searchtext, pageNo) {
             var user_domain = data[i].user_domain;
             var deal_type = data[i].deal_type;
             var organization_id = data[i].organization_id;
+            var organization_name = data[i].organization_name;
 
 
             let color = '';
@@ -1284,7 +1285,7 @@ function GetDeals(searchtext, pageNo) {
                     '<td  style="font-family: " FontAwesome";">' + status + '</td > ' +
                     '<td style="font-family: " FontAwesome";">' + stage + '</td > ' +
                     '<td style="none: " FontAwesome";"> ' + priority + '</td>' +
-                    '<td style="none: " FontAwesome";"> ' + organization_id + '</td>' +
+                    '<td style="none: " FontAwesome";"> ' + organization_name + '</td>' +
                     '<td class="text-center" style="justify-items: anchor-center;"><div class="d-flex  border-0"> <i class="fa-solid fa-eye mr-2"  onclick="openAttchViewPeopleModal(`' + Deal_ID + '`)" style="color: #571C7A;"></i> <i class="fa-solid fa-circle-plus" style="color: #08A742;"  onclick="openAttchPeopleModal(`' + Deal_ID + '`,`' + title + '`,`' + status + '`,`' + rfp_release_date + '`)" ></i></div></td>' +
                     '<td class="text-center" style="justify-items: anchor-center;"><div class="d-flex  border-0"> <i class="fa-solid fa-eye mr-2"  onclick="openViewGovtContactsModal(`' + Deal_ID + '`)" style="color: #571C7A;"></i> <i class="fa-solid fa-circle-plus" style="color: #08A742;"  onclick="openAttachGovtContactsModal(`' + Deal_ID + '`)" ></i></div></td>' +
                     '<td dealId=' + Deal_ID + ' class="dt-control" style="justify-items: anchor-center;"><div class="d-flex border-0" style="margin-right: 11px;"><i class="fa-solid fa-eye mr-2"  style="color: #571C7A;"></i> <i class="fa-solid fa-circle-plus" style="color: #08A742;"></i></div></td>' +

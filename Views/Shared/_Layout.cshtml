@@ -372,18 +372,18 @@
                             </li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/AnswerWizard/Index" aria-expanded="false"><i class="mdi mdi-av-timer"></i><span class="hide-menu">Wizard</span></a></li>
                             @*@if (Session["User_Domain"] != null && (Session["User_Domain"].ToString() == "rturner.net" || Session["User_Domain"].ToString() == "txend.com"))
-                                {
-                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/Scraper/Index" aria-expanded="false"><i class="mdi mdi-av-timer"></i><span class="hide-menu">Scraper</span></a></li>
-                                }*@
+        {
+            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/Scraper/Index" aria-expanded="false"><i class="mdi mdi-av-timer"></i><span class="hide-menu">Scraper</span></a></li>
+        }*@
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/QuestionSearchHistory/Index" aria-expanded="false"><i class="mdi mdi-av-timer"></i><span class="hide-menu">History</span></a></li>
 
                             @*<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/Dashboard/Index" aria-expanded="false"><i class="mdi mdi-av-timer"></i><span class="hide-menu">Market Context</span></a></li>*@
 
                             @*<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/SubscriptionHistory/Index" aria-expanded="false"><i class="mdi mdi-wallet-membership"></i><span class="hide-menu">Subscription History</span></a></li>*@
 
-                            <li class="nav-small-cap sidebar-bold-menu-text full_nav">
+                            @*<li class="nav-small-cap sidebar-bold-menu-text full_nav">
                                 <a class="sidebar-link waves-effect waves-dark sidebar-link" style="color: #818181" href="/ReportsCentral/Index" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i><span class="hide-menu">Reports Central</span></a>
-                            </li>
+                            </li>*@
 
                             <li class="nav-small-cap sidebar-bold-menu-text">
                                 <i class="mdi mdi-dots-horizontal"></i>
@@ -401,10 +401,10 @@
                             <li class="sidebar-item full_nav"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/OpportunitySearch/Index?id=1" aria-expanded="false"><i class="ti-search"></i><span class="hide-menu">Opportunity</span></a></li>
                             <!-- Teaming Forms Section Start-->
                             @*<li class="sidebar-item">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/Teaming/Index" aria-expanded="false">
-                                        <i class="fa-solid fa-chart-line"></i><span class="hide-menu">Teaming Form 2</span>
-                                    </a>
-                                </li>*@
+            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/Teaming/Index" aria-expanded="false">
+                <i class="fa-solid fa-chart-line"></i><span class="hide-menu">Teaming Form 2</span>
+            </a>
+        </li>*@
 
                             <!-- CRM Section Start-->
                             <li class="nav-small-cap sidebar-bold-menu-text full_nav">
@@ -418,17 +418,17 @@
                                 </a>
                             </li>
                             @*<li class="sidebar-item full_nav">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/CrmCommercialDeal/Index" aria-expanded="false">
-                                        <i class="fa-solid fa-handshake"></i>
-                                        <span class="hide-menu">Commercial Deals</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-item full_nav">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/CrmDeals/Index" aria-expanded="false">
-                                        <i class="fa-solid fa-handshake"></i>
-                                        <span class="hide-menu">Federal Deals</span>
-                                    </a>
-                                </li>*@
+            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/CrmCommercialDeal/Index" aria-expanded="false">
+                <i class="fa-solid fa-handshake"></i>
+                <span class="hide-menu">Commercial Deals</span>
+            </a>
+        </li>
+        <li class="sidebar-item full_nav">
+            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/CrmDeals/Index" aria-expanded="false">
+                <i class="fa-solid fa-handshake"></i>
+                <span class="hide-menu">Federal Deals</span>
+            </a>
+        </li>*@
                             <li class="sidebar-item full_nav">
                                 <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                                     <i class="fa-solid fa-handshake"></i>
@@ -464,56 +464,75 @@
                                     <span class="hide-menu">Social</span>
                                 </a>
                             </li>
+                            @*<li class="sidebar-item full_nav">
+            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/CrmPeople/Index" aria-expanded="false">
+                <i class="fa-solid fa-people-group"></i>
+                <span class="hide-menu">People</span>
+            </a>
+        </li>*@
                             <li class="sidebar-item full_nav">
-
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/CrmPeople/Index" aria-expanded="false">
+                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                                     <i class="fa-solid fa-people-group"></i>
                                     <span class="hide-menu">People</span>
                                 </a>
+                                <ul aria-expanded="false" class="collapse first-level">
+                                    <li class="sidebar-item">
+                                        <a href="~/CrmPeople/Index" class="sidebar-link">
+                                            <i class="fa fa-circle"></i>
+                                            <span class="hide-menu">Commercial People</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a href="~/CrmGovernmentContacts/Index" class="sidebar-link">
+                                            <i class="fa fa-circle"></i>
+                                            <span class="hide-menu">Federal People</span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
-                            <li class="sidebar-item full_nav">
+                            @*<li class="sidebar-item full_nav">
                                 <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/CrmGovernmentContacts/Index" aria-expanded="false">
                                     <i class="fa-regular fa-address-card"></i><span class="hide-menu">Govt. Contacts</span>
                                 </a>
-                            </li>
+                            </li>*@
                             <!--CRM Section End-->
                             <!-- CMI Section-->
                             @*<li class="nav-small-cap sidebar-bold-menu-text">
-                                    <i class="mdi mdi-dots-horizontal"></i>
-                                    <span class="hide-menu">CMI</span>
-                                </li>*@
+            <i class="mdi mdi-dots-horizontal"></i>
+            <span class="hide-menu">CMI</span>
+        </li>*@
                             @*<li class="sidebar-item full_nav">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/CmiNews/Index"
-                                       aria-expanded="false">
-                                        <i class="fa-solid fa-book-open"></i>
-                                        <span class="hide-menu">News</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-item full_nav">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/EmailNotification/Index"
-                                       aria-expanded="false">
-                                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                                        <span class="hide-menu">Email Notification</span>
-                                    </a>
-                                </li>*@
+            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/CmiNews/Index"
+               aria-expanded="false">
+                <i class="fa-solid fa-book-open"></i>
+                <span class="hide-menu">News</span>
+            </a>
+        </li>
+        <li class="sidebar-item full_nav">
+            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/EmailNotification/Index"
+               aria-expanded="false">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <span class="hide-menu">Email Notification</span>
+            </a>
+        </li>*@
 
                             <li class="nav-small-cap sidebar-bold-menu-text">
                                 <i class="mdi mdi-dots-horizontal"></i>
                                 <span class="hide-menu">Resources</span>
                             </li>
                             @*@if (Session["User_Domain"] != null && (Session["User_Domain"].ToString() == "rturner.net" ||
-                                    Session["User_Domain"].ToString() == "hdrinc.com" || Session["User_Domain"].ToString() == "txend.com"))
-                                {
-                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/HDR/Index?category=contract" aria-expanded="false"><i class="ti-bar-chart"></i><img class="Com_007" src="~/Content/assets/images/HDR_logo.svg" /></a></li>
-                                }*@
+            Session["User_Domain"].ToString() == "hdrinc.com" || Session["User_Domain"].ToString() == "txend.com"))
+        {
+            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/HDR/Index?category=contract" aria-expanded="false"><i class="ti-bar-chart"></i><img class="Com_007" src="~/Content/assets/images/HDR_logo.svg" /></a></li>
+        }*@
                             @* <li class="sidebar-item full_nav"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/UserReports/Index" aria-expanded="false"><i class="fa-solid fa-file"></i><span class="hide-menu">Reports</span></a></li>*@
                             @* <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/Taxonomy/Index" aria-expanded="false"><img class="Com_007" src="~/Content/assets/images/taxonomy.png"><span class="hide-menu">Dept/Agency/Office Taxonomy</span></a></li>*@
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/Taxonomy/Index" aria-expanded="false"><i class="fa-solid fa-code-fork"></i><span class="hide-menu">Agency Taxonomy</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/TaxonomyPSC/Index" aria-expanded="false"><i class="fa-solid fa-code-compare"></i><span class="hide-menu">NAICS/PSC Taxonomy</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/TaxonomyUNSPSC/Index" aria-expanded="false"><i class="fa-solid fa-code-branch"></i><span class="hide-menu">UNSPSC Taxonomy</span></a></li>
                             @*<li class="sidebar-item">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/Download/Index" aria-expanded="false"><i class="fa-solid fa-download"></i><span class="hide-menu">Download</span></a>
-                                </li>*@
+            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="~/Download/Index" aria-expanded="false"><i class="fa-solid fa-download"></i><span class="hide-menu">Download</span></a>
+        </li>*@
                             <li class="sidebar-item" id="downloadReports"> </li>
                             <li class="sidebar-item">
                                 <a class="sidebar-link waves-effect waves-dark sidebar-link" href="" target="_blank" aria-expanded="false" id="faqNav"><i class="fa fa-question"></i><span class="hide-menu">FAQ</span></a>

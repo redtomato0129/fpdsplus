@@ -181,6 +181,7 @@ namespace FedPipelineApplication.Controllers
                         GetAll.multi_single_award = rdr["multi_single_award"].ToString();
                         GetAll.deal_type = rdr["deal_type"].ToString();
                         GetAll.organization_id = rdr["organization_id"].ToString();
+                        GetAll.organization_name = rdr["organization_name"].ToString();
 
                         deallist.Add(GetAll);
                     }
@@ -791,6 +792,7 @@ namespace FedPipelineApplication.Controllers
             public string multi_single_award { get; set; }
             public string deal_type { get; set; }
             public string organization_id { get; set; }
+            public string organization_name { get; set; }
 
 
         }
