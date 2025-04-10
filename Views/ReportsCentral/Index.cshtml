@@ -43,10 +43,7 @@
                         <span class="toggle-icon" id="icon-funding">+</span> Funding Agencies
                     </div>
                     <div id="funding" class="section-content">
-                        <button type="button" class="btn btn-primary" onclick="fundingAgencyModal()">
-                            Select Funding Agency
-                        </button>
-                        <label id="funding-label" style="cursor: pointer;">Select Funding Agency</label><br />
+                        <label id="fundingAgencyLabel" style="cursor: pointer;">Select Funding Agency</label><br />
                         <input type="checkbox" /> <label>Civilian</label><br />
                         <input type="checkbox" /> <label>All Agencies</label>
                     </div>
@@ -103,16 +100,28 @@
 
 <!-- Modals -->
 
-@*<div id="fundingModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <label>Enter Funding Agency:</label><br />
-        <input type="text" id="fundingInput" style="width: 100%; margin-top: 5px;"><br /><br />
-        <button id="saveFunding">Save</button>
-    </div>
-</div>*@
+<div id="fundingAgencyModal" class="modal" tabindex="-1" aria-labelledby="exampleModalLabel" role="dialog" data-backdrop="static" data-keyboard="false" aria-modal="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:80%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Select Agency</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="agencyHtml" class="row col-12">
 
-<div class="modal fade" id="fundingAgencyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn filtersButton" id="saveAgency">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="modal fade" id="fundingAgencyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -131,4 +140,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@

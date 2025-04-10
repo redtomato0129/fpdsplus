@@ -1220,6 +1220,8 @@ function GetDeals(searchtext, pageNo) {
             var user_id = data[i].user_id;
 
             var user_domain = data[i].user_domain;
+            var deal_type = data[i].deal_type;
+            var organization_id = data[i].organization_id;
 
 
             let color = '';
@@ -1235,40 +1237,61 @@ function GetDeals(searchtext, pageNo) {
                 color = '#f984ef';
             }
             // <!-- style="background-color: ' + color + '"-->
-            filldata = filldata +
-                '<tr id="' + Deal_ID +'">' +
-                '<td >' +
 
-                '<a class="fas fa-edit text-centre" target="_blank" href="/CrmDeals/AddDeal?dealId=' + Deal_ID + '" > ' +
-                '</a>' +
+            if (deal_type == 'Federal') {
 
-                '</td > ' +
-                  //'<td> ' + Deal_ID + '</td > ' +
-                /*'<td> ' + Created_Date + '</td > ' +*/
-                '<td style="font-family: ;white-space: break-spaces;"> ' + title + '</td > ' +
-                /*'<td style="font-family: " FontAwesome";" > ' + description + '</td>' +*/
-                '<td style="font-family: " FontAwesome";" >' + rfp_release_date + '</td>' +
-                '<td  style="font-family: " FontAwesome";">' + status + '</td > ' +
-                '<td style="font-family: " FontAwesome";">' + stage + '</td > ' +
-                '<td style="none: " FontAwesome";"> ' + priority + '</td>' +
-                '<td style="font-family: ;white-space: break-spaces;">' + funding_sub_agency_name + '</td>' +
-                /*'<td  style = "font-family: "FontAwesome";" > ' + award_type + '</td>' +*/
-                '<td style = "font-family: " FontAwesome";"> ' + set_aside + '</td>' +
-                '<td style="font-family: " FontAwesome";"> ' + naics + '</td>' +
-                '<td style="font-family: " FontAwesome";"> ' + psc_code + '</td>' +
-                '<td style="font-family: ;white-space: break-spaces;">' + incumbent_name + '</td>' +
-                '<td align="right" style="font-family: " FontAwesome";"> ' + ` ${ potential_award_amount? "$" +potential_award_amount.toLocaleString('en') :'' }` + '</td>' +
-               /* '<td style="font-family: " FontAwesome";"  > ' + expiration_date + '</td>' +*/
-                /* '<td style="none: " FontAwesome";" > ' + SolicitationNumber + '</td>' +*/
+                filldata = filldata +
+                    '<tr style="text-align:center;" id="' + Deal_ID + '">' +
+                    '<td >' +
 
-               
-                '<td class="text-center"><div class="d-flex  border-0"> <i class="fa-solid fa-eye mr-2"  onclick="openAttchViewPeopleModal(`' + Deal_ID + '`)" style="color: #571C7A;"></i> <i class="fa-solid fa-circle-plus" style="color: #08A742;"  onclick="openAttchPeopleModal(`' + Deal_ID + '`,`' + title + '`,`' + status + '`,`' + rfp_release_date + '`)" ></i></div></td>' +
-                '<td class="text-center"><div class="d-flex  border-0"> <i class="fa-solid fa-eye mr-2"  onclick="openViewGovtContactsModal(`' + Deal_ID + '`)" style="color: #571C7A;"></i> <i class="fa-solid fa-circle-plus" style="color: #08A742;"  onclick="openAttachGovtContactsModal(`' + Deal_ID + '`)" ></i></div></td>' +
-                '<td dealId=' + Deal_ID + ' class="dt-control"><div class="d-flex border-0" style="margin-right: 11px;"><i class="fa-solid fa-eye mr-2"  style="color: #571C7A;"></i> <i class="fa-solid fa-circle-plus" style="color: #08A742;"></i></div></td>' +
-                '<td> <div class="d-flex  border-0"><i class="fa-solid fa-eye  mr-2" style="color: #571C7A;" onclick="openNewsModal(' + Deal_ID + ')"></i><i class="fa-solid fa-circle-plus" style="color: #08A742;"  onclick="routeToNews(' + Deal_ID + ')"></i></div></td>';
-            /*'<td style = "display:none"><i style="" class="fa fa-trash icons Deleteclass sb002" onclick="deletedeal(' + Deal_ID + ')"></i></td>'*/
+                    '<a class="fas fa-edit text-centre" target="_blank" href="/CrmDeals/AddDeal?dealId=' + Deal_ID + '" > ' +
+                    '</a>' +
 
-            '</tr > '
+                    '</td > ' +
+                    //'<td> ' + Deal_ID + '</td > ' +
+                    /*'<td> ' + Created_Date + '</td > ' +*/
+                    '<td style="font-family: ;white-space: break-spaces;"> ' + title + '</td > ' +
+                    /*'<td style="font-family: " FontAwesome";" > ' + description + '</td>' +*/
+                    '<td style="font-family: " FontAwesome";" >' + rfp_release_date + '</td>' +
+                    '<td  style="font-family: " FontAwesome";">' + status + '</td > ' +
+                    '<td style="font-family: " FontAwesome";">' + stage + '</td > ' +
+                    '<td style="none: " FontAwesome";"> ' + priority + '</td>' +
+                    '<td style="font-family: ;white-space: break-spaces;">' + funding_sub_agency_name + '</td>' +
+                    /*'<td  style = "font-family: "FontAwesome";" > ' + award_type + '</td>' +*/
+                    '<td style = "font-family: " FontAwesome";"> ' + set_aside + '</td>' +
+                    '<td style="font-family: " FontAwesome";"> ' + naics + '</td>' +
+                    '<td style="font-family: " FontAwesome";"> ' + psc_code + '</td>' +
+                    '<td style="font-family: ;white-space: break-spaces;">' + incumbent_name + '</td>' +
+                    '<td align="right" style="font-family: " FontAwesome";"> ' + ` ${potential_award_amount ? "$" + potential_award_amount.toLocaleString('en') : ''}` + '</td>' +
+                    /* '<td style="font-family: " FontAwesome";"  > ' + expiration_date + '</td>' +*/
+                    /* '<td style="none: " FontAwesome";" > ' + SolicitationNumber + '</td>' +*/
+
+
+                    '<td class="text-center" style="justify-items: anchor-center;"><div class="d-flex  border-0"> <i class="fa-solid fa-eye mr-2"  onclick="openAttchViewPeopleModal(`' + Deal_ID + '`)" style="color: #571C7A;"></i> <i class="fa-solid fa-circle-plus" style="color: #08A742;"  onclick="openAttchPeopleModal(`' + Deal_ID + '`,`' + title + '`,`' + status + '`,`' + rfp_release_date + '`)" ></i></div></td>' +
+                    '<td class="text-center" style="justify-items: anchor-center;"><div class="d-flex  border-0"> <i class="fa-solid fa-eye mr-2"  onclick="openViewGovtContactsModal(`' + Deal_ID + '`)" style="color: #571C7A;"></i> <i class="fa-solid fa-circle-plus" style="color: #08A742;"  onclick="openAttachGovtContactsModal(`' + Deal_ID + '`)" ></i></div></td>' +
+                    '<td dealId=' + Deal_ID + ' class="dt-control" style="justify-items: anchor-center;"><div class="d-flex border-0" style="margin-right: 11px;"><i class="fa-solid fa-eye mr-2"  style="color: #571C7A;"></i> <i class="fa-solid fa-circle-plus" style="color: #08A742;"></i></div></td>' +
+                    '<td style="justify-items: anchor-center;"> <div class="d-flex  border-0"><i class="fa-solid fa-eye  mr-2" style="color: #571C7A;" onclick="openNewsModal(' + Deal_ID + ')"></i><i class="fa-solid fa-circle-plus" style="color: #08A742;"  onclick="routeToNews(' + Deal_ID + ')"></i></div></td>';
+                /*'<td style = "display:none"><i style="" class="fa fa-trash icons Deleteclass sb002" onclick="deletedeal(' + Deal_ID + ')"></i></td>'*/
+
+                '</tr > '
+            }
+            else {
+                filldata = filldata +
+                    '<tr style="text-align:center" id="' + Deal_ID + '">' +
+                    '<td >' + '<a class="fas fa-edit text-centre" target="_blank" href="/CrmDeals/AddDeal?dealId=' + Deal_ID + '" > ' + '</a>' + '</td > ' +
+                    '<td style="font-family: ;white-space: break-spaces;"> ' + title + '</td > ' +
+                    '<td style="font-family: " FontAwesome";" >' + rfp_release_date + '</td>' +
+                    '<td  style="font-family: " FontAwesome";">' + status + '</td > ' +
+                    '<td style="font-family: " FontAwesome";">' + stage + '</td > ' +
+                    '<td style="none: " FontAwesome";"> ' + priority + '</td>' +
+                    '<td style="none: " FontAwesome";"> ' + organization_id + '</td>' +
+                    '<td class="text-center" style="justify-items: anchor-center;"><div class="d-flex  border-0"> <i class="fa-solid fa-eye mr-2"  onclick="openAttchViewPeopleModal(`' + Deal_ID + '`)" style="color: #571C7A;"></i> <i class="fa-solid fa-circle-plus" style="color: #08A742;"  onclick="openAttchPeopleModal(`' + Deal_ID + '`,`' + title + '`,`' + status + '`,`' + rfp_release_date + '`)" ></i></div></td>' +
+                    '<td class="text-center" style="justify-items: anchor-center;"><div class="d-flex  border-0"> <i class="fa-solid fa-eye mr-2"  onclick="openViewGovtContactsModal(`' + Deal_ID + '`)" style="color: #571C7A;"></i> <i class="fa-solid fa-circle-plus" style="color: #08A742;"  onclick="openAttachGovtContactsModal(`' + Deal_ID + '`)" ></i></div></td>' +
+                    '<td dealId=' + Deal_ID + ' class="dt-control" style="justify-items: anchor-center;"><div class="d-flex border-0" style="margin-right: 11px;"><i class="fa-solid fa-eye mr-2"  style="color: #571C7A;"></i> <i class="fa-solid fa-circle-plus" style="color: #08A742;"></i></div></td>' +
+                    '<td  style="justify-items: anchor-center;"> <div class="d-flex  border-0"><i class="fa-solid fa-eye  mr-2" style="color: #571C7A;" onclick="openNewsModal(' + Deal_ID + ')"></i><i class="fa-solid fa-circle-plus" style="color: #08A742;"  onclick="routeToNews(' + Deal_ID + ')"></i></div></td>';
+                '</tr > '
+            }
+
         }
         $('#deallisttable').html(filldata);
         GeneratePaging(searchtext, result.pagesCount, pageNo);

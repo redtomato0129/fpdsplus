@@ -3,29 +3,29 @@ function routeTo(value) {
 }
 
 $(document).ready(function(){
-    $("#funding-label").on("click", function () {
-        $("#fundingModal").show();
-        $("#fundingInput").val(""); // Clear input on open
+    $("#fundingAgencyLabel").on("click", function () {
+        $("#fundingAgencyModal").show();
+        agencyHtml("#agencyHtml")
     });
 
     // Close modal on X
     $(".close").on("click", function () {
-        $("#fundingModal").hide();
+        $("#fundingAgencyModal").hide();
     });
 
     // Save funding agency name
-    $("#saveFunding").on("click", function () {
-        const agency = $("#fundingInput").val().trim();
+    $("#saveAgency").on("click", function () {
+        const agency = $("#txtdept_2").val().trim();
         if (agency) {
-            $("#funding-label").text(agency);
+            $("#fundingAgencyLabel").text(agency);
         }
-        $("#fundingModal").hide();
+        $("#fundingAgencyModal").hide();
     });
 
     // Optional: close modal on outside click
     $(window).on("click", function (event) {
-        if (event.target.id === "fundingModal") {
-            $("#fundingModal").hide();
+        if (event.target.id === "fundingAgencyModal") {
+            $("#fundingAgencyModal").hide();
         }
     });
 });
@@ -50,8 +50,27 @@ function toggleSection(id) {
     });
 }
 
-function fundingAgencyModal() {
-    $("#fundingAgencyModal").modal('show')
-    $("#fundingInput").val('');
-    $("#txtdept_2").val('');
+function agencyHtml(htmlId) {
+    if (!$("#scriptEleSocio").length) {
+        let scriptEleSocio = document.createElement("script");
+        scriptEleSocio.id = "scriptEleSocio";
+        scriptEleSocio.setAttribute("src", "/Scripts/AppJS/Search.js");
+        document.body.appendChild(scriptEleSocio);
+        scriptEleSocio.onload = function () {
+
+        }
+    }
+    const html = `      <div class="col-md-12" >
+                           <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text OpenDeptPopup btndeptrowclear" id="btndeptrowclear_2"
+								 data-toggle="tooltip" title="Click to clear the data in this row"><i class="ti-close"></i></span>
+                              </div>
+                              <input type="text" class="DIS_002 form-control txtdept" id="txtdept_2"     />
+								<label id="lbldept_2" style="display:none;" class="lbldept lblclr"></label>
+                           </div>
+                        </div>`;
+    $(htmlId).html(html);
+    // $("#editAgency").html(html);
+
 }
