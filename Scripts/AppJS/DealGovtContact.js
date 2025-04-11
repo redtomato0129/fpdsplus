@@ -440,7 +440,7 @@ function checkContactValidation(obj) {
     return obj.name && obj.email_address && obj.funding_agency_code && obj.funding_sub_agency_code ? true : false;
 }
 
-function saveData() {
+function saveDataGovernment() {
     const contactData = {
         name: $("#contactName").val(),
         title: $("#contactTitle").val(),
