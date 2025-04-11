@@ -159,10 +159,6 @@ function addPeopleRenderer(htmlId) {
                                     <label for="contact_inputEmail" class="form-label">Email <span style="color:red">*</span></label>
                                     <input type="text" class="form-control" id="contact_inputEmail" maxlength="200" name="contact_email" autocomplete="contact_email">
                                 </div>
-                               
-                              
-                              
-
                                 <div class="col-md-12 mb-3">
                                     <label for="contact_inputContactNotes" class="form-label">Notes</label>
                                     <textarea class="form-control" id="contact_inputContactNotes" rows="3" maxlength="500"  name="contact_notes" autocomplete="contact_notes"></textarea>
@@ -655,7 +651,6 @@ function closeEditOrgModal() {
 }
 
 function openAttchViewPeopleModal(dealId) {
-
     var data = "{dealId:" + dealId + "}";
     var result = AjaxPost("/CrmPeople/GetDealPeopleOrganization", data);
     if (result && result.length != 0) {
@@ -673,19 +668,14 @@ function openAttchViewPeopleModal(dealId) {
         for (var i = 0; i < peopleList.length; i++) {
             fillData = fillData + viewPeopleModelPeopleRenderer(peopleList[i])
         }
-        $("#peopleListRender").html(fillData)
+        $("#peopleListRenderView").html(fillData)
         $("#viewPeopleModal").modal('toggle');
         clickEventsPeople()
         //$('#errregemail').hide();
     }
     else {
-        let fillData = `<div style = "display:flex;
-        justify-content: center;
-        align-items: center;
-        width:100 %;
-        font-size: 20px;
-">No data to display</div> `;
-        $("#peopleListRender").html(fillData)
+        let fillData = `<div style = "display:flex; justify-content: center; align-items: center; width:100 %; font-size: 20px; ">No data to display</div> `;
+        $("#peopleListRenderView").html(fillData)
         $("#viewPeopleModal").modal('toggle');
         /*   swal.fire({
                title: "Deal",
