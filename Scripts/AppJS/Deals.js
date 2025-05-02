@@ -1,7 +1,9 @@
 ﻿var selectedPeople = "";
 var isCheckModeClicked = false;
+var NotesEditor = "";
 $(document).ready(function () {
-
+    
+  
     $("#peopleSearchInput").autocomplete({
         source: function (request, response) {
             const dataArray = [];
@@ -83,6 +85,15 @@ $(document).ready(function () {
             $(".recent-heading-title-email").hide();
             $(".recent-heading-title-file").hide();
             $(".recent-heading-title-call").hide();
+            ClassicEditor
+                .create(document.querySelector('#txtNotes'))
+                .then(res => {
+                    console.log(res);
+                    NotesEditor = res;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
             BindActivitiesControlsCall();
             BindActivitiesControlsNotes();
             BindActivitiesControlsEmail();
@@ -313,7 +324,7 @@ function BindActivitiesControlsNotes() {
         ;
         var dealId = $(".activities").attr("dealId");
         var AddNotes = {
-            NoteDescription: $('#txtNotes').val(),
+            NoteDescription: NotesEditor.getData(),
             Deal_ID: dealId,
             activity_note_id: $("#notesId").val() ? $("#notesId").val() : ''
         }
@@ -332,7 +343,7 @@ function BindActivitiesControlsNotes() {
                     timer: 3000,
                 })
                 $('#notesId').val('');
-                $('#txtNotes').val('');
+                NotesEditor.setData('')
                 LoadRecentNotes(dealId);
 
             }
@@ -961,11 +972,12 @@ function LoadRecentDocument(dealId) {
 function activityClickEvents() {
 
     $("#addNoteButton").click(function () {
-        $("#txtNotes").val("");
+        //$("#txtNotes").val("");
+        NotesEditor.setData('');
         $("#notesId").val("");
         $("#AddNotes").prop('disabled', false)
         $("#addNoteButton").css('visibility', 'hidden')
-        $("#txtNotes").attr("disabled", false);
+        //$("#txtNotes").attr("disabled", false);
 
     })
     $("#addCallButton").click(function () {
@@ -1019,7 +1031,8 @@ function activityClickEvents() {
             }
         }
        
-        $("#txtNotes").val("" + noteObject.note);
+       // $("#txtNotes").val("" + noteObject.note);
+        NotesEditor.setData(noteObject.note);
         $("#notesId").val(noteObject.activity_note_id)
       //  $("#txtNotes").attr("disabled", true);
 

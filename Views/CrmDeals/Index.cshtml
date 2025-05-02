@@ -22,14 +22,13 @@
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 
-<script src="~/Scripts/AppJS/ckeditor.js"></script>
+
 
 <!-- JavaScript -->
 <script src="~/Scripts/AppJS/bootstrap-datetimepicker.min.js"></script>
 <!-- Languages -->
 <link rel="stylesheet" href="~/Content/AppCss/bootstrap-datetimepicker.min.css" />
-<script src="~/Scripts/AppJS/ckeditor.js"></script>
-
+<script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
 <script src="~/Scripts/AppJS/main.js"></script>
 <script src="~/Scripts/AppJS/Deals.js"></script>
 <script src="~/Scripts/AppJS/DealPeople.js"></script>
@@ -37,8 +36,6 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-<script>
-    CKEDITOR.replace('editor')</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.1/jquery.twbsPagination.min.js"></script>
 
 <style>
@@ -444,7 +441,8 @@
                         <div>
 
                             <input type="hidden" id="notesId" />
-                            <textarea class="form-control" style="visibility: visible; height: 436px;" cols="80" rows="10" id="txtNotes"></textarea>
+                            <textarea class="form-control" name="articleContent" placeholder="Start Typing"
+                                      style="visibility: visible; height: 436px;" cols="80" rows="10" id="txtNotes"></textarea>
                             <div class="buttons my-2 text-left">
                                 <input type="submit" class="btn Save__Notes" style="" id="AddNotes" value="Save" />
 

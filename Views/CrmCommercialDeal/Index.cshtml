@@ -28,7 +28,8 @@
 <script src="~/Scripts/AppJS/bootstrap-datetimepicker.min.js"></script>
 <!-- Languages -->
 <link rel="stylesheet" href="~/Content/AppCss/bootstrap-datetimepicker.min.css" />
-<script src="~/Scripts/AppJS/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+
 
 <script src="~/Scripts/AppJS/main.js"></script>
 <script src="~/Scripts/AppJS/Deals.js"></script>
@@ -37,8 +38,6 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-<script>
-    CKEDITOR.replace('editor')</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.1/jquery.twbsPagination.min.js"></script>
 
 <style>
@@ -432,7 +431,8 @@
                         <div>
 
                             <input type="hidden" id="notesId" />
-                            <textarea class="form-control" style="visibility: visible; height: 436px;" cols="80" rows="10" id="txtNotes"></textarea>
+                            <textarea class="form-control" name="articleContent" placeholder="Start Typing"
+                                      style="visibility: visible; height: 436px;" cols="80" rows="10" id="txtNotes"></textarea>
                             <div class="buttons my-2 text-left">
                                 <input type="submit" class="btn Save__Notes" style="" id="AddNotes" value="Save" />
 
@@ -756,7 +756,7 @@
                                         <option value=0>Inactive</option>
                                     </select>
                                 </div>
-                                
+
                             </div>
                         </div>
 
@@ -807,8 +807,8 @@
                                     <div class="scp-breadcrumb">
                                         <ol class="breadcrumb">
                                             @* <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="#">Deals</a></li>
-                        <li class="breadcrumb-item active">View News</li>*@
+                                                <li class="breadcrumb-item"><a href="#">Deals</a></li>
+                                                <li class="breadcrumb-item active">View News</li>*@
                                         </ol>
                                     </div>
                                 </div>
@@ -820,21 +820,21 @@
 
 
                             @*  <div class="row">
-            <div class="heading mb-3 col-3">
-                <h3><strong>News</strong></h3>
-            </div>
-            <div class="heading mb-3 col-7">
-                <div class="nameblock" style="float:right">
+                                    <div class="heading mb-3 col-3">
+                                        <h3><strong>News</strong></h3>
+                                    </div>
+                                    <div class="heading mb-3 col-7">
+                                        <div class="nameblock" style="float:right">
 
-                    <div class="text d-flex align-items-center">
-                        <h4>${item.title}</h4>&nbsp;&nbsp; | &nbsp;
-                        <h4> ${item.status}</h4>&nbsp;&nbsp; | &nbsp;
-                        <h4> ${item.due_date}</h4>
-                    </div>
-                </div>
-            </div>
-        </div>*@
-                           
+                                            <div class="text d-flex align-items-center">
+                                                <h4>${item.title}</h4>&nbsp;&nbsp; | &nbsp;
+                                                <h4> ${item.status}</h4>&nbsp;&nbsp; | &nbsp;
+                                                <h4> ${item.due_date}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
+
                             <div style="clear: both">
                                 <h2 class="heading" style="float: left; margin-bottom: 20px;">Social</h2>
                                 <div>
@@ -1219,7 +1219,7 @@
                         </div>
                     </div>
                     <form class="row g-3">
-                        <input type="hidden" id="dealIdAddContact"/>
+                        <input type="hidden" id="dealIdAddContact" />
                         <div class="col-md-4 mb-3">
                             <label for="orgName" autocomplete="off" class="form-label">Name<span style="color:red">*</span></label>
                             <input type="text" class="form-control" id="contactName" aria-describedby="orgName" maxlength="200" name="newOrgaName" autocomplete="newOrgName">
