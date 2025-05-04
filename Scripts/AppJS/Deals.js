@@ -827,9 +827,11 @@ function LoadRecentCalls(dealId) {
                         var Call_date = result[i].call_date;
                         var User_Email = result[i].User_Email;
                         var note = result[i].note;
+                        let firstName = result[i].first_name;
+                        let lastName = result[i].last_name;
                         var callId = result[i].activity_call_id;
                         filldata = filldata + '<li class="tl-item box2"  id="call_' + callId +'" call="'+callId+'"  style="white-space: inherit !important"> <div class="ico"></div> <div class="item-detail"> Organization:' + '&nbsp' + Organization_called + '</div> ' +
-                            '<div class="item-title ">' + Call_date + '&nbsp' + ' &nbsp' + ' &nbsp' + User_Email + '</div>' +
+                            '<div class="item-title ">' + Call_date + '&nbsp' + ' &nbsp' + ' &nbsp' + firstName + " " + lastName + '</div>' +
                             '<div class="item-title " style="white-space: break-spaces;">' + note + '</div>'
                         '</li>'
 

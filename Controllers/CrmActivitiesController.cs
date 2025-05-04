@@ -588,6 +588,8 @@ namespace FedPipelineApplication.Controllers
                             recentCalls.Deal_ID = Convert.ToInt32((dr2["deal_id"]));
                             recentCalls.User_ID = Convert.ToInt32((dr2["user_id"]));
                             recentCalls.User_Email = (dr2["User_Email"].ToString());
+                            recentCalls.first_name = (dr2["User_FirstName"].ToString());
+                            recentCalls.last_name = (dr2["User_LastName"].ToString());
 
                             FundingAgency.Add(recentCalls);
 
@@ -770,6 +772,8 @@ namespace FedPipelineApplication.Controllers
             public string note { get; set; }
             public int Deal_ID { get; set; }
             public string User_Email { get; set; }
+            public string first_name { get; set; }
+            public  string last_name { get; set; }
             public int User_ID { get; set; }
         }
 
