@@ -981,10 +981,9 @@ function htmlRenderer(obj, records) {
 				if (records[a].parameter_type === "funding-sub-agency") {
 					$("#funding-sub-agency-label").html(records[a].parameter_name)
 
-					subAgency = ` 
-						
+					subAgency = `	
 					<div class="row">
-                        <div class="col-lg-8" parentdiv="awarding_sub_agency_${obj.wizard_question_parameter_id}"  fieldtype="funding-sub-agency" queryparam="${records[a].parameter_query_param}">
+                        <div class="col-lg-8" parentdiv="awarding_sub_agency_${records[a].wizard_question_parameter_id}"  fieldtype="funding-sub-agency" queryparam="${records[a].parameter_query_param}">
                            <label for="basic-url">${records[a].parameter_name}</label>
 							${records[a].required_field ? ' <span style="color:red;">*</span>' : ''}
                            <div class="input-group mb-3">

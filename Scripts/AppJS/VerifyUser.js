@@ -137,8 +137,20 @@ $(document).ready(function () {
                 setTimeout(function () {
                     const urlParams = new URLSearchParams(window.location.search);
                     let appUrl =  decodeURIComponent(urlParams.get('url'));
-                    if (urlParams.get('url')) {
+                    if (urlParams.get('url')) {                       
                         appUrl = atob(appUrl)
+                        const parsedUrl = new URL(origin + appUrl);
+                        // 3. Get the search parameters
+                        const params = parsedUrl.searchParams;
+                        const fields = params.get("localStorage");
+                      
+                        if (fields) {
+                            console.log("test", fields);
+                            localStorage.setItem('answerWidgetPage3Fields', fields);
+                        }
+                        localStorage.setItem('answerWidgetPage2Url', `${origin}AnswerWizard/QuestionView?category=agency`);
+                        localStorage.setItem('answerWidgetPage3Url',
+                            `${origin}/AnswerWizard/QuestionParams?id=${params.get("question_id")}&&category=agency`)
                         window.location.href = origin + appUrl;
                     } else {
                         window.location.href = origin.includes('fpdsplus') ? origin + "/AnswerWizard/Index" : origin + "/Dashboard/Index";
