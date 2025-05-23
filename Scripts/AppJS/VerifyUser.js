@@ -148,7 +148,7 @@ $(document).ready(function () {
                             console.log("test", fields);
                             localStorage.setItem('answerWidgetPage3Fields', fields);
                         }
-                        localStorage.setItem('answerWidgetPage2Url', `${origin}AnswerWizard/QuestionView?category=agency`);
+                        localStorage.setItem('answerWidgetPage2Url', `${origin}/AnswerWizard/QuestionView?category=agency`);
                         localStorage.setItem('answerWidgetPage3Url',
                             `${origin}/AnswerWizard/QuestionParams?id=${params.get("question_id")}&&category=agency`)
                         window.location.href = origin + appUrl;
