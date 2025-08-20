@@ -12,6 +12,28 @@ namespace FedPipelineApplication.Models
     {
         SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["PipelineConn"].ConnectionString);
         string MainCon = ConfigurationManager.ConnectionStrings["PipelineDataConn"].ToString();
+
+        /// <summary>
+        /// Helper method to safely convert string values to double, handling null/empty values and parsing errors
+        /// </summary>
+        /// <param name="value">String value to convert</param>
+        /// <param name="defaultValue">Default value to return if conversion fails (default: 0.0)</param>
+        /// <returns>Converted double value or default value</returns>
+        private double SafeParseDouble(string value, double defaultValue = 0.0)
+        {
+            return !string.IsNullOrEmpty(value) && double.TryParse(value, out double result) ? result : defaultValue;
+        }
+
+        /// <summary>
+        /// Helper method to safely convert string values to double and return as string, handling null/empty values and parsing errors
+        /// </summary>
+        /// <param name="value">String value to convert</param>
+        /// <param name="defaultValue">Default value to return if conversion fails (default: "0")</param>
+        /// <returns>Converted double value as string or default value</returns>
+        private string SafeParseDoubleAsString(string value, string defaultValue = "0")
+        {
+            return !string.IsNullOrEmpty(value) && double.TryParse(value, out double result) ? result.ToString() : defaultValue;
+        }
         public dynamic DataGridService(StoreProcedureDrillDown2Body body, string UserID)
         {
             var widgetList = new List<dynamic>();
@@ -52,8 +74,8 @@ namespace FedPipelineApplication.Models
                             widgetObject.naics_description = rdr["naics_description"].ToString();
                             widgetObject.product_or_service_code = rdr["product_or_service_code"].ToString();
                             widgetObject.product_or_service_code_description = rdr["product_or_service_code_description"].ToString();
-                            widgetObject.base_and_all_options_value = 0;
-                            widgetObject.federal_action_obligation = 0;
+                            widgetObject.base_and_all_options_value = SafeParseDouble(rdr["base_and_all_options_value"].ToString());
+                            widgetObject.federal_action_obligation = SafeParseDouble(rdr["federal_action_obligation"].ToString());
                             widgetObject.solicitation_identifier = rdr["solicitation_identifier"].ToString();
                             widgetObject.funding_agency_code = rdr["funding_agency_code"].ToString();
                             widgetObject.funding_sub_agency_code = rdr["funding_sub_agency_code"].ToString();
@@ -65,8 +87,8 @@ namespace FedPipelineApplication.Models
                             widgetObject.awarding_office_code = rdr["awarding_office_code"].ToString();
                             widgetObject.awarding_office_name = rdr["awarding_office_name"].ToString();
                             widgetObject.award_type = rdr["award_type"].ToString();
-                            widgetObject.base_and_all_options_value_k = 0;
-                            widgetObject.federal_action_obligation_k = 0;
+                            widgetObject.base_and_all_options_value_k = SafeParseDouble(rdr["base_and_all_options_value_k"].ToString());
+                            widgetObject.federal_action_obligation_k = SafeParseDouble(rdr["federal_action_obligation_k"].ToString());
                             widgetObject.type_of_contract_pricing = rdr["type_of_contract_pricing"].ToString();
                             widgetObject.solicitation_date = rdr["solicitation_date"].ToString();
                             widgetObject.action_date = rdr["action_date"].ToString();
@@ -140,10 +162,10 @@ namespace FedPipelineApplication.Models
                             widgetObject.naics_description = rdr["naics_description"].ToString();
                             widgetObject.product_or_service_code = rdr["product_or_service_code"].ToString();
                             widgetObject.product_or_service_code_description = rdr["product_or_service_code_description"].ToString();
-                            widgetObject.base_and_all_options_value = 0;
-                            widgetObject.base_and_all_options_value_k = 0;
-                            widgetObject.federal_action_obligation = 0;
-                            widgetObject.federal_action_obligation_k = 0;
+                            widgetObject.base_and_all_options_value = SafeParseDouble(rdr["base_and_all_options_value"].ToString());
+                            widgetObject.base_and_all_options_value_k = SafeParseDouble(rdr["base_and_all_options_value_k"].ToString());
+                            widgetObject.federal_action_obligation = SafeParseDouble(rdr["federal_action_obligation"].ToString());
+                            widgetObject.federal_action_obligation_k = SafeParseDouble(rdr["federal_action_obligation_k"].ToString());
                             widgetObject.type_of_contract_pricing = rdr["type_of_contract_pricing"].ToString();
                             widgetObject.solicitation_date = rdr["solicitation_date"].ToString();
                             widgetObject.action_date = rdr["action_date"].ToString();
@@ -229,10 +251,10 @@ namespace FedPipelineApplication.Models
                             widgetObject.naics_description = rdr["naics_description"].ToString();
                             widgetObject.product_or_service_code = rdr["product_or_service_code"].ToString();
                             widgetObject.product_or_service_code_description = rdr["product_or_service_code_description"].ToString();
-                            widgetObject.base_and_all_options_value = 0;
-                            widgetObject.base_and_all_options_value_k = 0;
-                            widgetObject.federal_action_obligation = 0;
-                            widgetObject.federal_action_obligation_k = 0;
+                            widgetObject.base_and_all_options_value = SafeParseDouble(rdr["base_and_all_options_value"].ToString());
+                            widgetObject.base_and_all_options_value_k = SafeParseDouble(rdr["base_and_all_options_value_k"].ToString());
+                            widgetObject.federal_action_obligation = SafeParseDouble(rdr["federal_action_obligation"].ToString());
+                            widgetObject.federal_action_obligation_k = SafeParseDouble(rdr["federal_action_obligation_k"].ToString());
                             widgetObject.type_of_contract_pricing = rdr["type_of_contract_pricing"].ToString();
                             widgetObject.solicitation_date = rdr["solicitation_date"].ToString();
                             widgetObject.action_date = rdr["action_date"].ToString();
@@ -322,10 +344,10 @@ namespace FedPipelineApplication.Models
                             widgetObject.naics_description = rdr["naics_description"].ToString();
                             widgetObject.product_or_service_code = rdr["product_or_service_code"].ToString();
                             widgetObject.product_or_service_code_description = rdr["product_or_service_code_description"].ToString();
-                            widgetObject.base_and_all_options_value = 0;
-                            widgetObject.base_and_all_options_value_k = 0;
-                            widgetObject.federal_action_obligation = 0;
-                            widgetObject.federal_action_obligation_k = 0;
+                            widgetObject.base_and_all_options_value = SafeParseDouble(rdr["base_and_all_options_value"].ToString());
+                            widgetObject.base_and_all_options_value_k = SafeParseDouble(rdr["base_and_all_options_value_k"].ToString());
+                            widgetObject.federal_action_obligation = SafeParseDouble(rdr["federal_action_obligation"].ToString());
+                            widgetObject.federal_action_obligation_k = SafeParseDouble(rdr["federal_action_obligation_k"].ToString());
                             widgetObject.type_of_contract_pricing = rdr["type_of_contract_pricing"].ToString();
                             widgetObject.solicitation_date = rdr["solicitation_date"].ToString();
                             widgetObject.action_date = rdr["action_date"].ToString();
@@ -417,10 +439,10 @@ namespace FedPipelineApplication.Models
                             widgetObject.naics_description = rdr["naics_description"].ToString();
                             widgetObject.product_or_service_code = rdr["product_or_service_code"].ToString();
                             widgetObject.product_or_service_code_description = rdr["product_or_service_code_description"].ToString();
-                            widgetObject.base_and_all_options_value = 0;
-                            widgetObject.base_and_all_options_value_k = 0;
-                            widgetObject.federal_action_obligation = 0;
-                            widgetObject.federal_action_obligation_k = 0;
+                            widgetObject.base_and_all_options_value = SafeParseDouble(rdr["base_and_all_options_value"].ToString());
+                            widgetObject.base_and_all_options_value_k = SafeParseDouble(rdr["base_and_all_options_value_k"].ToString());
+                            widgetObject.federal_action_obligation = SafeParseDouble(rdr["federal_action_obligation"].ToString());
+                            widgetObject.federal_action_obligation_k = SafeParseDouble(rdr["federal_action_obligation_k"].ToString());
                             widgetObject.type_of_contract_pricing = rdr["type_of_contract_pricing"].ToString();
                             widgetObject.solicitation_date = rdr["solicitation_date"].ToString();
                             widgetObject.action_date = rdr["action_date"].ToString();
@@ -501,10 +523,10 @@ namespace FedPipelineApplication.Models
                             widgetObject.naics_description = rdr["naics_description"].ToString();
                             widgetObject.product_or_service_code = rdr["product_or_service_code"].ToString();
                             widgetObject.product_or_service_code_description = rdr["product_or_service_code_description"].ToString();
-                            widgetObject.base_and_all_options_value = 0;
-                            widgetObject.base_and_all_options_value_k = 0;
-                            widgetObject.federal_action_obligation = 0;
-                            widgetObject.federal_action_obligation_k = 0;
+                            widgetObject.base_and_all_options_value = SafeParseDouble(rdr["base_and_all_options_value"].ToString());
+                            widgetObject.base_and_all_options_value_k = SafeParseDouble(rdr["base_and_all_options_value_k"].ToString());
+                            widgetObject.federal_action_obligation = SafeParseDouble(rdr["federal_action_obligation"].ToString());
+                            widgetObject.federal_action_obligation_k = SafeParseDouble(rdr["federal_action_obligation_k"].ToString());
                             widgetObject.type_of_contract_pricing = rdr["type_of_contract_pricing"].ToString();
                             widgetObject.solicitation_date = rdr["solicitation_date"].ToString();
                             widgetObject.action_date = rdr["action_date"].ToString();
@@ -580,10 +602,10 @@ namespace FedPipelineApplication.Models
                             widgetObject.naics_description = rdr["naics_description"].ToString();
                             widgetObject.product_or_service_code = rdr["product_or_service_code"].ToString();
                             widgetObject.product_or_service_code_description = rdr["product_or_service_code_description"].ToString();
-                            widgetObject.base_and_all_options_value = 0;
-                            widgetObject.base_and_all_options_value_k = 0;
-                            widgetObject.federal_action_obligation = 0;
-                            widgetObject.federal_action_obligation_k = 0;
+                            widgetObject.base_and_all_options_value = SafeParseDouble(rdr["base_and_all_options_value"].ToString());
+                            widgetObject.base_and_all_options_value_k = SafeParseDouble(rdr["base_and_all_options_value_k"].ToString());
+                            widgetObject.federal_action_obligation = SafeParseDouble(rdr["federal_action_obligation"].ToString());
+                            widgetObject.federal_action_obligation_k = SafeParseDouble(rdr["federal_action_obligation_k"].ToString());
                             widgetObject.type_of_contract_pricing = rdr["type_of_contract_pricing"].ToString();
                             widgetObject.solicitation_date = rdr["solicitation_date"].ToString();
                             widgetObject.action_date = rdr["action_date"].ToString();
@@ -661,10 +683,10 @@ namespace FedPipelineApplication.Models
                             widgetObject.naics_description = rdr["naics_description"].ToString();
                             widgetObject.product_or_service_code = rdr["product_or_service_code"].ToString();
                             widgetObject.product_or_service_code_description = rdr["product_or_service_code_description"].ToString();
-                            widgetObject.base_and_all_options_value = 0;
-                            widgetObject.base_and_all_options_value_k = 0;
-                            widgetObject.federal_action_obligation = 0;
-                            widgetObject.federal_action_obligation_k = 0;
+                            widgetObject.base_and_all_options_value = SafeParseDouble(rdr["base_and_all_options_value"].ToString());
+                            widgetObject.base_and_all_options_value_k = SafeParseDouble(rdr["base_and_all_options_value_k"].ToString());
+                            widgetObject.federal_action_obligation = SafeParseDouble(rdr["federal_action_obligation"].ToString());
+                            widgetObject.federal_action_obligation_k = SafeParseDouble(rdr["federal_action_obligation_k"].ToString());
                             widgetObject.type_of_contract_pricing = rdr["type_of_contract_pricing"].ToString();
                             widgetObject.solicitation_date = rdr["solicitation_date"].ToString();
                             widgetObject.action_date = rdr["action_date"].ToString();
@@ -743,10 +765,10 @@ namespace FedPipelineApplication.Models
                             widgetObject.naics_description = rdr["naics_description"].ToString();
                             widgetObject.product_or_service_code = rdr["product_or_service_code"].ToString();
                             widgetObject.product_or_service_code_description = rdr["product_or_service_code_description"].ToString();
-                            widgetObject.base_and_all_options_value = 0;
-                            widgetObject.base_and_all_options_value_k = 0;
-                            widgetObject.federal_action_obligation = 0;
-                            widgetObject.federal_action_obligation_k = 0;
+                            widgetObject.base_and_all_options_value = SafeParseDouble(rdr["base_and_all_options_value"].ToString());
+                            widgetObject.base_and_all_options_value_k = SafeParseDouble(rdr["base_and_all_options_value_k"].ToString());
+                            widgetObject.federal_action_obligation = SafeParseDouble(rdr["federal_action_obligation"].ToString());
+                            widgetObject.federal_action_obligation_k = SafeParseDouble(rdr["federal_action_obligation_k"].ToString());
                             widgetObject.type_of_contract_pricing = rdr["type_of_contract_pricing"].ToString();
                             widgetObject.solicitation_date = rdr["solicitation_date"].ToString();
                             widgetObject.action_date = rdr["action_date"].ToString();
@@ -827,10 +849,10 @@ namespace FedPipelineApplication.Models
                             widgetObject.naics_description = rdr["naics_description"].ToString();
                             widgetObject.product_or_service_code = rdr["product_or_service_code"].ToString();
                             widgetObject.product_or_service_code_description = rdr["product_or_service_code_description"].ToString();
-                            widgetObject.base_and_all_options_value = 0;
-                            widgetObject.base_and_all_options_value_k = 0;
-                            widgetObject.federal_action_obligation = 0;
-                            widgetObject.federal_action_obligation_k = 0;
+                            widgetObject.base_and_all_options_value = SafeParseDouble(rdr["base_and_all_options_value"].ToString());
+                            widgetObject.base_and_all_options_value_k = SafeParseDouble(rdr["base_and_all_options_value_k"].ToString());
+                            widgetObject.federal_action_obligation = SafeParseDouble(rdr["federal_action_obligation"].ToString());
+                            widgetObject.federal_action_obligation_k = SafeParseDouble(rdr["federal_action_obligation_k"].ToString());
                             widgetObject.type_of_contract_pricing = rdr["type_of_contract_pricing"].ToString();
                             widgetObject.solicitation_date = rdr["solicitation_date"].ToString();
                             widgetObject.action_date = rdr["action_date"].ToString();
@@ -917,10 +939,10 @@ namespace FedPipelineApplication.Models
                             widgetObject.naics_description = rdr["naics_description"].ToString();
                             widgetObject.product_or_service_code = rdr["product_or_service_code"].ToString();
                             widgetObject.product_or_service_code_description = rdr["product_or_service_code_description"].ToString();
-                            widgetObject.base_and_all_options_value = 0;
-                            widgetObject.base_and_all_options_value_k = 0;
-                            widgetObject.federal_action_obligation = 0;
-                            widgetObject.federal_action_obligation_k = 0;
+                            widgetObject.base_and_all_options_value = SafeParseDouble(rdr["base_and_all_options_value"].ToString());
+                            widgetObject.base_and_all_options_value_k = SafeParseDouble(rdr["base_and_all_options_value_k"].ToString());
+                            widgetObject.federal_action_obligation = SafeParseDouble(rdr["federal_action_obligation"].ToString());
+                            widgetObject.federal_action_obligation_k = SafeParseDouble(rdr["federal_action_obligation_k"].ToString());
                             widgetObject.type_of_contract_pricing = rdr["type_of_contract_pricing"].ToString();
                             widgetObject.solicitation_date = rdr["solicitation_date"].ToString();
                             widgetObject.action_date = rdr["action_date"].ToString();
@@ -1009,10 +1031,10 @@ namespace FedPipelineApplication.Models
                             widgetObject.naics_description = rdr["naics_description"].ToString();
                             widgetObject.product_or_service_code = rdr["product_or_service_code"].ToString();
                             widgetObject.product_or_service_code_description = rdr["product_or_service_code_description"].ToString();
-                            widgetObject.base_and_all_options_value = 0;
-                            widgetObject.base_and_all_options_value_k = 0;
-                            widgetObject.federal_action_obligation = 0;
-                            widgetObject.federal_action_obligation_k = 0;
+                            widgetObject.base_and_all_options_value = SafeParseDouble(rdr["base_and_all_options_value"].ToString());
+                            widgetObject.base_and_all_options_value_k = SafeParseDouble(rdr["base_and_all_options_value_k"].ToString());
+                            widgetObject.federal_action_obligation = SafeParseDouble(rdr["federal_action_obligation"].ToString());
+                            widgetObject.federal_action_obligation_k = SafeParseDouble(rdr["federal_action_obligation_k"].ToString());
                             widgetObject.type_of_contract_pricing = rdr["type_of_contract_pricing"].ToString();
                             widgetObject.solicitation_date = rdr["solicitation_date"].ToString();
                             widgetObject.action_date = rdr["action_date"].ToString();
@@ -1094,10 +1116,10 @@ namespace FedPipelineApplication.Models
                             widgetObject.naics_description = rdr["naics_description"].ToString();
                             widgetObject.product_or_service_code = rdr["product_or_service_code"].ToString();
                             widgetObject.product_or_service_code_description = rdr["product_or_service_code_description"].ToString();
-                            widgetObject.base_and_all_options_value = 0;
-                            widgetObject.base_and_all_options_value_k = 0;
-                            widgetObject.federal_action_obligation = 0;
-                            widgetObject.federal_action_obligation_k = 0;
+                            widgetObject.base_and_all_options_value = SafeParseDouble(rdr["base_and_all_options_value"].ToString());
+                            widgetObject.base_and_all_options_value_k = SafeParseDouble(rdr["base_and_all_options_value_k"].ToString());
+                            widgetObject.federal_action_obligation = SafeParseDouble(rdr["federal_action_obligation"].ToString());
+                            widgetObject.federal_action_obligation_k = SafeParseDouble(rdr["federal_action_obligation_k"].ToString());
                             widgetObject.type_of_contract_pricing = rdr["type_of_contract_pricing"].ToString();
                             widgetObject.solicitation_date = rdr["solicitation_date"].ToString();
                             widgetObject.action_date = rdr["action_date"].ToString();
@@ -1179,10 +1201,10 @@ namespace FedPipelineApplication.Models
                             widgetObject.naics_description = rdr["naics_description"].ToString();
                             widgetObject.product_or_service_code = rdr["product_or_service_code"].ToString();
                             widgetObject.product_or_service_code_description = rdr["product_or_service_code_description"].ToString();
-                            widgetObject.base_and_all_options_value = 0;
-                            widgetObject.base_and_all_options_value_k = 0;
-                            widgetObject.federal_action_obligation = 0;
-                            widgetObject.federal_action_obligation_k = 0;
+                            widgetObject.base_and_all_options_value = SafeParseDouble(rdr["base_and_all_options_value"].ToString());
+                            widgetObject.base_and_all_options_value_k = SafeParseDouble(rdr["base_and_all_options_value_k"].ToString());
+                            widgetObject.federal_action_obligation = SafeParseDouble(rdr["federal_action_obligation"].ToString());
+                            widgetObject.federal_action_obligation_k = SafeParseDouble(rdr["federal_action_obligation_k"].ToString());
                             widgetObject.type_of_contract_pricing = rdr["type_of_contract_pricing"].ToString();
                             widgetObject.solicitation_date = rdr["solicitation_date"].ToString();
                             widgetObject.action_date = rdr["action_date"].ToString();
@@ -1263,10 +1285,10 @@ namespace FedPipelineApplication.Models
                             widgetObject.naics_description = rdr["naics_description"].ToString();
                             widgetObject.product_or_service_code = rdr["product_or_service_code"].ToString();
                             widgetObject.product_or_service_code_description = rdr["product_or_service_code_description"].ToString();
-                            widgetObject.base_and_all_options_value = 0;
-                            widgetObject.base_and_all_options_value_k = 0;
-                            widgetObject.federal_action_obligation = 0;
-                            widgetObject.federal_action_obligation_k = 0;
+                            widgetObject.base_and_all_options_value = SafeParseDouble(rdr["base_and_all_options_value"].ToString());
+                            widgetObject.base_and_all_options_value_k = SafeParseDouble(rdr["base_and_all_options_value_k"].ToString());
+                            widgetObject.federal_action_obligation = SafeParseDouble(rdr["federal_action_obligation"].ToString());
+                            widgetObject.federal_action_obligation_k = SafeParseDouble(rdr["federal_action_obligation_k"].ToString());
                             widgetObject.type_of_contract_pricing = rdr["type_of_contract_pricing"].ToString();
                             widgetObject.solicitation_date = rdr["solicitation_date"].ToString();
                             widgetObject.action_date = rdr["action_date"].ToString();
@@ -1347,10 +1369,10 @@ namespace FedPipelineApplication.Models
                             widgetObject.naics_description = rdr["naics_description"].ToString();
                             widgetObject.product_or_service_code = rdr["product_or_service_code"].ToString();
                             widgetObject.product_or_service_code_description = rdr["product_or_service_code_description"].ToString();
-                            widgetObject.base_and_all_options_value = 0;
-                            widgetObject.base_and_all_options_value_k = 0;
-                            widgetObject.federal_action_obligation = 0;
-                            widgetObject.federal_action_obligation_k = 0;
+                            widgetObject.base_and_all_options_value = SafeParseDouble(rdr["base_and_all_options_value"].ToString());
+                            widgetObject.base_and_all_options_value_k = SafeParseDouble(rdr["base_and_all_options_value_k"].ToString());
+                            widgetObject.federal_action_obligation = SafeParseDouble(rdr["federal_action_obligation"].ToString());
+                            widgetObject.federal_action_obligation_k = SafeParseDouble(rdr["federal_action_obligation_k"].ToString());
                             widgetObject.type_of_contract_pricing = rdr["type_of_contract_pricing"].ToString();
                             widgetObject.solicitation_date = rdr["solicitation_date"].ToString();
                             widgetObject.action_date = rdr["action_date"].ToString();
