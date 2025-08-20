@@ -30,6 +30,28 @@ namespace FedPipelineApplication.Controllers
         SendEmail mail = new SendEmail();
         SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["PipelineConn"].ConnectionString);
         string MainCon = ConfigurationManager.ConnectionStrings["PipelineDataConn"].ToString();
+
+        /// <summary>
+        /// Helper method to safely convert string values to double, handling null/empty values and parsing errors
+        /// </summary>
+        /// <param name="value">String value to convert</param>
+        /// <param name="defaultValue">Default value to return if conversion fails (default: 0.0)</param>
+        /// <returns>Converted double value or default value</returns>
+        private double SafeParseDouble(string value, double defaultValue = 0.0)
+        {
+            return !string.IsNullOrEmpty(value) && double.TryParse(value, out double result) ? result : defaultValue;
+        }
+
+        /// <summary>
+        /// Helper method to safely convert string values to double and return as string, handling null/empty values and parsing errors
+        /// </summary>
+        /// <param name="value">String value to convert</param>
+        /// <param name="defaultValue">Default value to return if conversion fails (default: "0")</param>
+        /// <returns>Converted double value as string or default value</returns>
+        private string SafeParseDoubleAsString(string value, string defaultValue = "0")
+        {
+            return !string.IsNullOrEmpty(value) && double.TryParse(value, out double result) ? result.ToString() : defaultValue;
+        }
         // GET: AnswerWizard
         public ActionResult Index()
         {
@@ -580,8 +602,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.funding_agency_code = rdr["funding_agency_code"].ToString();
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
                             widgetObject.vendor_name = rdr["vendor_name"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_obligations"].ToString());
 
                             widgetList.Add(widgetObject);
                         }
@@ -613,8 +635,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.funding_sub_agency_code = rdr["funding_sub_agency_code"].ToString();
                             widgetObject.funding_sub_agency_name = rdr["funding_sub_agency_name"].ToString();
                             widgetObject.vendor_name = rdr["vendor_name"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_obligations"].ToString());
 
                             widgetList.Add(widgetObject);
                         }
@@ -690,8 +712,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.funding_agency_code = rdr["agency_code"].ToString();
                             widgetObject.funding_agency_name = rdr["agency_name"].ToString();
                             widgetObject.contracts = Convert.ToInt32(rdr["total_contracts"]);
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["dollars_obligated"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["dollars_obligated"].ToString());
 
                             widgetList.Add(widgetObject);
                         }
@@ -832,8 +854,8 @@ namespace FedPipelineApplication.Controllers
 
                             widgetObject.funding_agency_code = rdr["funding_agency_code"].ToString();
                             widgetObject.agency_name = rdr["funding_agency_name"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_obligations"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -863,8 +885,8 @@ namespace FedPipelineApplication.Controllers
 
                             widgetObject.funding_agency_code = rdr["funding_agency_code"].ToString();
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
-                            widgetObject.base_and_all_options_total = Convert.ToDouble(rdr["base_and_all_options_total"]);
-                            widgetObject.total_dollars_obligated = Convert.ToDouble(rdr["total_dollars_obligated"]);
+                            widgetObject.base_and_all_options_total = SafeParseDouble(rdr["base_and_all_options_total"].ToString());
+                            widgetObject.total_dollars_obligated = SafeParseDouble(rdr["total_dollars_obligated"].ToString());
                             widgetObject.set_aside = rdr["type_of_set_aside"].ToString();
                             widgetObject.set_aside_code = rdr["type_of_set_aside_code"].ToString();
                             widgetList.Add(widgetObject);
@@ -926,10 +948,10 @@ namespace FedPipelineApplication.Controllers
                             question1Response widgetObject = new question1Response();
 
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
-                            widgetObject.base_and_all_options_UNR = Convert.ToDouble(rdr["base_and_all_options_UNR"]);
-                            widgetObject.base_and_all_options_SETASIDE = Convert.ToDouble(rdr["base_and_all_options_SETASIDE"]);
-                            widgetObject.total_dollars_obligated_UNR = Convert.ToDouble(rdr["total_dollars_obligated_UNR"]);
-                            widgetObject.total_dollars_obligated_SETASIDE = Convert.ToDouble(rdr["total_dollars_obligated_SETASIDE"]);
+                            widgetObject.base_and_all_options_UNR = SafeParseDouble(rdr["base_and_all_options_UNR"].ToString());
+                            widgetObject.base_and_all_options_SETASIDE = SafeParseDouble(rdr["base_and_all_options_SETASIDE"].ToString());
+                            widgetObject.total_dollars_obligated_UNR = SafeParseDouble(rdr["total_dollars_obligated_UNR"].ToString());
+                            widgetObject.total_dollars_obligated_SETASIDE = SafeParseDouble(rdr["total_dollars_obligated_SETASIDE"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -957,10 +979,10 @@ namespace FedPipelineApplication.Controllers
                             question1Response widgetObject = new question1Response();
 
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
-                            widgetObject.base_and_all_options_8A = Convert.ToDouble(rdr["base_and_all_options_8A"]);
-                            widgetObject.base_and_all_options_SB = Convert.ToDouble(rdr["base_and_all_options_SB"]);
-                            widgetObject.total_dollars_obligated_8A = Convert.ToDouble(rdr["total_dollars_obligated_8A"]);
-                            widgetObject.total_dollars_obligated_SB = Convert.ToDouble(rdr["total_dollars_obligated_SB"]);
+                            widgetObject.base_and_all_options_8A = SafeParseDouble(rdr["base_and_all_options_8A"].ToString());
+                            widgetObject.base_and_all_options_SB = SafeParseDouble(rdr["base_and_all_options_SB"].ToString());
+                            widgetObject.total_dollars_obligated_8A = SafeParseDouble(rdr["total_dollars_obligated_8A"].ToString());
+                            widgetObject.total_dollars_obligated_SB = SafeParseDouble(rdr["total_dollars_obligated_SB"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -988,10 +1010,10 @@ namespace FedPipelineApplication.Controllers
                             question1Response widgetObject = new question1Response();
 
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
-                            widgetObject.base_and_all_options_WOSB = Convert.ToDouble(rdr["base_and_all_options_WOSB"]);
-                            widgetObject.base_and_all_options_SB = Convert.ToDouble(rdr["base_and_all_options_SB"]);
-                            widgetObject.total_dollars_obligated_WOSB = Convert.ToDouble(rdr["total_dollars_obligated_WOSB"]);
-                            widgetObject.total_dollars_obligated_SB = Convert.ToDouble(rdr["total_dollars_obligated_SB"]);
+                            widgetObject.base_and_all_options_WOSB = SafeParseDouble(rdr["base_and_all_options_WOSB"].ToString());
+                            widgetObject.base_and_all_options_SB = SafeParseDouble(rdr["base_and_all_options_SB"].ToString());
+                            widgetObject.total_dollars_obligated_WOSB = SafeParseDouble(rdr["total_dollars_obligated_WOSB"].ToString());
+                            widgetObject.total_dollars_obligated_SB = SafeParseDouble(rdr["total_dollars_obligated_SB"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -1019,10 +1041,10 @@ namespace FedPipelineApplication.Controllers
                             question1Response widgetObject = new question1Response();
 
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
-                            widgetObject.base_and_all_options_SDVOSB = Convert.ToDouble(rdr["base_and_all_options_SDVOSB"]);
-                            widgetObject.base_and_all_options_SB = Convert.ToDouble(rdr["base_and_all_options_SB"]);
-                            widgetObject.total_dollars_obligated_SDVOSB = Convert.ToDouble(rdr["total_dollars_obligated_SDVOSB"]);
-                            widgetObject.total_dollars_obligated_SB = Convert.ToDouble(rdr["total_dollars_obligated_SB"]);
+                            widgetObject.base_and_all_options_SDVOSB = SafeParseDouble(rdr["base_and_all_options_SDVOSB"].ToString());
+                            widgetObject.base_and_all_options_SB = SafeParseDouble(rdr["base_and_all_options_SB"].ToString());
+                            widgetObject.total_dollars_obligated_SDVOSB = SafeParseDouble(rdr["total_dollars_obligated_SDVOSB"].ToString());
+                            widgetObject.total_dollars_obligated_SB = SafeParseDouble(rdr["total_dollars_obligated_SB"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -1050,10 +1072,10 @@ namespace FedPipelineApplication.Controllers
                             question1Response widgetObject = new question1Response();
 
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
-                            widgetObject.base_and_all_options_HUBZONE = Convert.ToDouble(rdr["base_and_all_options_HUBZONE"]);
-                            widgetObject.base_and_all_options_SB = Convert.ToDouble(rdr["base_and_all_options_SB"]);
-                            widgetObject.total_dollars_obligated_HUBZONE = Convert.ToDouble(rdr["total_dollars_obligated_HUBZONE"]);
-                            widgetObject.total_dollars_obligated_SB = Convert.ToDouble(rdr["total_dollars_obligated_SB"]);
+                            widgetObject.base_and_all_options_HUBZONE = SafeParseDouble(rdr["base_and_all_options_HUBZONE"].ToString());
+                            widgetObject.base_and_all_options_SB = SafeParseDouble(rdr["base_and_all_options_SB"].ToString());
+                            widgetObject.total_dollars_obligated_HUBZONE = SafeParseDouble(rdr["total_dollars_obligated_HUBZONE"].ToString());
+                            widgetObject.total_dollars_obligated_SB = SafeParseDouble(rdr["total_dollars_obligated_SB"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -1085,8 +1107,8 @@ namespace FedPipelineApplication.Controllers
 
                             widgetObject.funding_sub_agency_code = rdr["funding_sub_agency_code"].ToString();
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
-                            widgetObject.base_and_all_options = Convert.ToDouble(rdr["base_and_all_options"]);
-                            widgetObject.total_dollars_obligated = Convert.ToDouble(rdr["total_dollars_obligated"]);
+                            widgetObject.base_and_all_options = SafeParseDouble(rdr["base_and_all_options"].ToString());
+                            widgetObject.total_dollars_obligated = SafeParseDouble(rdr["total_dollars_obligated"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -1156,7 +1178,7 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.funding_agency_name = rdr["agency_name"].ToString();
                             widgetObject.vendor_name = rdr["vendor_name"].ToString();
                             widgetObject.total_dollars_obligated = Convert.ToDouble(rdr["total_obligations"]);
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -1186,8 +1208,8 @@ namespace FedPipelineApplication.Controllers
 
                             widgetObject.funding_agency_code = rdr["agency_code"].ToString();
                             widgetObject.agency_name = rdr["agency_name"].ToString();
-                            widgetObject.base_and_all_options = Convert.ToDouble(rdr["base_and_all_options"]);
-                            widgetObject.total_dollars_obligated = Convert.ToDouble(rdr["dollars_obligated"]);
+                            widgetObject.base_and_all_options = SafeParseDouble(rdr["base_and_all_options"].ToString());
+                            widgetObject.total_dollars_obligated = SafeParseDouble(rdr["dollars_obligated"].ToString());
                             widgetList.Add(widgetObject);
                         }
                     }
@@ -1214,7 +1236,7 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.funding_agency_code = rdr["funding_agency_code"].ToString();
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
                             widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -1248,8 +1270,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.funding_agency_code = rdr["funding_agency_code"].ToString();
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
                             widgetObject.vendor_name = rdr["vendor_name"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_obligations"].ToString());
 
                             widgetList.Add(widgetObject);
                         }
@@ -1319,8 +1341,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.funding_sub_agency_code = rdr["funding_sub_agency_code"].ToString();
                             widgetObject.funding_sub_agency_name = rdr["funding_sub_agency_name"].ToString();
                             widgetObject.vendor_name = rdr["vendor_name"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_obligations"].ToString());
 
                             widgetList.Add(widgetObject);
                         }
@@ -1350,8 +1372,8 @@ namespace FedPipelineApplication.Controllers
                         while (rdr.Read())
                         {
                             question1Response widgetObject = new question1Response();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["base_and_all_options_total"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["federal_action_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["base_and_all_options_total"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["federal_action_obligations"].ToString());
                             if (body.agency_code == null)
                             {
                                 widgetObject.funding_agency_code = rdr["department_code"].ToString();
@@ -1401,8 +1423,8 @@ namespace FedPipelineApplication.Controllers
                         while (rdr.Read())
                         {
                             question1Response widgetObject = new question1Response();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["base_and_all_options_total"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["federal_action_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["base_and_all_options_total"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["federal_action_obligations"].ToString());
                             if (body.agency_code == null)
                             {
                                 widgetObject.funding_agency_code = rdr["department_code"].ToString();
@@ -1457,12 +1479,12 @@ namespace FedPipelineApplication.Controllers
                             //widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
                             widgetObject.set_aside_code1 = rdr["set_aside_code1"].ToString();
                             widgetObject.type_of_set_aside1 = rdr["type_of_set_aside1"].ToString();
-                            widgetObject.base_and_all_options_1 = Convert.ToDouble(rdr["base_and_all_options_1"]);
-                            widgetObject.total_dollars_obligated_1 = Convert.ToDouble(rdr["total_dollars_obligated_1"]);
+                            widgetObject.base_and_all_options_1 = SafeParseDouble(rdr["base_and_all_options_1"].ToString());
+                            widgetObject.total_dollars_obligated_1 = SafeParseDouble(rdr["total_dollars_obligated_1"].ToString());
                             widgetObject.set_aside_code2 = rdr["set_aside_code2"].ToString();
                             widgetObject.type_of_set_aside2 = rdr["type_of_set_aside2"].ToString();
-                            widgetObject.base_and_all_options_2 = Convert.ToDouble(rdr["base_and_all_options_2"]);
-                            widgetObject.total_dollars_obligated_2 = Convert.ToDouble(rdr["total_dollars_obligated_2"]);
+                            widgetObject.base_and_all_options_2 = SafeParseDouble(rdr["base_and_all_options_2"].ToString());
+                            widgetObject.total_dollars_obligated_2 = SafeParseDouble(rdr["total_dollars_obligated_2"].ToString());
                             if (body.agency_code != null && body.sub_agency_code != null && body.office_code != null)
                             {
                                 widgetObject.funding_agency_name = rdr["funding_office_name"].ToString();
@@ -1507,8 +1529,8 @@ namespace FedPipelineApplication.Controllers
                             question1Response widgetObject = new question1Response();
 
                             widgetObject.type_of_set_aside = rdr["type_of_set_aside"].ToString();
-                            widgetObject.base_and_all_options = Convert.ToDouble(rdr["base_and_all_options"]);
-                            widgetObject.total_dollars_obligated = Convert.ToDouble(rdr["total_dollars_obligated"]);
+                            widgetObject.base_and_all_options = SafeParseDouble(rdr["base_and_all_options"].ToString());
+                            widgetObject.total_dollars_obligated = SafeParseDouble(rdr["total_dollars_obligated"].ToString());
                             //if (body.agency_code != null && body.sub_agency_code != null)
                             //{
                             //    widgetObject.funding_agency_name = rdr["funding_office_name"].ToString();
@@ -1620,8 +1642,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.funding_agency_code = rdr["agency_code"].ToString();
                             widgetObject.funding_agency_name = rdr["agency_name"].ToString();
                             widgetObject.contracts = Convert.ToInt32(rdr["total_contracts"]);
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["dollars_obligated"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["dollars_obligated"].ToString());
 
                             widgetList.Add(widgetObject);
                         }
@@ -1659,8 +1681,8 @@ namespace FedPipelineApplication.Controllers
                                 widgetObject.funding_agency_code = rdr["funding_agency_code"].ToString();
                             }
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["base_and_all_options_total"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_dollars_obligated"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["base_and_all_options_total"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_dollars_obligated"].ToString());
 
                             widgetList.Add(widgetObject);
                         }
@@ -1709,8 +1731,8 @@ namespace FedPipelineApplication.Controllers
                                 widgetObject.funding_agency_name = rdr["funding_office_name"].ToString();
                             }
 
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_obligations"].ToString());
 
                             widgetList.Add(widgetObject);
                         }
@@ -1741,8 +1763,8 @@ namespace FedPipelineApplication.Controllers
                             question1Response widgetObject = new question1Response();
                             widgetObject.funding_agency_code = rdr["funding_agency_code"].ToString();
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_obligations"].ToString());
 
                             widgetList.Add(widgetObject);
                         }
@@ -1812,8 +1834,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.funding_agency_code = rdr["funding_agency_code"].ToString();
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
                             widgetObject.vendor_name = rdr["vendor_name"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_obligations"].ToString());
 
                             widgetList.Add(widgetObject);
                         }
@@ -1903,7 +1925,7 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.funding_agency_name = rdr["agency_name"].ToString();
                             widgetObject.vendor_name = rdr["vendor_name"].ToString();
                             widgetObject.total_dollars_obligated = Convert.ToDouble(rdr["total_obligations"]);
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -1959,7 +1981,7 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
 
                             widgetObject.vendor_name = rdr["vendor_name"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
 
                             widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
                             widgetList.Add(widgetObject);
@@ -1989,8 +2011,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.vendor_uei = rdr["vendor_uei"].ToString();
                             widgetObject.action_date_fiscal_year = rdr["action_date_fiscal_year"].ToString();
                             widgetObject.vendor_name = rdr["vendor_name"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_obligations"].ToString());
 
                             widgetList.Add(widgetObject);
                         }
@@ -2028,8 +2050,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.vendor_uei = rdr["vendor_uei"].ToString();
                             widgetObject.action_date_fiscal_year = rdr["action_date_fiscal_year"].ToString();
                             widgetObject.vendor_name = rdr["vendor_name"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_obligations"].ToString());
 
                             widgetList.Add(widgetObject);
                         }
@@ -2076,8 +2098,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.agency_code = rdr["agency_code"].ToString();
                             widgetObject.agency_name = rdr["agency_name"].ToString();
                             widgetObject.award_id_piid = rdr["award_id_piid"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["dollars_obligated"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["dollars_obligated"].ToString());
 
                             widgetList.Add(widgetObject);
                         }
@@ -2122,8 +2144,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.vendor_name = rdr["vendor_name"].ToString();
                             widgetObject.contract_year = rdr["contract_year"].ToString();
                             widgetObject.number_of_contracts = Convert.ToInt32(rdr["number_of_contracts"]);
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_obligations"].ToString());
 
                             widgetList.Add(widgetObject);
                         }
@@ -2157,8 +2179,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.legal_business_name = rdr["legal_business_name"].ToString();
                             widgetObject.recipient_name = rdr["recipient_name"].ToString();
                             widgetObject.contract_number = rdr["contract_number"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_dollars_obligated = Convert.ToDouble(rdr["total_dollars_obligated"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_dollars_obligated = SafeParseDouble(rdr["total_dollars_obligated"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -2188,8 +2210,8 @@ namespace FedPipelineApplication.Controllers
                             question1DrillDown1Response widgetObject = new question1DrillDown1Response();
                             widgetObject.funding_office_code = rdr["agency_code"].ToString();
                             widgetObject.agency_name = rdr["agency_name"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_obligations"].ToString());
                             widgetObject.fiscal_year = rdr["fiscal_year"].ToString();
 
                             widgetList.Add(widgetObject);
@@ -2222,8 +2244,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.funding_office_code = rdr["agency_code"].ToString();
                             widgetObject.total_contracts = Convert.ToInt32(rdr["total_contracts"]);
                             widgetObject.agency_name = rdr["agency_name"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_obligations"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -2253,8 +2275,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.funding_agency_code = Convert.ToInt32(rdr["funding_agency_code"]);
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
                             widgetObject.fiscal_year_earliest_start_date = rdr["fiscal_year_earliest_start_date"].ToString();
-                            widgetObject.base_and_all_options_total = Convert.ToDouble(rdr["base_and_all_options_total"]);
-                            widgetObject.total_dollars_obligated = Convert.ToDouble(rdr["total_dollars_obligated"]);
+                            widgetObject.base_and_all_options_total = SafeParseDouble(rdr["base_and_all_options_total"].ToString());
+                            widgetObject.total_dollars_obligated = SafeParseDouble(rdr["total_dollars_obligated"].ToString());
                             widgetObject.set_aside_code = rdr["type_of_set_aside"].ToString();
                             widgetList.Add(widgetObject);
                         }
@@ -2285,8 +2307,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.funding_office_code = rdr["agency_code"].ToString();
                             widgetObject.funding_agency_name = rdr["agency_name"].ToString();
                             //widgetObject.fiscal_year = rdr["fiscal_year"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_dollars_obligated = Convert.ToDouble(rdr["total_dollars_obligated"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_dollars_obligated = SafeParseDouble(rdr["total_dollars_obligated"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -2315,10 +2337,10 @@ namespace FedPipelineApplication.Controllers
 
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
                             widgetObject.fiscal_year = rdr["fiscal_year"].ToString();
-                            widgetObject.base_and_all_options_UNR = Convert.ToDouble(rdr["base_and_all_options_UNR"]);
-                            widgetObject.base_and_all_options_SETASIDE = Convert.ToDouble(rdr["base_and_all_options_SETASIDE"]);
-                            widgetObject.total_dollars_obligated_UNR = Convert.ToDouble(rdr["total_dollars_obligated_UNR"]);
-                            widgetObject.total_dollars_obligated_SETASIDE = Convert.ToDouble(rdr["total_dollars_obligated_SETASIDE"]);
+                            widgetObject.base_and_all_options_UNR = SafeParseDouble(rdr["base_and_all_options_UNR"].ToString());
+                            widgetObject.base_and_all_options_SETASIDE = SafeParseDouble(rdr["base_and_all_options_SETASIDE"].ToString());
+                            widgetObject.total_dollars_obligated_UNR = SafeParseDouble(rdr["total_dollars_obligated_UNR"].ToString());
+                            widgetObject.total_dollars_obligated_SETASIDE = SafeParseDouble(rdr["total_dollars_obligated_SETASIDE"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -2347,10 +2369,10 @@ namespace FedPipelineApplication.Controllers
 
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
                             widgetObject.fiscal_year = rdr["fiscal_year"].ToString();
-                            widgetObject.base_and_all_options_8A = Convert.ToDouble(rdr["base_and_all_options_8A"]);
-                            widgetObject.base_and_all_options_SB = Convert.ToDouble(rdr["base_and_all_options_SB"]);
-                            widgetObject.total_dollars_obligated_8A = Convert.ToDouble(rdr["total_dollars_obligated_8A"]);
-                            widgetObject.total_dollars_obligated_SB = Convert.ToDouble(rdr["total_dollars_obligated_SB"]);
+                            widgetObject.base_and_all_options_8A = SafeParseDouble(rdr["base_and_all_options_8A"].ToString());
+                            widgetObject.base_and_all_options_SB = SafeParseDouble(rdr["base_and_all_options_SB"].ToString());
+                            widgetObject.total_dollars_obligated_8A = SafeParseDouble(rdr["total_dollars_obligated_8A"].ToString());
+                            widgetObject.total_dollars_obligated_SB = SafeParseDouble(rdr["total_dollars_obligated_SB"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -2379,10 +2401,10 @@ namespace FedPipelineApplication.Controllers
 
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
                             widgetObject.fiscal_year = rdr["fiscal_year"].ToString();
-                            widgetObject.base_and_all_options_WOSB = Convert.ToDouble(rdr["base_and_all_options_WOSB"]);
-                            widgetObject.base_and_all_options_SB = Convert.ToDouble(rdr["base_and_all_options_SB"]);
-                            widgetObject.total_dollars_obligated_WOSB = Convert.ToDouble(rdr["total_dollars_obligated_WOSB"]);
-                            widgetObject.total_dollars_obligated_SB = Convert.ToDouble(rdr["total_dollars_obligated_SB"]);
+                            widgetObject.base_and_all_options_WOSB = SafeParseDouble(rdr["base_and_all_options_WOSB"].ToString());
+                            widgetObject.base_and_all_options_SB = SafeParseDouble(rdr["base_and_all_options_SB"].ToString());
+                            widgetObject.total_dollars_obligated_WOSB = SafeParseDouble(rdr["total_dollars_obligated_WOSB"].ToString());
+                            widgetObject.total_dollars_obligated_SB = SafeParseDouble(rdr["total_dollars_obligated_SB"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -2411,10 +2433,10 @@ namespace FedPipelineApplication.Controllers
 
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
                             widgetObject.fiscal_year = rdr["fiscal_year"].ToString();
-                            widgetObject.base_and_all_options_SDVOSB = Convert.ToDouble(rdr["base_and_all_options_SDVOSB"]);
-                            widgetObject.base_and_all_options_SB = Convert.ToDouble(rdr["base_and_all_options_SB"]);
-                            widgetObject.total_dollars_obligated_SDVOSB = Convert.ToDouble(rdr["total_dollars_obligated_SDVOSB"]);
-                            widgetObject.total_dollars_obligated_SB = Convert.ToDouble(rdr["total_dollars_obligated_SB"]);
+                            widgetObject.base_and_all_options_SDVOSB = SafeParseDouble(rdr["base_and_all_options_SDVOSB"].ToString());
+                            widgetObject.base_and_all_options_SB = SafeParseDouble(rdr["base_and_all_options_SB"].ToString());
+                            widgetObject.total_dollars_obligated_SDVOSB = SafeParseDouble(rdr["total_dollars_obligated_SDVOSB"].ToString());
+                            widgetObject.total_dollars_obligated_SB = SafeParseDouble(rdr["total_dollars_obligated_SB"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -2443,10 +2465,10 @@ namespace FedPipelineApplication.Controllers
 
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
                             widgetObject.fiscal_year = rdr["fiscal_year"].ToString();
-                            widgetObject.base_and_all_options_HUBZONE = Convert.ToDouble(rdr["base_and_all_options_HUBZONE"]);
-                            widgetObject.base_and_all_options_SB = Convert.ToDouble(rdr["base_and_all_options_SB"]);
-                            widgetObject.total_dollars_obligated_HUBZONE = Convert.ToDouble(rdr["total_dollars_obligated_HUBZONE"]);
-                            widgetObject.total_dollars_obligated_SB = Convert.ToDouble(rdr["total_dollars_obligated_SB"]);
+                            widgetObject.base_and_all_options_HUBZONE = SafeParseDouble(rdr["base_and_all_options_HUBZONE"].ToString());
+                            widgetObject.base_and_all_options_SB = SafeParseDouble(rdr["base_and_all_options_SB"].ToString());
+                            widgetObject.total_dollars_obligated_HUBZONE = SafeParseDouble(rdr["total_dollars_obligated_HUBZONE"].ToString());
+                            widgetObject.total_dollars_obligated_SB = SafeParseDouble(rdr["total_dollars_obligated_SB"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -2477,8 +2499,8 @@ namespace FedPipelineApplication.Controllers
 
                             widgetObject.funding_agency_code = Convert.ToInt32(rdr["funding_agency_code"]);
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
-                            widgetObject.base_and_all_options = Convert.ToDouble(rdr["base_and_all_options"]);
-                            widgetObject.total_dollars_obligated = Convert.ToDouble(rdr["total_dollars_obligated"]);
+                            widgetObject.base_and_all_options = SafeParseDouble(rdr["base_and_all_options"].ToString());
+                            widgetObject.total_dollars_obligated = SafeParseDouble(rdr["total_dollars_obligated"].ToString());
                             widgetObject.fiscal_year = rdr["fiscal_year"].ToString();
                             widgetList.Add(widgetObject);
                         }
@@ -2513,7 +2535,7 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.vendor_name = rdr["vendor_name"].ToString();
                             widgetObject.vendor_uei = rdr["vendor_uei"].ToString();
                             widgetObject.total_dollars_obligated = Convert.ToDouble(rdr["total_dollars_obligated"]);
-                            widgetObject.base_and_all_options_total = Convert.ToDouble(rdr["base_and_all_options_total"]);
+                            widgetObject.base_and_all_options_total = SafeParseDouble(rdr["base_and_all_options_total"].ToString());
                             widgetObject.fiscal_year = rdr["fiscal_year"].ToString();
                             widgetList.Add(widgetObject);
                         }
@@ -2551,7 +2573,7 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
                             widgetObject.vendor_name = rdr["vendor_name"].ToString();
                             widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -2579,8 +2601,8 @@ namespace FedPipelineApplication.Controllers
                             question1DrillDown1Response widgetObject = new question1DrillDown1Response();
 
                             widgetObject.fiscal_year = rdr["fiscal_year"].ToString();
-                            widgetObject.base_and_all_options = Convert.ToDouble(rdr["base_and_all_options"]);
-                            widgetObject.total_dollars_obligated = Convert.ToDouble(rdr["dollars_obligated"]);
+                            widgetObject.base_and_all_options = SafeParseDouble(rdr["base_and_all_options"].ToString());
+                            widgetObject.total_dollars_obligated = SafeParseDouble(rdr["dollars_obligated"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -2609,7 +2631,7 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.sub_agency_code = rdr["funding_sub_agency_code"].ToString();
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
                             widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -2643,8 +2665,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.funding_agency_code = Convert.ToInt32(rdr["funding_agency_code"]);
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
                             widgetObject.vendor_name = rdr["vendor_name"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_obligations"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -2678,8 +2700,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.vendor_uei = rdr["vendor_uei"].ToString();
                             widgetObject.action_date_fiscal_year = rdr["action_date_fiscal_year"].ToString();
                             widgetObject.vendor_name = rdr["vendor_name"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_obligations"].ToString());
 
                             widgetList.Add(widgetObject);
                         }
@@ -2711,8 +2733,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.vendor_uei = rdr["vendor_uei"].ToString();
                             widgetObject.action_date_fiscal_year = rdr["action_date_fiscal_year"].ToString();
                             widgetObject.vendor_name = rdr["vendor_name"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_obligations"].ToString());
 
                             widgetList.Add(widgetObject);
                         }
@@ -2773,8 +2795,8 @@ namespace FedPipelineApplication.Controllers
                         while (rdr.Read())
                         {
                             question1DrillDown1Response widgetObject = new question1DrillDown1Response();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["base_and_all_options_total"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["federal_action_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["base_and_all_options_total"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["federal_action_obligations"].ToString());
                             widgetObject.product_or_service_code = rdr["product_or_service_code"].ToString();
                             widgetObject.product_or_service_code_description = rdr["product_or_service_code_description"].ToString();
 
@@ -2831,8 +2853,8 @@ namespace FedPipelineApplication.Controllers
                         while (rdr.Read())
                         {
                             question1DrillDown1Response widgetObject = new question1DrillDown1Response();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["base_and_all_options_total"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["federal_action_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["base_and_all_options_total"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["federal_action_obligations"].ToString());
                             widgetObject.LEGAL_BUSINESS_NAME = rdr["LEGAL_BUSINESS_NAME"].ToString();
                             widgetObject.recipient_uei = rdr["recipient_uei"].ToString();
 
@@ -2887,8 +2909,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.fiscal_year = rdr["fiscal_year"].ToString();
                             widgetObject.set_aside_code1 = rdr["set_aside_code1"].ToString();
                             widgetObject.type_of_set_aside1 = rdr["type_of_set_aside1"].ToString();
-                            widgetObject.base_and_all_options_1 = Convert.ToDouble(rdr["base_and_all_options_1"]);
-                            widgetObject.total_dollars_obligated_1 = Convert.ToDouble(rdr["total_dollars_obligated_1"]);
+                            widgetObject.base_and_all_options_1 = SafeParseDouble(rdr["base_and_all_options_1"].ToString());
+                            widgetObject.total_dollars_obligated_1 = SafeParseDouble(rdr["total_dollars_obligated_1"].ToString());
                             if (body.agency_code != null && body.sub_agency_code != null && body.office_code != null)
                             {
                                 widgetObject.funding_agency_name = rdr["funding_office_name"].ToString();
@@ -2953,8 +2975,8 @@ namespace FedPipelineApplication.Controllers
 
                             widgetObject.fiscal_year = rdr["fiscal_year"].ToString();
                             widgetObject.type_of_set_aside = rdr["type_of_set_aside"].ToString();
-                            widgetObject.base_and_all_options = Convert.ToDouble(rdr["base_and_all_options"]);
-                            widgetObject.total_dollars_obligated = Convert.ToDouble(rdr["total_dollars_obligated"]);
+                            widgetObject.base_and_all_options = SafeParseDouble(rdr["base_and_all_options"].ToString());
+                            widgetObject.total_dollars_obligated = SafeParseDouble(rdr["total_dollars_obligated"].ToString());
 
                             if (subAgencyCode != null && (officeCode == null || officeCode == ""))
                             {
@@ -3008,8 +3030,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.agency_name = rdr["agency_name"].ToString();
                             widgetObject.award_id_piid = rdr["award_id_piid"].ToString();
                             widgetObject.transaction_id = rdr["transaction_id"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["dollars_obligated"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["dollars_obligated"].ToString());
 
                             widgetList.Add(widgetObject);
                         }
@@ -3048,8 +3070,8 @@ namespace FedPipelineApplication.Controllers
                             question1DrillDown1Response widgetObject = new question1DrillDown1Response();
                             widgetObject.funding_office_code = rdr["funding_agency_code"].ToString();
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["base_and_all_options_total"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_dollars_obligated"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["base_and_all_options_total"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_dollars_obligated"].ToString());
                             widgetObject.fiscal_year = rdr["fiscal_year"].ToString();
                             widgetList.Add(widgetObject);
                         }
@@ -3099,8 +3121,8 @@ namespace FedPipelineApplication.Controllers
                         {
                             question1DrillDown1Response widgetObject = new question1DrillDown1Response();
                             widgetObject.fiscal_year = rdr["fiscal_year"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_obligations"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -3131,8 +3153,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.fiscal_year = rdr["fiscal_year"].ToString();
                             widgetObject.funding_office_code = rdr["funding_agency_code"].ToString();
                             widgetObject.funding_office_name = rdr["funding_agency_name"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_obligations"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -3167,8 +3189,8 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.funding_agency_code = Convert.ToInt32(rdr["funding_agency_code"]);
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
                             widgetObject.vendor_name = rdr["vendor_name"].ToString();
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
-                            widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
+                            widgetObject.total_obligations = SafeParseDouble(rdr["total_obligations"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -3205,7 +3227,7 @@ namespace FedPipelineApplication.Controllers
                             widgetObject.funding_agency_name = rdr["funding_agency_name"].ToString();
                             widgetObject.vendor_name = rdr["vendor_name"].ToString();
                             widgetObject.total_obligations = Convert.ToDouble(rdr["total_obligations"]);
-                            widgetObject.total_base_and_all_options = Convert.ToDouble(rdr["total_base_and_all_options"]);
+                            widgetObject.total_base_and_all_options = SafeParseDouble(rdr["total_base_and_all_options"].ToString());
                             widgetList.Add(widgetObject);
                         }
 
@@ -3261,8 +3283,9 @@ namespace FedPipelineApplication.Controllers
                         fpdsObject.latest_period_of_performance_potential_end_date = rdr["latest_period_of_performance_potential_end_date"].ToString();
                         fpdsObject.modification_number = rdr["modification_number"].ToString();
                         fpdsObject.latest_modification_number = rdr["latest_modification_number"].ToString();
-                        fpdsObject.federal_action_obligation = rdr["federal_action_obligation"].ToString();
-                        fpdsObject.base_and_all_options_value = rdr["base_and_all_options_value"].ToString();
+                        // Convert string values to double, handling potential null/empty values
+                        fpdsObject.federal_action_obligation = SafeParseDoubleAsString(rdr["federal_action_obligation"].ToString());
+                        fpdsObject.base_and_all_options_value = SafeParseDoubleAsString(rdr["base_and_all_options_value"].ToString());
                         fpdsObject.total_dollars_obligated = rdr["total_dollars_obligated"].ToString();
                         fpdsObject.total_base_and_all_options = rdr["base_and_all_options_total"].ToString();
                         fpdsObject.funding_agency_code = rdr["funding_agency_code"].ToString();
@@ -3379,8 +3402,9 @@ namespace FedPipelineApplication.Controllers
                         contractObject.contract_transaction_id = rdr["transaction_id"].ToString();
                         contractObject.contract_modification_number = rdr["modification_number"].ToString();
                         contractObject.contract_action_date = rdr["action_date"].ToString();
-                        contractObject.contract_base_and_all_options_value = rdr["base_and_all_options_value"].ToString();
-                        contractObject.contract_federal_action_obligation = rdr["federal_action_obligation"].ToString();
+                        // Convert and validate string values for contract modifications
+                        contractObject.contract_base_and_all_options_value = SafeParseDoubleAsString(rdr["base_and_all_options_value"].ToString());
+                        contractObject.contract_federal_action_obligation = SafeParseDoubleAsString(rdr["federal_action_obligation"].ToString());
                         contractMods.Add(contractObject);
                     }
                     con.Close();
@@ -4840,8 +4864,9 @@ namespace FedPipelineApplication.Controllers
                         hdrObject.naics_description = rdr["naics_description"].ToString();
                         hdrObject.product_or_service_code = rdr["product_or_service_code"].ToString();
                         hdrObject.product_or_service_code_description = rdr["product_or_service_code_description"].ToString();
-                        hdrObject.base_and_all_options_value = Convert.ToDouble(rdr["base_and_all_options_value"]);
-                        hdrObject.federal_action_obligation = Convert.ToDouble(rdr["federal_action_obligation"]);
+                        // Convert string values to double, handling potential null/empty values and parsing errors
+                        hdrObject.base_and_all_options_value = SafeParseDouble(rdr["base_and_all_options_value"].ToString());
+                        hdrObject.federal_action_obligation = SafeParseDouble(rdr["federal_action_obligation"].ToString());
                         hdrObject.solicitation_identifier = rdr["solicitation_identifier"].ToString();
                         hdrObject.funding_agency_code = rdr["funding_agency_code"].ToString();
                         hdrObject.funding_sub_agency_code = rdr["funding_sub_agency_code"].ToString();
@@ -4853,8 +4878,9 @@ namespace FedPipelineApplication.Controllers
                         hdrObject.awarding_office_code = rdr["awarding_office_code"].ToString();
                         hdrObject.awarding_office_name = rdr["awarding_office_name"].ToString();
                         hdrObject.award_type = rdr["award_type"].ToString();
-                        hdrObject.base_and_all_options_value_k = Convert.ToDouble(rdr["base_and_all_options_value_k"]);
-                        hdrObject.federal_action_obligation_k = Convert.ToDouble(rdr["federal_action_obligation_k"]);
+                        // Convert string values to double for _k fields, handling potential null/empty values and parsing errors
+                        hdrObject.base_and_all_options_value_k = SafeParseDouble(rdr["base_and_all_options_value_k"].ToString());
+                        hdrObject.federal_action_obligation_k = SafeParseDouble(rdr["federal_action_obligation_k"].ToString());
                         hdrObject.type_of_contract_pricing = rdr["type_of_contract_pricing"].ToString();
                         hdrObject.solicitation_date = rdr["solicitation_date"].ToString();
                         hdrObject.action_date = rdr["action_date"].ToString();
