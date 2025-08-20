@@ -2,7 +2,7 @@
     //const origin = window.location.origin;
     //window.location.origin.includes('fpdsplus') ? $("#fed").hide() : $("#fpds").hide();
     document.title = 'FPDSplus - ' + document.title
-    //window.location.origin.includes('fpdsplus') ? '../../Content/assets/images/FedpipelineFPDSLogo.png' : '../../Content/assets/images/FedpipelineLogo.png')
+    //window.location.origin.includes('fpdsplus') ? '../../Content/assets/images/FedpipelineFPDSLogo.jpg' : '../../Content/assets/images/FedpipelineLogo.png')
     //document.title = window.location.origin.includes('fpdsplus') ? 'FPDSplus - ' + document.title : 'Fedpipeline - ' + document.title
 
     var IDLE_TIMEOUT = 600; //seconds

@@ -569,7 +569,8 @@
     <Content Include="Content\assets\images\Error.gif" />
     <Content Include="Content\assets\images\excel.png" />
     <Content Include="Content\assets\images\favicon.png" />
-    <Content Include="Content\assets\images\FedpipelineFPDSLogo.png" />
+    <Content Include="Content\assets\images\FedpipelineFPDSLogo.jpg" />
+    <Content Include="Content\assets\images\FedpipelineFPDSLogo.jpg" />
     <Content Include="Content\assets\images\FedpipelineLogo.png" />
     <Content Include="Content\assets\images\FedpipelineLogo.svg" />
     <Content Include="Content\assets\images\FEDPIPELINE_Card.png" />
